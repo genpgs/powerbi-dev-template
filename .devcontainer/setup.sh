@@ -20,10 +20,15 @@ fi
 # Ensure uv is on PATH for remainder of script
 export PATH="$HOME/.local/bin:$PATH"
 
-# 2. Install pbir-cli
-echo "==> Installing pbir-cli..."
-uv tool install pbir-cli 2>/dev/null || uv tool upgrade pbir-cli
-echo "pbir-cli: $(powerbi-report-author --version 2>/dev/null || echo 'installed')"
+# 2. Install pbir-cli (if supported on OS)
+if [ "$(uname -s 2>/dev/null || echo '')" = "Linux" ]; then
+    echo "==> Skipping pbir-cli on Linux: upstream PyPI wheels support Windows/macOS only."
+    echo "    Using native scripts/validate_pbir_schema.py fallback for PBIR validation."
+else
+    echo "==> Installing pbir-cli..."
+    uv tool install pbir-cli 2>/dev/null || uv tool upgrade pbir-cli 2>/dev/null || true
+    echo "pbir-cli: $(powerbi-report-author --version 2>/dev/null || echo 'installed')"
+fi
 
 # 3. Warm up powerbi-modeling-mcp npx cache (best-effort)
 echo "==> Warming up powerbi-modeling-mcp cache..."
