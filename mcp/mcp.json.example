@@ -10,10 +10,14 @@
     "type": "stdio",
     "command": "npx",
     "args": ["-y", "@microsoft/powerbi-modeling-mcp@latest", "--start"],
+    "env": {
+      "PBI_MODELING_MCP_ACCEPT_EULA": "true"
+    },
     "_notes": [
       "Requires Node.js 18+ and npx on PATH.",
+      "PBI_MODELING_MCP_ACCEPT_EULA: set to 'true' to pre-accept the Microsoft EULA for headless/agent workflows (https://go.microsoft.com/fwlink/?LinkId=2381247).",
       "On Windows: connects to a running Power BI Desktop instance automatically.",
-      "On Linux: connects to a Fabric workspace. The MCP server will prompt for auth on first use.",
+      "On Linux: operates on local TMDL project folders offline, or connects to a Fabric workspace.",
       "See https://github.com/microsoft/powerbi-modeling-mcp for full docs."
     ]
   }

@@ -31,13 +31,21 @@ else
 fi
 
 # ── 3. Install pbir-cli ───────────────────────────────────────────────────────
-echo "[Installing/upgrading pbir-cli...]"
-if uv tool install pbir-cli 2>/dev/null; then
-    echo "[OK] pbir-cli installed"
-elif uv tool upgrade pbir-cli 2>/dev/null; then
-    echo "[OK] pbir-cli upgraded"
+echo "[Checking pbir-cli compatibility...]"
+OS_TYPE="$(uname -s 2>/dev/null || echo "Unknown")"
+if [ "$OS_TYPE" = "Linux" ]; then
+    echo "[INFO] Running on Linux: upstream pbir-cli wheels currently support Windows and macOS only."
+    echo "       This template includes a built-in cross-platform pure-Python schema validator:"
+    echo "       -> scripts/validate_pbir_schema.py (used automatically by scripts/validate_pbir.sh)."
 else
-    echo "[WARN] Could not install pbir-cli — run manually: uv tool install pbir-cli"
+    echo "[Installing/upgrading pbir-cli...]"
+    if uv tool install pbir-cli 2>/dev/null; then
+        echo "[OK] pbir-cli installed"
+    elif uv tool upgrade pbir-cli 2>/dev/null; then
+        echo "[OK] pbir-cli upgraded"
+    else
+        echo "[WARN] Could not install pbir-cli — run manually: uv tool install pbir-cli"
+    fi
 fi
 
 # ── 4. Check Node.js / npx ───────────────────────────────────────────────────
