@@ -1,0 +1,29 @@
+# Power BI local artifacts (never commit these)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.pbix
+
+# Environment / secrets
+.env
+secrets/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+*.swp
+*.swo

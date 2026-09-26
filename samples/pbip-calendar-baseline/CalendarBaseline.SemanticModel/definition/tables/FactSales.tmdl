@@ -1,0 +1,16 @@
+table FactSales
+	column OrderDate
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: OrderDate
+	column Amount
+		dataType: double
+		sourceColumn: Amount
+	measure 'Total Amount' = SUM(FactSales[Amount])
+		formatString: #,0.00
+	partition FactSales = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [OrderDate=date, Amount=number], {{#date(2024,1,15),1250},{#date(2025,9,4),990}})
+			in Source

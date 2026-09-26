@@ -1,0 +1,34 @@
+-- validate-calendar.dax
+-- Run this query in DAX Studio or Power BI Desktop after refreshing the model.
+-- All ValidationPassed flags should be TRUE.
+
+EVALUATE
+VAR D            = ALL(Calendar[Date])
+VAR MinD         = MINX(D, Calendar[Date])
+VAR MaxD         = MAXX(D, Calendar[Date])
+VAR N            = COUNTROWS(D)
+VAR U            = COUNTROWS(DISTINCT(SELECTCOLUMNS(D, "Date", Calendar[Date])))
+VAR E            = DATEDIFF(MinD, MaxD, DAY) + 1
+VAR WeekCheck    = COUNTROWS(FILTER(D, ISBLANK(Calendar[FiscalWeekNumber])))    = 0
+VAR PeriodCheck  = COUNTROWS(FILTER(D, ISBLANK(Calendar[FiscalPeriodNumber]))) = 0
+VAR QtrCheck     = COUNTROWS(FILTER(D, ISBLANK(Calendar[FiscalQuarterNumber])))= 0
+VAR FYCheck      = COUNTROWS(FILTER(D, ISBLANK(Calendar[FiscalYear])))         = 0
+VAR WkOfPCheck   = COUNTROWS(FILTER(D, ISBLANK(Calendar[FiscalWeekOfPeriod]))) = 0
+VAR MaxPeriod    = MAXX(D, Calendar[FiscalPeriodNumber])
+VAR MaxWeek      = MAXX(D, Calendar[FiscalWeekNumber])
+RETURN
+ROW(
+    "MinDate",           MinD,
+    "MaxDate",           MaxD,
+    "TotalRows",         N,
+    "UniqueDates",       N = U,
+    "ContiguousDates",   N = E,
+    "NoNullWeeks",       WeekCheck,
+    "NoNullPeriods",     PeriodCheck,
+    "NoNullQuarters",    QtrCheck,
+    "NoNullFiscalYears", FYCheck,
+    "NoNullWeekOfPeriod",WkOfPCheck,
+    "MaxFiscalPeriod",   MaxPeriod,
+    "MaxFiscalWeek",     MaxWeek,
+    "ValidationPassed",  N = U && N = E && WeekCheck && PeriodCheck && QtrCheck && FYCheck && WkOfPCheck
+)

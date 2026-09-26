@@ -1,0 +1,47 @@
+name: Validate Power BI Repo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache uv tool store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/uv
+          key: uv-pbir-cli-${{ runner.os }}
+          restore-keys: |
+            uv-pbir-cli-${{ runner.os }}
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Install pbir-cli
+        run: uv tool install pbir-cli
+
+      - name: Validate repo structure and JSON
+        run: python3 scripts/validate_repo.py
+
+      - name: Validate Calendar TMDL
+        run: python3 scripts/validate_date_table.py
+
+      - name: Validate PBIR JSON (powerbi-report-author)
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          bash scripts/validate_pbir.sh

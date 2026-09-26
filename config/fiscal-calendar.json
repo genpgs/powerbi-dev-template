@@ -1,0 +1,22 @@
+{
+  "_comment": "Fiscal calendar configuration. Update these values and pass them as arguments to the Power Query functions. Power Query does not auto-read this file — it documents intent and is validated by scripts/validate_repo.py.",
+  "pattern": "445",
+  "fiscalYearStartDate": "2025-02-01",
+  "weekStartDay": "Saturday",
+  "numberOfYears": 5,
+  "fiscalYearLabelMode": "endingYear",
+  "calendarCulture": "en-US",
+  "calendarTable": "Calendar",
+  "dateColumn": "Date",
+  "factDateSources": ["FactSales[OrderDate]"],
+  "_patternOptions": ["standard", "445", "454", "544", "13period"],
+  "_weekStartDayOptions": ["Saturday", "Sunday", "Monday"],
+  "_fiscalYearLabelModeOptions": ["endingYear", "startingYear"],
+  "_notes": {
+    "standard": "Month-aligned calendar. Pass FiscalYearStartMonth (1-12) to fnCalendar.",
+    "445": "4+4+5 weeks per quarter. Each fiscal year = 52 weeks (53 in leap years). Anchor: nearest WeekStartDay on or before fiscalYearStartDate.",
+    "454": "4+5+4 weeks per quarter.",
+    "544": "5+4+4 weeks per quarter.",
+    "13period": "13 equal 4-week periods per year (52 weeks). FiscalQuarter column shows P01-P13."
+  }
+}
