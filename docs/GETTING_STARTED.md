@@ -14,9 +14,9 @@ Install these tools before starting:
 | **Node.js** | 18 | <https://nodejs.org> |
 | **uv** | latest | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 | **git** | 2.30 | OS package manager |
-| **Power BI Desktop** | latest | Windows only — for rendering and publishing |
+| **Power BI Desktop** | latest | Windows only — for local data refresh and desktop visual rendering |
 
-> **Linux users**: All authoring (TMDL editing, validation, M functions) runs on Linux. You only need Windows + Power BI Desktop when you want to render visuals or publish to a workspace.
+> **Linux users**: All authoring (TMDL model definition, PBIR report JSON, M functions, DAX measures, automated schema validation, and HTML dashboard prototyping) runs natively on Linux. You only need Windows + Power BI Desktop or Microsoft Fabric when executing local Power Query M data refreshes into VertiPaq memory or previewing the desktop GUI. See [`docs/LINUX_WORKFLOW_GAPS.md`](LINUX_WORKFLOW_GAPS.md) for full Linux findings.
 
 ---
 
@@ -46,7 +46,7 @@ bash setup.sh
 
 The script:
 - Installs **uv** (if not present)
-- Installs **pbir-cli** via uv
+- Checks / installs **pbir-cli** (on macOS and Windows; on Linux, it informs you that the built-in `scripts/validate_pbir_schema.py` is used automatically)
 - Copies `.env.example` → `.env`
 - Optionally installs the pre-commit validation hook
 
@@ -93,9 +93,9 @@ See [`docs/fiscal-calendar.md`](fiscal-calendar.md) for full pattern documentati
 From the repo root:
 
 ```bash
-python3 scripts/validate_repo.py        # structure, JSON, required files
+python3 scripts/validate_repo.py        # structure, JSON, git tracking, PBIP projects
 python3 scripts/validate_date_table.py  # Calendar TMDL columns for your pattern
-bash scripts/validate_pbir.sh           # PBIR JSON (requires pbir-cli)
+bash scripts/validate_pbir.sh           # PBIR JSON (uses pbir-cli or validate_pbir_schema.py)
 ```
 
 All checks should show `[PASS]`.
@@ -112,9 +112,11 @@ All checks should show `[PASS]`.
 
 ---
 
-## 8. Configure the MCP server
+## 8. Configure the MCP server & EULA
 
 The `powerbi-modeling-mcp` MCP server enables Tier 1 semantic model authoring (live model edits, measure creation, etc.).
+
+> **Important (EULA Acceptance)**: Microsoft's MCP requires legal terms acknowledgement before tools execute. In headless or agent environments, set `"PBI_MODELING_MCP_ACCEPT_EULA": "true"` in your MCP environment configuration, or pass `--accept-eula` when invoking the server. Review the terms at <https://go.microsoft.com/fwlink/?LinkId=2381247>.
 
 Copy `mcp/mcp.json.example` to the correct location for your harness:
 
@@ -129,7 +131,24 @@ Then remove the `_comment` and `_locations` keys from the copied file.
 
 ---
 
-## 9. Start your first agent session
+## 9. Helper Scripts & Prototyping Templates
+
+- **Profile Data Sources**:
+  ```bash
+  python3 scripts/inspect_data_source.py path/to/source.xlsx --markdown
+  ```
+  Profiles sheets, column types, null %, and automatically recommends Dimension vs Fact table roles and candidate primary/foreign keys.
+- **Scaffold PBIR Reports & PBIP Projects**:
+  ```bash
+  python3 scripts/scaffold_pbir.py SalesReport --pages "Executive Overview" "Product Breakdown" --template executive
+  ```
+  Generates a complete, compliant `.Report` folder (`definition.pbir`, `pages.json`, `page.json`, and visual layout placeholders) plus the `.pbip` manifest.
+- **Interactive HTML Dashboard Prototype**:
+  Copy `templates/html-prototype/dashboard-template.html` to rapidly mockup canvas layouts, test KPI metrics, and inspect exact PBIR visual position coordinates before writing TMDL/PBIR.
+
+---
+
+## 10. Start your first agent session
 
 Open your agent harness (Antigravity, GitHub Copilot, Claude Code) in the repo directory and try these example prompts:
 
@@ -165,7 +184,8 @@ Update the Calendar partition to use the 13-period pattern
 
 | Problem | Fix |
 |---------|-----|
-| `powerbi-report-author: command not found` | Run `uv tool install pbir-cli` and ensure `~/.local/bin` is on `PATH` |
+| `powerbi-report-author: command not found` (macOS/Win) | Run `uv tool install pbir-cli` and ensure `~/.local/bin` is on `PATH`. On Linux, `scripts/validate_pbir.sh` automatically falls back to `scripts/validate_pbir_schema.py`. |
+| MCP tool fails with `EULA must be accepted` | Add `"PBI_MODELING_MCP_ACCEPT_EULA": "true"` to your MCP `env` block, or invoke the `accept_eula` tool. |
 | `npx: command not found` | Install Node.js 18+ |
 | Calendar refresh fails in Desktop | Check that `FactSales[OrderDate]` has valid dates; the partition derives its range from fact data |
 | `ValidationPassed = FALSE` in DAX | Check `NoNullWeeks`/`NoNullPeriods` — a null week usually means the date falls outside the generated fiscal years; increase `NumberOfYears` |

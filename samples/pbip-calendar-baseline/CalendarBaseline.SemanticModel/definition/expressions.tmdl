@@ -1,8 +1,3 @@
-// expressions.tmdl — named M expressions for CalendarBaseline
-// Both fnCalendar (month-aligned) and fnCalendarWeekBased (week-anchored) are
-// declared here so either can be referenced from the Calendar partition.
-// Switch the Calendar partition source to the function that matches your pattern.
-
 expression fnCalendar =
 		(StartDate as nullable date, EndDate as nullable date, optional FiscalYearStartMonth as nullable number, optional FiscalYearLabelMode as nullable text, optional Culture as nullable text) as table =>
 		let

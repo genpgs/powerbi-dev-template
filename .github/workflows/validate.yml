@@ -32,8 +32,14 @@ jobs:
           curl -LsSf https://astral.sh/uv/install.sh | sh
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Install pbir-cli
-        run: uv tool install pbir-cli
+      - name: Install pbir-cli (if supported)
+        run: |
+          if [ "${RUNNER_OS:-}" = "Linux" ] || [ "$(uname -s)" = "Linux" ]; then
+            echo "[INFO] Skipping pbir-cli install on Linux: upstream PyPI wheels support Windows and macOS only."
+            echo "[INFO] PBIR validation will run using the cross-platform scripts/validate_pbir_schema.py fallback."
+          else
+            uv tool install pbir-cli
+          fi
 
       - name: Validate repo structure and JSON
         run: python3 scripts/validate_repo.py
@@ -41,7 +47,8 @@ jobs:
       - name: Validate Calendar TMDL
         run: python3 scripts/validate_date_table.py
 
-      - name: Validate PBIR JSON (powerbi-report-author)
+      - name: Validate PBIR JSON
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           bash scripts/validate_pbir.sh
+

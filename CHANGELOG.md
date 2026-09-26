@@ -5,7 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-## [0.1.0] — 2026-09-26
+### Added
+- Cross-platform pure-Python PBIR schema validator: `scripts/validate_pbir_schema.py`
+- PBIR report & PBIP project generator: `scripts/scaffold_pbir.py` (CLI for creating multi-page PBIR folders with visual scaffolds)
+- Tabular data profiling utility: `scripts/inspect_data_source.py` (for Excel/CSV source inspection and Star Schema role suggestions)
+- Reusable interactive HTML report prototype harness: `templates/html-prototype/dashboard-template.html`
+- Comprehensive Linux workflow limitations and pull request log: `docs/LINUX_WORKFLOW_GAPS.md`
+- Pre-commit hook integration for PBIR schema validation
+
+### Fixed
+- Fixed TMDL syntax error in `samples/pbip-calendar-baseline/CalendarBaseline.SemanticModel/definition/expressions.tmdl` by removing invalid root-level `//` comments
+- Fixed `.env` false-positive failure in `scripts/validate_repo.py` by checking git tracking status instead of disk existence
+- Fixed hardcoded path assumptions in `scripts/validate_repo.py` and `scripts/validate_pbir.sh` to dynamically detect all `.pbip` and `.Report` folders
+- Fixed `setup.sh` failure on Linux by guarding `pbir-cli` installation and pointing to the Python validator fallback
+- Documented `PBI_MODELING_MCP_ACCEPT_EULA` and Microsoft EULA requirements in `mcp/mcp.json.example` and `docs/GETTING_STARTED.md`
 
 ### Added
 - Antigravity agent skills: `powerbi-report-cli`, `semantic-model-authoring`, `fabriciq`

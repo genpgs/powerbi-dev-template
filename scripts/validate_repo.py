@@ -21,6 +21,8 @@ REQUIRED_FILES = [
     "scripts/validate_repo.py",
     "scripts/validate_date_table.py",
     "scripts/validate_pbir.sh",
+    "scripts/validate_pbir_schema.py",
+    "scripts/scaffold_pbir.py",
     "hooks/pre-commit",
     "mcp/mcp.json.example",
     "dax/queries/validate-calendar.dax",
@@ -69,10 +71,12 @@ for p in Path(".").rglob("*.json"):
         errors.append(f"[FAIL] Invalid JSON in {p}: {e}")
 
 # ── 3. .env not committed ─────────────────────────────────────────────────────
+import subprocess
+is_tracked = subprocess.run(["git", "ls-files", "--error-unmatch", ".env"], capture_output=True).returncode == 0
 check(
-    not Path(".env").exists(),
-    "[PASS] .env not committed",
-    "[FAIL] .env file found — it must not be committed (add to .gitignore)",
+    not is_tracked,
+    "[PASS] .env not committed or tracked in git",
+    "[FAIL] .env file is tracked by git — remove it: git rm --cached .env",
 )
 
 # ── 4. No binary .pbix files ──────────────────────────────────────────────────
@@ -84,7 +88,9 @@ check(
 )
 
 # ── 5. PBIP folder structure ──────────────────────────────────────────────────
-for pbip in Path("samples").rglob("*.pbip"):
+for pbip in Path(".").rglob("*.pbip"):
+    if ".git" in str(pbip):
+        continue
     base = pbip.stem
     parent = pbip.parent
     sm = parent / f"{base}.SemanticModel"
