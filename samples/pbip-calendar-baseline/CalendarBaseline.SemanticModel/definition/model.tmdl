@@ -2,4 +2,17 @@ model Model
 	culture: en-US
 	defaultPowerBIDataSourceVersion: powerBI_V3
 	discourageImplicitMeasures
-	annotation __PBI_TimeIntelligenceEnabled = 0
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Calendar","FactSales","fnCalendar","fnCalendarWeekBased"]
+
+ref table Calendar
+ref table FactSales
+

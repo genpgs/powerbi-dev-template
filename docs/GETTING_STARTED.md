@@ -96,6 +96,7 @@ From the repo root:
 python3 scripts/validate_repo.py        # structure, JSON, git tracking, PBIP projects
 python3 scripts/validate_date_table.py  # Calendar TMDL columns for your pattern
 bash scripts/validate_pbir.sh           # PBIR JSON (uses pbir-cli or validate_pbir_schema.py)
+python3 scripts/validate_m_expressions.py # M body structure, 'in' shape, partition file paths
 ```
 
 All checks should show `[PASS]`.
@@ -109,6 +110,157 @@ All checks should show `[PASS]`.
 3. Click **Refresh** — the Calendar partition calls `fnCalendarWeekBased` against FactSales dates
 4. Open DAX Studio and run `dax/queries/validate-calendar.dax` — confirm `ValidationPassed = TRUE`
 5. Browse `FiscalWeekNumber`, `FiscalPeriodLabel`, `FiscalQuarter` columns to spot-check
+
+---
+
+## 7b. Two things that will bite you
+
+Both of these pass every schema-level check and still fail on open or refresh. They are
+enforced by `scripts/validate_m_expressions.py` and `scripts/validate_pbir_schema.py`, but
+it is worth knowing the cause.
+
+### 7b.1 Partition paths must be built from a parameter (GAP-08)
+
+`File.Contents` resolves a relative path against the M engine's working directory, **not**
+against the PBIP root. So this looks right and fails on refresh wherever the project lives:
+
+```m
+Source = Excel.Workbook(File.Contents("data/sales.xlsx"), null, true)
+```
+
+Declare a path parameter and concatenate instead:
+
+```m
+expression BasePath = "/home/me/projects/Adventureworks/" meta [IsParameterQuery=true, Type="Any"]
+
+// in the partition
+Source = Excel.Workbook(File.Contents(BasePath & "data/sales.xlsx"), null, true)
+```
+
+`BasePath` is a normal M parameter: it belongs in `expressions.tmdl` with the
+`IsParameterQuery=true` metadata, and you pass the value at refresh time. The validator
+only flags a string literal in first-argument position, so the correct form needs no
+exemption.
+
+### 7b.2 No `;` on the terminating `in` expression (GAP-07)
+
+M has no `;` statement terminator. A trailing semicolon makes the parser start a fresh
+expression and demand a token identifier:
+
+```
+Syntax error in expression 'fnCalendar'. Token Identifier expected.
+```
+
+The offending `;` sits on whichever line carries the `in` value, which is often the line
+*after* `in`, so it is easy to miss by eye:
+
+```m
+let
+    // ...
+in
+    Result;      // <- this semicolon is the whole bug
+```
+
+### 7b.3 Generated state is not source
+
+Desktop rewrites these on every open and save, so committing them produces diff noise and
+merge conflicts rather than meaning. They are all covered by `.gitignore`:
+
+| Path | What it is |
+|------|-----------|
+| `**/.pbi/` | Per-user Desktop runtime state: settings, caches, editor layout |
+| `diagramLayout.json`, `semanticModelDiagramLayout.json` | Diagram auto-layout, rewritten on save |
+| `.vscode/`, `.idea/` | IDE folders Desktop may create next to the PBIP |
+
+---
+
+## 7c. Write PBIP files the way Desktop does
+
+`scripts/validate_pbir_schema.py` enforces the Desktop-canonical shape, because a
+hand-written file that is *nearly* right opens fine and then fails to render a theme or
+gets rewritten on first save. The key points:
+
+| File | Canonical form |
+|------|----------------|
+| `<Name>.pbip` | Has `$schema` (`.../fabric/pbip/pbipProperties/1.0.0/schema.json`); `artifacts` lists the **report only** — a `semanticModel` entry makes Desktop refuse to open the project (GAP-11); `settings.enableAutoRecovery: true` |
+| `definition.pbir` | Has `$schema` (`.../fabric/item/report/definitionProperties/2.0.0/schema.json`); `datasetReference.byPath` |
+| `definition/version.json` | Has `$schema` (`.../versionMetadata/1.0.0/schema.json`) and `version: "2.0.0"` |
+| `definition/report.json` | `themeCollection` is an **object** with a `baseTheme` entry; `resourcePackages` is a **flat** list of `{name, type, items}`; **no** `layoutOptimization` |
+| `definition.pbism` | `version: "4.2"`, `settings: {}` |
+| `definition/database.tmdl` | Bare `database` keyword plus `compatibilityLevel` (Desktop drops the model name) |
+| `<Item>.platform` | **One per item folder** — both `.Report` and `.SemanticModel`. Has `metadata.type`, `metadata.displayName` and a stable `config.logicalId` UUID. Missing it is `PBIR_PLATFORM_MISSING` in the Fabric toolchain. |
+| `pages/pages.json` | Has `$schema` (`.../pagesMetadata/1.1.0/schema.json`) |
+| `pages/<Name>/page.json` | Has `$schema` (`.../page/2.1.0/schema.json`) **and** `displayOption` (e.g. `FitToPage`), which the schema requires |
+
+The `resourcePackages` shape is the easiest to get wrong: some generators emit a wrapped
+`{"resourcePackage": {...}}` form. Desktop tolerates it but the theme silently fails to
+apply.
+
+**Desktop's tolerance is not correctness.** A `.Report` folder missing `.platform`, or
+definition JSON missing `$schema`, opens in Desktop without complaint and is still rejected
+by the Fabric toolchain — so "it opens" is not evidence that it is right. Where
+`pbir-cli` is available, `scripts/validate_pbir.sh` validates against the real JSON Schemas
+and will catch constraints `validate_pbir_schema.py` does not implement. Run both when unsure.
+See `docs/LINUX_WORKFLOW_GAPS.md` GAP-10.
+
+**The one hard stop.** A `semanticModel` entry in the `.pbip` manifest is the only defect here
+that Desktop will not open at all:
+
+```
+Property 'semanticModel' has not been defined and the schema does not allow
+additional properties.  Path 'artifacts[1].semanticModel'
+```
+
+The manifest's `artifacts` array describes what the shortcut *launches* — the report. The
+semantic model is already wired up by `definition.pbir` → `datasetReference.byPath`, so
+listing it is both invalid and redundant. A correct manifest is:
+
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json",
+  "version": "1.0",
+  "artifacts": [ { "report": { "path": "MyReport.Report" } } ],
+  "settings": { "enableAutoRecovery": true }
+}
+```
+
+`scripts/validate_repo.py` checks this for every `*.pbip` it finds — note that it validates
+whatever project is in front of you, so a downstream copy that has drifted from this template
+is still caught. See `docs/LINUX_WORKFLOW_GAPS.md` GAP-11.
+
+**Errors that only appear on refresh.** Some M problems survive every import and every
+validator, because nothing outside a running M engine resolves a symbol. The classic case is
+a DAX or Excel function name used as an M module member — the project opens, the report
+renders, and refresh reports:
+
+```
+1 query is blocked by the following error:
+The import Number.Max matches no module reference.
+```
+
+`MAX()` and `MIN()` are DAX and Excel calls. In M, aggregation is in `List`, and the `Number`
+module has no `Max` or `Min`:
+
+| Written | Correct in M |
+|---|---|
+| `Number.Max(a, b)` | `List.Max({a, b})` |
+| `Number.Min(a, b)` | `List.Min({a, b})` |
+| `Number.Sum(list)` | `List.Sum(list)` |
+| `Number.Average(list)` | `List.Average(list)` |
+| `Number.Count(list)` | `List.Count(list)` |
+| `Text.Len(x)` | `Text.Length(x)` |
+| `Number.IsBlank(x)` | `x = null` |
+
+Two habits prevent this. When porting a calculation from DAX, re-derive the function against
+the [M reference](https://learn.microsoft.com/en-us/powerquery-m/) rather than transliterating
+the name. And remember Desktop stops at the *first* bad expression, so a file with three
+defects reports one — expect the next to appear after you fix this one.
+
+`scripts/validate_m_expressions.py` scans `expressions.tmdl`, every `tables/*.tmdl`, and the
+`power-query/*.m` reference files against a denylist of members confirmed absent from the
+official reference. It is a denylist, so it cannot be exhaustive — **a refresh is still the
+only complete check.** A green M validator is necessary, not sufficient. See
+`docs/LINUX_WORKFLOW_GAPS.md` GAP-12.
 
 ---
 

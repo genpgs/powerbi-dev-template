@@ -52,3 +52,6 @@ jobs:
           export PATH="$HOME/.local/bin:$PATH"
           bash scripts/validate_pbir.sh
 
+      - name: Validate M expressions
+        run: python3 scripts/validate_m_expressions.py
+

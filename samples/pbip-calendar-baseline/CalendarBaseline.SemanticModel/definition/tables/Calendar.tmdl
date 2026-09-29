@@ -1,171 +1,189 @@
 table Calendar
-	dataCategory: Time
 	lineageTag: Calendar
-
-	column DateKey
-		dataType: int64
-		sourceColumn: DateKey
-		summarizeBy: none
-		lineageTag: DateKey
-
-	column Date
-		dataType: dateTime
-		sourceColumn: Date
-		summarizeBy: none
-		isKey
-		lineageTag: Date
-
-	column CalendarYear
-		dataType: int64
-		sourceColumn: CalendarYear
-		summarizeBy: none
-		lineageTag: CalendarYear
-
-	column CalendarMonthNumber
-		dataType: int64
-		sourceColumn: CalendarMonthNumber
-		summarizeBy: none
-		lineageTag: CalendarMonthNumber
-
-	column CalendarMonth
-		dataType: string
-		sourceColumn: CalendarMonth
-		summarizeBy: none
-		sortByColumn: CalendarMonthNumber
-		lineageTag: CalendarMonth
-
-	column DayOfWeek
-		dataType: string
-		sourceColumn: DayOfWeek
-		summarizeBy: none
-		lineageTag: DayOfWeek
-
-	column FiscalYear
-		dataType: int64
-		sourceColumn: FiscalYear
-		summarizeBy: none
-		lineageTag: FiscalYear
-
-	column FiscalYearLabel
-		dataType: string
-		sourceColumn: FiscalYearLabel
-		summarizeBy: none
-		sortByColumn: FiscalYear
-		lineageTag: FiscalYearLabel
-
-	column FiscalYearStartDate
-		dataType: dateTime
-		sourceColumn: FiscalYearStartDate
-		summarizeBy: none
-		lineageTag: FiscalYearStartDate
-
-	column FiscalWeekNumber
-		dataType: int64
-		sourceColumn: FiscalWeekNumber
-		summarizeBy: none
-		lineageTag: FiscalWeekNumber
-
-	column FiscalPeriodNumber
-		dataType: int64
-		sourceColumn: FiscalPeriodNumber
-		summarizeBy: none
-		lineageTag: FiscalPeriodNumber
-
-	column FiscalPeriodLabel
-		dataType: string
-		sourceColumn: FiscalPeriodLabel
-		summarizeBy: none
-		sortByColumn: FiscalPeriodNumber
-		lineageTag: FiscalPeriodLabel
-
-	column FiscalQuarterNumber
-		dataType: int64
-		sourceColumn: FiscalQuarterNumber
-		summarizeBy: none
-		lineageTag: FiscalQuarterNumber
-
-	column FiscalQuarter
-		dataType: string
-		sourceColumn: FiscalQuarter
-		summarizeBy: none
-		sortByColumn: FiscalQuarterNumber
-		lineageTag: FiscalQuarter
-
-	column FiscalWeekOfPeriod
-		dataType: int64
-		sourceColumn: FiscalWeekOfPeriod
-		summarizeBy: none
-		lineageTag: FiscalWeekOfPeriod
+	dataCategory: Time
 
 	measure 'Date Range Start' = MIN(Calendar[Date])
 		formatString: Short Date
+		lineageTag: cab90c04-e1bd-48da-8625-bed3910004c5
 
 	measure 'Date Range End' = MAX(Calendar[Date])
 		formatString: Short Date
+		lineageTag: cbf7cac6-913d-4264-bedb-fb32126c250f
 
 	measure 'Days in Selected Period' = COUNTROWS(VALUES(Calendar[Date]))
 		formatString: #,0
+		lineageTag: c43df7a3-e382-499d-817c-a4f7dc2c516a
 
 	measure 'Total Amount MTD' = CALCULATE([Total Amount], DATESMTD(Calendar[Date]))
 		formatString: #,0.00
+		lineageTag: ede421e3-4a13-4a44-bf74-b5eaaf7d853b
 
 	measure 'Total Amount QTD' = CALCULATE([Total Amount], DATESQTD(Calendar[Date]))
 		formatString: #,0.00
+		lineageTag: 9f1d7c82-3160-4cfb-a529-40c5a64a26f4
 
 	measure 'Total Amount YTD' = CALCULATE([Total Amount], DATESYTD(Calendar[Date]))
 		formatString: #,0.00
+		lineageTag: 18449bae-9afe-4073-8387-1e1066e1a1be
 
 	measure 'Total Amount FYTD' =
-		-- Fiscal YTD: uses FiscalYear column to bound correctly for week-based calendar
-		VAR CurrentFY = MAX(Calendar[FiscalYear])
-		VAR CurrentWk = MAX(Calendar[FiscalWeekNumber])
-		RETURN
-		CALCULATE(
-		    [Total Amount],
-		    Calendar[FiscalYear] = CurrentFY,
-		    Calendar[FiscalWeekNumber] <= CurrentWk
-		)
-		formatString: #,0.00
+			-- Fiscal YTD: uses FiscalYear column to bound correctly for week-based calendar
+			VAR CurrentFY = MAX(Calendar[FiscalYear])
+			VAR CurrentWk = MAX(Calendar[FiscalWeekNumber])
+			RETURN
+			CALCULATE(
+			    [Total Amount],
+			    Calendar[FiscalYear] = CurrentFY,
+			    Calendar[FiscalWeekNumber] <= CurrentWk
+			)
+			formatString: #,0.00
+		lineageTag: 57032c44-2460-49e8-959a-b6c39ba0ae48
 
 	measure 'Total Amount Previous Year' = CALCULATE([Total Amount], SAMEPERIODLASTYEAR(Calendar[Date]))
 		formatString: #,0.00
+		lineageTag: 6363c59c-06ab-4bcf-bc2f-0169c216026d
 
 	measure 'Total Amount YoY Change' = [Total Amount] - [Total Amount Previous Year]
 		formatString: #,0.00
+		lineageTag: dbe920b6-1661-4ac0-ab22-94e44cf88dbe
 
 	measure 'Total Amount YoY %' = DIVIDE([Total Amount YoY Change], [Total Amount Previous Year])
 		formatString: 0.00%
+		lineageTag: 094b87a2-a849-44ed-a4e4-33711836e10d
 
 	measure 'Total Amount Rolling 12M' =
-		VAR d = MAX(Calendar[Date])
-		RETURN CALCULATE([Total Amount], DATESINPERIOD(Calendar[Date], d, -12, MONTH))
-		formatString: #,0.00
+			VAR d = MAX(Calendar[Date])
+			RETURN CALCULATE([Total Amount], DATESINPERIOD(Calendar[Date], d, -12, MONTH))
+			formatString: #,0.00
+		lineageTag: 7a14dd65-41c1-4ea5-bd44-ef9acf988efa
+
+	column DateKey
+		dataType: int64
+		lineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarYear
+		dataType: int64
+		lineageTag: CalendarYear
+		summarizeBy: none
+		sourceColumn: CalendarYear
+
+	column CalendarMonthNumber
+		dataType: int64
+		lineageTag: CalendarMonthNumber
+		summarizeBy: none
+		sourceColumn: CalendarMonthNumber
+
+	column CalendarMonth
+		dataType: string
+		lineageTag: CalendarMonth
+		summarizeBy: none
+		sourceColumn: CalendarMonth
+		sortByColumn: CalendarMonthNumber
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: DayOfWeek
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+	column FiscalYear
+		dataType: int64
+		lineageTag: FiscalYear
+		summarizeBy: none
+		sourceColumn: FiscalYear
+
+	column FiscalYearLabel
+		dataType: string
+		lineageTag: FiscalYearLabel
+		summarizeBy: none
+		sourceColumn: FiscalYearLabel
+		sortByColumn: FiscalYear
+
+	column FiscalYearStartDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: FiscalYearStartDate
+		summarizeBy: none
+		sourceColumn: FiscalYearStartDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FiscalWeekNumber
+		dataType: int64
+		lineageTag: FiscalWeekNumber
+		summarizeBy: none
+		sourceColumn: FiscalWeekNumber
+
+	column FiscalPeriodNumber
+		dataType: int64
+		lineageTag: FiscalPeriodNumber
+		summarizeBy: none
+		sourceColumn: FiscalPeriodNumber
+
+	column FiscalPeriodLabel
+		dataType: string
+		lineageTag: FiscalPeriodLabel
+		summarizeBy: none
+		sourceColumn: FiscalPeriodLabel
+		sortByColumn: FiscalPeriodNumber
+
+	column FiscalQuarterNumber
+		dataType: int64
+		lineageTag: FiscalQuarterNumber
+		summarizeBy: none
+		sourceColumn: FiscalQuarterNumber
+
+	column FiscalQuarter
+		dataType: string
+		lineageTag: FiscalQuarter
+		summarizeBy: none
+		sourceColumn: FiscalQuarter
+		sortByColumn: FiscalQuarterNumber
+
+	column FiscalWeekOfPeriod
+		dataType: int64
+		lineageTag: FiscalWeekOfPeriod
+		summarizeBy: none
+		sourceColumn: FiscalWeekOfPeriod
 
 	partition Calendar = m
 		mode: import
 		source =
-			let
-			    // ── Configuration ──────────────────────────────────────────────────
-			    // Change WeekPattern to "454", "544", or "13period" as needed.
-			    // Change FiscalYearStartDate and WeekStartDay to match your business.
-			    FiscalYearStartDate = #date(2025, 2, 1),
-			    WeekPattern         = "445",
-			    WeekStartDay        = "Saturday",
-			    NumberOfYears       = 5,
+				let
+				    // ── Configuration ──────────────────────────────────────────────────
+				    // Change WeekPattern to "454", "544", or "13period" as needed.
+				    // Change FiscalYearStartDate and WeekStartDay to match your business.
+				    FiscalYearStartDate = #date(2025, 2, 1),
+				    WeekPattern         = "445",
+				    WeekStartDay        = "Saturday",
+				    NumberOfYears       = 5,
+				
+				    // ── Derive date range from fact table ──────────────────────────────
+				    // If you have no live model, replace with literal dates:
+				    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay)
+				    DateValues  = List.RemoveNulls(List.Transform(FactSales[OrderDate], each try Date.From(_) otherwise null)),
+				    _StartDate  = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Min(DateValues),
+				    _EndDate    = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Max(DateValues),
+				
+				    // Anchor FY start to the fiscal year that covers _StartDate
+				    // (recalculate: how many full years from FiscalYearStartDate to _StartDate?)
+				    YearsBack    = Date.Year(_StartDate) - Date.Year(FiscalYearStartDate),
+				    AdjustedStart = Date.AddYears(FiscalYearStartDate, List.Max({YearsBack - 1, 0})),
+				
+				    // Generate the calendar
+				    Calendar    = fnCalendarWeekBased(AdjustedStart, NumberOfYears, WeekPattern, WeekStartDay, "en-US")
+				in
+				    Calendar
 
-			    // ── Derive date range from fact table ──────────────────────────────
-			    // If you have no live model, replace with literal dates:
-			    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay)
-			    DateValues  = List.RemoveNulls(List.Transform(FactSales[OrderDate], each try Date.From(_) otherwise null)),
-			    _StartDate  = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Min(DateValues),
-			    _EndDate    = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Max(DateValues),
-
-			    // Anchor FY start to the fiscal year that covers _StartDate
-			    // (recalculate: how many full years from FiscalYearStartDate to _StartDate?)
-			    YearsBack    = Date.Year(_StartDate) - Date.Year(FiscalYearStartDate),
-			    AdjustedStart = Date.AddYears(FiscalYearStartDate, Number.Max(YearsBack - 1, 0)),
-
-			    // Generate the calendar
-			    Calendar    = fnCalendarWeekBased(AdjustedStart, NumberOfYears, WeekPattern, WeekStartDay, "en-US")
-			in
-			    Calendar

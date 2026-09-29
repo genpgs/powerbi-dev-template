@@ -1,0 +1,33 @@
+# Line endings must be stable for a template whose primary target is Linux CI.
+# Without this, a Windows clone (core.autocrlf=true) rewrites TMDL/JSON/M/sh to
+# CRLF, and every file shows as modified after checkout — which reads as a real
+# change in review and produces whole-file diffs on one-line edits.
+* text=auto eol=lf
+
+# Keep TMDL, M, Python, shell and JSON definition files LF unconditionally. These
+# are read by parsers and by Linux tooling; a CRLF that appears only on Windows
+# makes a clean checkout look dirty.
+*.tmdl   text eol=lf
+*.pbip   text eol=lf
+*.pbism  text eol=lf
+*.pbir   text eol=lf
+*.json   text eol=lf
+*.m      text eol=lf
+*.py     text eol=lf
+*.sh     text eol=lf
+*.dax    text eol=lf
+*.md     text eol=lf
+
+# Desktop-authored JSON must never be reformatted; it is the canonical reference.
+samples/** text eol=lf
+
+# Binary — never touch.
+*.pbix       binary
+*.xlsx       binary
+*.csv        binary
+*.parquet    binary
+*.png        binary
+*.jpg        binary
+*.svg        binary
+*.ttf        binary
+*.zip        binary

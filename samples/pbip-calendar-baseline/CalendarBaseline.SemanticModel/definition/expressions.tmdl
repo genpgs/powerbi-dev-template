@@ -69,7 +69,7 @@ expression fnCalendarWeekBased =
 		    FYLabel = Table.AddColumn(FY_Col, "FiscalYearLabel", each "FY" & Text.From([FiscalYear]), type text),
 		    FYStartForRow = Table.AddColumn(FYLabel, "FiscalYearStartDate", each FYStartList{[FiscalYear]-1}, type date),
 		    WInFY  = Table.AddColumn(FYStartForRow, "FiscalWeekNumber", each Number.RoundDown(Duration.Days([Date] - [FiscalYearStartDate])/7)+1, Int64.Type),
-		    PeriodCol = Table.AddColumn(WInFY, "FiscalPeriodNumber", each let w=[FiscalWeekNumber] in if Is13Period then Number.Min(Number.RoundDown((w-1)/4)+1,13) else let wInQtr=Number.Mod(w-1,WeeksPerQtr)+1, cum1=PeriodPattern_3{0}, cum2=cum1+PeriodPattern_3{1}, pInQtr=if wInQtr<=cum1 then 1 else if wInQtr<=cum2 then 2 else 3, qtrIdx=Number.RoundDown((w-1)/WeeksPerQtr), period=qtrIdx*3+pInQtr in Number.Min(period,PeriodsPerYr), Int64.Type),
+		    PeriodCol = Table.AddColumn(WInFY, "FiscalPeriodNumber", each let w=[FiscalWeekNumber] in if Is13Period then List.Min({Number.RoundDown((w-1)/4)+1,13}) else let wInQtr=Number.Mod(w-1,WeeksPerQtr)+1, cum1=PeriodPattern_3{0}, cum2=cum1+PeriodPattern_3{1}, pInQtr=if wInQtr<=cum1 then 1 else if wInQtr<=cum2 then 2 else 3, qtrIdx=Number.RoundDown((w-1)/WeeksPerQtr), period=qtrIdx*3+pInQtr in List.Min({period,PeriodsPerYr}), Int64.Type),
 		    PeriodLabel = Table.AddColumn(PeriodCol, "FiscalPeriodLabel", each "P" & Text.PadStart(Text.From([FiscalPeriodNumber]),2,"0"), type text),
 		    QtrNum  = Table.AddColumn(PeriodLabel, "FiscalQuarterNumber", each if Is13Period then [FiscalPeriodNumber] else Number.RoundUp([FiscalPeriodNumber]/3), Int64.Type),
 		    QtrLabel = Table.AddColumn(QtrNum, "FiscalQuarter", each if Is13Period then "P" & Text.PadStart(Text.From([FiscalPeriodNumber]),2,"0") else "Q" & Text.From([FiscalQuarterNumber]), type text),
@@ -83,3 +83,4 @@ expression fnCalendarWeekBased =
 		    Result   = Table.ReorderColumns(Cleaned, {"DateKey","Date","CalendarYear","CalendarMonthNumber","CalendarMonth","DayOfWeek","FiscalYear","FiscalYearLabel","FiscalYearStartDate","FiscalWeekNumber","FiscalPeriodNumber","FiscalPeriodLabel","FiscalQuarterNumber","FiscalQuarter","FiscalWeekOfPeriod"})
 		in if _PatternCheck = null then Result else error "pattern check failed"
 	lineageTag: fnCalendarWeekBased
+

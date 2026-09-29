@@ -27,7 +27,7 @@ bash setup.sh
 #    Then update config/fiscal-calendar.json to match
 
 # 4. Run validation
-python3 scripts/validate_repo.py && python3 scripts/validate_date_table.py
+python3 scripts/validate_repo.py && python3 scripts/validate_date_table.py && python3 scripts/validate_m_expressions.py
 
 # 5. Open the sample PBIP in Power BI Desktop (Windows) to render and refresh
 #    samples/pbip-calendar-baseline/CalendarBaseline.pbip
