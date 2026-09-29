@@ -167,7 +167,7 @@ let
             let w = [FiscalWeekNumber]
             in if Is13Period then
                 // 13 periods × 4 weeks; any 53rd week belongs to period 13
-                Number.Min(Number.RoundDown((w - 1) / 4) + 1, 13)
+                List.Min({Number.RoundDown((w - 1) / 4) + 1, 13})
                else
                 let
                     wInQtr      = Number.Mod(w - 1, WeeksPerQtr) + 1,
@@ -178,7 +178,7 @@ let
                                   else 3,
                     qtrIdx      = Number.RoundDown((w - 1) / WeeksPerQtr),
                     period      = qtrIdx * 3 + periodInQtr
-                in Number.Min(period, PeriodsPerYr)  // clamp 53rd-week overshoot
+                in List.Min({period, PeriodsPerYr})  // clamp 53rd-week overshoot
         , Int64.Type),
 
     PeriodLabel = Table.AddColumn(PeriodCol, "FiscalPeriodLabel",

@@ -18,10 +18,20 @@ import uuid
 from pathlib import Path
 
 # Official Microsoft PBIR JSON schemas
-SCHEMA_REPORT = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.0.0/schema.json"
-SCHEMA_PAGES_META = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json"
+# Schema versions below are the Desktop-canonical ones, verified against a
+# Desktop-authored project. Emitting older versions makes Desktop rewrite the file on
+# first save, which produces spurious diffs. See docs/LINUX_WORKFLOW_GAPS.md GAP-09.
+SCHEMA_REPORT = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json"
+SCHEMA_PAGES_META = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json"
 SCHEMA_PAGE = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json"
 SCHEMA_VISUAL = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json"
+SCHEMA_PBIP = "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json"
+SCHEMA_PBIR = "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json"
+SCHEMA_VERSION = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/versionMetadata/1.0.0/schema.json"
+SCHEMA_PLATFORM = "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json"
+
+# Desktop ships a built-in theme under this name; it needs no BaseThemes/*.json on disk.
+DEFAULT_THEME_NAME = "CY24SU10"
 
 
 def sanitize_identifier(text: str) -> str:
@@ -119,7 +129,10 @@ def scaffold_pbir(
     template: str = "executive",
     create_pbip: bool = True
 ):
-    clean_base = base_name[:-7] if base_name.endswith(".Report") else (base_name[:-5] if base_name.endswith(".pbip") else base_name)
+    # base_name may arrive as a path ("out/MyReport"); the manifest's report.path must be
+    # the bare folder name, relative to the .pbip, or Desktop cannot resolve it (GAP-11).
+    stem = Path(base_name).name
+    clean_base = stem[:-7] if stem.endswith(".Report") else (stem[:-5] if stem.endswith(".pbip") else stem)
     report_folder_name = f"{clean_base}.Report"
     report_root = output_dir / report_folder_name
     definition_dir = report_root / "definition"
@@ -130,9 +143,25 @@ def scaffold_pbir(
 
     print(f"[INFO] Scaffolding PBIR Report: {report_root}")
 
-    # 1. Root definition.pbir
+    # 0. .platform — Desktop writes one per item folder. Fabric flags a missing
+    #    .platform as PBIR_PLATFORM_MISSING, so scaffold it up front (GAP-10).
     report_root.mkdir(parents=True, exist_ok=True)
+    platform = {
+        "$schema": SCHEMA_PLATFORM,
+        "metadata": {
+            "type": "Report",
+            "displayName": clean_base
+        },
+        "config": {
+            "version": "2.0",
+            "logicalId": str(uuid.uuid4())
+        }
+    }
+    (report_root / ".platform").write_text(json.dumps(platform, indent=2), encoding="utf-8")
+
+    # 1. Root definition.pbir
     pbir_manifest = {
+        "$schema": SCHEMA_PBIR,
         "version": "4.0",
         "datasetReference": {
             "byPath": {
@@ -144,10 +173,44 @@ def scaffold_pbir(
 
     # 2. definition/version.json & definition/report.json
     definition_dir.mkdir(parents=True, exist_ok=True)
-    (definition_dir / "version.json").write_text(json.dumps({"version": "2.0.0"}, indent=2), encoding="utf-8")
+    (definition_dir / "version.json").write_text(
+        json.dumps({"$schema": SCHEMA_VERSION, "version": "2.0.0"}, indent=2), encoding="utf-8"
+    )
+    # Desktop-canonical report.json: themeCollection is an object with a `baseTheme`,
+    # resourcePackages is a FLAT list, and `layoutOptimization` is absent. See GAP-09.
     report_json = {
         "$schema": SCHEMA_REPORT,
-        "layoutOptimization": "Canvas"
+        "themeCollection": {
+            "baseTheme": {
+                "name": DEFAULT_THEME_NAME,
+                "reportVersionAtImport": {
+                    "visual": "2.12.0",
+                    "report": "3.4.0",
+                    "page": "2.3.1"
+                },
+                "type": "SharedResources"
+            }
+        },
+        "resourcePackages": [
+            {
+                "name": "SharedResources",
+                "type": "SharedResources",
+                "items": [
+                    {
+                        "name": DEFAULT_THEME_NAME,
+                        "path": f"BaseThemes/{DEFAULT_THEME_NAME}.json",
+                        "type": "BaseTheme"
+                    }
+                ]
+            }
+        ],
+        "settings": {
+            "exportDataMode": "AllowSummarized",
+            "defaultDrillFilterOtherVisuals": True,
+            "allowChangeFilterTypes": True,
+            "useEnhancedTooltips": True,
+            "useDefaultAggregateDisplayName": True
+        }
     }
     (definition_dir / "report.json").write_text(json.dumps(report_json, indent=2), encoding="utf-8")
 
@@ -231,6 +294,7 @@ def scaffold_pbir(
     if create_pbip:
         pbip_file = output_dir / f"{clean_base}.pbip"
         pbip_data = {
+            "$schema": SCHEMA_PBIP,
             "version": "1.0",
             "artifacts": [
                 {
@@ -240,7 +304,7 @@ def scaffold_pbir(
                 }
             ],
             "settings": {
-                "enableAutoAuth": True
+                "enableAutoRecovery": True
             }
         }
         pbip_file.write_text(json.dumps(pbip_data, indent=2), encoding="utf-8")

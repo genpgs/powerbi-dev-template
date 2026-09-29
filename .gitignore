@@ -1,7 +1,23 @@
 # Power BI local artifacts (never commit these)
-**/.pbi/localSettings.json
-**/.pbi/cache.abf
+# The whole .pbi/ tree is Desktop-generated runtime state: settings, caches and the
+# per-user editor layout. None of it belongs in version control, and the layout files in
+# particular churn on every open/save, so tracking them produces noisy diffs.
+**/.pbi/
 *.pbix
+
+# Diagram / layout state - Desktop rewrites these on every save, so they only create diff noise
+diagramLayout.json
+semanticModelDiagramLayout.json
+
+# IDE folders Desktop may create next to the PBIP
+.vscode/
+.idea/
+
+# Agent validation output
+.bpa/
+bpa-results.json
+*-audit-report.md
+*-audit-report.json
 
 # Environment / secrets
 .env
@@ -24,6 +40,10 @@ npm-debug.log*
 Thumbs.db
 
 # Editor
-.idea/
 *.swp
 *.swo
+
+# Local sample data (large binaries; regenerate or fetch separately)
+data/*.xlsx
+data/*.csv
+data/*.parquet
