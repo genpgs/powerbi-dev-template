@@ -47,11 +47,13 @@ jobs:
       - name: Validate Calendar TMDL
         run: python3 scripts/validate_date_table.py
 
+      - name: Validate M expression bodies
+        run: python3 scripts/validate_m_expressions.py
+
       - name: Validate PBIR JSON
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           bash scripts/validate_pbir.sh
 
-      - name: Validate M expressions
-        run: python3 scripts/validate_m_expressions.py
-
+      - name: Validate PBIR canvas layout
+        run: python3 scripts/validate_report.py

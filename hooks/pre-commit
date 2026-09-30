@@ -3,9 +3,6 @@
 # Install: cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT"
-
 STAGED=$(git diff --cached --name-only 2>/dev/null || true)
 
 if echo "$STAGED" | grep -qE '\.(tmdl|pbip|pbism|pbir|json|m)$'; then
@@ -13,8 +10,11 @@ if echo "$STAGED" | grep -qE '\.(tmdl|pbip|pbism|pbir|json|m)$'; then
     python3 scripts/validate_repo.py       || { echo "[pre-commit] FAIL: validate_repo.py"; exit 1; }
     python3 scripts/validate_date_table.py || { echo "[pre-commit] FAIL: validate_date_table.py"; exit 1; }
     bash scripts/validate_pbir.sh          || { echo "[pre-commit] FAIL: validate_pbir.sh"; exit 1; }
-    python3 scripts/validate_m_expressions.py \
-        || { echo "[pre-commit] FAIL: validate_m_expressions.py"; exit 1; }
+    python3 scripts/validate_m_expressions.py || { echo "[pre-commit] FAIL: validate_m_expressions.py"; exit 1; }
+    # Canvas-level PBIR layout: overlap and out-of-bounds, which schema
+    # validation cannot detect (GAP-14). Auto-discovers *.Report folders.
+    python3 scripts/validate_report.py \
+        || { echo "[pre-commit] FAIL: validate_report.py (PBIR layout)"; exit 1; }
     echo "[pre-commit] All validation checks passed."
 else
     echo "[pre-commit] No PBIP/TMDL/M files staged — skipping validation."
