@@ -32,11 +32,14 @@ expression fnCalendar =
 	lineageTag: fnCalendar
 
 expression fnCalendarWeekBased =
-		(FiscalYearStartDate as date, NumberOfYears as number, optional WeekPattern as nullable text, optional WeekStartDay as nullable text, optional Culture as nullable text) as table =>
+		(FiscalYearStartDate as date, NumberOfYears as number, optional WeekPattern as nullable text, optional WeekStartDay as nullable text, optional Culture as nullable text, optional FiscalYearLabelMode as nullable text) as table =>
 		let
 		    Pattern   = if WeekPattern  = null or WeekPattern  = "" then "445"      else WeekPattern,
 		    StartDay  = if WeekStartDay = null or WeekStartDay = "" then "Saturday" else WeekStartDay,
 		    Culture_  = if Culture      = null or Culture      = "" then "en-US"    else Culture,
+		    LabelMode = if FiscalYearLabelMode = null or Text.Trim(FiscalYearLabelMode) = "" then "endingYear" else FiscalYearLabelMode,
+		    ValidLabelModes = {"endingYear","startingYear"},
+		    _LabelModeCheck = if List.Contains(ValidLabelModes, LabelMode) then null else error "FiscalYearLabelMode must be endingYear or startingYear.",
 		    NYears    = if NumberOfYears < 1 then error "NumberOfYears must be >= 1." else Number.RoundDown(NumberOfYears),
 		    ValidPatterns = {"445", "454", "544", "13period"},
 		    _PatternCheck = if List.Contains(ValidPatterns, Pattern) then null else error "WeekPattern must be one of: 445, 454, 544, 13period.",
@@ -65,10 +68,11 @@ expression fnCalendarWeekBased =
 		    Dates  = List.Dates(ActualFY1Start, TotalDays, #duration(1,0,0,0)),
 		    T      = Table.TransformColumnTypes(Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}), {{"Date", type date}}),
 		    DI     = Table.AddColumn(T, "_DayIdx", each Duration.Days([Date] - ActualFY1Start), Int64.Type),
-		    FY_Col = Table.AddColumn(DI, "FiscalYear", each List.Count(List.Select(FYStartList, (s) => s <= [Date])), Int64.Type),
-		    FYLabel = Table.AddColumn(FY_Col, "FiscalYearLabel", each "FY" & Text.From([FiscalYear]), type text),
-		    FYStartForRow = Table.AddColumn(FYLabel, "FiscalYearStartDate", each FYStartList{[FiscalYear]-1}, type date),
-		    WInFY  = Table.AddColumn(FYStartForRow, "FiscalWeekNumber", each Number.RoundDown(Duration.Days([Date] - [FiscalYearStartDate])/7)+1, Int64.Type),
+		    FYOrdinal = Table.AddColumn(DI, "_FYOrdinal", each List.Count(List.Select(FYStartList, (s) => s <= [Date])), Int64.Type),
+		    FYStartForRow = Table.AddColumn(FYOrdinal, "FiscalYearStartDate", each FYStartList{[_FYOrdinal] - 1}, type date),
+		    FYYear = Table.AddColumn(FYStartForRow, "FiscalYear", each let NextFYStart = if [_FYOrdinal] < NYears then FYStartList{[_FYOrdinal]} else AfterActual, FYEndDate = Date.AddDays(NextFYStart, -1) in if LabelMode = "startingYear" then Date.Year([FiscalYearStartDate]) else Date.Year(FYEndDate), Int64.Type),
+		    FYLabel = Table.AddColumn(FYYear, "FiscalYearLabel", each "FY" & Text.From([FiscalYear]), type text),
+		    WInFY  = Table.AddColumn(FYLabel, "FiscalWeekNumber", each Number.RoundDown(Duration.Days([Date] - [FiscalYearStartDate])/7)+1, Int64.Type),
 		    PeriodCol = Table.AddColumn(WInFY, "FiscalPeriodNumber", each let w=[FiscalWeekNumber] in if Is13Period then List.Min({Number.RoundDown((w-1)/4)+1,13}) else let wInQtr=Number.Mod(w-1,WeeksPerQtr)+1, cum1=PeriodPattern_3{0}, cum2=cum1+PeriodPattern_3{1}, pInQtr=if wInQtr<=cum1 then 1 else if wInQtr<=cum2 then 2 else 3, qtrIdx=Number.RoundDown((w-1)/WeeksPerQtr), period=qtrIdx*3+pInQtr in List.Min({period,PeriodsPerYr}), Int64.Type),
 		    PeriodLabel = Table.AddColumn(PeriodCol, "FiscalPeriodLabel", each "P" & Text.PadStart(Text.From([FiscalPeriodNumber]),2,"0"), type text),
 		    QtrNum  = Table.AddColumn(PeriodLabel, "FiscalQuarterNumber", each if Is13Period then [FiscalPeriodNumber] else Number.RoundUp([FiscalPeriodNumber]/3), Int64.Type),
@@ -79,8 +83,8 @@ expression fnCalendarWeekBased =
 		    CalMoNum = Table.AddColumn(CalYr,     "CalendarMonthNumber", each Date.Month([Date]), Int64.Type),
 		    CalMo    = Table.AddColumn(CalMoNum,  "CalendarMonth",       each Date.MonthName([Date], Culture_), type text),
 		    DayOfWk  = Table.AddColumn(CalMo,     "DayOfWeek",           each Date.DayOfWeekName([Date], Culture_), type text),
-		    Cleaned  = Table.RemoveColumns(DayOfWk, {"_DayIdx"}),
+		    Cleaned  = Table.RemoveColumns(DayOfWk, {"_DayIdx", "_FYOrdinal"}),
 		    Result   = Table.ReorderColumns(Cleaned, {"DateKey","Date","CalendarYear","CalendarMonthNumber","CalendarMonth","DayOfWeek","FiscalYear","FiscalYearLabel","FiscalYearStartDate","FiscalWeekNumber","FiscalPeriodNumber","FiscalPeriodLabel","FiscalQuarterNumber","FiscalQuarter","FiscalWeekOfPeriod"})
-		in if _PatternCheck = null then Result else error "pattern check failed"
+		in if _PatternCheck = null and _LabelModeCheck = null then Result else error "pattern or label mode check failed"
 	lineageTag: fnCalendarWeekBased
 

@@ -169,10 +169,16 @@ table Calendar
 				    WeekPattern         = "445",
 				    WeekStartDay        = "Saturday",
 				    NumberOfYears       = 5,
+				    // FiscalYear is the calendar year the fiscal year ends in
+				    // ("endingYear", e.g. FY2025) or the year it starts in
+				    // ("startingYear", e.g. FY2024). This drives both
+				    // Calendar[FiscalYear] and Calendar[FiscalYearLabel].
+				    FiscalYearLabelMode = "endingYear",
+				    Culture             = "en-US",
 				
 				    // ── Derive date range from fact table ──────────────────────────────
 				    // If you have no live model, replace with literal dates:
-				    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay)
+				    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
 				    DateValues  = List.RemoveNulls(List.Transform(FactSales[OrderDate], each try Date.From(_) otherwise null)),
 				    _StartDate  = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Min(DateValues),
 				    _EndDate    = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Max(DateValues),
@@ -183,7 +189,7 @@ table Calendar
 				    AdjustedStart = Date.AddYears(FiscalYearStartDate, List.Max({YearsBack - 1, 0})),
 				
 				    // Generate the calendar
-				    Calendar    = fnCalendarWeekBased(AdjustedStart, NumberOfYears, WeekPattern, WeekStartDay, "en-US")
+				    Calendar    = fnCalendarWeekBased(AdjustedStart, NumberOfYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
 				in
 				    Calendar
 
