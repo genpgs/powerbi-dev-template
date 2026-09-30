@@ -4,13 +4,20 @@
 > real use, with its current status. When a gap is fixed, the row stays and the status
 > changes — do not delete rows. New gaps get the next `GAP-nn` number and are added here.
 >
-> Gaps 01–06 were found while building the template's Linux support. Gaps 07–10 were found
+> Gaps 01–06 were found while building the template's Linux support. Gaps 07–12 were found
 > later, while building a downstream project (`PBI-Adventureworks`) on top of this template —
-> they are the reason `scripts/validate_m_expressions.py` exists.
+> they are the reason `scripts/validate_m_expressions.py` exists. Gaps 13–18 were found in the
+> same project, restyling the PBIR report to match a design prototype, and are the reason
+> `scripts/validate_report.py` exists.
 
 **Scope of the original exercise**: a headless Linux environment (Ubuntu x86_64, Python 3.13,
 Node.js 20) authoring a full PBIP project — 6 TMDL tables, 11 DAX measures, 5 relationships,
 11 PBIR visuals across 2 pages — with no Power BI Desktop available.
+
+**Second exercise (gaps 13–18)**: the same headless environment restyling that project's report
+to match an HTML design prototype — custom theme, 5 KPI cards, 2 added visuals, 2 pages
+re-flowed to a 1280×720 canvas. No Power BI Desktop available, which is what made gaps 15, 17,
+and 18 visible in the first place.
 
 ---
 
@@ -30,6 +37,12 @@ Node.js 20) authoring a full PBIP project — 6 TMDL tables, 11 DAX measures, 5 
 | **GAP-10** | Missing `.platform` / `$schema` in PBIR JSON | Critical | A hand-built `.Report` folder opens in Desktop but is rejected by the Fabric tooling, and `$schema`-less definition JSON cannot be schema-validated at all. | **Fixed** — `.platform` added to the sample and emitted by `scaffold_pbir.py`; `validate_pbir_schema.py` enforces `.platform` and every `$schema` key. |
 | **GAP-11** | `<Name>.pbip` manifest | Critical | A `semanticModel` entry in `artifacts` makes Desktop refuse to open the project outright — a hard stop, unlike the other gaps. Unvalidated because `validate_repo.py` only checked that the `.Report` / `.SemanticModel` folders *existed*, never parsing the manifest. | **Fixed** — `validate_repo.py` §5 parses every `.pbip` and enforces the `ArtifactShortcutContainer` schema; `scaffold_pbir.py` emits a valid manifest. |
 | **GAP-12** | M bodies / `.m` reference files | Critical | DAX/Excel names used as M module members (`Number.Max`, `Number.Min`, `Text.Len`, …). The member does not exist, so the body imports cleanly and only fails on refresh: `The import Number.Max matches no module reference`. | **Fixed** — `validate_m_expressions.py` scans expressions, tables, and loose `*.m` files against a denylist of members confirmed absent from the official M reference. |
+| **GAP-13** | npm global install | Critical | `npm install -g` fails with `EACCES` on any non-root Linux account, because npm's default prefix is `/usr/local` and `/usr/local/lib/node_modules` does not exist. This blocks installing `powerbi-report-author`, the only tool that can author PBIR correctly. | **Fixed** — install with `npm install -g --prefix "$HOME/.local"`; documented in §8. |
+| **GAP-14** | PBIR canvas layout | Critical | Visual overlap, negative positions, and out-of-bounds placement pass every schema and shape validator. A report can be fully valid JSON, correct against the PBIR schema, and still render unusably. | **Fixed** — `scripts/validate_report.py` added, wired into pre-commit and CI (§15). |
+| **GAP-15** | Validator offline behaviour | High | When the PBIR JSON schemas cannot be fetched, the validator reports `succeededWithWarnings` and **skips schema validation entirely** for the affected files. The result reads like success. | **Fixed** — `validate_pbir.sh` now captures tool output and exits non-zero if `PBIR_SCHEMA_UNREACHABLE` appears, even when the tool itself exited 0; the warning names every skipped file (§10). |
+| **GAP-16** | PBIR + theme property names | High | Formatting property names and value encodings cannot be guessed. Theme JSON uses plain values, PBIR uses `expr` wrappers, and several names differ from the intuitive guess (`fontColor` is `labelColor`, `lineCapStyle` is `lineStyle`, sort `direction` is `Ascending` not `Asc`). | **Workaround** — always look the value up via `powerbi-report-author formatting describe-object` / `catalog describe` before writing JSON; see §11. |
+| **GAP-17** | `cardVisual` clipping | High | Nothing validates that a card is tall enough for its content. The callout value and label can be clipped at render time while the visual passes every validator. | **Partially automated** — `validate_report.py` now computes minimum card height from explicitly-set font sizes, padding, border, and accent bar, and warns when `position.height` is too small (§12). Theme-inherited values are not visible at static analysis time, so a green check is necessary but not sufficient. |
+| **GAP-18** | Rendered-output verification | Architecture | The authoring loop requires a reload + screenshot to confirm a change rendered correctly, but `powerbi-desktop` needs Power BI Desktop, which is Windows-only. On Linux the loop cannot complete. | **Open** — extends GAP-06. Validate on Linux, then confirm visually on a Windows machine before merging (§13). |
 
 ---
 
@@ -287,9 +300,243 @@ the standalone `power-query/*.m` reference files, because the TMDL bodies are ge
 those and the defect otherwise gets copied between them. Fixing only the file Desktop
 complains about leaves the reference copy broken for the next generation.
 
+## 8. GAP-13 — `npm install -g` fails on a non-root Linux account
+
+**Symptom.** Installing the PBIR authoring CLI fails immediately:
+
+```
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator.
+```
+
+and the binary is absent afterwards:
+
+```
+powerbi-report-author: command not found
+```
+
+**Root cause.** npm's default global prefix is `/usr/local`, so a global install writes to
+`/usr/local/lib/node_modules`. On a stock image that directory does not even exist, and a
+non-root user cannot create it. `sudo npm install -g` appears to work and is the wrong fix: it
+installs a root-owned binary that later self-update attempts cannot replace, so the tool breaks
+again on the first update.
+
+**Fix.** Install into a user-owned prefix and make sure it is on `PATH`:
+
+```bash
+npm install -g --prefix "$HOME/.local" @microsoft/powerbi-report-authoring-cli@latest
+export PATH="$HOME/.local/bin:$PATH"
+powerbi-report-author --version
+```
+
+The same applies to any other global npm package on Linux. Note that GAP-02's `pbir-cli` guard
+in `setup.sh` is a *different* problem — that is a missing Linux wheel, not a permissions
+problem, and the `uname -s` guard does not help here.
+
 ---
 
-## 8. Desktop alignment reference (verified)
+## 9. GAP-14 — canvas layout defects pass every validator
+
+**Symptom.** Two visuals sit on top of each other and the page is unusable, but every check is
+green:
+
+```
+powerbi-report-author validate AdventureWorksSales.Report
+  result=succeededWithWarnings errors=0 warnings=1
+  PBIR_LAYOUT_NEGATIVE_X: 0
+```
+
+The overlap was real: a channel chart at `x=536, width=300` (right edge 836) and a newly added
+column chart at `x=852` — the numbers look fine in isolation and only collide once you add them
+together. Neither file had a syntax error, an unknown property, or a schema violation.
+
+**Root cause.** PBIR validation is *declarative*: it checks each `visual.json` against a schema
+for that file's type, and confirms that referenced columns and measures exist. Layout is a
+*relational* property of the page — a statement about the interaction between files that no
+per-file schema can express. `position` is four numbers, each individually in range, while the
+pair is contradictory.
+
+This is the same structural blind spot as GAP-09 and GAP-12 one level up: those are properties
+Desktop normalises away and that M cannot resolve, and this is a property no single file owns.
+It is also the failure mode most likely to be produced here, because an agent or generator
+positions visuals from arithmetic and cannot see the result.
+
+**Why it is worse here than for a human author.** A person dragging a visual sees it land on top
+of another one immediately. A script does not, and neither does an LLM writing `position` blocks.
+So the class of defect that is *easiest* for a human to catch is the one a code-first workflow
+produces most often.
+
+**Fix.** `scripts/validate_report.py` reads every `position` block per page and reports:
+
+| Check | Catches |
+|---|---|
+| Negative `x` or `y` | Off-canvas placement, including the `PBIR_LAYOUT_NEGATIVE_X` case the CLI flags |
+| Right/bottom edge past the page `width`/`height` | A visual pushed off the right or bottom of the canvas |
+| Pairwise overlap | Two visuals occupying the same rectangle |
+
+Overlap is only reported when the two visuals carry the **same** `z` value (or both default to 0),
+so deliberate stacking across different `z` layers (a shape behind a label) is not flagged as an error.
+
+**What it still cannot catch.** It is a geometry check, not a rendering check. It cannot see
+text that overflows its container, a chart whose plot area collapses to nothing, or two visuals
+that are technically adjacent but visually cramped. Those need a screenshot — which is GAP-18,
+and the reason this gap cannot be closed completely on Linux.
+
+---
+
+## 10. GAP-15 — the validator reports success while skipping schema validation
+
+**Symptom.** A validation run comes back green on a report that contains schema violations:
+
+```
+result=succeededWithWarnings errors=0 warnings=1
+  PBIR_SCHEMA_UNREACHABLE: 1
+```
+
+The single warning is not cosmetic. The underlying message is:
+
+```
+JSON Schema ".../visualContainer/2.12.0/schema.json" could not be fetched;
+schema validation skipped for: .../catbar.../visual.json, .../chan.../visual.json,
+.../slicer.../visual.json, .../trend.../visual.json, .../subcat.../visual.json
+```
+
+**Root cause.** The validator fetches the published schemas over HTTPS. On a sandboxed or
+offline agent box the fetch fails, and rather than fail closed it falls back to the checks it can
+perform locally. That is the right trade-off for a CI gate — a network outage should not block
+commits — but it means `errors=0` no longer implies "schema-valid". Five files were validated
+only for structure in the run that surfaced this gap.
+
+**Fix.** Read `warnings=1` with `PBIR_SCHEMA_UNREACHABLE` as a **validation gap**, not a pass.
+The warning names every skipped file, so the exposure is bounded and knowable. Re-run the
+validator on a networked machine before treating the result as complete.
+
+**Worth knowing.** This is the one case in this register where a green result is weaker than it
+looks, and it is easy to miss because the summary line leads with `errors=0`.
+
+---
+
+## 11. GAP-16 — PBIR and theme property names cannot be guessed
+
+**Symptom.** Formatting written from a reasonable guess is rejected, one property at a time:
+
+```
+Unknown theme property "legend.fontColor" for "lineChart"
+Unknown property "customizeSpacing" in formatting object "spacing" for cardVisual
+Unknown property "orientation" in formatting object "general" for barChart
+```
+
+and, in PBIR rather than theme:
+
+```
+/visual/query/sortDefinition/sort/0/direction must be equal to constant:   (wrote "Asc")
+```
+
+**Root cause.** Three separate traps compound here. Property names are not always the obvious
+spelling — `fontColor` on an axis or legend is `labelColor`, `lineCapStyle` is `lineStyle`, and
+`cardVisual`'s `border` (a visual-container object) has no `radius` at theme level. Encodings
+differ by file: a theme writes plain JSON (`"show": true`, `"fontSize": 12`, `"#2563EB"`) while
+a `visual.json` wraps every value in `{"expr": {"Literal": {"Value": "..."}}}`, and the literal
+needs a type suffix — `20D`, `0L`, `'solid'`. And a property may simply not exist on the object
+you are targeting, because `spacing` on `cardVisual` is a *visual-container* object and belongs
+under `visualContainerObjects`, not `objects`.
+
+**Fix.** Never write PBIR formatting from memory. Look it up first:
+
+```bash
+powerbi-report-author formatting list-objects <visualType>
+powerbi-report-author formatting describe-object <visualType> <object>
+powerbi-report-author formatting search <visualType> "<regex>"     # when the object is unknown
+powerbi-report-author catalog describe <visualType>               # data roles
+```
+
+Then validate after each logical batch rather than at the end, so one bad guess does not cascade
+into a rewrite of the whole file. Every one of the four errors above was caught in a single
+validation cycle; none required guessing twice.
+
+**Note the asymmetry.** This gap is only painful because the CLI exists (GAP-13). Without it the
+only options are copying from a reference file or guessing — and guessing is what produced all
+four errors.
+
+---
+
+## 12. GAP-17 — nothing validates that a card is tall enough for its content
+
+**Symptom.** A `cardVisual` validates cleanly and renders with its callout value or label
+clipped. No error, no warning, no obvious cause.
+
+**Root cause.** Card height is a function of a cascade of eight values — VCO border width, VCO
+padding, the title, two independent content-padding objects, the value font size, the vertical
+spacing, and the label font size — and no validator in the toolchain evaluates that sum against
+`position.height`. Worse, the label **always renders** even when `label.show: false`, so it must
+be budgeted at ≥ 12pt regardless of what you set.
+
+Worse still on this report specifically: the Fluent2 base theme in
+`StaticResources/SharedResources/BaseThemes/` carries no `cardVisual` entry and no `textClasses`
+at all, so there are no authoritative defaults to read and the runtime defaults are the only
+source. A green validator says nothing about whether the result is legible.
+
+**Fix.** Compute the requirement before sizing the card:
+
+```
+required_height = border*2 + padding_top + padding_bottom
+                + (render(title_fs) + spaceBelowTitleArea) * title_visible
+                + content_padding_top + content_padding_bottom
+                + render(value_fs) + verticalSpacing + render(max(label_fs, 12))
+                + accentBar_width
+  where render(fs) = ceil(fs * 1.5)
+```
+
+Worked example for the five KPI cards on this report (value 20pt, label 9pt→12pt effective,
+`paddingUniform` 8, VCO padding 6, `verticalSpacing` 2, accent bar 4, border 1, no title):
+
+```
+1*2 + 6+6 + 0 + 8+8 + ceil(20*1.5) + 2 + ceil(12*1.5) + 4 = 78  <=  95   OK
+```
+
+Set the padding and spacing values **explicitly** rather than inheriting them, so the arithmetic
+above is actually knowable. A `required_height` that exceeds `position.height` means the value
+clips; the fix is a smaller font or a taller card, never a shorter one.
+
+---
+
+## 13. GAP-18 — the authoring loop cannot be completed on Linux
+
+**Symptom.** The documented authoring loop is edit → validate → reload → screenshot, and the
+instructions are explicit that a change is not done until the screenshot has been reviewed. On
+Linux the loop stops after validate:
+
+```
+powerbi-desktop: command not found
+```
+
+**Root cause.** `powerbi-desktop` is a bridge to a running Power BI Desktop instance, and Desktop
+does not run on Linux. This is GAP-06 — headless lifecycle — applied to *verification* rather
+than to *refresh*. GAP-06's documented position is that Linux is the code-first authoring plane
+and Desktop is the rendering plane; the consequence for report work is that the plane boundary
+falls in the middle of the loop, and the half that cannot run is the half that would catch a
+clipping or overlap defect.
+
+**Why it matters more than it looks.** Gaps 14, 16, and 17 are all defects that *render* wrong
+while validating *clean*. Layout overlap is now automated (GAP-14), and property-name guessing is
+now avoidable (GAP-16), but clipping (GAP-17) and any purely aesthetic mismatch are exactly the
+class that only a screenshot catches. A green validator on Linux narrows the risk; it does not
+close it.
+
+**Status and the honest position.** Open, and it cannot be closed on Linux. The workable
+sequence is:
+
+1. Edit and validate on Linux — `powerbi-report-author validate` plus `validate_report.py`.
+2. Open the `.pbip` in Power BI Desktop on a Windows machine and screenshot the affected page.
+3. Only then merge.
+
+Report work should be described as **validate-clean, visually unverified** until step 2 happens.
+Claiming a report is finished on the strength of validation alone is the mistake this gap
+rewards.
+
+---
+
+## 14. Desktop alignment reference (verified)
 
 Derived by opening a project in Power BI Desktop and diffing against a Desktop-authored
 reference project. The shipped sample `samples/pbip-calendar-baseline/` and the output of
@@ -309,15 +556,38 @@ reference project. The shipped sample `samples/pbip-calendar-baseline/` and the 
 | `pages/<Name>/page.json` | `page/2.1.0` + `name` + `displayName` + **`displayOption`** (e.g. `FitToPage`) + `height` + `width` | `displayOption` is required by the schema; Desktop defaults it silently, the Fabric toolchain does not (GAP-10). |
 | `visuals/*/visual.json` | `visualContainer/2.12.0`, with `active: true` on each `queryRole` selection | Cosmetic normalisation. |
 
+A custom theme adds a second entry to `themeCollection` alongside `baseTheme`, plus a
+`RegisteredResources` package in the flat `resourcePackages` list:
+
+```json
+"themeCollection": {
+  "baseTheme":   { "name": "Fluent2-CY26SU08", "type": "SharedResources", "reportVersionAtImport": { ... } },
+  "customTheme": { "name": "AdventureWorksClean-a7c3e91b.json", "type": "RegisteredResources", "reportVersionAtImport": { ... } }
+}
+```
+
+Three details are load-bearing, and all three fail quietly rather than loudly:
+
+| Rule | Consequence if wrong |
+|---|---|
+| `customTheme.name` **and** `resourcePackages[].items[].name` must both carry the `.json` extension and equal `items[].path` | The published report silently applies no theme — the resource mapping never matches the file. |
+| `path` must be the **filename only**, with no directory prefix | Desktop silently ignores the theme. |
+| The `"name"` **inside** the theme JSON must match those fields exactly | Validation failure, and Desktop may not load the theme at all. |
+
+Desktop caches themes **by filename**, so editing a theme in place can leave stale state even
+after a reload. Append a short random GUID suffix (`<Name>-<guid>.json`) and rotate it on every
+content change, keeping the base name stable. This is the only reliable way to force a reload to
+pick up theme edits.
+
 Desktop ships built-in themes (e.g. `CY24SU10`) with **no** `BaseThemes/*.json` on disk, so
 the `BaseThemes/...` path in `resourcePackages` is a reference, not a file that must exist.
 `validate_pbir_schema.py` does not require the file.
 
 ---
 
-## 9. Validation set
+## 15. Validation set
 
-All four run in `hooks/pre-commit` and in `.github/workflows/validate.yml`:
+All five run in `hooks/pre-commit` and in `.github/workflows/validate.yml`:
 
 | Script | Covers |
 |---|---|
@@ -325,9 +595,21 @@ All four run in `hooks/pre-commit` and in `.github/workflows/validate.yml`:
 | `scripts/validate_date_table.py` | Calendar TMDL columns for the configured fiscal pattern |
 | `scripts/validate_pbir.sh` | PBIR JSON via `pbir-cli`, falling back to `validate_pbir_schema.py` on Linux |
 | `scripts/validate_m_expressions.py` | M body structure (GAP-07), bare relative `File.Contents` paths (GAP-08), non-existent M module members such as `Number.Max` (GAP-12) |
+| `scripts/validate_report.py` | PBIR **canvas layout**: visual overlap, negative positions, out-of-bounds placement (GAP-14) |
+
+`scripts/validate_report.py` exists because of GAP-14 and is the only check in this set that
+looks at *geometry*. Every other script reads file contents or JSON structure; a page in which
+two charts sit on top of each other is valid by all of them. It reports overlap as an error only
+when the two visuals share the same `z` layer, so deliberate stacking across different `z` values is not flagged.
+
+`powerbi-report-author validate` is a stronger check than anything in this table and should be
+run alongside them when it is available (see GAP-13 for installing it). It is not in the pre-commit
+set because it needs a network fetch and a Node global install, and this set is designed to run
+anywhere. Read its result carefully — GAP-15 explains why a green run may still have skipped
+schema validation entirely.
 
 `scripts/validate_pbir_schema.py` additionally enforces the Desktop-canonical JSON shape
-described in §7 (GAP-09) and the `.platform` / `$schema` / `displayOption` requirements
+described in §4 (GAP-09) and the `.platform` / `$schema` / `displayOption` requirements
 (GAP-10), and separates **blocking errors** from **non-blocking warnings** — canvas size and
 empty pages are reported as warnings and never fail the run.
 
@@ -343,7 +625,7 @@ schemas and will report things the Python fallback cannot see. Run both when you
 
 ---
 
-## 10. Adding a gap
+## 16. Adding a gap
 
 When you hit something not listed here:
 

@@ -14,9 +14,21 @@ if command -v powerbi-report-author &>/dev/null; then
     while IFS= read -r -d '' report_dir; do
         FOUND=$((FOUND + 1))
         echo "Validating: $report_dir"
-        if powerbi-report-author validate "$report_dir"; then
-            echo "[PASS] $report_dir"
+        # Capture output so we can detect PBIR_SCHEMA_UNREACHABLE (GAP-15).
+        # The tool exits 0 even when it skipped schema validation entirely because
+        # schemas could not be fetched over HTTPS. Inspecting the text is the only
+        # reliable signal — a silent "pass" here is a false negative.
+        if out=$(powerbi-report-author validate "$report_dir" 2>&1); then
+            printf '%s\n' "$out"
+            if printf '%s\n' "$out" | grep -q "PBIR_SCHEMA_UNREACHABLE"; then
+                echo "[FAIL] $report_dir: schema validation was skipped (PBIR_SCHEMA_UNREACHABLE)." \
+                     "Re-run on a machine with network access to validate against the full schemas (GAP-15)."
+                FAIL=1
+            else
+                echo "[PASS] $report_dir"
+            fi
         else
+            printf '%s\n' "$out"
             echo "[FAIL] $report_dir"
             FAIL=1
         fi
