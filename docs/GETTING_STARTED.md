@@ -340,6 +340,11 @@ Then browse with `claude plugin list` / `copilot plugin list`, or `/plugin` insi
   Generates a complete, compliant `.Report` folder (`definition.pbir`, `pages.json`, `page.json`, and visual layout placeholders) plus the `.pbip` manifest.
 - **Interactive HTML Dashboard Prototype**:
   Copy `templates/html-prototype/dashboard-template.html` to rapidly mockup canvas layouts, test KPI metrics, and inspect exact PBIR visual position coordinates before writing TMDL/PBIR.
+- **Rendered-output verification (Windows only)**:
+  ```bash
+  python3 scripts/capture_report_screenshot.py --reload
+  ```
+  Captures a PNG of every page from a running Power BI Desktop instance into `artifacts/screenshots/`. Use `--reload` to pull on-disk edits into the canvas first, or pass a page ID (`Overview`) to capture just one. This is the step that completes the authoring loop: validation cannot catch a visual that renders wrong while passing every check (see [GAP-18](LINUX_WORKFLOW_GAPS.md#13-gap-18--the-authoring-loop-cannot-be-completed-on-linux)). Requires `npm i -g @microsoft/powerbi-desktop-bridge-cli` and the target `.pbip` open in Desktop. On Linux it exits with a pointer to GAP-18 — describe report work there as *validate-clean, visually unverified*.
 
 ---
 

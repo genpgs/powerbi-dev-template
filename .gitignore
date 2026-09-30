@@ -19,6 +19,10 @@ bpa-results.json
 *-audit-report.md
 *-audit-report.json
 
+# Rendered-output verification (scripts/capture_report_screenshot.py, Windows-only).
+# Regenerate locally; PNGs are throwaway evidence, not source.
+artifacts/
+
 # Environment / secrets
 .env
 secrets/

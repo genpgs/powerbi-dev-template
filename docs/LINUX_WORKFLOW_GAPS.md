@@ -42,7 +42,7 @@ and 18 visible in the first place.
 | **GAP-15** | Validator offline behaviour | High | When the PBIR JSON schemas cannot be fetched, the validator reports `succeededWithWarnings` and **skips schema validation entirely** for the affected files. The result reads like success. | **Fixed** — `validate_pbir.sh` now captures tool output and exits non-zero if `PBIR_SCHEMA_UNREACHABLE` appears, even when the tool itself exited 0; the warning names every skipped file (§10). |
 | **GAP-16** | PBIR + theme property names | High | Formatting property names and value encodings cannot be guessed. Theme JSON uses plain values, PBIR uses `expr` wrappers, and several names differ from the intuitive guess (`fontColor` is `labelColor`, `lineCapStyle` is `lineStyle`, sort `direction` is `Ascending` not `Asc`). | **Workaround** — always look the value up via `powerbi-report-author formatting describe-object` / `catalog describe` before writing JSON; see §11. |
 | **GAP-17** | `cardVisual` clipping | High | Nothing validates that a card is tall enough for its content. The callout value and label can be clipped at render time while the visual passes every validator. | **Partially automated** — `validate_report.py` now computes minimum card height from explicitly-set font sizes, padding, border, and accent bar, and warns when `position.height` is too small (§12). Theme-inherited values are not visible at static analysis time, so a green check is necessary but not sufficient. |
-| **GAP-18** | Rendered-output verification | Architecture | The authoring loop requires a reload + screenshot to confirm a change rendered correctly, but `powerbi-desktop` needs Power BI Desktop, which is Windows-only. On Linux the loop cannot complete. | **Open** — extends GAP-06. Validate on Linux, then confirm visually on a Windows machine before merging (§13). |
+| **GAP-18** | Rendered-output verification | Architecture | The authoring loop requires a reload + screenshot to confirm a change rendered correctly, but `powerbi-desktop` needs Power BI Desktop, which is Windows-only. On Linux the loop cannot complete. | **Partially automated** — `scripts/capture_report_screenshot.py` automates the Windows-side capture; still Linux-blocked. Validate on Linux, then confirm visually on Windows before merging (§13). |
 
 ---
 
@@ -523,16 +523,39 @@ now avoidable (GAP-16), but clipping (GAP-17) and any purely aesthetic mismatch 
 class that only a screenshot catches. A green validator on Linux narrows the risk; it does not
 close it.
 
-**Status and the honest position.** Open, and it cannot be closed on Linux. The workable
-sequence is:
+**Status and the honest position.** Partially automated. The Windows-side verification is now a
+script, `scripts/capture_report_screenshot.py`, which drives the Desktop Bridge and writes PNGs for
+every page. It cannot make the loop work on Linux, but it removes the manual step and makes the
+half that *can* run reproducible. The workable sequence is:
 
 1. Edit and validate on Linux — `powerbi-report-author validate` plus `validate_report.py`.
-2. Open the `.pbip` in Power BI Desktop on a Windows machine and screenshot the affected page.
-3. Only then merge.
+2. On Windows, open the `.pbip` in Power BI Desktop and run:
+   ```bash
+   python3 scripts/capture_report_screenshot.py --reload
+   ```
+3. Review the PNGs under `artifacts/screenshots/`. Only then merge.
 
 Report work should be described as **validate-clean, visually unverified** until step 2 happens.
 Claiming a report is finished on the strength of validation alone is the mistake this gap
 rewards.
+
+**Bridge availability, verified on Desktop 2.158.1177.0 (26.09).** The bridge connected with no
+preview-feature toggle enabled, so the earlier assumption that the *Enable external tool access to
+Power BI Desktop through secure local APIs* preview flag is required does not hold for this build —
+that string appears in the CLI's error text but the feature is GA. Two failure modes remain, and
+the script distinguishes them:
+
+- `status: not_connected` with no instances → Desktop is closed, or a `.pbix` (not a `.pbip`) is open.
+- Local API unreachable → older Desktop build; update Desktop.
+
+Worth recording because the first investigation searched Desktop's binaries and config for the
+toggle's label string, found nothing, and wrongly concluded the feature was absent. The absence of
+the label is not evidence of the absence of the bridge; `powerbi-desktop status` is the authority.
+
+**Still unclosed.** The capture is the full Desktop canvas, so the Filters pane shifts the image
+between runs and makes pixel-diffing unstable. The bridge exposes a `region` parameter on
+`report.snapshot.capture/v2` (PBIR logical coordinates) for a stable canvas-only crop; wiring that
+through is the obvious next step.
 
 ---
 
@@ -601,6 +624,8 @@ All five run in `hooks/pre-commit` and in `.github/workflows/validate.yml`:
 looks at *geometry*. Every other script reads file contents or JSON structure; a page in which
 two charts sit on top of each other is valid by all of them. It reports overlap as an error only
 when the two visuals share the same `z` layer, so deliberate stacking across different `z` values is not flagged.
+
+`scripts/capture_report_screenshot.py` is deliberately NOT in this set. It needs a running Power BI Desktop and its local API bridge, so it cannot run in pre-commit or CI on any platform. It is the manual Windows-side counterpart to the checks above, and its absence from CI is the standing proof that GAP-18 is still open.
 
 `powerbi-report-author validate` is a stronger check than anything in this table and should be
 run alongside them when it is available (see GAP-13 for installing it). It is not in the pre-commit
