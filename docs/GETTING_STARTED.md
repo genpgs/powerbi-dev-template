@@ -283,6 +283,49 @@ Then remove the `_comment` and `_locations` keys from the copied file.
 
 ---
 
+## 8b. Optional agent skills & plugins (marketplace)
+
+The three skills in `.agents/skills/` are **canonical and ship with this repo** — they need no installation:
+
+| Skill | Covers |
+|-------|--------|
+| `powerbi-report-cli` | Report planning, design canon, authoring, publish |
+| `semantic-model-authoring` | TMDL, DAX, measures, modeling, deploy |
+| `fabriciq` | Natural-language data Q&A over an existing report |
+
+> `fabriciq` has no equivalent in the community marketplace, so dropping the repo copy loses that capability entirely.
+
+### Adding optional extra coverage
+
+The [`data-goblin/power-bi-agentic-development`](https://github.com/data-goblin/power-bi-agentic-development) marketplace publishes additional plugins. Install them if you need something the repo skills don't cover:
+
+| Plugin | Adds |
+|--------|------|
+| `tabular-editor` | BPA rules, C# scripting, `te` / `te2` CLI automation |
+| `pbi-desktop` | Connect to and query a live Power BI Desktop model |
+| `paginated-reports` | RDL authoring, validation, PDF/Excel render |
+| `custom-visuals` | Deneb, Python, R, SVG, and `.pbiviz` visuals |
+| `fabric-cli` / `fabric-admin` | Remote Fabric ops; tenant settings audits |
+| `etl` | Spark, Livy, and DuckDB against lakehouse data |
+
+```bash
+# Claude Code
+claude plugin marketplace add data-goblin/power-bi-agentic-development
+claude plugin install tabular-editor@power-bi-agentic-development
+
+# Copilot CLI (reads the same marketplace.json manifest)
+copilot plugin marketplace add data-goblin/power-bi-agentic-development
+copilot plugin install tabular-editor@power-bi-agentic-development
+```
+
+Then browse with `claude plugin list` / `copilot plugin list`, or `/plugin` inside a session.
+
+> **A word of caution**: the marketplace's own README warns against installing everything — *"Each skill competes for the agent's attention and context window."* Add a plugin when you need it. Note also that these are released on a weekly cadence and versions 26.26–26.38 were a deliberate breaking transition, so pin **26.25 or earlier** if you depend on the older skill structure.
+
+> **Licensing**: the marketplace is GPL-3.0 and licensed for free community use, but you may not incorporate its skills into your own products or tools without keeping attribution and a link to the upstream project. Installing via the plugin path is fine; copying skill text into this repo obliges you to retain that attribution.
+
+---
+
 ## 9. Helper Scripts & Prototyping Templates
 
 - **Profile Data Sources**:
