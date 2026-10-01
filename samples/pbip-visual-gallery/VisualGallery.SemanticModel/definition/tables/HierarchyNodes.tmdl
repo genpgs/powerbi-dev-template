@@ -1,0 +1,88 @@
+table HierarchyNodes
+	lineageTag: HierarchyNodes
+
+	measure 'Node Value' = SUM(HierarchyNodes[NodeValue])
+		formatString: #,0
+		lineageTag: hierarchynodes-value
+
+	column Level1
+		dataType: string
+		lineageTag: Level1
+		summarizeBy: none
+		sourceColumn: Level1
+
+	column Level2
+		dataType: string
+		lineageTag: Level2
+		summarizeBy: none
+		sourceColumn: Level2
+
+	column Level3
+		dataType: string
+		lineageTag: Level3
+		summarizeBy: none
+		sourceColumn: Level3
+
+	column NodePath
+		dataType: string
+		lineageTag: NodePath
+		summarizeBy: none
+		sourceColumn: NodePath
+
+	column NodeValue
+		dataType: double
+		lineageTag: NodeValue
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: NodeValue
+
+	partition HierarchyNodes = m
+		mode: import
+		source =
+				let
+				    Tree = {
+				        {"Revenue", "Bikes", {"Mountain", "Road", "City", "Electric"}},
+				        {"Revenue", "Components", {"Frames", "Wheels", "Handlebars", "Saddles"}},
+				        {"Revenue", "Clothing", {"Jerseys", "Shorts", "Jackets", "Gloves"}},
+				        {"Revenue", "Accessories", {"Helmets", "Lights", "Locks", "Bags"}},
+				        {"Cost", "Manufacturing", {"Materials", "Labour", "Overhead"}},
+				        {"Cost", "Logistics", {"Freight", "Warehousing", "Customs"}},
+				        {"Cost", "Commercial", {"Marketing", "Sales", "Discounts"}},
+				        {"Cost", "Support", {"Warranty", "Returns", "Training"}},
+				        {"Headcount", "Engineering", {"Platform", "Data", "Mobile"}},
+				        {"Headcount", "Operations", {"Fulfilment", "Support", "Quality"}},
+				        {"Headcount", "Commercial", {"Sales", "Marketing", "Partnerships"}},
+				        {"Headcount", "Corporate", {"Finance", "People", "Legal"}}
+				    },
+				    // Flatten the tree into (branchIndex, leafIndex) pairs so every leaf
+				    // is emitted exactly once. Indexing the row counter by a fixed
+				    // stride would skip leaves in branches shorter than the stride.
+				    Pairs = List.Combine(
+				        List.Transform(
+				            List.Numbers({0..List.Count(Tree) - 1}),
+				            (b) => List.Transform(List.Numbers({0..List.Count(Tree{b}{2}) - 1}), (l) => {b, l})
+				        )
+				    ),
+				    Rows = List.Transform(Pairs, (p) =>
+				        let
+				            branch = Tree{p{0}},
+				            leaf = branch{2}{p{1}}
+				        in
+				            [
+				                Level1 = branch{0},
+				                Level2 = branch{1},
+				                Level3 = leaf,
+				                NodePath = branch{0} & " / " & branch{1} & " / " & leaf,
+				                NodeValue = Number.Round(500 + fnSeed((p{0} + 1) * 101 + p{1}, 3) * 9500, 0)
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            Level1 = text,
+				            Level2 = text,
+				            Level3 = text,
+				            NodePath = text,
+				            NodeValue = number
+				        ])
+				in
+				    Source

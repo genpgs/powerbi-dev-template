@@ -1,0 +1,114 @@
+table PriceSeries
+	lineageTag: PriceSeries
+
+	measure 'Series Value' = SUM(PriceSeries[Value])
+		formatString: #,0.00
+		lineageTag: priceseries-value
+
+	measure 'Series Average' = AVERAGE(PriceSeries[Value])
+		formatString: #,0.00
+		lineageTag: priceseries-average
+
+	measure 'Series Min' = MIN(PriceSeries[Value])
+		formatString: #,0.00
+		lineageTag: priceseries-min
+
+	measure 'Series Max' = MAX(PriceSeries[Value])
+		formatString: #,0.00
+		lineageTag: priceseries-max
+
+	column Timestamp
+		dataType: dateTime
+		lineageTag: Timestamp
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: Timestamp
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SeriesName
+		dataType: string
+		lineageTag: SeriesName
+		summarizeBy: none
+		sourceColumn: SeriesName
+
+	column Value
+		dataType: double
+		lineageTag: Value
+		formatString: #,0.00
+		summarizeBy: none
+		sourceColumn: Value
+
+	column BaselineValue
+		dataType: double
+		lineageTag: BaselineValue
+		formatString: #,0.00
+		summarizeBy: none
+		sourceColumn: BaselineValue
+
+	column EventTitle
+		dataType: string
+		lineageTag: EventTitle
+		summarizeBy: none
+		sourceColumn: EventTitle
+
+	column EventSize
+		dataType: double
+		lineageTag: EventSize
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: EventSize
+
+	partition PriceSeries = m
+		mode: import
+		source =
+				let
+				    Series = {"Contoso Index", "Northwind Index"},
+				    SeriesBase = {4200, 2600},
+				    SeriesDrift = {0.9, -0.55},
+				    PointCount = 260,
+				    StartDate = #date(2025, 1, 2),
+				    // A handful of named events, so Pulse Chart has markers with
+				    // titles and sizes to render rather than an empty EventTitle.
+				    Events = {
+				        {40, "Quarterly results", 3},
+				        {95, "Product launch", 2},
+				        {150, "Regulatory review", 1},
+				        {205, "Regional expansion", 4}
+				    },
+				    Rows = List.Transform(List.Numbers({1..PointCount * List.Count(Series)}), (i) =>
+				        let
+				            seriesIndex = Number.Mod(i - 1, List.Count(Series)),
+				            pointIndex = Number.IntegerDivide(i - 1, List.Count(Series)),
+				            base = SeriesBase{seriesIndex},
+				            drift = SeriesDrift{seriesIndex},
+				            trend = base + drift * pointIndex,
+				            wave = 55 * Number.Sin(pointIndex / 9) + 26 * Number.Sin(pointIndex / 3.5),
+				            noise = (fnSeed(i, 13) - 0.5) * 34,
+				            event = List.First(List.RemoveNulls(List.Transform(Events, (e) => if e{0} = pointIndex then e else null))),
+				            // Events attach to the first series only, so the Pulse Chart has
+				            // markers on one trace instead of duplicated pairs.
+				            carriesEvent = seriesIndex = 0
+				        in
+				            [
+				                Timestamp = Date.AddDays(StartDate, pointIndex),
+				                SeriesName = Series{seriesIndex},
+				                // Value is the noisy observed trace; BaselineValue is the smooth
+				                // counter line Pulse Chart binds to its RunnerCounter role.
+				                Value = Number.Round(trend + wave + noise, 2),
+				                BaselineValue = Number.Round(trend + wave * 0.7, 2),
+				                EventTitle = if carriesEvent and event <> null then event{1} else null,
+				                EventSize = if carriesEvent and event <> null then event{2} else null
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            Timestamp = date,
+				            SeriesName = text,
+				            Value = number,
+				            BaselineValue = number,
+				            EventTitle = text,
+				            EventSize = number
+				        ])
+				in
+				    Source

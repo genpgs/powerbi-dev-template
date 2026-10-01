@@ -1,0 +1,139 @@
+table GanttTasks
+	lineageTag: GanttTasks
+
+	measure 'Gantt Value' = SUM(GanttTasks[DurationDays])
+		formatString: #,0
+		lineageTag: gantt-duration
+
+	measure 'Gantt Completion' = AVERAGE(GanttTasks[CompletionPct])
+		formatString: 0%
+		lineageTag: gantt-completion
+
+	measure 'Gantt Start' = MIN(GanttTasks[StartDate])
+		formatString: Short Date
+		lineageTag: gantt-start
+
+	measure 'Gantt Finish' = MAX(GanttTasks[EndDate])
+		formatString: Short Date
+		lineageTag: gantt-finish
+
+	column TaskName
+		dataType: string
+		lineageTag: TaskName
+		summarizeBy: none
+		sourceColumn: TaskName
+
+	column ParentTask
+		dataType: string
+		lineageTag: ParentTask
+		summarizeBy: none
+		sourceColumn: ParentTask
+
+	column StartDate
+		dataType: dateTime
+		lineageTag: StartDate
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EndDate
+		dataType: dateTime
+		lineageTag: EndDate
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DurationDays
+		dataType: int64
+		lineageTag: DurationDays
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: DurationDays
+
+	column CompletionPct
+		dataType: double
+		lineageTag: CompletionPct
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: CompletionPct
+
+	column Resource
+		dataType: string
+		lineageTag: Resource
+		summarizeBy: none
+		sourceColumn: Resource
+
+	column Legend
+		dataType: string
+		lineageTag: Legend
+		summarizeBy: none
+		sourceColumn: Legend
+
+	column Milestone
+		dataType: string
+		lineageTag: Milestone
+		summarizeBy: none
+		sourceColumn: Milestone
+
+	column ExtraInformation
+		dataType: string
+		lineageTag: ExtraInformation
+		summarizeBy: none
+		sourceColumn: ExtraInformation
+
+	partition GanttTasks = m
+		mode: import
+		source =
+				let
+				    Projects = {"Warehouse Rollout", "Pricing Refresh", "Support Uplift"},
+				    Phases = {"Discovery", "Build", "Pilot", "Rollout"},
+				    Owners = {"A. Okafor", "M. Lindqvist", "R. Tanaka", "S. Haddad", "J. Moreau"},
+				    Tracks = {"Engineering", "Operations", "Commercial"},
+				    // Each project gets 4 phases, then 1-2 named tasks per phase, so
+				    // the Parent and Legend roles have a real hierarchy to draw.
+				    RowCount = 30,
+				    ProjectStart = #date(2025, 1, 06),
+				    Rows = List.Transform(List.Numbers({1..RowCount}), (i) =>
+				        let
+				            projectIndex = Number.IntegerDivide(i - 1, List.Count(Phases) * 3),
+				            phaseIndex = Number.IntegerDivide(Number.Mod(i - 1, List.Count(Phases) * 3), 3),
+				            taskInPhase = Number.Mod(i - 1, 3),
+				            project = Projects{Number.Mod(projectIndex, List.Count(Projects))},
+				            phase = Phases{phaseIndex},
+				            phaseStart = Date.AddDays(ProjectStart, (Number.Mod(projectIndex, List.Count(Projects)) * 120) + (phaseIndex * 28)),
+				            durationDays = 10 + Number.Mod(i * 7, 24),
+				            isMilestone = taskInPhase = 0,
+				            completion = Number.Round(0.15 + fnSeed(i, 19) * 0.8, 2)
+				        in
+				            [
+				                TaskName = if isMilestone then phase & " sign-off" else phase & " task " & Text.From(taskInPhase + 1),
+				                ParentTask = project & " / " & phase,
+				                StartDate = phaseStart,
+				                EndDate = Date.AddDays(phaseStart, if isMilestone then 0 else durationDays),
+				                DurationDays = if isMilestone then 0 else durationDays,
+				                CompletionPct = if isMilestone then 1 else completion,
+				                Resource = Owners{Number.Mod(i * 3, List.Count(Owners))},
+				                Legend = Tracks{Number.Mod(projectIndex + phaseIndex, List.Count(Tracks))},
+				                Milestone = if isMilestone then project & " - " & phase & " complete" else null,
+				                ExtraInformation = "Phase " & Text.From(phaseIndex + 1) & " of the " & project & " programme"
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				                TaskName = text,
+				                ParentTask = text,
+				                StartDate = date,
+				                EndDate = date,
+				                DurationDays = Int64.Type,
+				                CompletionPct = number,
+				                Resource = text,
+				                Legend = text,
+				                Milestone = text,
+				                ExtraInformation = text
+				        ])
+				in
+				    Source

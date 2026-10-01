@@ -1,28 +1,162 @@
 table FactSales
-	lineageTag: 6f54afb2-1a9f-4ff6-89d7-808ffaa6e968
+	lineageTag: FactSales
 
-	measure 'Total Amount' = SUM(FactSales[Amount])
-		formatString: #,0.00
+	measure 'Total Sales' = SUM(FactSales[SalesAmount])
+		formatString: \$#,0.00
 		lineageTag: 71dc16a6-d873-458c-bb86-d307f397e464
+
+	measure 'Total Standard Cost' = SUM(FactSales[StandardCostAmount])
+		formatString: \$#,0.00
+		lineageTag: factsales-stdcost
+
+	measure 'Total Gross Profit' = [Total Sales] - [Total Standard Cost]
+		formatString: \$#,0.00
+		lineageTag: factsales-grossprofit
+
+	measure 'Gross Margin %' = DIVIDE([Total Gross Profit], [Total Sales])
+		formatString: 0.0%
+		lineageTag: factsales-margin
+
+	measure 'Total Orders' = DISTINCTCOUNT(FactSales[OrderNumber])
+		formatString: #,0
+		lineageTag: factsales-orders
+
+	measure 'Total Quantity' = SUM(FactSales[Quantity])
+		formatString: #,0
+		lineageTag: factsales-quantity
+
+	measure 'Average Order Value' = DIVIDE([Total Sales], [Total Orders])
+		formatString: \$#,0.00
+		lineageTag: factsales-aov
+
+	measure 'Average Discount %' = AVERAGE(FactSales[DiscountPct])
+		formatString: 0.0%
+		lineageTag: factsales-avgdiscount
+
+	column OrderNumber
+		dataType: int64
+		lineageTag: OrderNumber
+		summarizeBy: none
+		sourceColumn: OrderNumber
 
 	column OrderDate
 		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 9d1e62a6-95b4-4e44-af5a-44374b84ab1e
+		lineageTag: OrderDate
+		formatString: Short Date
 		summarizeBy: none
 		sourceColumn: OrderDate
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column Amount
+	column ProductKey
+		dataType: int64
+		lineageTag: ProductKey
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+	column CustomerKey
+		dataType: int64
+		lineageTag: CustomerKey
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+	column StoreKey
+		dataType: int64
+		lineageTag: StoreKey
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+	column Quantity
+		dataType: int64
+		lineageTag: Quantity
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Quantity
+
+	column UnitPrice
 		dataType: double
-		lineageTag: dd01bc5c-d87a-4948-9cee-d39eff4fd179
-		sourceColumn: Amount
+		lineageTag: UnitPrice
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: UnitPrice
+
+	column StandardCostAmount
+		dataType: double
+		lineageTag: StandardCostAmount
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: StandardCostAmount
+
+	column DiscountPct
+		dataType: double
+		lineageTag: DiscountPct
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: DiscountPct
+
+	column SalesAmount
+		dataType: double
+		lineageTag: SalesAmount
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: SalesAmount
 
 	partition FactSales = m
 		mode: import
 		source =
 				let
-				    Source = #table(type table [OrderDate=date, Amount=number], {{#date(2024,1,15),1250},{#date(2025,9,4),990}})
-				in Source
-
+				    StartDate = #date(2023, 1, 1),
+				    DayCount = 1096,
+				    LineCount = 24000,
+				    LinesPerOrder = 2,
+				    ListPrices = List.Transform(List.Numbers({1..Table.RowCount(#"DimProduct")}), (k) =>
+				        #"DimProduct"{[ProductKey = k]}[ListPrice]),
+				    UnitCosts = List.Transform(List.Numbers({1..Table.RowCount(#"DimProduct")}), (k) =>
+				        #"DimProduct"{[ProductKey = k]}[StandardCost]),
+				    CustomerCount = 300,
+				    StoreCount = 12,
+				    Rows = List.Transform(List.Numbers({1..LineCount}), (i) =>
+				        let
+				            dayOffset = Number.Mod(i * 7 + 3, DayCount),
+				            orderDate = Date.AddDays(StartDate, dayOffset),
+				            productKey = 1 + Number.Mod(i * 7 + 5, List.Count(ListPrices)),
+				            customerKey = 1 + Number.Mod(i * 11 + 2, CustomerCount),
+				            storeKey = 1 + Number.Mod(i * 5 + 1, StoreCount),
+				            quantity = 1 + Number.Mod(i * 3, 8),
+				            unitPrice = ListPrices{productKey - 1},
+				            unitCost = UnitCosts{productKey - 1},
+				            discountPct = Number.Round(fnSeed(i, 31) * 18) / 100,
+				            -- A gentle upward trend plus monthly seasonality, so time-series
+				            -- visuals have a shape worth reading instead of flat noise.
+				            trendFactor = 1 + 0.45 * (dayOffset / DayCount),
+				            seasonalFactor = 1 + 0.22 * Number.Sin(2 * Number.Pi * (Date.Month(orderDate) - 1) / 12),
+				            salesAmount = Number.Round(quantity * unitPrice * (1 - discountPct) * trendFactor * seasonalFactor, 2)
+				        in
+				            [
+				                OrderNumber = Number.IntegerDivide(i - 1, LinesPerOrder) + 1,
+				                OrderDate = orderDate,
+				                ProductKey = productKey,
+				                CustomerKey = customerKey,
+				                StoreKey = storeKey,
+				                Quantity = quantity,
+				                UnitPrice = unitPrice,
+				                StandardCostAmount = Number.Round(quantity * unitCost, 2),
+				                DiscountPct = discountPct,
+				                SalesAmount = salesAmount
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            OrderNumber = Int64.Type,
+				            OrderDate = date,
+				            ProductKey = Int64.Type,
+				            CustomerKey = Int64.Type,
+				            StoreKey = Int64.Type,
+				            Quantity = Int64.Type,
+				            UnitPrice = number,
+				            StandardCostAmount = number,
+				            DiscountPct = number,
+				            SalesAmount = number
+				        ])
+				in
+				    Source

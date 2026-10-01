@@ -1,0 +1,124 @@
+table Flow
+	lineageTag: Flow
+
+	measure 'Flow Value' = SUM(Flow[Value])
+		formatString: #,0
+		lineageTag: flow-value
+
+	measure 'Distinct Source Nodes' = DISTINCTCOUNT(Flow[Source])
+		formatString: #,0
+		lineageTag: flow-sources
+
+	measure 'Distinct Destination Nodes' = DISTINCTCOUNT(Flow[Destination])
+		formatString: #,0
+		lineageTag: flow-destinations
+
+	column Source
+		dataType: string
+		lineageTag: Source
+		summarizeBy: none
+		sourceColumn: Source
+
+	column Destination
+		dataType: string
+		lineageTag: Destination
+		summarizeBy: none
+		sourceColumn: Destination
+
+	column Value
+		dataType: double
+		lineageTag: Value
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Value
+
+	column LinkType
+		dataType: string
+		lineageTag: LinkType
+		summarizeBy: none
+		sourceColumn: LinkType
+
+	column SourceType
+		dataType: string
+		lineageTag: SourceType
+		summarizeBy: none
+		sourceColumn: SourceType
+
+	column TargetType
+		dataType: string
+		lineageTag: TargetType
+		summarizeBy: none
+		sourceColumn: TargetType
+
+	column SourceLabels
+		dataType: string
+		lineageTag: SourceLabels
+		summarizeBy: none
+		sourceColumn: SourceLabels
+
+	partition Flow = m
+		mode: import
+		source =
+				let
+				    // Ordered pipeline stages. Value decays stage to stage so the
+				    // Sankey and Chord visuals show a funnel with visible drop-off
+				    // rather than uniform-width bands.
+				    Stages = {"Leads", "Enquiries", "Quotes", "Orders", "Production", "Dispatch", "Retail Sale", "Renewal"},
+				    StageBase = {12000, 8400, 5600, 4100, 3700, 3450, 3180, 1620},
+				    EdgeCount = List.Count(Stages) - 1,
+				    AdjacentEdges = List.Transform(List.Numbers({1..EdgeCount}), (i) =>
+				        [
+				            Source = Stages{i - 1},
+				            Destination = Stages{i},
+				            Value = StageBase{i},
+				            LinkType = "Primary",
+				            SourceType = Stages{i - 1},
+				            TargetType = Stages{i},
+				            SourceLabels = Text.From(i)
+				        ]),
+				    // Leakage edges to a shared sink, so Chord and the force-directed
+				    // graph show non-linear connections too.
+				    LeakageEdges = {
+				        {"Leads", "Disqualified", 3600, "Secondary"},
+				        {"Enquiries", "Disqualified", 2800, "Secondary"},
+				        {"Quotes", "Lost", 1500, "Secondary"},
+				        {"Orders", "Cancelled", 400, "Secondary"},
+				        {"Production", "Scrapped", 180, "Secondary"},
+				        {"Dispatch", "Returned", 270, "Secondary"},
+				        {"Retail Sale", "Churned", 1560, "Secondary"}
+				    },
+				    SecondaryEdges = List.Transform(LeakageEdges, (e) =>
+				        {
+				            Source = e{0},
+				            Destination = e{1},
+				            Value = e{2},
+				            LinkType = e{3},
+				            SourceType = e{0},
+				            TargetType = e{1},
+				            SourceLabels = "-"
+				        }),
+				    Rows = List.Transform(
+				        List.Combine({AdjacentEdges, SecondaryEdges}),
+				        (e) =>
+				            [
+				                Source = e{0},
+				                Destination = e{1},
+				                Value = e{2},
+				                LinkType = e{3},
+				                SourceType = e{4},
+				                TargetType = e{5},
+				                SourceLabels = e{6}
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            Source = text,
+				            Destination = text,
+				            Value = number,
+				            LinkType = text,
+				            SourceType = text,
+				            TargetType = text,
+				            SourceLabels = text
+				        ])
+				in
+				    Source

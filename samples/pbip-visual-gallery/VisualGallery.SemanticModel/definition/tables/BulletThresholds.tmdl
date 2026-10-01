@@ -1,0 +1,159 @@
+table BulletThresholds
+	lineageTag: BulletThresholds
+
+	measure 'Bullet Actual' = SUM(BulletThresholds[Value])
+		formatString: #,0
+		lineageTag: bulletthresholds-actual
+
+	measure 'Bullet Target' = SUM(BulletThresholds[Target])
+		formatString: #,0
+		lineageTag: bulletthresholds-target
+
+	measure 'Bullet Minimum' = SUM(BulletThresholds[Minimum])
+		formatString: #,0
+		lineageTag: bulletthresholds-minimum
+
+	measure 'Bullet Maximum' = SUM(BulletThresholds[Maximum])
+		formatString: #,0
+		lineageTag: bulletthresholds-maximum
+
+	measure 'Bullet Attainment %' =
+			VAR a = [Bullet Actual]
+			VAR t = [Bullet Target]
+			RETURN
+			IF (t = 0, BLANK(), a / t)
+		formatString: 0.0%
+		lineageTag: bulletthresholds-attainment
+
+	column Category
+		dataType: string
+		lineageTag: Category
+		summarizeBy: none
+		sourceColumn: Category
+
+	column Value
+		dataType: double
+		lineageTag: Value
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Value
+
+	column Target
+		dataType: double
+		lineageTag: Target
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Target
+
+	column Minimum
+		dataType: double
+		lineageTag: Minimum
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Minimum
+
+	column NeedsImprovement
+		dataType: double
+		lineageTag: NeedsImprovement
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: NeedsImprovement
+
+	column Satisfactory
+		dataType: double
+		lineageTag: Satisfactory
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Satisfactory
+
+	column Good
+		dataType: double
+		lineageTag: Good
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Good
+
+	column VeryGood
+		dataType: double
+		lineageTag: VeryGood
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: VeryGood
+
+	column Maximum
+		dataType: double
+		lineageTag: Maximum
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Maximum
+
+	partition BulletThresholds = m
+		mode: import
+		source =
+				let
+				    Categories = {
+				        {"Revenue attainment", 1000000, 20, true},
+				        {"Gross margin", 42, 5, true},
+				        {"Order volume", 8500, 40, true},
+				        {"On-time delivery", 95, 8, true},
+				        {"Customer NPS", 50, 10, true},
+				        {"Inventory turns", 7.5, 4, true},
+				        {"Cost per unit", 115, 6, false},
+				        {"Defect rate", 2.5, 8, false},
+				        {"Renewal rate", 65, 12, true},
+				        {"Support SLA", 90, 9, true},
+				        {"Returns rate", 4, 7, false},
+				        {"Fill rate", 97, 3, true},
+				        {"First-time fix", 88, 10, true},
+				        {"Stock accuracy", 99, 1, true}
+				    },
+				    RowCount = List.Count(Categories) * 4,
+				    // Value and Target are scaled per category so thresholds always
+				    // land in a sensible range regardless of the metric's magnitude.
+				    Scale = (v as number) as number => if v > 1000 then 1000 else if v > 100 then 100 else 10,
+				    Rows = List.Transform(List.Numbers({1..RowCount}), (i) =>
+				        let
+				            pick = Categories{Number.Mod(i - 1, List.Count(Categories))},
+				            scale = Scale(pick{1}),
+				            target = pick{1},
+				            spread = pick{2} / 100 * scale,
+				            higherIsBetter = pick{3},
+				            attainment = 0.72 + fnSeed(i * 13, 89) * 0.6,
+				            // Higher-is-better metrics are met by exceeding the target;
+				            // lower-is-better metrics are met by coming in under it.
+				            value = Number.Round(target * attainment, 2),
+				            // Threshold order follows direction. A bullet for "defect rate"
+				            // with ascending thresholds teaches the wrong thing.
+				            tMinimum = if higherIsBetter then target - spread * 1.6 else target + spread * 1.6,
+				            tNeedsImprovement = if higherIsBetter then target - spread else target + spread,
+				            tSatisfactory = if higherIsBetter then target - spread * 0.4 else target + spread * 0.4,
+				            tGood = if higherIsBetter then target + spread * 0.4 else target - spread * 0.4,
+				            tVeryGood = if higherIsBetter then target + spread else target - spread,
+				            tMaximum = if higherIsBetter then target + spread * 1.6 else target - spread * 1.6
+				        in
+				            [
+				                Category = pick{0},
+				                Value = value,
+				                Target = target,
+				                Minimum = Number.Round(tMinimum, 2),
+				                NeedsImprovement = Number.Round(tNeedsImprovement, 2),
+				                Satisfactory = Number.Round(tSatisfactory, 2),
+				                Good = Number.Round(tGood, 2),
+				                VeryGood = Number.Round(tVeryGood, 2),
+				                Maximum = Number.Round(tMaximum, 2)
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				                Category = text,
+				                Value = number,
+				                Target = number,
+				                Minimum = number,
+				                NeedsImprovement = number,
+				                Satisfactory = number,
+				                Good = number,
+				                VeryGood = number,
+				                Maximum = number
+				        ])
+				in
+				    Source
