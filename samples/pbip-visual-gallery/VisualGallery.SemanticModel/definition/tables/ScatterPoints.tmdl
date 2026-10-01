@@ -130,6 +130,7 @@ table ScatterPoints
 
 	column ImageUrl
 		dataType: string
+		dataCategory: ImageUrl
 		lineageTag: ImageUrl
 		summarizeBy: none
 		sourceColumn: ImageUrl

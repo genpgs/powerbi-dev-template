@@ -1,0 +1,125 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "000000000000000000a1",
+  "position": {
+    "x": 972,
+    "y": 124,
+    "z": 4000,
+    "height": 924,
+    "width": 916,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "Sunburst1445472000808",
+    "query": {
+      "queryState": {
+        "Nodes": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HierarchyNodes"
+                    }
+                  },
+                  "Property": "Level1"
+                }
+              },
+              "queryRef": "HierarchyNodes.Level1",
+              "nativeQueryRef": "Level1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HierarchyNodes"
+                    }
+                  },
+                  "Property": "Level2"
+                }
+              },
+              "queryRef": "HierarchyNodes.Level2",
+              "nativeQueryRef": "Level2"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HierarchyNodes"
+                    }
+                  },
+                  "Property": "Node Value"
+                }
+              },
+              "queryRef": "HierarchyNodes.Node Value",
+              "nativeQueryRef": "Node Value"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Two levels'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sunburst over the first two hierarchy levels only.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

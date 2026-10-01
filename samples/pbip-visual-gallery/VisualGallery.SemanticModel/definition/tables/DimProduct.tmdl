@@ -41,6 +41,7 @@ table DimProduct
 
 	column ProductImage
 		dataType: string
+		dataCategory: ImageUrl
 		lineageTag: ProductImage
 		summarizeBy: none
 		sourceColumn: ProductImage

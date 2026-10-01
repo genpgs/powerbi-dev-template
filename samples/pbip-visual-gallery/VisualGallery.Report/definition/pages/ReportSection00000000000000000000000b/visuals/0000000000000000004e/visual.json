@@ -1,0 +1,201 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0000000000000000004e",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 916,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "BulletChart1443347686880",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "BulletThresholds.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Value": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Actual"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Actual",
+              "nativeQueryRef": "Bullet Actual"
+            }
+          ]
+        },
+        "TargetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Target"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Target",
+              "nativeQueryRef": "Bullet Target"
+            }
+          ]
+        },
+        "Minimum": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Minimum"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Minimum",
+              "nativeQueryRef": "Bullet Minimum"
+            }
+          ]
+        },
+        "Maximum": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Maximum"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Maximum",
+              "nativeQueryRef": "Bullet Maximum"
+            }
+          ]
+        },
+        "Satisfactory": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Target"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Target",
+              "nativeQueryRef": "Bullet Target"
+            }
+          ]
+        },
+        "Good": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BulletThresholds"
+                    }
+                  },
+                  "Property": "Bullet Maximum"
+                }
+              },
+              "queryRef": "BulletThresholds.Bullet Maximum",
+              "nativeQueryRef": "Bullet Maximum"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Full threshold set'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bullet chart showing actual against target with the full nine-threshold scale.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

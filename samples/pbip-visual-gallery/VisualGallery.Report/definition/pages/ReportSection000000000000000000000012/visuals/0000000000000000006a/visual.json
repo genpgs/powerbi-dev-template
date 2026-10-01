@@ -1,0 +1,219 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0000000000000000006a",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 1856,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "Gantt1448688115699",
+    "query": {
+      "queryState": {
+        "Task": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "TaskName"
+                }
+              },
+              "queryRef": "GanttTasks.TaskName",
+              "nativeQueryRef": "TaskName"
+            }
+          ]
+        },
+        "Parent": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "ParentTask"
+                }
+              },
+              "queryRef": "GanttTasks.ParentTask",
+              "nativeQueryRef": "ParentTask"
+            }
+          ]
+        },
+        "StartDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "StartDate"
+                }
+              },
+              "queryRef": "GanttTasks.StartDate",
+              "nativeQueryRef": "StartDate"
+            }
+          ]
+        },
+        "Duration": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "Gantt Value"
+                }
+              },
+              "queryRef": "GanttTasks.Gantt Value",
+              "nativeQueryRef": "Gantt Value"
+            }
+          ]
+        },
+        "Completion": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "Gantt Completion"
+                }
+              },
+              "queryRef": "GanttTasks.Gantt Completion",
+              "nativeQueryRef": "Gantt Completion"
+            }
+          ]
+        },
+        "Resource": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "Resource"
+                }
+              },
+              "queryRef": "GanttTasks.Resource",
+              "nativeQueryRef": "Resource"
+            }
+          ]
+        },
+        "Legend": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "Legend"
+                }
+              },
+              "queryRef": "GanttTasks.Legend",
+              "nativeQueryRef": "Legend"
+            }
+          ]
+        },
+        "Milestones": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "GanttTasks"
+                    }
+                  },
+                  "Property": "Milestone"
+                }
+              },
+              "queryRef": "GanttTasks.Milestone",
+              "nativeQueryRef": "Milestone"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Programme schedule'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gantt chart of project tasks grouped by parent phase.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

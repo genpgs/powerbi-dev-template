@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "00000000000000000067",
+  "position": {
+    "x": 972,
+    "y": 124,
+    "z": 4000,
+    "height": 924,
+    "width": 916,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "ForceGraph1449359463895",
+    "query": {
+      "queryState": {
+        "Source": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flow"
+                    }
+                  },
+                  "Property": "Source"
+                }
+              },
+              "queryRef": "Flow.Source",
+              "nativeQueryRef": "Source"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flow"
+                    }
+                  },
+                  "Property": "Destination"
+                }
+              },
+              "queryRef": "Flow.Destination",
+              "nativeQueryRef": "Destination"
+            }
+          ]
+        },
+        "Weight": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Flow"
+                        }
+                      },
+                      "Property": "Value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Flow.Value)",
+              "nativeQueryRef": "Value"
+            }
+          ]
+        },
+        "LinkType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flow"
+                    }
+                  },
+                  "Property": "LinkType"
+                }
+              },
+              "queryRef": "Flow.LinkType",
+              "nativeQueryRef": "LinkType"
+            }
+          ]
+        },
+        "SourceType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flow"
+                    }
+                  },
+                  "Property": "SourceType"
+                }
+              },
+              "queryRef": "Flow.SourceType",
+              "nativeQueryRef": "SourceType"
+            }
+          ]
+        },
+        "TargetType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flow"
+                    }
+                  },
+                  "Property": "TargetType"
+                }
+              },
+              "queryRef": "Flow.TargetType",
+              "nativeQueryRef": "TargetType"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Typed links'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Force-directed graph separating link, source and target types.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

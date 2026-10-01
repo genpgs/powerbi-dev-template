@@ -1,0 +1,153 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "00000000000000000090",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 916,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "RadarChart1446119667547",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "ScatterPoints.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Scatter Radar 1"
+                }
+              },
+              "queryRef": "ScatterPoints.Scatter Radar 1",
+              "nativeQueryRef": "Scatter Radar 1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Scatter Radar 2"
+                }
+              },
+              "queryRef": "ScatterPoints.Scatter Radar 2",
+              "nativeQueryRef": "Scatter Radar 2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Scatter Radar 3"
+                }
+              },
+              "queryRef": "ScatterPoints.Scatter Radar 3",
+              "nativeQueryRef": "Scatter Radar 3"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Scatter Radar 4"
+                }
+              },
+              "queryRef": "ScatterPoints.Scatter Radar 4",
+              "nativeQueryRef": "Scatter Radar 4"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Four radar axes'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Radar chart with four measures plotted against the category.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "00000000000000000083",
+  "position": {
+    "x": 32,
+    "y": 598,
+    "z": 5000,
+    "height": 450,
+    "width": 916,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
+    "query": {
+      "queryState": {
+        "Axis": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "IndicatorName"
+                }
+              },
+              "queryRef": "KpiTargets.IndicatorName",
+              "nativeQueryRef": "IndicatorName"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Actual"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
+            }
+          ]
+        },
+        "SecondaryValues": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Comparison"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Comparison",
+              "nativeQueryRef": "KPI Comparison"
+            }
+          ]
+        },
+        "KPI": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Attainment %"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Attainment %",
+              "nativeQueryRef": "KPI Attainment %"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'With secondary values'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Power KPI adding the prior-period comparison.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
