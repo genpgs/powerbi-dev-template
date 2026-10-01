@@ -4,6 +4,13 @@ This section tells you exactly how to configure each visual type for a polished
 report. These are DESIGN instructions — for PBIR file mechanics, consult
 the `authoring` mode.
 
+For the distinction between Desktop availability, CLI metadata support,
+authoring recipes, and runnable samples, consult
+[`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md)
+and [`samples/pbip-visual-gallery/`](../../../../../samples/pbip-visual-gallery/).
+Do not infer that a visual is PBIR-authorable from a Desktop icon or a
+`catalog list` entry alone.
+
 ## Contents
 
 - [Theme vs Per-Visual — What Goes Where](#theme-vs-per-visual--what-goes-where)

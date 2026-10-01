@@ -111,6 +111,16 @@ All checks should show `[PASS]`.
 4. Open DAX Studio and run `dax/queries/validate-calendar.dax` — confirm `ValidationPassed = TRUE`
 5. Browse `FiscalWeekNumber`, `FiscalPeriodLabel`, `FiscalQuarter` columns to spot-check
 
+## Visual options and sample gallery
+
+See the [Power BI visual coverage matrix](POWER_BI_VISUAL_COVERAGE.md) for the
+Desktop-native visual inventory, local PBIR/CLI support, known gaps, slicer
+options, and Microsoft-published custom visual verification status. Open
+[`samples/pbip-visual-gallery/VisualGallery.pbip`](../samples/pbip-visual-gallery/VisualGallery.pbip)
+for runnable examples of core chart, card, and slicer authoring patterns. The
+gallery includes its own copy of the calendar-baseline sample model and can be
+opened independently.
+
 ---
 
 ## 7b. Two things that will bite you

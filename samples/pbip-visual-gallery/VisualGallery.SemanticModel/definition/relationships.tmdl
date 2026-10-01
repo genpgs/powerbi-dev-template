@@ -1,0 +1,4 @@
+relationship Sample
+	fromColumn: FactSales.OrderDate
+	toColumn: Calendar.Date
+
