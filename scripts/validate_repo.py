@@ -2,11 +2,21 @@
 """
 validate_repo.py — Validate Power BI repo structure, JSON syntax, and required files.
 Run from the repo root: python3 scripts/validate_repo.py
+
+Only repo-owned files are checked. Anything `.gitignore` excludes is skipped, so a
+local staging folder (e.g. samples/visual-gallery-assets/, which holds third-party
+PBIP/PBIX/PBIVIZ material) is never reported as a repo defect. See
+scripts/pbir_discovery.py.
 """
 
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pbir_discovery  # noqa: E402
+
+owned = pbir_discovery.ownership_filter(Path("."))
 
 # ── Required files ────────────────────────────────────────────────────────────
 REQUIRED_FILES = [
@@ -64,7 +74,7 @@ for f in REQUIRED_FILES + REQUIRED_SKILL_FILES:
 
 # ── 2. JSON syntax ────────────────────────────────────────────────────────────
 for p in Path(".").rglob("*.json"):
-    if any(skip in str(p) for skip in ["node_modules", ".git", "__pycache__"]):
+    if not owned(p):
         continue
     try:
         json.loads(p.read_text(encoding="utf-8"))
@@ -82,7 +92,7 @@ check(
 )
 
 # ── 4. No binary .pbix files ──────────────────────────────────────────────────
-pbix_files = [str(p) for p in Path(".").rglob("*.pbix") if ".git" not in str(p)]
+pbix_files = [str(p) for p in Path(".").rglob("*.pbix") if owned(p)]
 check(
     len(pbix_files) == 0,
     "[PASS] No .pbix binary files",
@@ -100,7 +110,7 @@ check(
 PBIP_SCHEMA_PREFIX = "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/"
 
 for pbip in Path(".").rglob("*.pbip"):
-    if ".git" in str(pbip):
+    if not owned(pbip):
         continue
     base = pbip.stem
     parent = pbip.parent
