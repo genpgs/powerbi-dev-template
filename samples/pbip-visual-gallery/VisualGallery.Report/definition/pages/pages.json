@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "ReportSection_Core_Visuals_1",
+    "ReportSection_Slicer_Options_2"
+  ],
+  "activePageName": "ReportSection_Slicer_Options_2"
+}

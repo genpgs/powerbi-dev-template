@@ -47,6 +47,21 @@ and capabilities:
 - `listSlicer` — scrollable list with tooltips and hierarchy support
 - `advancedSlicerVisual` — tile/button layout, single field only
 
+Power BI Desktop also documents an **Input slicer**. The current
+`powerbi-report-author` catalog does not list a matching input-slicer visual
+type, and the repository has no verified PBIR template for it. Do not guess
+that `textSlicer` is an alias or substitute. Until the CLI exposes its role and
+formatting metadata (or a Desktop-authored sample is available), use Desktop to
+author it and treat it as unsupported by the automated PBIR workflow. See the
+[visual coverage matrix](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md).
+
+The supplied Marketplace snapshot also lists Microsoft-published **Chiclet
+Slicer** and **Timeline Slicer** custom visuals. They require a custom visual
+package and are not interchangeable with `advancedSlicerVisual` or a native
+date slicer. There is no checked-in PBIR example for them; verify the current
+AppSource listing and import the package through Power BI Desktop before
+attempting to reuse its PBIR representation.
+
 Before changing a slicer's `data.mode`, `position.height`, font size, padding,
 background/border VCO, or theme chrome, re-run the sizing rules in this file.
 Do not fix clipping by shrinking to `h=48` or 8pt text; resize the slicer and

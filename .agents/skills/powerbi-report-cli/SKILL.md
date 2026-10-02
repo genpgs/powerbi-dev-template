@@ -16,6 +16,13 @@ description: "Plan, design, author and publish Power BI reports: requirements, s
 
 This one skill owns Power BI reports end to end: requirements and scope, visual design, local PBIR/PBIP page and visual edits, and publishing/rebinding of report items in Fabric.
 
+For the current distinction between Power BI Desktop visual availability,
+report-author CLI metadata, template recipes, and runnable samples, consult
+[`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../docs/POWER_BI_VISUAL_COVERAGE.md)
+and [`samples/pbip-visual-gallery/`](../../../samples/pbip-visual-gallery/).
+Do not promise or create a custom/preview/legacy visual based only on a catalog
+name; confirm its Desktop availability, CLI metadata, and package requirements.
+
 It is a **mode dispatcher** and contains NO procedures. Pick the mode that matches the request from the table below, then **read the matching `references/<mode>.md` file end to end with your file-reading tool BEFORE issuing a single command**. That file holds the endpoints, payload shapes, templates and gotchas; acting without it produces wrong PBIR JSON and wrong results.
 
 ## Mode selection

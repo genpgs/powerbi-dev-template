@@ -65,6 +65,26 @@ Maps each analytical purpose to native PBI visual types.
 | Geospatial | `azureMap` | Prefer for location/spatial distribution; use sorted `barChart` when geography is only a ranked category |
 | Table/detail | `tableEx`, `pivotTable` | Use when precision > pattern |
 
+### Microsoft-published custom alternatives
+
+These AppSource visuals can answer questions that lack a suitable native
+visual. They require importing the custom visual into the report and are not
+covered by the built-in authoring catalog or visual gallery. Confirm the
+listing/version and package support in
+[`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md)
+before promising PBIR implementation.
+
+| Question or need | Microsoft-published option |
+|---|---|
+| Flow between categories | Sankey Chart |
+| Project schedule / task durations | Gantt |
+| Variance around a baseline | Tornado chart or Bullet Chart |
+| KPI with comparison context | Dual KPI, Multi KPI, Power KPI, or Power KPI Matrix |
+| Relationship / distribution detail | Enhanced Scatter or Dot Plot |
+| Hierarchical part-to-whole | Sunburst |
+| Time selection | Timeline Slicer |
+| Text search filter | Text Filter |
+
 ---
 
 ## Archetype Applicability
@@ -82,6 +102,14 @@ Which chart families suit each report archetype:
 ---
 
 > Anti-patterns: see references/design/anti-patterns.md
+
+> **Coverage boundary:** this decision matrix includes both Desktop-native
+> visuals and analytical concepts that may require binning or a custom visual.
+> Before promising a visual for PBIR implementation, check
+> [`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md)
+> and the local `powerbi-report-author catalog`. In particular, a box plot or
+> Sankey is not a standard native visual, and histogram support may require
+> binning or a custom visual.
 
 ---
 

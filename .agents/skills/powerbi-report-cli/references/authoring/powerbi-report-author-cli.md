@@ -4,6 +4,14 @@ Use this file when the root command table is not enough. The CLI is the source
 of truth for visual roles, formatting objects, property names, enum values,
 selectors, expression/value encodings, and PBIR validation.
 
+The CLI catalog is not a complete list of visuals in Power BI Desktop.
+`catalog list` reports known PBIR types; it can include legacy, unsupported, or
+environment-dependent entries and omit newer Desktop visuals. Compare it with
+the [visual coverage matrix](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md),
+then inspect and validate the exact type before authoring. The
+[visual gallery sample](../../../../../samples/pbip-visual-gallery/) shows the
+current data-bound baseline.
+
 ## Command catalog
 
 | Command | Purpose | When to use |

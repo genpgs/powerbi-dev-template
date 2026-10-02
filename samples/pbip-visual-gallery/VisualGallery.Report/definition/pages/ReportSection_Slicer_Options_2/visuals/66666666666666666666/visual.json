@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "66666666666666666666",
+  "position": {
+    "x": 332,
+    "y": 24,
+    "z": 2000,
+    "height": 520,
+    "width": 280,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "listSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "FiscalPeriodLabel"
+                }
+              },
+              "queryRef": "Calendar.FiscalPeriodLabel",
+              "nativeQueryRef": "FiscalPeriodLabel",
+              "active": true
+            }
+          ]
+        }
+      }
+    }
+  }
+}
