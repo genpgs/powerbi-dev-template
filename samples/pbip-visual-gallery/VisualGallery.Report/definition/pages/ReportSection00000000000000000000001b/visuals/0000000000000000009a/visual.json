@@ -89,6 +89,49 @@
         }
       }
     },
+    "objects": {
+      "sandDanceConfig": [
+        {
+          "properties": {
+            "setupJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"renderer\":{\"advanced\":false,\"advancedOptions\":{\"bloomIntensity\":2,\"isBloomEnabled\":false,\"isDofEnabled\":false,\"dofFocusRange\":0.25,\"isFxaaEnabled\":false,\"isShadowEnabled\":true,\"isSsaoEnabled\":true},\"basicOptions\":{\"antialias\":true}},\"transition\":{\"type\":\"ordinal\"},\"transitionDurations\":{\"position\":600,\"stagger\":600,\"view\":600}}'"
+                }
+              }
+            },
+            "insightJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"colorBin\":\"quantile\",\"columns\":{\"x\":\"Category\",\"sort\":\"SizeValue\",\"color\":\"SizeValue\"},\"facetStyle\":\"wrap\",\"hideAxes\":false,\"hideLegend\":false,\"scheme\":\"redyellowgreen\",\"signalValues\":{\"RoleZ_ProportionSignal\":0.6,\"Text_ScaleSignal\":1.2,\"RoleColor_BinCountSignal\":7,\"RoleColor_ReverseSignal\":false},\"chart\":\"barchartV\",\"view\":\"2d\"}'"
+                }
+              }
+            },
+            "snapshotsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "tooltipExclusionsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "imageHolderJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"img\":null,\"backgroundImageColumnBounds\":[{\"columnName\":\"SizeValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":999,\"stringValue\":\"999\"},{\"columnName\":\"SizeValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":32,\"stringValue\":\"32\"},{\"columnName\":\"SizeValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":999,\"stringValue\":\"999\"},{\"columnName\":\"SizeValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":32,\"stringValue\":\"32\"},{\"columnName\":\"XValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":99.93,\"stringValue\":\"99.93\"},{\"columnName\":\"XValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":11.1,\"stringValue\":\"11.1\"},{\"columnName\":\"XValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":99.93,\"stringValue\":\"99.93\"},{\"columnName\":\"XValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":11.1,\"stringValue\":\"11.1\"},{\"columnName\":\"YValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":110.67,\"stringValue\":\"110.67\"},{\"columnName\":\"YValue\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":5.55,\"stringValue\":\"5.55\"},{\"columnName\":\"YValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":110.67,\"stringValue\":\"110.67\"},{\"columnName\":\"YValue\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":5.55,\"stringValue\":\"5.55\"}],\"showBackgroundImage\":false}'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {

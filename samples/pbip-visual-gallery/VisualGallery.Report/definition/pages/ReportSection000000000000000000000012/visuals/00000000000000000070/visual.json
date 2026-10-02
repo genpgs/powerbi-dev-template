@@ -159,6 +159,21 @@
         }
       }
     },
+    "objects": {
+      "milestones": [
+        {
+          "properties": {
+            "persistSettings": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"Pricing Refresh - Build complete\":{\"fill\":{\"solid\":{\"color\":\"#DB4437\"}},\"shapeType\":\"Circle\"},\"Support Uplift - Build complete\":{\"fill\":{\"solid\":{\"color\":\"#604AE5\"}},\"shapeType\":\"Square\"},\"Warehouse Rollout - Build complete\":{\"fill\":{\"solid\":{\"color\":\"#00ACC1\"}},\"shapeType\":\"Rhombus\"},\"Pricing Refresh - Discovery complete\":{\"fill\":{\"solid\":{\"color\":\"#AD57D2\"}},\"shapeType\":\"Square\"},\"Support Uplift - Discovery complete\":{\"fill\":{\"solid\":{\"color\":\"#3599B8\"}},\"shapeType\":\"Rhombus\"},\"Warehouse Rollout - Discovery complete\":{\"fill\":{\"solid\":{\"color\":\"#DFBFBF\"}},\"shapeType\":\"Circle\"},\"Pricing Refresh - Pilot complete\":{\"fill\":{\"solid\":{\"color\":\"#4AC5BB\"}},\"shapeType\":\"Square\"},\"Warehouse Rollout - Pilot complete\":{\"fill\":{\"solid\":{\"color\":\"#5F6B6D\"}},\"shapeType\":\"Rhombus\"},\"Pricing Refresh - Rollout complete\":{\"fill\":{\"solid\":{\"color\":\"#FB8281\"}},\"shapeType\":\"Circle\"},\"Warehouse Rollout - Rollout complete\":{\"fill\":{\"solid\":{\"color\":\"#F4D25A\"}},\"shapeType\":\"Square\"}}'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {

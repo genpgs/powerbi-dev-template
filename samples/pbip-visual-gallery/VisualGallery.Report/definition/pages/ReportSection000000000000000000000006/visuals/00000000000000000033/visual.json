@@ -27,53 +27,8 @@
                 }
               },
               "queryRef": "DimCustomer.City",
-              "nativeQueryRef": "City"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimCustomer"
-                        }
-                      },
-                      "Property": "Latitude"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Average(DimCustomer.Latitude)",
-              "nativeQueryRef": "Latitude"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimCustomer"
-                        }
-                      },
-                      "Property": "Longitude"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Average(DimCustomer.Longitude)",
-              "nativeQueryRef": "Longitude"
+              "nativeQueryRef": "City",
+              "active": true
             }
           ]
         },
@@ -110,6 +65,52 @@
               },
               "queryRef": "FactSales.Total Orders",
               "nativeQueryRef": "Total Orders"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCustomer"
+                        }
+                      },
+                      "Property": "Longitude"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Average(DimCustomer.Longitude)",
+              "nativeQueryRef": "Longitude"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCustomer"
+                        }
+                      },
+                      "Property": "Latitude"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Average(DimCustomer.Latitude)",
+              "nativeQueryRef": "Latitude"
             }
           ]
         }

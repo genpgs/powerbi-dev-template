@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimCustomer.Continent",
-              "nativeQueryRef": "Continent"
+              "nativeQueryRef": "Continent",
+              "active": true
             }
           ]
         }

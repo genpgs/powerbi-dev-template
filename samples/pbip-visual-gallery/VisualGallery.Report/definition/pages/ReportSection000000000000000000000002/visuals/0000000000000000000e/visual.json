@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
+              "nativeQueryRef": "Subcategory",
+              "active": true
             }
           ]
         },

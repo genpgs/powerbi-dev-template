@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Calendar.CalendarMonth",
-              "nativeQueryRef": "CalendarMonth"
+              "nativeQueryRef": "CalendarMonth",
+              "active": true
             }
           ]
         },

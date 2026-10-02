@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Calendar.FiscalYearLabel",
-              "nativeQueryRef": "FiscalYearLabel"
+              "nativeQueryRef": "FiscalYearLabel",
+              "active": true
             }
           ]
         },

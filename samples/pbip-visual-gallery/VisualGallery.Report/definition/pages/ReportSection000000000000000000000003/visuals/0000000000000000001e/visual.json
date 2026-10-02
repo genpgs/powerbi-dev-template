@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Flow.Source",
-              "nativeQueryRef": "Source"
+              "nativeQueryRef": "Source",
+              "active": true
             }
           ]
         },
