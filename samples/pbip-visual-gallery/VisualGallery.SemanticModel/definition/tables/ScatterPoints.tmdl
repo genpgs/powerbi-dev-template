@@ -3,35 +3,35 @@ table ScatterPoints
 
 	measure 'Scatter X' = SUM(ScatterPoints[XValue])
 		formatString: #,0.00
-		lineageTag: scatterpoints-x
+		lineageTag: scatterpoints_x
 
 	measure 'Scatter Y' = SUM(ScatterPoints[YValue])
 		formatString: #,0.00
-		lineageTag: scatterpoints-y
+		lineageTag: scatterpoints_y
 
 	measure 'Scatter Size' = SUM(ScatterPoints[SizeValue])
 		formatString: #,0
-		lineageTag: scatterpoints-size
+		lineageTag: scatterpoints_size
 
 	measure 'Scatter Dot Value' = SUM(ScatterPoints[DotValue])
 		formatString: #,0.00
-		lineageTag: scatterpoints-dotvalue
+		lineageTag: scatterpoints_dotvalue
 
 	measure 'Scatter Radar 1' = SUM(ScatterPoints[RadarValue1])
 		formatString: #,0.0
-		lineageTag: scatterpoints-r1
+		lineageTag: scatterpoints_r1
 
 	measure 'Scatter Radar 2' = SUM(ScatterPoints[RadarValue2])
 		formatString: #,0.0
-		lineageTag: scatterpoints-r2
+		lineageTag: scatterpoints_r2
 
 	measure 'Scatter Radar 3' = SUM(ScatterPoints[RadarValue3])
 		formatString: #,0.0
-		lineageTag: scatterpoints-r3
+		lineageTag: scatterpoints_r3
 
 	measure 'Scatter Radar 4' = SUM(ScatterPoints[RadarValue4])
 		formatString: #,0.0
-		lineageTag: scatterpoints-r4
+		lineageTag: scatterpoints_r4
 
 	column PointName
 		dataType: string
@@ -41,7 +41,7 @@ table ScatterPoints
 
 	column Category
 		dataType: string
-		lineageTag: Category
+		lineageTag: scatterpoints_category
 		summarizeBy: none
 		sourceColumn: Category
 
@@ -131,7 +131,7 @@ table ScatterPoints
 	column ImageUrl
 		dataType: string
 		dataCategory: ImageUrl
-		lineageTag: ImageUrl
+		lineageTag: scatterpoints_imageurl
 		summarizeBy: none
 		sourceColumn: ImageUrl
 

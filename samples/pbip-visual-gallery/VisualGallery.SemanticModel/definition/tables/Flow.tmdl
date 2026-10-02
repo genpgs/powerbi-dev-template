@@ -3,15 +3,15 @@ table Flow
 
 	measure 'Flow Value' = SUM(Flow[Value])
 		formatString: #,0
-		lineageTag: flow-value
+		lineageTag: flow_value
 
 	measure 'Distinct Source Nodes' = DISTINCTCOUNT(Flow[Source])
 		formatString: #,0
-		lineageTag: flow-sources
+		lineageTag: flow_sources
 
 	measure 'Distinct Destination Nodes' = DISTINCTCOUNT(Flow[Destination])
 		formatString: #,0
-		lineageTag: flow-destinations
+		lineageTag: flow_destinations
 
 	column Source
 		dataType: string
@@ -27,7 +27,7 @@ table Flow
 
 	column Value
 		dataType: double
-		lineageTag: Value
+		lineageTag: flow_value_29
 		formatString: #,0
 		summarizeBy: none
 		sourceColumn: Value

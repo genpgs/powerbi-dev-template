@@ -3,15 +3,15 @@ table KpiTargets
 
 	measure 'KPI Actual' = SUM(KpiTargets[ActualValue])
 		formatString: #,0.0
-		lineageTag: kpitargets-actual
+		lineageTag: kpitargets_actual
 
 	measure 'KPI Target' = SUM(KpiTargets[TargetValue])
 		formatString: #,0.0
-		lineageTag: kpitargets-target
+		lineageTag: kpitargets_target
 
 	measure 'KPI Comparison' = SUM(KpiTargets[ComparisonValue])
 		formatString: #,0.0
-		lineageTag: kpitargets-comparison
+		lineageTag: kpitargets_comparison
 
 	measure 'KPI Attainment %' =
 			VAR a = [KPI Actual]
@@ -19,15 +19,15 @@ table KpiTargets
 			RETURN
 			IF (t = 0, BLANK(), a / t)
 		formatString: 0.0%
-		lineageTag: kpitargets-attainment
+		lineageTag: kpitargets_attainment
 
 	measure 'KPI Variance to Target' = [KPI Actual] - [KPI Target]
 		formatString: #,0.0
-		lineageTag: kpitargets-variance
+		lineageTag: kpitargets_variance
 
 	measure 'KPI Variance vs Comparison' = [KPI Actual] - [KPI Comparison]
 		formatString: #,0.0
-		lineageTag: kpitargets-variancecomp
+		lineageTag: kpitargets_variancecomp
 
 	column IndicatorName
 		dataType: string

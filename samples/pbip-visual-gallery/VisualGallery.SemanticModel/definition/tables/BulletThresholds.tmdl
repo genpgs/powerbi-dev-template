@@ -3,19 +3,19 @@ table BulletThresholds
 
 	measure 'Bullet Actual' = SUM(BulletThresholds[Value])
 		formatString: #,0
-		lineageTag: bulletthresholds-actual
+		lineageTag: bulletthresholds_actual
 
 	measure 'Bullet Target' = SUM(BulletThresholds[Target])
 		formatString: #,0
-		lineageTag: bulletthresholds-target
+		lineageTag: bulletthresholds_target
 
 	measure 'Bullet Minimum' = SUM(BulletThresholds[Minimum])
 		formatString: #,0
-		lineageTag: bulletthresholds-minimum
+		lineageTag: bulletthresholds_minimum
 
 	measure 'Bullet Maximum' = SUM(BulletThresholds[Maximum])
 		formatString: #,0
-		lineageTag: bulletthresholds-maximum
+		lineageTag: bulletthresholds_maximum
 
 	measure 'Bullet Attainment %' =
 			VAR a = [Bullet Actual]
@@ -23,17 +23,17 @@ table BulletThresholds
 			RETURN
 			IF (t = 0, BLANK(), a / t)
 		formatString: 0.0%
-		lineageTag: bulletthresholds-attainment
+		lineageTag: bulletthresholds_attainment
 
 	column Category
 		dataType: string
-		lineageTag: Category
+		lineageTag: bulletthresholds_category
 		summarizeBy: none
 		sourceColumn: Category
 
 	column Value
 		dataType: double
-		lineageTag: Value
+		lineageTag: bulletthresholds_value
 		formatString: #,0
 		summarizeBy: none
 		sourceColumn: Value

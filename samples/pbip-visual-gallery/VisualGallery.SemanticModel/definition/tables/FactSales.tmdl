@@ -7,31 +7,31 @@ table FactSales
 
 	measure 'Total Standard Cost' = SUM(FactSales[StandardCostAmount])
 		formatString: \$#,0.00
-		lineageTag: factsales-stdcost
+		lineageTag: factsales_stdcost
 
 	measure 'Total Gross Profit' = [Total Sales] - [Total Standard Cost]
 		formatString: \$#,0.00
-		lineageTag: factsales-grossprofit
+		lineageTag: factsales_grossprofit
 
 	measure 'Gross Margin %' = DIVIDE([Total Gross Profit], [Total Sales])
 		formatString: 0.0%
-		lineageTag: factsales-margin
+		lineageTag: factsales_margin
 
 	measure 'Total Orders' = DISTINCTCOUNT(FactSales[OrderNumber])
 		formatString: #,0
-		lineageTag: factsales-orders
+		lineageTag: factsales_orders
 
 	measure 'Total Quantity' = SUM(FactSales[Quantity])
 		formatString: #,0
-		lineageTag: factsales-quantity
+		lineageTag: factsales_quantity
 
 	measure 'Average Order Value' = DIVIDE([Total Sales], [Total Orders])
 		formatString: \$#,0.00
-		lineageTag: factsales-aov
+		lineageTag: factsales_aov
 
 	measure 'Average Discount %' = AVERAGE(FactSales[DiscountPct])
 		formatString: 0.0%
-		lineageTag: factsales-avgdiscount
+		lineageTag: factsales_avgdiscount
 
 	column OrderNumber
 		dataType: int64
@@ -50,19 +50,19 @@ table FactSales
 
 	column ProductKey
 		dataType: int64
-		lineageTag: ProductKey
+		lineageTag: factsales_productkey
 		summarizeBy: none
 		sourceColumn: ProductKey
 
 	column CustomerKey
 		dataType: int64
-		lineageTag: CustomerKey
+		lineageTag: factsales_customerkey
 		summarizeBy: none
 		sourceColumn: CustomerKey
 
 	column StoreKey
 		dataType: int64
-		lineageTag: StoreKey
+		lineageTag: factsales_storekey
 		summarizeBy: none
 		sourceColumn: StoreKey
 

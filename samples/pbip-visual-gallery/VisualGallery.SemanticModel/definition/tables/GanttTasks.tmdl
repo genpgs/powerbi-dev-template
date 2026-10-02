@@ -3,19 +3,19 @@ table GanttTasks
 
 	measure 'Gantt Value' = SUM(GanttTasks[DurationDays])
 		formatString: #,0
-		lineageTag: gantt-duration
+		lineageTag: gantt_duration
 
 	measure 'Gantt Completion' = AVERAGE(GanttTasks[CompletionPct])
 		formatString: 0%
-		lineageTag: gantt-completion
+		lineageTag: gantt_completion
 
 	measure 'Gantt Start' = MIN(GanttTasks[StartDate])
 		formatString: Short Date
-		lineageTag: gantt-start
+		lineageTag: gantt_start
 
 	measure 'Gantt Finish' = MAX(GanttTasks[EndDate])
 		formatString: Short Date
-		lineageTag: gantt-finish
+		lineageTag: gantt_finish
 
 	column TaskName
 		dataType: string

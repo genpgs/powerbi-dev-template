@@ -3,19 +3,19 @@ table PriceSeries
 
 	measure 'Series Value' = SUM(PriceSeries[Value])
 		formatString: #,0.00
-		lineageTag: priceseries-value
+		lineageTag: priceseries_value
 
 	measure 'Series Average' = AVERAGE(PriceSeries[Value])
 		formatString: #,0.00
-		lineageTag: priceseries-average
+		lineageTag: priceseries_average
 
 	measure 'Series Min' = MIN(PriceSeries[Value])
 		formatString: #,0.00
-		lineageTag: priceseries-min
+		lineageTag: priceseries_min
 
 	measure 'Series Max' = MAX(PriceSeries[Value])
 		formatString: #,0.00
-		lineageTag: priceseries-max
+		lineageTag: priceseries_max
 
 	column Timestamp
 		dataType: dateTime
@@ -34,7 +34,7 @@ table PriceSeries
 
 	column Value
 		dataType: double
-		lineageTag: Value
+		lineageTag: priceseries_value_36
 		formatString: #,0.00
 		summarizeBy: none
 		sourceColumn: Value

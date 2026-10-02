@@ -16,15 +16,15 @@ table Calendar
 
 	measure 'Sales MTD' = CALCULATE([Total Sales], DATESMTD(Calendar[Date]))
 		formatString: \$#,0.00
-		lineageTag: calendar-mtd
+		lineageTag: calendar_mtd
 
 	measure 'Sales QTD' = CALCULATE([Total Sales], DATESQTD(Calendar[Date]))
 		formatString: \$#,0.00
-		lineageTag: calendar-qtd
+		lineageTag: calendar_qtd
 
 	measure 'Sales YTD' = CALCULATE([Total Sales], DATESYTD(Calendar[Date]))
 		formatString: \$#,0.00
-		lineageTag: calendar-ytd
+		lineageTag: calendar_ytd
 
 	measure 'Sales FYTD' =
 			-- Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
@@ -38,26 +38,26 @@ table Calendar
 			    Calendar[FiscalWeekNumber] <= CurrentWk
 			)
 		formatString: \$#,0.00
-		lineageTag: calendar-fytd
+		lineageTag: calendar_fytd
 
 	measure 'Sales Rolling 12M' =
 			VAR d = MAX(Calendar[Date])
 			RETURN
 			CALCULATE([Total Sales], DATESINPERIOD(Calendar[Date], d, -12, MONTH))
 		formatString: \$#,0.00
-		lineageTag: calendar-rolling12
+		lineageTag: calendar_rolling12
 
 	measure 'Sales Previous Year' = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Calendar[Date]))
 		formatString: \$#,0.00
-		lineageTag: calendar-pyy
+		lineageTag: calendar_pyy
 
 	measure 'Sales YoY Change' = [Total Sales] - [Sales Previous Year]
 		formatString: \$#,0.00
-		lineageTag: calendar-yoychange
+		lineageTag: calendar_yoychange
 
 	measure 'Sales YoY %' = DIVIDE([Sales YoY Change], [Sales Previous Year])
 		formatString: 0.0%
-		lineageTag: calendar-yoypct
+		lineageTag: calendar_yoypct
 
 	column DateKey
 		dataType: int64

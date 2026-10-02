@@ -3,11 +3,11 @@ table WordFrequency
 
 	measure 'Term Frequency' = SUM(WordFrequency[Frequency])
 		formatString: #,0
-		lineageTag: wordfrequency-frequency
+		lineageTag: wordfrequency_frequency
 
 	measure 'Term Count' = COUNTROWS(WordFrequency)
 		formatString: #,0
-		lineageTag: wordfrequency-count
+		lineageTag: wordfrequency_count
 
 	column Term
 		dataType: string
@@ -31,7 +31,7 @@ table WordFrequency
 	column ImageUrl
 		dataType: string
 		dataCategory: ImageUrl
-		lineageTag: ImageUrl
+		lineageTag: wordfrequency_imageurl
 		summarizeBy: none
 		sourceColumn: ImageUrl
 

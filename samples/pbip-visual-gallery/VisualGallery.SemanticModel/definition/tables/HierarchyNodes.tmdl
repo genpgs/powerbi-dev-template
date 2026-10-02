@@ -3,7 +3,7 @@ table HierarchyNodes
 
 	measure 'Node Value' = SUM(HierarchyNodes[NodeValue])
 		formatString: #,0
-		lineageTag: hierarchynodes-value
+		lineageTag: hierarchynodes_value
 
 	column Level1
 		dataType: string

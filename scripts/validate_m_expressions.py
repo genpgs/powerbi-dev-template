@@ -330,6 +330,12 @@ def main(argv):
         if raw[:3] == b"\xef\xbb\xbf":
             total_errors.append(f"{tmdl}: UTF-8 BOM present - must be UTF-8 without BOM")
             print("[FAIL] UTF-8 BOM detected")
+        # Mixed line endings break TMDL's block termination, which silently merges
+        # the following property into the preceding multi-line M expression. The
+        # result is an M-engine parse error naming neither file nor line.
+        if b"\r\n" in raw and re.search(rb"(?<!\r)\n", raw):
+            total_errors.append(f"{tmdl}: mixed CRLF and bare-LF line endings")
+            print("[FAIL] Mixed line endings")
         try:
             text = raw.decode("utf-8")
         except UnicodeDecodeError as exc:

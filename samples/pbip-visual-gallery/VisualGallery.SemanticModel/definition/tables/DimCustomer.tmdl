@@ -3,15 +3,15 @@ table DimCustomer
 
 	measure 'Customer Count' = COUNTROWS(DimCustomer)
 		formatString: #,0
-		lineageTag: dimcustomer-count
+		lineageTag: dimcustomer_count
 
 	measure 'Average Customer Birth Year' = AVERAGE(DimCustomer[BirthYear])
 		formatString: 0
-		lineageTag: dimcustomer-avgbirth
+		lineageTag: dimcustomer_avgbirth
 
 	column CustomerKey
 		dataType: int64
-		lineageTag: CustomerKey
+		lineageTag: dimcustomer_customerkey
 		summarizeBy: none
 		sourceColumn: CustomerKey
 
@@ -23,7 +23,7 @@ table DimCustomer
 
 	column City
 		dataType: string
-		lineageTag: City
+		lineageTag: dimcustomer_city
 		summarizeBy: none
 		sourceColumn: City
 
@@ -35,13 +35,13 @@ table DimCustomer
 
 	column Country
 		dataType: string
-		lineageTag: Country
+		lineageTag: dimcustomer_country
 		summarizeBy: none
 		sourceColumn: Country
 
 	column Continent
 		dataType: string
-		lineageTag: Continent
+		lineageTag: dimcustomer_continent
 		summarizeBy: none
 		sourceColumn: Continent
 

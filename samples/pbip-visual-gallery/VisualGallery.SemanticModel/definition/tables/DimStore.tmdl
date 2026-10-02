@@ -3,11 +3,11 @@ table DimStore
 
 	measure 'Store Count' = COUNTROWS(DimStore)
 		formatString: #,0
-		lineageTag: dimstore-count
+		lineageTag: dimstore_count
 
 	column StoreKey
 		dataType: int64
-		lineageTag: StoreKey
+		lineageTag: dimstore_storekey
 		summarizeBy: none
 		sourceColumn: StoreKey
 
@@ -19,19 +19,19 @@ table DimStore
 
 	column City
 		dataType: string
-		lineageTag: City
+		lineageTag: dimstore_city
 		summarizeBy: none
 		sourceColumn: City
 
 	column Country
 		dataType: string
-		lineageTag: Country
+		lineageTag: dimstore_country
 		summarizeBy: none
 		sourceColumn: Country
 
 	column Continent
 		dataType: string
-		lineageTag: Continent
+		lineageTag: dimstore_continent
 		summarizeBy: none
 		sourceColumn: Continent
 

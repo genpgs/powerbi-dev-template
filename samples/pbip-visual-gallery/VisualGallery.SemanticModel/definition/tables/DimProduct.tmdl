@@ -3,15 +3,15 @@ table DimProduct
 
 	measure 'Product Count' = COUNTROWS(DimProduct)
 		formatString: #,0
-		lineageTag: dimproduct-count
+		lineageTag: dimproduct_count
 
 	measure 'Average List Price' = AVERAGE(DimProduct[ListPrice])
 		formatString: \$#,0.00
-		lineageTag: dimproduct-avgprice
+		lineageTag: dimproduct_avgprice
 
 	column ProductKey
 		dataType: int64
-		lineageTag: ProductKey
+		lineageTag: dimproduct_productkey
 		summarizeBy: none
 		sourceColumn: ProductKey
 
@@ -23,7 +23,7 @@ table DimProduct
 
 	column Category
 		dataType: string
-		lineageTag: Category
+		lineageTag: dimproduct_category
 		summarizeBy: none
 		sourceColumn: Category
 
