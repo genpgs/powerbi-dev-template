@@ -88,3 +88,13 @@ expression fnCalendarWeekBased =
 		in if _PatternCheck = null and _LabelModeCheck = null then Result else error "pattern or label mode check failed"
 	lineageTag: fnCalendarWeekBased
 
+expression fnSeed =
+		(Index as number, Salt as number) as number =>
+			let
+			    M = 2147483648,
+			    A = 1103515245,
+			    C = 12345
+			in
+			    Number.Mod(Index * A + Salt * C + 1013904223, M) / M
+	lineageTag: fnSeed
+

@@ -7,7 +7,9 @@ Validate a specific model: python3 scripts/validate_date_table.py path/to/Model.
                           python3 scripts/validate_date_table.py path/to/Project.pbip
 
 With no arguments every *.SemanticModel folder in the repo is checked, so the script is
-useful in a downstream project whose calendar is not the template's sample.
+useful in a downstream project whose calendar is not the template's sample. Models that
+.gitignore excludes are skipped (see scripts/pbir_discovery.py), which keeps a local
+staging folder of third-party sample models out of the results.
 
 Reads config/fiscal-calendar.json to determine which pattern-specific columns to expect.
 """
@@ -15,6 +17,9 @@ Reads config/fiscal-calendar.json to determine which pattern-specific columns to
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pbir_discovery  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -37,10 +42,8 @@ def resolve_models(raw_targets):
                 p = p.parent
             roots.append(p)
     else:
-        roots = sorted(
-            p for p in REPO_ROOT.rglob("*.SemanticModel")
-            if ".git" not in p.parts and p.is_dir()
-        )
+        owned = pbir_discovery.ownership_filter(REPO_ROOT)
+        roots = sorted(p for p in REPO_ROOT.rglob("*.SemanticModel") if p.is_dir() and owned(p))
 
     models = []
     for root in roots:

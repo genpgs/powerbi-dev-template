@@ -1,0 +1,85 @@
+table WordFrequency
+	lineageTag: WordFrequency
+
+	measure 'Term Frequency' = SUM(WordFrequency[Frequency])
+		formatString: #,0
+		lineageTag: wordfrequency_frequency
+
+	measure 'Term Count' = COUNTROWS(WordFrequency)
+		formatString: #,0
+		lineageTag: wordfrequency_count
+
+	column Term
+		dataType: string
+		lineageTag: Term
+		summarizeBy: none
+		sourceColumn: Term
+
+	column Frequency
+		dataType: double
+		formatString: #,0
+		lineageTag: Frequency
+		summarizeBy: none
+		sourceColumn: Frequency
+
+	column Excludes
+		dataType: string
+		lineageTag: Excludes
+		summarizeBy: none
+		sourceColumn: Excludes
+
+	column ImageUrl
+		dataType: string
+		lineageTag: wordfrequency_imageurl
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: ImageUrl
+
+	column Topic
+		dataType: string
+		lineageTag: Topic
+		summarizeBy: none
+		sourceColumn: Topic
+
+	partition WordFrequency = m
+		mode: import
+		source =
+				let
+				    Terms = {
+				        {"battery", "Topic"}, {"warranty", "Support"}, {"shipping", "Logistics"},
+				        {"bicycle", "Product"}, {"carbon", "Material"}, {"assembly", "Operations"},
+				        {"discount", "Commercial"}, {"inventory", "Operations"}, {"loyalty", "Commercial"},
+				        {"warranty", "Support"}, {"sizing", "Product"}, {"traction", "Material"},
+				        {"delivery", "Logistics"}, {"returns", "Support"}, {"financing", "Commercial"},
+				        {"frame", "Product"}, {"hydraulic", "Component"}, {"packaging", "Logistics"},
+				        {"reviews", "Support"}, {"seasonal", "Commercial"}, {"suspension", "Component"},
+				        {"sustainability", "Corporate"}, {"leadtime", "Logistics"}, {"merchandising", "Retail"},
+				        {"customs", "Logistics"}, {"telemetry", "Product"}, {"accessories", "Retail"},
+				        {"clearance", "Commercial"}, {"fulfilment", "Operations"}, {"performance", "Product"}
+				    },
+				    ExcludeWords = {"the", "and", "for", "with"},
+				    TermCount = 90,
+				    Rows = List.Transform(List.Numbers(1, TermCount), (i) =>
+				        let
+				            pick = Terms{Number.Mod(i * 7, List.Count(Terms))},
+				            term = if Number.Mod(i, 9) = 0 then pick{0} & "-" & Text.From(i) else pick{0}
+				        in
+				            [
+				                Term = term,
+				                Frequency = Number.Round(5 + fnSeed(i * 11, 83) * 995, 0),
+				                Excludes = ExcludeWords{Number.Mod(i, List.Count(ExcludeWords))},
+				                ImageUrl = "https://picsum.photos/seed/pbi-gallery-term-" & Text.From(i) & "/64/64",
+				                Topic = pick{1}
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            Term = text,
+				            Frequency = number,
+				            Excludes = text,
+				            ImageUrl = text,
+				            Topic = text
+				        ])
+				in
+				    Source
+

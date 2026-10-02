@@ -1,0 +1,110 @@
+table DimStore
+	lineageTag: DimStore
+
+	measure 'Store Count' = COUNTROWS(DimStore)
+		formatString: #,0
+		lineageTag: dimstore_count
+
+	column StoreKey
+		dataType: int64
+		lineageTag: dimstore_storekey
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+	column StoreName
+		dataType: string
+		lineageTag: StoreName
+		summarizeBy: none
+		sourceColumn: StoreName
+
+	column City
+		dataType: string
+		lineageTag: dimstore_city
+		summarizeBy: none
+		sourceColumn: City
+
+	column Country
+		dataType: string
+		lineageTag: dimstore_country
+		summarizeBy: none
+		sourceColumn: Country
+
+	column Continent
+		dataType: string
+		lineageTag: dimstore_continent
+		summarizeBy: none
+		sourceColumn: Continent
+
+	column Region
+		dataType: string
+		lineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Channel
+		dataType: string
+		lineageTag: Channel
+		summarizeBy: none
+		sourceColumn: Channel
+
+	column StoreType
+		dataType: string
+		lineageTag: StoreType
+		summarizeBy: none
+		sourceColumn: StoreType
+
+	column StoreSizeSqm
+		dataType: int64
+		formatString: #,0
+		lineageTag: StoreSizeSqm
+		summarizeBy: none
+		sourceColumn: StoreSizeSqm
+
+	partition DimStore = m
+		mode: import
+		source =
+				let
+				    Rows = {
+				        {"Flagship Amsterdam", "Amsterdam", "Netherlands", "Europe", "Northern Europe", "Retail", "Flagship", 1450},
+				        {"Flagship Austin", "Austin", "United States", "North America", "North America", "Retail", "Flagship", 1320},
+				        {"Express Barcelona", "Barcelona", "Spain", "Europe", "Southern Europe", "Retail", "Express", 480},
+				        {"Flagship Chicago", "Chicago", "United States", "North America", "North America", "Retail", "Flagship", 1210},
+				        {"Partner Melbourne", "Melbourne", "Australia", "Oceania", "Oceania", "Partner", "Depot", 760},
+				        {"Flagship Munich", "Munich", "Germany", "Europe", "Northern Europe", "Retail", "Flagship", 1190},
+				        {"Partner Osaka", "Osaka", "Japan", "Asia", "Eastern Asia", "Partner", "Depot", 640},
+				        {"Flagship Paris", "Paris", "France", "Europe", "Western Europe", "Retail", "Flagship", 1150},
+				        {"Online Store", "Seattle", "United States", "North America", "North America", "Digital", "Online", 0},
+				        {"Partner Sao Paulo", "Sao Paulo", "Brazil", "South America", "South America", "Partner", "Depot", 540},
+				        {"Express Singapore", "Singapore", "Singapore", "Asia", "South-Eastern Asia", "Retail", "Express", 430},
+				        {"Flagship Sydney", "Sydney", "Australia", "Oceania", "Oceania", "Retail", "Flagship", 980}
+				    },
+				    Source = Table.FromRecords(
+				        List.Transform(List.Numbers(1, List.Count(Rows)), (i) =>
+				            let
+				                r = Rows{i - 1}
+				            in
+				                [
+				                    StoreKey = i,
+				                    StoreName = r{0},
+				                    City = r{1},
+				                    Country = r{2},
+				                    Continent = r{3},
+				                    Region = r{4},
+				                    Channel = r{5},
+				                    StoreType = r{6},
+				                    StoreSizeSqm = r{7}
+				                ]),
+				        type table [
+				            StoreKey = Int64.Type,
+				            StoreName = text,
+				            City = text,
+				            Country = text,
+				            Continent = text,
+				            Region = text,
+				            Channel = text,
+				            StoreType = text,
+				            StoreSizeSqm = Int64.Type
+				        ])
+				in
+				    Source
+

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "00000000000000000088",
+  "position": {
+    "x": 972,
+    "y": 124,
+    "z": 4000,
+    "height": 450,
+    "width": 916,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
+    "query": {
+      "queryState": {
+        "Axis": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "IndicatorName"
+                }
+              },
+              "queryRef": "KpiTargets.IndicatorName",
+              "nativeQueryRef": "IndicatorName"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Actual"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
+            }
+          ]
+        },
+        "KPI": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Target"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Target",
+              "nativeQueryRef": "KPI Target"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Actual with target'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Power KPI comparing actual to target.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

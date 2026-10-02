@@ -11,6 +11,12 @@ and [`samples/pbip-visual-gallery/`](../../../../../samples/pbip-visual-gallery/
 Do not infer that a visual is PBIR-authorable from a Desktop icon or a
 `catalog list` entry alone.
 
+Every allowlisted visual type has a runnable page in the gallery, so the fastest
+way to check a binding before writing it by hand is to read the equivalent page's
+`visual.json`. `scripts/verify_gallery_coverage.py` asserts that coverage, and
+[`templates/html-prototype/`](../../../../../templates/html-prototype/) enforces
+the same allowlist when you mock a page in HTML first.
+
 ## Contents
 
 - [Theme vs Per-Visual — What Goes Where](#theme-vs-per-visual--what-goes-where)

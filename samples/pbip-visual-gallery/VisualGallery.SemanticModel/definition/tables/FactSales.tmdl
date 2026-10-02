@@ -1,28 +1,173 @@
 table FactSales
-	lineageTag: 6f54afb2-1a9f-4ff6-89d7-808ffaa6e968
+	lineageTag: FactSales
 
-	measure 'Total Amount' = SUM(FactSales[Amount])
-		formatString: #,0.00
+	measure 'Total Sales' = SUM(FactSales[SalesAmount])
+		formatString: \$#,0.00
 		lineageTag: 71dc16a6-d873-458c-bb86-d307f397e464
+
+	measure 'Total Standard Cost' = SUM(FactSales[StandardCostAmount])
+		formatString: \$#,0.00
+		lineageTag: factsales_stdcost
+
+	measure 'Total Gross Profit' = [Total Sales] - [Total Standard Cost]
+		formatString: \$#,0.00
+		lineageTag: factsales_grossprofit
+
+	measure 'Gross Margin %' = DIVIDE([Total Gross Profit], [Total Sales])
+		formatString: 0.0%
+		lineageTag: factsales_margin
+
+	measure 'Total Orders' = DISTINCTCOUNT(FactSales[OrderNumber])
+		formatString: #,0
+		lineageTag: factsales_orders
+
+	measure 'Total Quantity' = SUM(FactSales[Quantity])
+		formatString: #,0
+		lineageTag: factsales_quantity
+
+	measure 'Average Order Value' = DIVIDE([Total Sales], [Total Orders])
+		formatString: \$#,0.00
+		lineageTag: factsales_aov
+
+	measure 'Average Discount %' = AVERAGE(FactSales[DiscountPct])
+		formatString: 0.0%
+		lineageTag: factsales_avgdiscount
 
 	column OrderDate
 		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 9d1e62a6-95b4-4e44-af5a-44374b84ab1e
+		formatString: Short Date
+		lineageTag: OrderDate
 		summarizeBy: none
 		sourceColumn: OrderDate
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column Amount
+	column OrderNumber
+		dataType: int64
+		lineageTag: OrderNumber
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+	column ProductKey
+		dataType: int64
+		lineageTag: factsales_productkey
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+	column CustomerKey
+		dataType: int64
+		lineageTag: factsales_customerkey
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+	column StoreKey
+		dataType: int64
+		lineageTag: factsales_storekey
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+	column Quantity
+		dataType: int64
+		formatString: #,0
+		lineageTag: Quantity
+		summarizeBy: none
+		sourceColumn: Quantity
+
+	column UnitPrice
 		dataType: double
-		lineageTag: dd01bc5c-d87a-4948-9cee-d39eff4fd179
-		sourceColumn: Amount
+		formatString: \$#,0.00
+		lineageTag: UnitPrice
+		summarizeBy: none
+		sourceColumn: UnitPrice
+
+	column StandardCostAmount
+		dataType: double
+		formatString: \$#,0.00
+		lineageTag: StandardCostAmount
+		summarizeBy: none
+		sourceColumn: StandardCostAmount
+
+	column DiscountPct
+		dataType: double
+		formatString: 0.0%
+		lineageTag: DiscountPct
+		summarizeBy: none
+		sourceColumn: DiscountPct
+
+	column SalesAmount
+		dataType: double
+		formatString: \$#,0.00
+		lineageTag: SalesAmount
+		summarizeBy: none
+		sourceColumn: SalesAmount
 
 	partition FactSales = m
 		mode: import
 		source =
 				let
-				    Source = #table(type table [OrderDate=date, Amount=number], {{#date(2024,1,15),1250},{#date(2025,9,4),990}})
-				in Source
+				    StartDate = #date(2023, 1, 1),
+				    DayCount = 1096,
+				    LineCount = 24000,
+				    LinesPerOrder = 2,
+				    // A partition must not read another table's data. Power BI does
+				    // not track that dependency, so refreshing one table can
+				    // deadlock waiting on the other. Regenerate the same prices
+				    // from the same formula DimProduct uses; ProductKey remains
+				    // the join key and the relationship does the linking.
+				    ProductCount = 60,
+				    ListPrices = List.Transform(List.Numbers(1, ProductCount), (k) =>
+				        25 + Number.Round(fnSeed(k, 11) * 975, 2)),
+				    UnitCosts = List.Transform(List.Numbers(1, ProductCount), (k) =>
+				        let lp = 25 + Number.Round(fnSeed(k, 11) * 975, 2)
+				        in Number.Round(lp * (0.42 + fnSeed(k, 23) * 0.26), 2)),
+				    CustomerCount = 300,
+				    StoreCount = 12,
+				    Rows = List.Transform(List.Numbers(1, LineCount), (i) =>
+				        let
+				            dayOffset = Number.Mod(i * 7 + 3, DayCount),
+				            orderDate = Date.AddDays(StartDate, dayOffset),
+				            productKey = 1 + Number.Mod(i * 7 + 5, List.Count(ListPrices)),
+				            customerKey = 1 + Number.Mod(i * 11 + 2, CustomerCount),
+				            storeKey = 1 + Number.Mod(i * 5 + 1, StoreCount),
+				            quantity = 1 + Number.Mod(i * 3, 8),
+				            unitPrice = ListPrices{productKey - 1},
+				            unitCost = UnitCosts{productKey - 1},
+				            discountPct = Number.Round(fnSeed(i, 31) * 18) / 100,
+				            // A gentle upward trend plus monthly seasonality, so time-series
+				            // visuals have a shape worth reading instead of flat noise.
+				            trendFactor = 1 + 0.45 * (dayOffset / DayCount),
+				            // M has no Pi constant: the name does not resolve and this step
+				            // fails with "The name 'Number.Pi' wasn't recognized". Two
+				            // radians per month, spelled out.
+				            seasonalFactor = 1 + 0.22 * Number.Sin(6.28318530717959 * (Date.Month(orderDate) - 1) / 12),
+				            salesAmount = Number.Round(quantity * unitPrice * (1 - discountPct) * trendFactor * seasonalFactor, 2)
+				        in
+				            [
+				                OrderNumber = Number.IntegerDivide(i - 1, LinesPerOrder) + 1,
+				                OrderDate = orderDate,
+				                ProductKey = productKey,
+				                CustomerKey = customerKey,
+				                StoreKey = storeKey,
+				                Quantity = quantity,
+				                UnitPrice = unitPrice,
+				                StandardCostAmount = Number.Round(quantity * unitCost, 2),
+				                DiscountPct = discountPct,
+				                SalesAmount = salesAmount
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            OrderNumber = Int64.Type,
+				            OrderDate = date,
+				            ProductKey = Int64.Type,
+				            CustomerKey = Int64.Type,
+				            StoreKey = Int64.Type,
+				            Quantity = Int64.Type,
+				            UnitPrice = number,
+				            StandardCostAmount = number,
+				            DiscountPct = number,
+				            SalesAmount = number
+				        ])
+				in
+				    Source
 

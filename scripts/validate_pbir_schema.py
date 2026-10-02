@@ -4,11 +4,16 @@ validate_pbir_schema.py — Cross-platform PBIR validator for Linux/macOS/Window
 Validates report.json, pages.json, page.json, and visual.json structures and schemas.
 
 Run from anywhere; the scan is anchored to the repo root so results do not depend on cwd.
+Only repo-owned reports are checked: a `.Report` folder that `.gitignore` excludes is
+skipped, so third-party sample projects in local staging folders are not our problem.
 Errors block (exit 1); warnings are advisory and never block (exit 0).
 """
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pbir_discovery  # noqa: E402
 
 # The report separator below is a non-ASCII box-drawing char, which crashes on a cp1252
 # console. Reconfigure stdout so the same output works on Windows, Linux and macOS.
@@ -46,8 +51,8 @@ def warn(condition: bool, pass_msg: str, warn_msg: str) -> bool:
         warns.append(f"[WARN] {warn_msg}")
     return condition
 
-# Find all .Report folders
-report_dirs = sorted(p for p in REPO_ROOT.rglob("*.Report") if ".git" not in p.parts)
+# Find all repo-owned .Report folders
+report_dirs = pbir_discovery.report_dirs(REPO_ROOT)
 if not report_dirs:
     print("[WARN] No .Report directories found.")
     sys.exit(0)

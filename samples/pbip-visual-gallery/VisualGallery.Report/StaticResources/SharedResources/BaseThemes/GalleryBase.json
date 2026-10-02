@@ -1,0 +1,40 @@
+{
+  "name": "GalleryBase",
+  "dataColors": [
+    "#1F6FEB",
+    "#0F9D58",
+    "#F2B705",
+    "#DB4437",
+    "#604AE5",
+    "#00ACC1",
+    "#E8710A",
+    "#AD57D2"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#242424",
+  "tableAccent": "#1F6FEB",
+  "good": "#0F9D58",
+  "neutral": "#F2B705",
+  "bad": "#DB4437",
+  "maximum": "#604AE5",
+  "center": "#9E9E9E",
+  "minimum": "#EF7C00",
+  "textClasses": {
+    "label": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI",
+      "color": "#5F6368"
+    },
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#242424"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#242424"
+    }
+  },
+  "visualStyles": {}
+}

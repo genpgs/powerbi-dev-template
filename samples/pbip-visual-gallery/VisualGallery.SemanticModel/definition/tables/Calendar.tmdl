@@ -14,48 +14,82 @@ table Calendar
 		formatString: #,0
 		lineageTag: c43df7a3-e382-499d-817c-a4f7dc2c516a
 
-	measure 'Total Amount MTD' = CALCULATE([Total Amount], DATESMTD(Calendar[Date]))
-		formatString: #,0.00
-		lineageTag: ede421e3-4a13-4a44-bf74-b5eaaf7d853b
+	measure 'Sales MTD' =
+			-- Calendar MTD/QTD/YTD, anchored on the last date that actually has fact
+			-- data rather than on MAX(Date). A week-based calendar is generated as whole
+			-- fiscal years, so it always overshoots the fact range at the end - here to
+			-- 2026-01-30, so MAX(Calendar[CalendarYear]) is 2026 while the facts stop
+			-- 2025-12-31. Anchoring on MAX() therefore filtered to a period with no sales
+			-- and returned BLANK, which reads as a broken measure rather than an empty
+			-- one. DATESMTD/DATESQTD/DATESYTD are avoided for the same reason: they
+			-- look for 1 January, and this table is anchored on the Saturday on or
+			-- before FiscalYearStartDate, so it begins 2022-01-29 and contains none.
+			--
+			-- The variable is named AsOf, not LastDate: DAX reserves LastDate and a
+			-- VAR of that name fails with "The syntax for 'LastDate' is incorrect".
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf),
+			    Calendar[CalendarMonthNumber] = MONTH(AsOf)
+			)
+		formatString: \$#,0.00
+		lineageTag: calendar_mtd
 
-	measure 'Total Amount QTD' = CALCULATE([Total Amount], DATESQTD(Calendar[Date]))
-		formatString: #,0.00
-		lineageTag: 9f1d7c82-3160-4cfb-a529-40c5a64a26f4
+	measure 'Sales QTD' =
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf),
+			    Calendar[CalendarMonthNumber] <= MONTH(AsOf)
+			)
+		formatString: \$#,0.00
+		lineageTag: calendar_qtd
 
-	measure 'Total Amount YTD' = CALCULATE([Total Amount], DATESYTD(Calendar[Date]))
-		formatString: #,0.00
-		lineageTag: 18449bae-9afe-4073-8387-1e1066e1a1be
+	measure 'Sales YTD' =
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf)
+			)
+		formatString: \$#,0.00
+		lineageTag: calendar_ytd
 
-	measure 'Total Amount FYTD' =
-			-- Fiscal YTD: uses FiscalYear column to bound correctly for week-based calendar
+	measure 'Sales FYTD' =
+			-- Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
+			-- correctly. TOTALYTD/DATESYTD follow calendar months and would disagree.
 			VAR CurrentFY = MAX(Calendar[FiscalYear])
 			VAR CurrentWk = MAX(Calendar[FiscalWeekNumber])
 			RETURN
 			CALCULATE(
-			    [Total Amount],
+			    [Total Sales],
 			    Calendar[FiscalYear] = CurrentFY,
 			    Calendar[FiscalWeekNumber] <= CurrentWk
 			)
-			formatString: #,0.00
-		lineageTag: 57032c44-2460-49e8-959a-b6c39ba0ae48
+		formatString: \$#,0.00
+		lineageTag: calendar_fytd
 
-	measure 'Total Amount Previous Year' = CALCULATE([Total Amount], SAMEPERIODLASTYEAR(Calendar[Date]))
-		formatString: #,0.00
-		lineageTag: 6363c59c-06ab-4bcf-bc2f-0169c216026d
-
-	measure 'Total Amount YoY Change' = [Total Amount] - [Total Amount Previous Year]
-		formatString: #,0.00
-		lineageTag: dbe920b6-1661-4ac0-ab22-94e44cf88dbe
-
-	measure 'Total Amount YoY %' = DIVIDE([Total Amount YoY Change], [Total Amount Previous Year])
-		formatString: 0.00%
-		lineageTag: 094b87a2-a849-44ed-a4e4-33711836e10d
-
-	measure 'Total Amount Rolling 12M' =
+	measure 'Sales Rolling 12M' =
 			VAR d = MAX(Calendar[Date])
-			RETURN CALCULATE([Total Amount], DATESINPERIOD(Calendar[Date], d, -12, MONTH))
-			formatString: #,0.00
-		lineageTag: 7a14dd65-41c1-4ea5-bd44-ef9acf988efa
+			RETURN
+			CALCULATE([Total Sales], DATESINPERIOD(Calendar[Date], d, -12, MONTH))
+		formatString: \$#,0.00
+		lineageTag: calendar_rolling12
+
+	measure 'Sales Previous Year' = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Calendar[Date]))
+		formatString: \$#,0.00
+		lineageTag: calendar_pyy
+
+	measure 'Sales YoY Change' = [Total Sales] - [Sales Previous Year]
+		formatString: \$#,0.00
+		lineageTag: calendar_yoychange
+
+	measure 'Sales YoY %' = DIVIDE([Sales YoY Change], [Sales Previous Year])
+		formatString: 0.0%
+		lineageTag: calendar_yoypct
 
 	column DateKey
 		dataType: int64
@@ -162,7 +196,7 @@ table Calendar
 		mode: import
 		source =
 				let
-				    // ── Configuration ──────────────────────────────────────────────────
+				    // Configuration mirrors config/fiscal-calendar.json.
 				    // Change WeekPattern to "454", "544", or "13period" as needed.
 				    // Change FiscalYearStartDate and WeekStartDay to match your business.
 				    FiscalYearStartDate = #date(2025, 2, 1),
@@ -176,20 +210,37 @@ table Calendar
 				    FiscalYearLabelMode = "endingYear",
 				    Culture             = "en-US",
 				
-				    // ── Derive date range from fact table ──────────────────────────────
-				    // If you have no live model, replace with literal dates:
-				    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
-				    DateValues  = List.RemoveNulls(List.Transform(FactSales[OrderDate], each try Date.From(_) otherwise null)),
-				    _StartDate  = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Min(DateValues),
-				    _EndDate    = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Max(DateValues),
+				    // Date range. A partition must not read another table's data:
+				    // Power BI does not track that dependency, so refreshing one
+				    // table can deadlock waiting on the other. These literals span
+				    // what FactSales generates (StartDate #date(2023,1,1) plus
+				    // DayCount 1096). In a real model take them from the source
+				    // query or a Power Query parameter instead.
+				    _StartDate  = #date(2023, 1, 1),
+				    _EndDate    = #date(2025, 12, 31),
 				
-				    // Anchor FY start to the fiscal year that covers _StartDate
-				    // (recalculate: how many full years from FiscalYearStartDate to _StartDate?)
-				    YearsBack    = Date.Year(_StartDate) - Date.Year(FiscalYearStartDate),
-				    AdjustedStart = Date.AddYears(FiscalYearStartDate, List.Max({YearsBack - 1, 0})),
+				    // Anchor the calendar to the fiscal year that contains the FIRST
+				    // fact date, then run forward far enough to cover the last one.
+				    // Do not clamp the offset at zero: clamping can only ever move the
+				    // calendar forward, which silently drops fact rows dated before
+				    // FiscalYearStartDate.
+				    CandidateStarts = List.Transform(List.Numbers(0, NumberOfYears + 1), (n) => Date.AddYears(FiscalYearStartDate, -n)),
+				    // CandidateStarts runs newest first, so the FY start at or before
+				    // _StartDate is the FIRST match. Taking List.Last here anchored the
+				    // calendar to the oldest candidate instead, which is why the built
+				    // table began at 2020-02-01 and was already short of the facts by
+				    // the time it reached 2025.
+				    CalendarStart   = List.First(List.Select(CandidateStarts, (fy) => fy <= _StartDate)),
+				    // A fiscal year counts once it BEGINS on or before the last fact
+				    // date, not once it has fully ended by then. Requiring the whole
+				    // year to fit drops the FY that contains _EndDate, which is exactly
+				    // the one holding the final fact rows: FY starting 2025-02-01 runs
+				    // to 2026-01-31 and so never satisfied Date.AddYears(fy,1) <= _EndDate
+				    // for _EndDate 2025-12-31, truncating the calendar a year short.
+				    YearCovers      = (fy as date) as logical => fy <= _EndDate,
+				    CalendarYears   = List.Count(List.Select(List.Transform(List.Numbers(1, NumberOfYears), (n) => Date.AddYears(CalendarStart, n - 1)), YearCovers)),
 				
-				    // Generate the calendar
-				    Calendar    = fnCalendarWeekBased(AdjustedStart, NumberOfYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
+				    Calendar = fnCalendarWeekBased(CalendarStart, CalendarYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
 				in
 				    Calendar
 

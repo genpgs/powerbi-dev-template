@@ -58,9 +58,11 @@ author it and treat it as unsupported by the automated PBIR workflow. See the
 The supplied Marketplace snapshot also lists Microsoft-published **Chiclet
 Slicer** and **Timeline Slicer** custom visuals. They require a custom visual
 package and are not interchangeable with `advancedSlicerVisual` or a native
-date slicer. There is no checked-in PBIR example for them; verify the current
-AppSource listing and import the package through Power BI Desktop before
-attempting to reuse its PBIR representation.
+date slicer. Both now have runnable pages in the gallery — 12 Custom - Chiclet
+Slicer and 33 Custom - Timeline Slicer — showing their role bindings. Their
+packages are not committed; see
+[`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md)
+for why, and run `scripts/extract_custom_visuals.py` to register them locally.
 
 Before changing a slicer's `data.mode`, `position.height`, font size, padding,
 background/border VCO, or theme chrome, re-run the sizing rules in this file.

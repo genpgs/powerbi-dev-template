@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0000000000000000008d",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 1856,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+    "query": {
+      "queryState": {
+        "category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "IndicatorName"
+                }
+              },
+              "queryRef": "KpiTargets.IndicatorName",
+              "nativeQueryRef": "IndicatorName"
+            }
+          ]
+        },
+        "date": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "PeriodDate"
+                }
+              },
+              "queryRef": "KpiTargets.PeriodDate",
+              "nativeQueryRef": "PeriodDate"
+            }
+          ]
+        },
+        "actualValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Actual"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
+            }
+          ]
+        },
+        "targetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Target"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Target",
+              "nativeQueryRef": "KPI Target"
+            }
+          ]
+        },
+        "kpiIndicatorIndex": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KpiIndex"
+                }
+              },
+              "queryRef": "KpiTargets.KpiIndex",
+              "nativeQueryRef": "KpiIndex"
+            }
+          ]
+        },
+        "kpiIndicatorValue": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "StatusLabel"
+                }
+              },
+              "queryRef": "KpiTargets.StatusLabel",
+              "nativeQueryRef": "StatusLabel"
+            }
+          ]
+        },
+        "secondComparisonValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Comparison"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Comparison",
+              "nativeQueryRef": "KPI Comparison"
+            }
+          ]
+        },
+        "sortOrderColumn": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "SortOrder"
+                }
+              },
+              "queryRef": "KpiTargets.SortOrder",
+              "nativeQueryRef": "SortOrder"
+            }
+          ]
+        },
+        "image": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "Icon"
+                }
+              },
+              "queryRef": "KpiTargets.Icon",
+              "nativeQueryRef": "Icon"
+            }
+          ]
+        },
+        "hyperlink": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "Hyperlink"
+                }
+              },
+              "queryRef": "KpiTargets.Hyperlink",
+              "nativeQueryRef": "Hyperlink"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "internalState": [
+        {
+          "properties": {
+            "columnMapping": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"KPI Actual\":{}}'"
+                }
+              }
+            },
+            "settings": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"KPI Actual\":{\"asOfDate\":{\"isEnumerable\":false,\"order\":1,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"As of Date\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"right\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"color\":\"#000\",\"format\":null,\"defaultFormat\":null,\"columnFormat\":\"d\",\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17},\"metricName\":{\"isEnumerable\":false,\"order\":2,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Metric Name\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"left\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"color\":\"#000\",\"isExpandCollapseShown\":true},\"currentValue\":{\"isEnumerable\":false,\"order\":3,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Current Value\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"right\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"color\":\"#000\",\"format\":null,\"defaultFormat\":\"#,0.00\",\"columnFormat\":\"#,0.0\",\"displayUnits\":1,\"precision\":null,\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17,\"shouldTreatZeroValuesAsNulls\":true},\"kpiIndicator\":{\"isEnumerable\":false,\"isShown\":true,\"fontSize\":\"8\",\"shouldWrap\":false,\"horizontalPosition\":0,\"_maxAmountOfKPIs\":5,\"_default\":{\"color\":null,\"kpiIndex\":null,\"shape\":null},\"_colors\":[\"#01b7a8\",\"#f2c80f\",\"#fd625e\",\"#a66999\",\"#374649\"],\"_shapes\":[{\"name\":\"circle-full\",\"displayName\":\"Circle\"},{\"name\":\"triangle\",\"displayName\":\"Triangle\"},{\"name\":\"rhombus\",\"displayName\":\"Diamond\"},{\"name\":\"square\",\"displayName\":\"Square\"},{\"name\":\"flag\",\"displayName\":\"Flag\"},{\"name\":\"exclamation\",\"displayName\":\"Exclamation\"},{\"name\":\"checkmark\",\"displayName\":\"Checkmark\"},{\"name\":\"arrow-up\",\"displayName\":\"Arrow Up\"},{\"name\":\"arrow-right-up\",\"displayName\":\"Arrow Right Up\"},{\"name\":\"arrow-right-down\",\"displayName\":\"Arrow Right Down\"},{\"name\":\"arrow-down\",\"displayName\":\"Arrow Down\"},{\"name\":\"caret-up\",\"displayName\":\"Caret Up\"},{\"name\":\"caret-down\",\"displayName\":\"Caret Down\"},{\"name\":\"circle-empty\",\"displayName\":\"Circle Empty\"},{\"name\":\"circle-x\",\"displayName\":\"Circle X\"},{\"name\":\"circle-exclamation\",\"displayName\":\"Circle Exclamation\"},{\"name\":\"circle-checkmark\",\"displayName\":\"Circle Checkmark\"},{\"name\":\"x\",\"displayName\":\"X\"},{\"name\":\"star-empty\",\"displayName\":\"Star Empty\"},{\"name\":\"star-full\",\"displayName\":\"Star Full\"}],\"kpiIndexPropertyName\":\"kpiIndex\",\"_properties\":[{\"name\":\"color\"},{\"name\":\"shape\"},{\"name\":\"kpiIndex\"}],\"color_0\":\"#01b7a8\",\"shape_0\":\"circle-full\",\"kpiIndex_0\":1,\"color_1\":\"#f2c80f\",\"shape_1\":\"triangle\",\"kpiIndex_1\":2,\"color_2\":\"#fd625e\",\"shape_2\":\"rhombus\",\"kpiIndex_2\":3,\"color_3\":\"#a66999\",\"shape_3\":\"square\",\"kpiIndex_3\":4,\"color_4\":\"#374649\",\"shape_4\":\"flag\",\"kpiIndex_4\":5},\"kpiIndicatorValue\":{\"isEnumerable\":false,\"order\":4,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"KPI Status\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"isHyperlinkUnderlined\":true,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"center\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"hyperlinkColor\":\"#0000EE\",\"format\":null,\"defaultFormat\":\"+0.00 %;-0.00 %;0.00 %\",\"displayUnits\":0,\"precision\":null,\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17,\"kpiColor\":null},\"comparisonValue\":{\"isEnumerable\":false,\"order\":5,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Comparison Value\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"right\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"color\":\"#000\",\"format\":null,\"defaultFormat\":\"#,0.00\",\"columnFormat\":\"#,0.0\",\"displayUnits\":1,\"precision\":null,\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17,\"shouldTreatZeroValuesAsNulls\":true},\"secondComparisonValue\":{\"isEnumerable\":false,\"order\":6,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Second Comparison Value\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"right\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":true,\"color\":\"#000\",\"format\":null,\"defaultFormat\":\"#,0.00\",\"columnFormat\":\"#,0.0\",\"displayUnits\":1,\"precision\":null,\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17,\"shouldTreatZeroValuesAsNulls\":true},\"secondKPIIndicatorValue\":{\"isEnumerable\":false,\"order\":7,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Second KPI Status\",\"minImageSize\":5e-324,\"maxImageSize\":4096,\"isHyperlinkSpecified\":false,\"isImageSpecified\":false,\"fontSize\":\"8\",\"wrapText\":1,\"isBold\":false,\"isItalic\":false,\"isUnderlined\":false,\"isHyperlinkUnderlined\":true,\"fontFamily\":\"''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"alignment\":\"center\",\"verticalAlignment\":\"center\",\"shouldMatchKPIColor\":false,\"color\":\"#000\",\"hyperlinkColor\":\"#0000EE\",\"format\":null,\"defaultFormat\":\"+0.00 %;-0.00 %;0.00 %\",\"columnFormat\":null,\"displayUnits\":0,\"precision\":null,\"textReplacement\":null,\"minPrecision\":0,\"maxPrecision\":17,\"kpiColor\":null},\"sparklineSettings\":{\"isEnumerable\":false,\"order\":8,\"minOrder\":1,\"maxOrder\":10,\"show\":true,\"isShown\":true,\"backgroundColor\":null,\"label\":\"Sparklines\",\"isActualVisible\":true,\"actualColor\":\"#3599b8\",\"shouldActualUseKPIColors\":false,\"actualThickness\":2,\"actualLineStyle\":\"solidLine\",\"isTargetVisible\":false,\"targetColor\":\"#000000\",\"targetThickness\":1,\"targetLineStyle\":\"solidLine\",\"isSecondComparisonValueVisible\":false,\"secondComparisonValueColor\":\"#7d4f73\",\"secondComparisonValueThickness\":1,\"secondComparisonValueLineStyle\":\"solidLine\",\"shouldUseCommonScale\":false,\"yMin\":null,\"yMax\":null,\"verticalReferenceLineColor\":\"#666\",\"verticalReferenceLineThickness\":1,\"radiusFactor\":1.4,\"minThickness\":0.25,\"maxThickness\":10},\"metricSpecific\":{\"isEnumerable\":false,\"backgroundColor\":null,\"alternativeBackgroundColor\":\"rgb(239, 239, 239)\"}}}'"
+                }
+              }
+            },
+            "table": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicator matrix'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Matrix of indicators with actual, target and status indicator values.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

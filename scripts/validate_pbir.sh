@@ -6,12 +6,45 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+# Discover repo-owned .Report folders.
+#
+# Only reports this repo owns may be validated. samples/visual-gallery-assets/ is a
+# gitignored local staging folder holding 26 third-party Microsoft sample PBIPs; a bare
+# `find` walks into those and reports failures we neither introduced nor can fix.
+# scripts/pbir_discovery.py applies .gitignore and is the single source of truth
+# (validate_report.py and validate_pbir_schema.py use it too). It needs python3, which
+# the fallback branch below already requires; if python3 is missing, fall back to find
+# with the staging folder excluded explicitly.
+if command -v python3 &>/dev/null; then
+    REPORT_DIRS=()
+    # One absolute path per line; pbir_discovery.py never prints blank lines.
+    while IFS= read -r report_dir; do
+        REPORT_DIRS+=("$report_dir")
+    done < <(python3 "$SCRIPT_DIR/pbir_discovery.py")
+
+    if [ ${#REPORT_DIRS[@]} -eq 0 ]; then
+        echo "[SKIP] No repo-owned .Report folders found."
+        exit 0
+    fi
+else
+    echo "[WARN] python3 not found; falling back to find with an explicit staging exclusion."
+    REPORT_DIRS=()
+    while IFS= read -r -d '' report_dir; do
+        REPORT_DIRS+=("$report_dir")
+    done < <(find "$REPO_ROOT" -type d -name "*.Report" -not -path "*/.*" -not -path "*/samples/visual-gallery-assets/*" -print0 2>/dev/null)
+
+    if [ ${#REPORT_DIRS[@]} -eq 0 ]; then
+        echo "[SKIP] No .Report folders found."
+        exit 0
+    fi
+fi
+
 if command -v powerbi-report-author &>/dev/null; then
     echo "[INFO] Using powerbi-report-author CLI..."
     FAIL=0
     FOUND=0
 
-    while IFS= read -r -d '' report_dir; do
+    for report_dir in "${REPORT_DIRS[@]}"; do
         FOUND=$((FOUND + 1))
         echo "Validating: $report_dir"
         # Capture output so we can detect PBIR_SCHEMA_UNREACHABLE (GAP-15).
@@ -32,12 +65,7 @@ if command -v powerbi-report-author &>/dev/null; then
             echo "[FAIL] $report_dir"
             FAIL=1
         fi
-    done < <(find "$REPO_ROOT" -type d -name "*.Report" -not -path "*/.*" -print0 2>/dev/null)
-
-    if [ "$FOUND" -eq 0 ]; then
-        echo "[SKIP] No .Report folders found."
-        exit 0
-    fi
+    done
 
     if [ "$FAIL" -eq 1 ]; then
         echo "[FAIL] One or more PBIR validations failed."

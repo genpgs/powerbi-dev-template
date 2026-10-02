@@ -11,7 +11,10 @@ Checks:
   GAP-17  cardVisual minimum height. The callout value and label can be clipped
           at render time while the visual passes every schema validator.
 
-Usage: python3 scripts/validate_report.py [path-to-.Report-dir]
+Usage: python3 scripts/validate_report.py [path-to-.Report-dir ...]
+
+With no arguments, discovers every `.Report` folder under the current directory,
+skipping any that `.gitignore` excludes (see scripts/pbir_discovery.py).
 """
 from __future__ import annotations
 
@@ -19,6 +22,9 @@ import json
 import math
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pbir_discovery  # noqa: E402
 
 TOLERANCE = 0  # exact-pixel overlap detection
 
@@ -230,9 +236,7 @@ def main() -> int:
     if len(sys.argv) > 1:
         report_dirs = [Path(p) for p in sys.argv[1:]]
     else:
-        report_dirs = sorted(p for p in Path(".").glob("*.Report"))
-        if not report_dirs:
-            report_dirs = sorted(p for p in Path(".").rglob("*.Report") if ".git" not in p.parts)
+        report_dirs = pbir_discovery.report_dirs(Path("."))
         if not report_dirs:
             print("[FAIL] No .Report directory found.")
             return 1

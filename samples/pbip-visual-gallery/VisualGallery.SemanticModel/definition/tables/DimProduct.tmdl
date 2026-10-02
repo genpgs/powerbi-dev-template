@@ -1,0 +1,119 @@
+table DimProduct
+	lineageTag: DimProduct
+
+	measure 'Product Count' = COUNTROWS(DimProduct)
+		formatString: #,0
+		lineageTag: dimproduct_count
+
+	measure 'Average List Price' = AVERAGE(DimProduct[ListPrice])
+		formatString: \$#,0.00
+		lineageTag: dimproduct_avgprice
+
+	column ProductKey
+		dataType: int64
+		lineageTag: dimproduct_productkey
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+	column ProductName
+		dataType: string
+		lineageTag: ProductName
+		summarizeBy: none
+		sourceColumn: ProductName
+
+	column Category
+		dataType: string
+		lineageTag: dimproduct_category
+		summarizeBy: none
+		sourceColumn: Category
+
+	column Subcategory
+		dataType: string
+		lineageTag: Subcategory
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+	column ColorName
+		dataType: string
+		lineageTag: ColorName
+		summarizeBy: none
+		sourceColumn: ColorName
+
+	column ProductImage
+		dataType: string
+		lineageTag: ProductImage
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: ProductImage
+
+	column StandardCost
+		dataType: double
+		formatString: \$#,0.00
+		lineageTag: StandardCost
+		sourceColumn: StandardCost
+
+	column ListPrice
+		dataType: double
+		formatString: \$#,0.00
+		lineageTag: ListPrice
+		sourceColumn: ListPrice
+
+	column LaunchDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: LaunchDate
+		summarizeBy: none
+		sourceColumn: LaunchDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Categories = {"Bikes", "Components", "Clothing", "Accessories"},
+				    SubcategoryGroups = {
+				        {"Mountain Bikes", "Road Bikes", "City Bikes", "Electric Bikes"},
+				        {"Frames", "Wheels", "Handlebars", "Saddles"},
+				        {"Jerseys", "Shorts", "Jackets", "Gloves"},
+				        {"Helmets", "Lights", "Locks", "Bags"}
+				    },
+				    Colors = {"Black", "Red", "Blue", "Green", "Silver", "Yellow"},
+				    ProductCount = 60,
+				    Rows = List.Transform(List.Numbers(1, ProductCount), (i) =>
+				        let
+				            blockIndex = Number.IntegerDivide(i - 1, 4),
+				            groupIndex = Number.Mod(blockIndex, List.Count(Categories)),
+				            category = Categories{groupIndex},
+				            subcategory = SubcategoryGroups{groupIndex}{Number.Mod(i - 1, 4)},
+				            colorName = Colors{Number.Mod(i, List.Count(Colors))},
+				            listPrice = 25 + Number.Round(fnSeed(i, 11) * 975, 2),
+				            standardCost = Number.Round(listPrice * (0.42 + fnSeed(i, 23) * 0.26), 2)
+				        in
+				            [
+				                ProductKey = i,
+				                ProductName = subcategory & " " & Text.From(1000 + i),
+				                Category = category,
+				                Subcategory = subcategory,
+				                ColorName = colorName,
+				                ProductImage = "https://picsum.photos/seed/pbi-gallery-product-" & Text.From(i) & "/160/160",
+				                StandardCost = standardCost,
+				                ListPrice = listPrice,
+				                LaunchDate = #date(2019 + Number.IntegerDivide(i - 1, 20), 1 + Number.Mod(i * 3, 12), 1 + Number.Mod(i * 7, 28))
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            ProductKey = Int64.Type,
+				            ProductName = text,
+				            Category = text,
+				            Subcategory = text,
+				            ColorName = text,
+				            ProductImage = text,
+				            StandardCost = number,
+				            ListPrice = number,
+				            LaunchDate = date
+				        ])
+				in
+				    Source
+

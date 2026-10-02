@@ -68,22 +68,26 @@ Maps each analytical purpose to native PBI visual types.
 ### Microsoft-published custom alternatives
 
 These AppSource visuals can answer questions that lack a suitable native
-visual. They require importing the custom visual into the report and are not
-covered by the built-in authoring catalog or visual gallery. Confirm the
-listing/version and package support in
-[`docs/POWER_BI_VISUAL_COVERAGE.md`](../../../../../docs/POWER_BI_VISUAL_COVERAGE.md)
-before promising PBIR implementation.
+visual. Each one has a runnable page in
+[`samples/pbip-visual-gallery/`](../../../../../samples/pbip-visual-gallery/),
+and every row below is backed by an assertion in
+`scripts/verify_gallery_coverage.py`.
 
-| Question or need | Microsoft-published option |
-|---|---|
-| Flow between categories | Sankey Chart |
-| Project schedule / task durations | Gantt |
-| Variance around a baseline | Tornado chart or Bullet Chart |
-| KPI with comparison context | Dual KPI, Multi KPI, Power KPI, or Power KPI Matrix |
-| Relationship / distribution detail | Enhanced Scatter or Dot Plot |
-| Hierarchical part-to-whole | Sunburst |
-| Time selection | Timeline Slicer |
-| Text search filter | Text Filter |
+They are not covered by the built-in authoring catalog, so `catalog describe`
+returns nothing for them and their formatting objects cannot be validated from
+the CLI. Confirm the listing, version and package support before promising PBIR
+implementation, and read each page's `How To` note for the role list.
+
+| Question or need | Microsoft-published option | Gallery page |
+|---|---|---|
+| Flow between categories | Sankey Chart | 28 Custom - Sankey Chart |
+| Project schedule / task durations | Gantt | 18 Custom - Gantt |
+| Variance around a baseline | Tornado chart or Bullet Chart | 34 / 11 |
+| KPI with comparison context | Dual KPI, Multi KPI, Power KPI, Power KPI Matrix | 15 / 22 / 23 / 24 |
+| Relationship / distribution detail | Enhanced Scatter, Dot Plot, SandDance | 16 / 14 / 27 |
+| Hierarchical part-to-whole | Sunburst | 30 Custom - Sunburst |
+| Time selection | Timeline Slicer | 33 Custom - Timeline Slicer |
+| Text search filter | Text Filter | 32 Custom - Text Filter |
 
 ---
 

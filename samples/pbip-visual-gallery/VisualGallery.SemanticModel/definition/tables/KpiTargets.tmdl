@@ -1,0 +1,164 @@
+table KpiTargets
+	lineageTag: KpiTargets
+
+	measure 'KPI Actual' = SUM(KpiTargets[ActualValue])
+		formatString: #,0.0
+		lineageTag: kpitargets_actual
+
+	measure 'KPI Target' = SUM(KpiTargets[TargetValue])
+		formatString: #,0.0
+		lineageTag: kpitargets_target
+
+	measure 'KPI Comparison' = SUM(KpiTargets[ComparisonValue])
+		formatString: #,0.0
+		lineageTag: kpitargets_comparison
+
+	measure 'KPI Attainment %' =
+			VAR a = [KPI Actual]
+			VAR t = [KPI Target]
+			RETURN
+			IF (t = 0, BLANK(), a / t)
+		formatString: 0.0%
+		lineageTag: kpitargets_attainment
+
+	measure 'KPI Variance to Target' = [KPI Actual] - [KPI Target]
+		formatString: #,0.0
+		lineageTag: kpitargets_variance
+
+	measure 'KPI Variance vs Comparison' = [KPI Actual] - [KPI Comparison]
+		formatString: #,0.0
+		lineageTag: kpitargets_variancecomp
+
+	column IndicatorName
+		dataType: string
+		lineageTag: IndicatorName
+		summarizeBy: none
+		sourceColumn: IndicatorName
+
+	column BusinessUnit
+		dataType: string
+		lineageTag: BusinessUnit
+		summarizeBy: none
+		sourceColumn: BusinessUnit
+
+	column PeriodDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: PeriodDate
+		summarizeBy: none
+		sourceColumn: PeriodDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ActualValue
+		dataType: double
+		formatString: #,0.0
+		lineageTag: ActualValue
+		summarizeBy: none
+		sourceColumn: ActualValue
+
+	column TargetValue
+		dataType: double
+		formatString: #,0.0
+		lineageTag: TargetValue
+		summarizeBy: none
+		sourceColumn: TargetValue
+
+	column ComparisonValue
+		dataType: double
+		formatString: #,0.0
+		lineageTag: ComparisonValue
+		summarizeBy: none
+		sourceColumn: ComparisonValue
+
+	column KpiIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: KpiIndex
+		summarizeBy: none
+		sourceColumn: KpiIndex
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: SortOrder
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+	column StatusLabel
+		dataType: string
+		lineageTag: StatusLabel
+		summarizeBy: none
+		sourceColumn: StatusLabel
+
+	column Hyperlink
+		dataType: string
+		lineageTag: Hyperlink
+		summarizeBy: none
+		sourceColumn: Hyperlink
+
+	column Icon
+		dataType: string
+		lineageTag: Icon
+		summarizeBy: none
+		sourceColumn: Icon
+
+	partition KpiTargets = m
+		mode: import
+		source =
+				let
+				    Indicators = {
+				        {"Revenue", "Commercial", 1000000, 1},
+				        {"Gross Margin", "Commercial", 41.5, 1},
+				        {"Order Volume", "Commercial", 8500, 1},
+				        {"Average Order Value", "Commercial", 250, 1},
+				        {"On-Time Delivery", "Operations", 95, 1},
+				        {"Customer NPS", "Operations", 50, 2},
+				        {"Inventory Turns", "Operations", 7.5, 2},
+				        {"Cost per Unit", "Operations", 115, 3}
+				    },
+				    MonthCount = 24,
+				    StartDate = #date(2024, 1, 1),
+				    StatusLabels = {"On Track", "At Risk", "Off Track"},
+				    Rows = List.Transform(List.Numbers(1, MonthCount * List.Count(Indicators)), (i) =>
+				        let
+				            indicator = Indicators{Number.Mod(i - 1, List.Count(Indicators))},
+				            monthIndex = Number.IntegerDivide(i - 1, List.Count(Indicators)),
+				            periodDate = Date.AddMonths(StartDate, monthIndex),
+				            seedBase = i * 97,
+				            attainment = 0.82 + fnSeed(seedBase, 5) * 0.36,
+				            scale = indicator{2},
+				            actual = Number.Round(scale * attainment, 2),
+				            comparison = Number.Round(scale * (0.88 + fnSeed(seedBase, 7) * 0.2), 2)
+				        in
+				            [
+				                IndicatorName = indicator{0},
+				                BusinessUnit = indicator{1},
+				                PeriodDate = periodDate,
+				                ActualValue = actual,
+				                TargetValue = scale,
+				                ComparisonValue = comparison,
+				                KpiIndex = indicator{3},
+				                SortOrder = Number.Mod(i - 1, List.Count(Indicators)) + 1,
+				                StatusLabel = if attainment >= 1 then StatusLabels{0} else if attainment >= 0.95 then StatusLabels{1} else StatusLabels{2},
+				                Hyperlink = "https://contoso.example.com/kpi/" & Text.Lower(indicator{0}) & "/" & Text.From(Date.Year(periodDate)) & "/" & Text.PadStart(Text.From(Date.Month(periodDate)), 2, "0"),
+				                Icon = if attainment >= 1 then "good" else if attainment >= 0.95 then "neutral" else "bad"
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            IndicatorName = text,
+				            BusinessUnit = text,
+				            PeriodDate = date,
+				            ActualValue = number,
+				            TargetValue = number,
+				            ComparisonValue = number,
+				            KpiIndex = Int64.Type,
+				            SortOrder = Int64.Type,
+				            StatusLabel = text,
+				            Hyperlink = text,
+				            Icon = text
+				        ])
+				in
+				    Source
+

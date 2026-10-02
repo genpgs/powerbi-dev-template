@@ -1,0 +1,151 @@
+table DimCustomer
+	lineageTag: DimCustomer
+
+	measure 'Customer Count' = COUNTROWS(DimCustomer)
+		formatString: #,0
+		lineageTag: dimcustomer_count
+
+	measure 'Average Customer Birth Year' = AVERAGE(DimCustomer[BirthYear])
+		formatString: 0
+		lineageTag: dimcustomer_avgbirth
+
+	column CustomerKey
+		dataType: int64
+		lineageTag: dimcustomer_customerkey
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+	column CustomerName
+		dataType: string
+		lineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+	column City
+		dataType: string
+		lineageTag: dimcustomer_city
+		summarizeBy: none
+		sourceColumn: City
+
+	column StateProvince
+		dataType: string
+		lineageTag: StateProvince
+		summarizeBy: none
+		sourceColumn: StateProvince
+
+	column Country
+		dataType: string
+		lineageTag: dimcustomer_country
+		summarizeBy: none
+		sourceColumn: Country
+
+	column Continent
+		dataType: string
+		lineageTag: dimcustomer_continent
+		summarizeBy: none
+		sourceColumn: Continent
+
+	column Latitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+	column Longitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+	column Segment
+		dataType: string
+		lineageTag: Segment
+		summarizeBy: none
+		sourceColumn: Segment
+
+	column Occupation
+		dataType: string
+		lineageTag: Occupation
+		summarizeBy: none
+		sourceColumn: Occupation
+
+	column IncomeBand
+		dataType: string
+		lineageTag: IncomeBand
+		summarizeBy: none
+		sourceColumn: IncomeBand
+
+	column BirthYear
+		dataType: int64
+		lineageTag: BirthYear
+		summarizeBy: none
+		sourceColumn: BirthYear
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Places = {
+				        {"Amsterdam", "North Holland", "Netherlands", "Europe", 52.3676, 4.9041},
+				        {"Austin", "Texas", "United States", "North America", 30.2672, -97.7431},
+				        {"Barcelona", "Catalonia", "Spain", "Europe", 41.3874, 2.1686},
+				        {"Cape Town", "Western Cape", "South Africa", "Africa", -33.9249, 18.4241},
+				        {"Chicago", "Illinois", "United States", "North America", 41.8781, -87.6298},
+				        {"Melbourne", "Victoria", "Australia", "Oceania", -37.8136, 144.9631},
+				        {"Munich", "Bavaria", "Germany", "Europe", 48.1351, 11.5820},
+				        {"Osaka", "Osaka", "Japan", "Asia", 34.6937, 135.5023},
+				        {"Paris", "Ile-de-France", "France", "Europe", 48.8566, 2.3522},
+				        {"Sao Paulo", "Sao Paulo", "Brazil", "South America", -23.5505, -46.6333},
+				        {"Seattle", "Washington", "United States", "North America", 47.6062, -122.3321},
+				        {"Singapore", "Central", "Singapore", "Asia", 1.3521, 103.8198},
+				        {"Stockholm", "Stockholm", "Sweden", "Europe", 59.3293, 18.0686},
+				        {"Sydney", "New South Wales", "Australia", "Oceania", -33.8688, 151.2093},
+				        {"Toronto", "Ontario", "Canada", "North America", 43.6532, -79.3832}
+				    },
+				    FirstNames = {"Ava", "Noah", "Mia", "Liam", "Zoe", "Ethan", "Iris", "Omar", "Nora", "Kai"},
+				    LastNames = {"Nguyen", "Okafor", "Silva", "Kim", "Patel", "Muller", "Rossi", "Tanaka", "Novak", "Haddad"},
+				    Segments = {"Consumer", "Corporate", "Home Office"},
+				    Occupations = {"Engineer", "Teacher", "Clinician", "Analyst", "Tradesperson", "Retired"},
+				    IncomeBands = {"Under 40K", "40K-80K", "80K-120K", "Over 120K"},
+				    CustomerCount = 300,
+				    Rows = List.Transform(List.Numbers(1, CustomerCount), (i) =>
+				        let
+				            place = Places{Number.Mod(i * 7 + 3, List.Count(Places))},
+				            firstName = FirstNames{Number.Mod(i, List.Count(FirstNames))},
+				            lastName = LastNames{Number.Mod(i * 3, List.Count(LastNames))}
+				        in
+				            [
+				                CustomerKey = i,
+				                CustomerName = firstName & " " & lastName & " " & Text.From(i),
+				                City = place{0},
+				                StateProvince = place{1},
+				                Country = place{2},
+				                Continent = place{3},
+				                Latitude = place{4} + (fnSeed(i, 41) - 0.5) * 0.6,
+				                Longitude = place{5} + (fnSeed(i, 43) - 0.5) * 0.6,
+				                Segment = Segments{Number.Mod(i * 5, List.Count(Segments))},
+				                Occupation = Occupations{Number.Mod(i * 7, List.Count(Occupations))},
+				                IncomeBand = IncomeBands{Number.Mod(i * 3, List.Count(IncomeBands))},
+				                BirthYear = 1955 + Number.Mod(i * 13, 50)
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				            CustomerKey = Int64.Type,
+				            CustomerName = text,
+				            City = text,
+				            StateProvince = text,
+				            Country = text,
+				            Continent = text,
+				            Latitude = number,
+				            Longitude = number,
+				            Segment = text,
+				            Occupation = text,
+				            IncomeBand = text,
+				            BirthYear = Int64.Type
+				        ])
+				in
+				    Source
+

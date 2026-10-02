@@ -22,45 +22,52 @@ The table follows the current Microsoft Learn visual overview. Type names are
 the PBIR names where the CLI maps a Desktop visual to one; the CLI catalog is
 not itself the canonical list of everything visible in the Desktop pane.
 
-| Desktop visual or family | PBIR type(s) in the local CLI catalog | Template coverage |
+| Desktop visual or family | PBIR type(s) in the local CLI catalog | Gallery coverage |
 |---|---|---|
-| Bar and column: basic, stacked, 100% stacked, clustered | `barChart`, `clusteredBarChart`, `columnChart`, `clusteredColumnChart`, `hundredPercentStackedBarChart`, `hundredPercentStackedColumnChart` | Cartesian patterns and design guidance; no gallery example for every variant |
-| Line | `lineChart` | Authoring recipe and design guidance; no gallery example (the fixture has too few time points for a meaningful trend) |
-| Area: basic, stacked, 100% stacked | `areaChart`, `stackedAreaChart`, `hundredPercentStackedAreaChart` | CLI metadata and design guidance; no gallery example |
-| Combo: line and clustered/stacked column | `lineClusteredColumnComboChart`, `lineStackedColumnComboChart` | CLI metadata; use `catalog describe` for exact roles |
-| Ribbon | `ribbonChart` | CLI metadata; no focused recipe/sample |
-| Waterfall | `waterfallChart` | Design guidance and CLI metadata; no gallery example |
-| Pie and donut | `pieChart`, `donutChart` | CLI metadata; no focused recipe/sample |
-| Treemap | `treemap` | Design guidance and CLI metadata; no gallery example |
-| Funnel | `funnel` | CLI metadata; no focused recipe/sample |
-| Scatter/bubble | `scatterChart` | Design guidance and CLI metadata; no gallery example |
-| Table and matrix | `tableEx`, `pivotTable` | Authoring recipes; no gallery example |
-| Azure Maps | `azureMap` | Authoring recipe and design guidance; no gallery example |
-| Shape map (preview) | `shapeMap` | CLI metadata; no focused recipe/sample |
-| Bing Maps and filled maps | `map`, `filledMap` | Legacy; do not create new visuals. Prefer Azure Maps where supported |
-| Card | `cardVisual` | Authoring recipe and design guidance; gallery example |
-| KPI and gauge | `kpi`, `gauge` | CLI metadata; no focused recipe/sample |
-| Decomposition tree | `decompositionTreeVisual` | CLI metadata; no focused recipe/sample |
-| Key influencers | `keyDriversVisual` | CLI metadata; no focused recipe/sample |
-| Smart narrative | `aiNarratives` | CLI metadata; no focused recipe/sample |
-| Anomaly detection | A line-chart capability, not a separate visual type | CLI formatting metadata exists on `lineChart`; authoring procedure/sample not yet provided |
-| Slicer: list, dropdown, date range, relative date/time, single, before/after | `slicer` | Authoring recipe; dropdown example in gallery |
-| Button slicer | `advancedSlicerVisual` | Authoring recipe; gallery example |
-| List slicer (preview) | `listSlicer` | Authoring recipe; gallery example |
+| Bar and column: basic, stacked, 100% stacked, clustered | `barChart`, `clusteredBarChart`, `columnChart`, `clusteredColumnChart`, `hundredPercentStackedBarChart`, `hundredPercentStackedColumnChart` | Gallery 01 Native - Cartesian |
+| Line | `lineChart` | Gallery 01 Native - Cartesian |
+| Area: basic, stacked, 100% stacked | `areaChart`, `stackedAreaChart`, `hundredPercentStackedAreaChart` | Gallery 01 Native - Cartesian |
+| Combo: line and clustered/stacked column | `lineClusteredColumnComboChart`, `lineStackedColumnComboChart` | Gallery 01 Native - Cartesian |
+| Ribbon | `ribbonChart` | Gallery 01 Native - Cartesian |
+| Waterfall | `waterfallChart` | Gallery 02 Native - Distribution |
+| Pie and donut | `pieChart`, `donutChart` | Gallery 02 Native - Distribution |
+| Treemap | `treemap` | Gallery 02 Native - Distribution |
+| Funnel | `funnel` | Gallery 02 Native - Distribution |
+| Scatter/bubble | `scatterChart` | Gallery 02 Native - Distribution |
+| Table and matrix | `tableEx`, `pivotTable` | Gallery 04 Native - Table |
+| Azure Maps | `azureMap` | Gallery 05 Native - Maps |
+| Shape map (preview) | `shapeMap` | Gallery 05 Native - Maps |
+| Bing Maps and filled maps | `map`, `filledMap` | not created - use azureMap |
+| Card | `cardVisual` | Gallery 03 Native - KPI |
+| KPI and gauge | `kpi`, `gauge` | Gallery 03 Native - KPI |
+| Decomposition tree | `decompositionTreeVisual` | Gallery 06 Native - AI & Insights |
+| Key influencers | `keyDriversVisual` | Gallery 06 Native - AI & Insights |
+| Smart narrative | `aiNarratives` | Gallery 06 Native - AI & Insights |
+| Anomaly detection | A line-chart capability, not a separate visual type | `lineChart` on Gallery 01; no dedicated page |
+| Slicer: list, dropdown, date range, relative date/time, single, before/after | `slicer` | Gallery 07 Native - Slicers |
+| Button slicer | `advancedSlicerVisual` | Gallery 07 Native - Slicers |
+| List slicer (preview) | `listSlicer` | Gallery 07 Native - Slicers |
 | **Input slicer** | **No matching Desktop input-slicer type in the local CLI catalog** | **Not authorable through the documented PBIR workflow yet. Do not guess a visual type or substitute `textSlicer` without Desktop-authored evidence** |
-| Image, text box, and shapes | `image`, `textbox`, `shape`, `basicShape` | Authoring recipes |
-| Buttons and page/bookmark navigators | `actionButton`, `pageNavigator`, `bookmarkNavigator` | CLI metadata; no focused recipe/sample |
-| Paginated report visual | `rdlVisual` | CLI metadata; requires a separate paginated report |
-| Q&A | `qnaVisual` | CLI marks it unsupported in PBIR authoring. Microsoft says the Q&A visual is scheduled for deprecation in December 2026 |
-| Python and R visuals | `pythonVisual`, `scriptVisual` | Runtime-dependent; not represented in the sample gallery |
-| Power Apps visual | No recognized type in the local CLI catalog | Desktop/service capability; no template authoring recipe |
-| Power Automate visual | No recognized type in the local CLI catalog | Desktop/service capability; no template authoring recipe |
-| ArcGIS for Power BI | No recognized type in the local CLI catalog | Desktop/Esri integration; no template authoring recipe |
-| Goals/scorecards | `scorecard` is cataloged, but its mapping to the current Desktop experience is not confirmed here | No verified sample |
+| Image, text box, and shapes | `image`, `textbox`, `shape`, `basicShape` | Gallery 08 Native - Media & Shapes |
+| Buttons and page/bookmark navigators | `actionButton`, `pageNavigator`, `bookmarkNavigator` | Gallery 00 Home |
+| Paginated report visual | `rdlVisual` | not authorable - needs a separate paginated report |
+| Q&A | `qnaVisual` | not authorable - deprecated December 2026 |
+| Python and R visuals | `pythonVisual`, `scriptVisual` | not authorable - runtime dependent |
+| Power Apps visual | No recognized type in the local CLI catalog | not authorable - no catalog type |
+| Power Automate visual | No recognized type in the local CLI catalog | not authorable - no catalog type |
+| ArcGIS for Power BI | No recognized type in the local CLI catalog | not authorable - no catalog type |
+| Goals/scorecards | `scorecard` is cataloged, but its mapping to the current Desktop experience is not confirmed here | excluded - mapping to the current Desktop experience unconfirmed |
 
 The Desktop inventory and deployment requirements can change by Desktop build,
 preview-feature setting, tenant configuration, and region. Check Microsoft
 Learn before relying on preview, map, AI, embedded-app, or licensed features.
+
+The **Gallery coverage** column points at a page of
+[`samples/pbip-visual-gallery/`](../samples/pbip-visual-gallery/) rather than
+describing a capability. Every claim in that column is checked mechanically by
+`scripts/verify_gallery_coverage.py`, so it cannot go stale silently. "Not
+authorable" rows are deliberately absent from the gallery; they are listed on the
+gallery's own `36 Custom - How To` page with the reason.
 
 ### CLI entries that need extra caution
 
@@ -170,16 +177,39 @@ and [visualization overview](https://learn.microsoft.com/en-us/power-bi/visuals/
 ## Sample gallery
 
 The curated local sample is
-[`samples/pbip-visual-gallery/`](../samples/pbip-visual-gallery/). It contains
-data-bound examples of a card, clustered column chart, table, classic dropdown
-slicer, list slicer, and button slicer. It includes the calendar-baseline
-semantic model definition in a self-contained PBIP copy and is intentionally
-not a package of every visual listed above.
+[`samples/pbip-visual-gallery/`](../samples/pbip-visual-gallery/). It is a
+36-page, 190-visual PBIP covering **every** native visual type this project
+supports plus all 26 Microsoft-published custom visuals in the manifest below.
 
-Custom visual binaries are not checked in. Add an approved visual to a local
-report from its official source, then use a Desktop-authored PBIP instance to
-establish the exact package registration and visual JSON before adding a
-maintained sample.
+The coverage is asserted, not asserted-in-prose.
+`scripts/verify_gallery_coverage.py` checks that every allowed native type
+appears in the gallery, that no excluded type does, that every manifest GUID
+appears, that nothing is declared outside the allowlist, and that
+`report.json -> publicCustomVisuals` matches the GUIDs actually in use.
+
+The allowed set itself is generated into
+[`templates/html-prototype/visual-allowlist.json`](../templates/html-prototype/visual-allowlist.json)
+by `scripts/generate_visual_allowlist.py`, from `catalog list` and the manifest,
+with an explicit exclusion table recording a reason per withheld type. The HTML
+prototype reads that same contract and flags any visual or slicer outside it.
+
+Regenerate rather than hand-edit:
+
+```bash
+python3 scripts/generate_visual_allowlist.py
+node   scripts/build_gallery_report.mjs
+python3 scripts/verify_gallery_coverage.py
+```
+
+### What is deliberately absent
+
+- The six legacy types (`card`, `multiRowCard`, `table`, `matrix`, `map`,
+  `filledMap`) — use `cardVisual`, `tableEx`, `pivotTable`, `azureMap`.
+- `qnaVisual` — unsupported in PBIR authoring, deprecated December 2026.
+- Seven catalog entries whose Desktop availability is unverified
+  (`accessibleTable`, `animatedNumber`, `dataQueryVisual`, `filterSlicer`,
+  `heatMap`, `realTimeLineChart`, `textSlicer`) and `scorecard`.
+- Python, R, Power Apps, Power Automate, ArcGIS, `rdlVisual`, Input slicer.
 
 ### Local asset staging folder
 
@@ -188,6 +218,7 @@ area for source material used when extending the gallery:
 
 ```text
 samples/visual-gallery-assets/
+├── manifest.csv
 ├── PBIX/
 ├── PBIVIZ/
 └── Images/
@@ -198,18 +229,35 @@ It is populated from the matching folders in
 filtered to the Microsoft-publisher records in the catalog. The initial local
 snapshot was retrieved from source commit
 [`ffa7579`](https://github.com/DataChant/PowerBI-Visuals-AppSource/commit/ffa7579657dc0831231aafc93de80846ad939833)
-on 2026-10-01: 36 PBIX examples, 36 versioned PBIVIZ packages, and 36 images.
+on 2026-10-01: 26 PBIX examples, 26 versioned PBIVIZ packages, and 26 images.
 `manifest.csv` records each source, version, visual GUID, and local SHA-256.
-The PBIVIZ files retain the source's versioned filenames so each package can
-be matched to its catalog version. These files remain local and ignored; do
-not copy packages into tracked report projects unless their publisher terms
-permit it.
+The PBIVIZ files retain the source's versioned filenames so each package can be
+matched to its catalog version. These files remain local and ignored; do not
+copy packages into tracked report projects unless their publisher terms permit
+it.
 
 PBIX-to-PBIP conversion is not automated here. Power BI Desktop must open each
 PBIX and save it as a Power BI Project (PBIP); the Desktop Bridge CLI exposes
 open/reload/screenshot operations but no conversion or Save As operation.
-After Desktop conversion, validate the resulting project before using it as a
-gallery source. The PBIX files are still useful local examples in the meantime.
+
+#### Custom visual registration
+
+`scripts/extract_custom_visuals.py` registers the packages into the gallery
+report. It unzips each `.pbiviz` into
+`VisualGallery.Report/CustomVisuals/<guid>/`, writes the GUID list into
+`report.json`, and cross-checks every package against `manifest.csv`.
+
+The extracted packages are **not committed**. `.gitignore` excludes
+`**/CustomVisuals/` and `*.pbiviz`, so a clone gets a report that references its
+custom visuals by GUID but has no package payloads. Run the extractor locally
+before opening the gallery. A Microsoft publisher or certified listing does not
+by itself permit redistributing the binary.
+
+Two version-comparison details worth keeping: several packages declare a
+three-component version (`2.0.2`) where the manifest and filename say four
+(`2.0.2.0`) — these are the same version, so trailing zero components are
+normalised away before comparing; and the GUID check is strict, because a
+GUID mismatch means the manifest and the binary describe different visuals.
 
 ## Official references
 

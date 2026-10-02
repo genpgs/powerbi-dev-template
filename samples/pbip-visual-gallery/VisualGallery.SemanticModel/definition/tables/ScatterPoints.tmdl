@@ -1,0 +1,189 @@
+table ScatterPoints
+	lineageTag: ScatterPoints
+
+	measure 'Scatter X' = SUM(ScatterPoints[XValue])
+		formatString: #,0.00
+		lineageTag: scatterpoints_x
+
+	measure 'Scatter Y' = SUM(ScatterPoints[YValue])
+		formatString: #,0.00
+		lineageTag: scatterpoints_y
+
+	measure 'Scatter Size' = SUM(ScatterPoints[SizeValue])
+		formatString: #,0
+		lineageTag: scatterpoints_size
+
+	measure 'Scatter Dot Value' = SUM(ScatterPoints[DotValue])
+		formatString: #,0.00
+		lineageTag: scatterpoints_dotvalue
+
+	measure 'Scatter Radar 1' = SUM(ScatterPoints[RadarValue1])
+		formatString: #,0.0
+		lineageTag: scatterpoints_r1
+
+	measure 'Scatter Radar 2' = SUM(ScatterPoints[RadarValue2])
+		formatString: #,0.0
+		lineageTag: scatterpoints_r2
+
+	measure 'Scatter Radar 3' = SUM(ScatterPoints[RadarValue3])
+		formatString: #,0.0
+		lineageTag: scatterpoints_r3
+
+	measure 'Scatter Radar 4' = SUM(ScatterPoints[RadarValue4])
+		formatString: #,0.0
+		lineageTag: scatterpoints_r4
+
+	column PointName
+		dataType: string
+		lineageTag: PointName
+		summarizeBy: none
+		sourceColumn: PointName
+
+	column Category
+		dataType: string
+		lineageTag: scatterpoints_category
+		summarizeBy: none
+		sourceColumn: Category
+
+	column Series
+		dataType: string
+		lineageTag: Series
+		summarizeBy: none
+		sourceColumn: Series
+
+	column XValue
+		dataType: double
+		formatString: #,0.00
+		lineageTag: XValue
+		summarizeBy: none
+		sourceColumn: XValue
+
+	column YValue
+		dataType: double
+		formatString: #,0.00
+		lineageTag: YValue
+		summarizeBy: none
+		sourceColumn: YValue
+
+	column SizeValue
+		dataType: double
+		formatString: #,0
+		lineageTag: SizeValue
+		summarizeBy: none
+		sourceColumn: SizeValue
+
+	column ShapeValue
+		dataType: double
+		formatString: 0
+		lineageTag: ShapeValue
+		summarizeBy: none
+		sourceColumn: ShapeValue
+
+	column GradientValue
+		dataType: double
+		formatString: #,0.00
+		lineageTag: GradientValue
+		summarizeBy: none
+		sourceColumn: GradientValue
+
+	column RotationValue
+		dataType: double
+		formatString: #,0.0
+		lineageTag: RotationValue
+		summarizeBy: none
+		sourceColumn: RotationValue
+
+	column DotValue
+		dataType: double
+		formatString: #,0.00
+		lineageTag: DotValue
+		summarizeBy: none
+		sourceColumn: DotValue
+
+	column RadarValue1
+		dataType: double
+		formatString: #,0.0
+		lineageTag: RadarValue1
+		summarizeBy: none
+		sourceColumn: RadarValue1
+
+	column RadarValue2
+		dataType: double
+		formatString: #,0.0
+		lineageTag: RadarValue2
+		summarizeBy: none
+		sourceColumn: RadarValue2
+
+	column RadarValue3
+		dataType: double
+		formatString: #,0.0
+		lineageTag: RadarValue3
+		summarizeBy: none
+		sourceColumn: RadarValue3
+
+	column RadarValue4
+		dataType: double
+		formatString: #,0.0
+		lineageTag: RadarValue4
+		summarizeBy: none
+		sourceColumn: RadarValue4
+
+	column ImageUrl
+		dataType: string
+		lineageTag: scatterpoints_imageurl
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: ImageUrl
+
+	partition ScatterPoints = m
+		mode: import
+		source =
+				let
+				    Categories = {"Bikes", "Components", "Clothing", "Accessories"},
+				    Series = {"Online", "Retail", "Partner"},
+				    Shapes = {0, 1, 2, 3, 4},
+				    PointCount = 120,
+				    Rows = List.Transform(List.Numbers(1, PointCount), (i) =>
+				        let
+				            xValue = Number.Round(10 + fnSeed(i, 51) * 90, 2),
+				            yValue = Number.Round(20 + fnSeed(i, 53) * 75 + (xValue - 55) * 0.35, 2)
+				        in
+				            [
+				                PointName = "Point " & Text.From(i),
+				                Category = Categories{Number.Mod(i - 1, List.Count(Categories))},
+				                Series = Series{Number.Mod(i * 5, List.Count(Series))},
+				                XValue = xValue,
+				                YValue = yValue,
+				                SizeValue = Number.Round(20 + fnSeed(i, 57) * 980, 0),
+				                ShapeValue = Shapes{Number.Mod(i, List.Count(Shapes))},
+				                GradientValue = Number.Round(xValue / 10, 2),
+				                RotationValue = Number.Round(fnSeed(i, 59) * 350, 1),
+				                DotValue = Number.Round(yValue * 1.4 + fnSeed(i, 61) * 20, 2),
+				                RadarValue1 = Number.Round(30 + fnSeed(i, 63) * 70, 1),
+				                RadarValue2 = Number.Round(30 + fnSeed(i, 67) * 70, 1),
+				                RadarValue3 = Number.Round(30 + fnSeed(i, 71) * 70, 1),
+				                RadarValue4 = Number.Round(30 + fnSeed(i, 73) * 70, 1),
+				                ImageUrl = "https://picsum.photos/seed/pbi-gallery-point-" & Text.From(i) & "/80/80"
+				            ]),
+				    Source = Table.FromRecords(
+				        Rows,
+				        type table [
+				                PointName = text,
+				                Category = text,
+				                Series = text,
+				                XValue = number,
+				                YValue = number,
+				                SizeValue = number,
+				                ShapeValue = Int64.Type,
+				                GradientValue = number,
+				                RotationValue = number,
+				                DotValue = number,
+				                RadarValue1 = number,
+				                RadarValue2 = number,
+				                RadarValue3 = number,
+				                RadarValue4 = number,
+				                ImageUrl = text
+				        ])
+				in
+				    Source
+
