@@ -185,7 +185,7 @@ table Calendar
 				    // DayCount 1096). In a real model take them from the source
 				    // query or a Power Query parameter instead.
 				    _StartDate  = #date(2023, 1, 1),
-				    _EndDate    = #date(2024, 12, 31),
+				    _EndDate    = #date(2025, 12, 31),
 				
 				    // Anchor the calendar to the fiscal year that contains the FIRST
 				    // fact date, then run forward far enough to cover the last one.
@@ -193,8 +193,19 @@ table Calendar
 				    // calendar forward, which silently drops fact rows dated before
 				    // FiscalYearStartDate.
 				    CandidateStarts = List.Transform(List.Numbers(0, NumberOfYears + 1), (n) => Date.AddYears(FiscalYearStartDate, -n)),
-				    CalendarStart   = List.Last(List.Select(CandidateStarts, (fy) => fy <= _StartDate)),
-				    YearCovers      = (fy as date) as logical => Date.AddYears(fy, 1) <= _EndDate,
+				    // CandidateStarts runs newest first, so the FY start at or before
+				    // _StartDate is the FIRST match. Taking List.Last here anchored the
+				    // calendar to the oldest candidate instead, which is why the built
+				    // table began at 2020-02-01 and was already short of the facts by
+				    // the time it reached 2025.
+				    CalendarStart   = List.First(List.Select(CandidateStarts, (fy) => fy <= _StartDate)),
+				    // A fiscal year counts once it BEGINS on or before the last fact
+				    // date, not once it has fully ended by then. Requiring the whole
+				    // year to fit drops the FY that contains _EndDate, which is exactly
+				    // the one holding the final fact rows: FY starting 2025-02-01 runs
+				    // to 2026-01-31 and so never satisfied Date.AddYears(fy,1) <= _EndDate
+				    // for _EndDate 2025-12-31, truncating the calendar a year short.
+				    YearCovers      = (fy as date) as logical => fy <= _EndDate,
 				    CalendarYears   = List.Count(List.Select(List.Transform(List.Numbers(1, NumberOfYears), (n) => Date.AddYears(CalendarStart, n - 1)), YearCovers)),
 				
 				    Calendar = fnCalendarWeekBased(CalendarStart, CalendarYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
