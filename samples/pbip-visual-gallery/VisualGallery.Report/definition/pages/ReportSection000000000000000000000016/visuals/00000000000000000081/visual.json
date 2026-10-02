@@ -3,11 +3,11 @@
   "name": "00000000000000000081",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
+    "y": 124,
+    "z": 3000,
     "height": 450,
     "width": 916,
-    "tabOrder": 5000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "multiKpiEA8DA325489E436991F0E411F2D85FF3",
@@ -48,24 +48,6 @@
               "nativeQueryRef": "Series Value"
             }
           ]
-        },
-        "changeStartDateColumn": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "PriceSeries"
-                    }
-                  },
-                  "Property": "Timestamp"
-                }
-              },
-              "queryRef": "PriceSeries.Timestamp",
-              "nativeQueryRef": "Timestamp"
-            }
-          ]
         }
       }
     },
@@ -83,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'With change start date'"
+                  "Value": "'Date and value'"
                 }
               }
             },
@@ -117,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Multi KPI including the comparison start date.'"
+                  "Value": "'Multi KPI over the price series date and value.'"
                 }
               }
             }

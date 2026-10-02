@@ -3,11 +3,11 @@
   "name": "000000000000000000ba",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
+    "y": 124,
+    "z": 3000,
     "height": 450,
     "width": 916,
-    "tabOrder": 5000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "WordCloud1447959067750",
@@ -48,24 +48,6 @@
               "nativeQueryRef": "Term Frequency"
             }
           ]
-        },
-        "Excludes": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WordFrequency"
-                    }
-                  },
-                  "Property": "Topic"
-                }
-              },
-              "queryRef": "WordFrequency.Topic",
-              "nativeQueryRef": "Topic"
-            }
-          ]
         }
       }
     },
@@ -83,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'By topic'"
+                  "Value": "'Term frequencies'"
                 }
               }
             },
@@ -117,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Word cloud over terms grouped by topic.'"
+                  "Value": "'Word cloud sized by term frequency.'"
                 }
               }
             }

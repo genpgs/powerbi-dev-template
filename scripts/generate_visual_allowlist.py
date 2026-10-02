@@ -49,8 +49,13 @@ EXCLUDED_NATIVE = {
     "multiRowCard": "Legacy. Use cardVisual with several values in Data.",
     "table": "Legacy. Use tableEx.",
     "matrix": "Legacy. Use pivotTable.",
-    "map": "Legacy Bing Maps. Use azureMap.",
-    "filledMap": "Legacy Bing Maps. Use azureMap.",
+    # Needs a provisioned Azure Maps account, so it renders empty in a
+    # self-contained sample. Demonstrated types are Bing Maps map / filledMap
+    # plus shapeMap, which need no account.
+    "azureMap": "Requires a provisioned Azure Maps account; not authorable in a self-contained sample.",
+    # Superseded for this sample and did not render. `narrative` summarises a
+    # page or visual placed beside it and is the type used instead.
+    "aiNarratives": "Smart narrative did not render in Desktop; the sample uses `narrative` instead.",
     # Known-unsupported or misleading catalog entries. Listing them would invite
     # exactly the wrong authoring decision.
     "qnaVisual": "Q&A is not supported in PBIR authoring and is scheduled for deprecation (December 2026).",
@@ -68,10 +73,16 @@ EXCLUDED_NATIVE = {
     "rdlVisual": "Requires a separate paginated report definition.",
 }
 
+# Types Desktop authorises but the CLI catalog does not list, so the allowlist has
+# to declare them explicitly rather than inherit them from the catalog.
+EXTRA_NATIVE = {
+    "narrative": "Present in Desktop and authorable through PBIR, but absent from the CLI catalog. Narrative summarises a page or visual placed beside it, which is what the sample uses in place of aiNarratives.",
+}
+
 # Visual types that take no data roles. Used to explain blank-looking mockups.
 NO_ROLE_TYPES = {
     "textbox", "shape", "basicShape", "image", "pageNavigator", "bookmarkNavigator",
-    "aiNarratives", "actionButton", "keyDriversVisual",
+    "actionButton", "keyDriversVisual",
 }
 
 
@@ -113,7 +124,7 @@ def _catalog_list() -> dict:
 
 def native_types() -> list[str]:
     data = _catalog_list()
-    return sorted(t for t in data["visualTypes"] if t not in EXCLUDED_NATIVE)
+    return sorted(({*data["visualTypes"], *EXTRA_NATIVE} - set(EXCLUDED_NATIVE)))
 
 
 def deprecated_map() -> list[dict]:

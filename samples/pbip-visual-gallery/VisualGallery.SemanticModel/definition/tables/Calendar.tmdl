@@ -14,21 +14,53 @@ table Calendar
 		formatString: #,0
 		lineageTag: c43df7a3-e382-499d-817c-a4f7dc2c516a
 
-	measure 'Sales MTD' = CALCULATE([Total Sales], DATESMTD(Calendar[Date]))
+	measure 'Sales MTD' =
+			-- Calendar MTD/QTD/YTD, anchored on the last date that actually has fact
+			-- data rather than on MAX(Date). A week-based calendar is generated as whole
+			-- fiscal years, so it always overshoots the fact range at the end - here to
+			-- 2026-01-30, so MAX(Calendar[CalendarYear]) is 2026 while the facts stop
+			-- 2025-12-31. Anchoring on MAX() therefore filtered to a period with no sales
+			-- and returned BLANK, which reads as a broken measure rather than an empty
+			-- one. DATESMTD/DATESQTD/DATESYTD are avoided for the same reason: they
+			-- look for 1 January, and this table is anchored on the Saturday on or
+			-- before FiscalYearStartDate, so it begins 2022-01-29 and contains none.
+			--
+			-- The variable is named AsOf, not LastDate: DAX reserves LastDate and a
+			-- VAR of that name fails with "The syntax for 'LastDate' is incorrect".
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf),
+			    Calendar[CalendarMonthNumber] = MONTH(AsOf)
+			)
 		formatString: \$#,0.00
 		lineageTag: calendar_mtd
 
-	measure 'Sales QTD' = CALCULATE([Total Sales], DATESQTD(Calendar[Date]))
+	measure 'Sales QTD' =
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf),
+			    Calendar[CalendarMonthNumber] <= MONTH(AsOf)
+			)
 		formatString: \$#,0.00
 		lineageTag: calendar_qtd
 
-	measure 'Sales YTD' = CALCULATE([Total Sales], DATESYTD(Calendar[Date]))
+	measure 'Sales YTD' =
+			VAR AsOf = MAX(FactSales[OrderDate])
+			RETURN
+			CALCULATE(
+			    [Total Sales],
+			    Calendar[CalendarYear] = YEAR(AsOf)
+			)
 		formatString: \$#,0.00
 		lineageTag: calendar_ytd
 
 	measure 'Sales FYTD' =
-			// Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
-			// correctly. TOTALYTD/DATESYTD follow calendar months and would disagree.
+			-- Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
+			-- correctly. TOTALYTD/DATESYTD follow calendar months and would disagree.
 			VAR CurrentFY = MAX(Calendar[FiscalYear])
 			VAR CurrentWk = MAX(Calendar[FiscalWeekNumber])
 			RETURN

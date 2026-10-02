@@ -3,90 +3,92 @@
   "name": "00000000000000000038",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
-    "width": 603,
-    "tabOrder": 3000
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "decompositionTreeVisual",
-    "query": {
-      "queryState": {
-        "Analyze": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Desktop-hosted capabilities. Narrative summarises a page or visual you point it at; the older smartNarrative is not used here.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
-                  },
-                  "Property": "Total Sales"
-                }
-              },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
-            }
-          ]
-        },
-        "ExplainBy": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Subcategory"
-                }
-              },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Decomposition tree'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -99,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Decomposition of total sales, explained by product subcategory.'"
+                  "Value": "'Page subtitle: Desktop-hosted capabilities. Narrative summarises a page or visual you point it at; the older smartNarrative is not used here.'"
                 }
               }
             }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000003f",
   "position": {
-    "x": 972,
+    "x": 32,
     "y": 124,
-    "z": 5000,
+    "z": 3000,
     "height": 450,
     "width": 446,
-    "tabOrder": 5000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "FiscalYearLabel"
                 }
               },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "Calendar.FiscalYearLabel",
+              "nativeQueryRef": "FiscalYearLabel"
             }
           ]
         }
@@ -40,7 +40,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -62,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic - category'"
+                  "Value": "'Dropdown - fiscal year'"
                 }
               }
             },
@@ -96,7 +96,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Classic slicer in Basic mode over DimProduct.Category.'"
+                  "Value": "'Classic slicer in Dropdown mode over Calendar.FiscalYearLabel.'"
                 }
               }
             }

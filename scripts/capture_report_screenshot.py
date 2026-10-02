@@ -28,6 +28,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 BRIDGE_CLI = "powerbi-desktop"
@@ -123,6 +124,12 @@ def main():
     ap.add_argument("--scale", default="1.0", help="Capture scale 1.0-3.0 (default 1.0).")
     ap.add_argument("--out", default="artifacts/screenshots",
                     help="Output directory (default: artifacts/screenshots).")
+    ap.add_argument("--settle", type=float, default=15.0,
+                    help="Seconds to wait after selecting a page before capturing. "
+                         "Custom visuals that lay out asynchronously - the "
+                         "force-directed graph especially - render a partial, "
+                         "clipped canvas if captured immediately, which reads as "
+                         "a broken visual. Default 15s.")
     args = ap.parse_args()
 
     require_bridge()
@@ -165,6 +172,14 @@ def main():
         cmd = ["screenshot", page, "--output", str(outdir / f"{page}.png")]
         if args.scale != "1.0":
             cmd += ["--scale", args.scale]
+        if args.settle > 0:
+            # The bridge selects the page and captures in one call, so there is no
+            # way to select, wait, then capture. Instead take a throwaway pass to
+            # make the page current, let the visual finish laying out, then
+            # capture over it. Force-directed layout in particular renders a
+            # clipped, half-positioned canvas if captured on the first pass.
+            run(cmd)
+            time.sleep(args.settle)
         rc, payload, raw = run(cmd)
         if rc != 0 or not payload or payload.get("status") != "ok":
             print(raw, file=sys.stderr)

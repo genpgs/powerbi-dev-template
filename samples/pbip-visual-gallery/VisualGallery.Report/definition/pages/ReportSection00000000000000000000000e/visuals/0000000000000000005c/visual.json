@@ -3,90 +3,92 @@
   "name": "0000000000000000005c",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
-    "width": 916,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "DotPlot1442374105856",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Dot Plot",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "Subcategory"
-                }
-              },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Sales"
-                }
-              },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by subcategory'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -99,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dot plot of sales by product subcategory.'"
+                  "Value": "'Page title: Dot Plot'"
                 }
               }
             }

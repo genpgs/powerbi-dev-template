@@ -3,90 +3,92 @@
   "name": "000000000000000000b8",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "WordCloud1447959067750",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WordFrequency"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Word Cloud",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "Term"
-                }
-              },
-              "queryRef": "WordFrequency.Term",
-              "nativeQueryRef": "Term"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "WordFrequency"
-                    }
-                  },
-                  "Property": "Term Frequency"
-                }
-              },
-              "queryRef": "WordFrequency.Term Frequency",
-              "nativeQueryRef": "Term Frequency"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Term frequencies'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -99,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Word cloud sized by term frequency.'"
+                  "Value": "'Page title: Word Cloud'"
                 }
               }
             }

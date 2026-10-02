@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Note the inverted roles: on azureMap, Y is Latitude and X is Longitude.",
+                    "value": "Bing Maps (map, filledMap) needs no account. Azure Maps (azureMap) needs one, so it is not demonstrated here.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Page subtitle: Note the inverted roles: on azureMap, Y is Latitude and X is Longitude.'"
+                  "Value": "'Page subtitle: Bing Maps (map, filledMap) needs no account. Azure Maps (azureMap) needs one, so it is not demonstrated here.'"
                 }
               }
             }

@@ -3,11 +3,11 @@
   "name": "00000000000000000037",
   "position": {
     "x": 32,
-    "y": 82,
-    "z": 2000,
-    "height": 30,
+    "y": 32,
+    "z": 1000,
+    "height": 46,
     "width": 1856,
-    "tabOrder": 2000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Desktop-hosted capabilities. These are declared in the catalog but rendering depends on the Desktop build and service entitlement.",
+                    "value": "Native - AI and insight visuals",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "13px",
-                      "color": "#5F6368"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Page subtitle: Desktop-hosted capabilities. These are declared in the catalog but rendering depends on the Desktop build and service entitlement.'"
+                  "Value": "'Page title: Native - AI and insight visuals'"
                 }
               }
             }

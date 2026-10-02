@@ -2,183 +2,93 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000065",
   "position": {
-    "x": 972,
-    "y": 124,
-    "z": 4000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 4000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "EnhancedScatterChart1443994985041",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "ScatterPoints"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Fifteen optional roles. Its dataViewMappings declare five mutually exclusive combinations, and binding a pair that none of them allows fails with \"There are too many columns\". Each visual below matches one combination.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "ScatterPoints.Category",
-              "nativeQueryRef": "Category"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "ScatterPoints"
-                        }
-                      },
-                      "Property": "XValue"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(ScatterPoints.XValue)",
-              "nativeQueryRef": "XValue"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "ScatterPoints"
-                        }
-                      },
-                      "Property": "YValue"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(ScatterPoints.YValue)",
-              "nativeQueryRef": "YValue"
-            }
-          ]
-        },
-        "Shape": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "ScatterPoints"
-                        }
-                      },
-                      "Property": "ShapeValue"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(ScatterPoints.ShapeValue)",
-              "nativeQueryRef": "ShapeValue"
-            }
-          ]
-        },
-        "Image": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "ScatterPoints"
-                    }
-                  },
-                  "Property": "ImageUrl"
-                }
-              },
-              "queryRef": "ScatterPoints.ImageUrl",
-              "nativeQueryRef": "ImageUrl"
-            }
-          ]
-        },
-        "Rotation": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "ScatterPoints"
-                        }
-                      },
-                      "Property": "RotationValue"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(ScatterPoints.RotationValue)",
-              "nativeQueryRef": "RotationValue"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Shape, image and rotation'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -191,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Enhanced scatter using shape, image and rotation.'"
+                  "Value": "'Page subtitle: Fifteen optional roles. Its dataViewMappings declare five mutually exclusive combinations, and binding a pair that none of them allows fails with \"There are too many columns\". Each visual below matches one combination.'"
                 }
               }
             }

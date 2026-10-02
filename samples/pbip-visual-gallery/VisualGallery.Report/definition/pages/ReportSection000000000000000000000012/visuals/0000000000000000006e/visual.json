@@ -3,198 +3,92 @@
   "name": "0000000000000000006e",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
+    "y": 32,
+    "z": 1000,
+    "height": 46,
     "width": 1856,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "Gantt1448688115699",
-    "query": {
-      "queryState": {
-        "Task": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Gantt",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "TaskName"
-                }
-              },
-              "queryRef": "GanttTasks.TaskName",
-              "nativeQueryRef": "TaskName"
-            }
-          ]
-        },
-        "Parent": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "ParentTask"
-                }
-              },
-              "queryRef": "GanttTasks.ParentTask",
-              "nativeQueryRef": "ParentTask"
-            }
-          ]
-        },
-        "StartDate": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "StartDate"
-                }
-              },
-              "queryRef": "GanttTasks.StartDate",
-              "nativeQueryRef": "StartDate"
-            }
-          ]
-        },
-        "Duration": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "Gantt Value"
-                }
-              },
-              "queryRef": "GanttTasks.Gantt Value",
-              "nativeQueryRef": "Gantt Value"
-            }
-          ]
-        },
-        "Completion": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "Gantt Completion"
-                }
-              },
-              "queryRef": "GanttTasks.Gantt Completion",
-              "nativeQueryRef": "Gantt Completion"
-            }
-          ]
-        },
-        "Resource": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "Resource"
-                }
-              },
-              "queryRef": "GanttTasks.Resource",
-              "nativeQueryRef": "Resource"
-            }
-          ]
-        },
-        "Legend": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "Legend"
-                }
-              },
-              "queryRef": "GanttTasks.Legend",
-              "nativeQueryRef": "Legend"
-            }
-          ]
-        },
-        "Milestones": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "GanttTasks"
-                    }
-                  },
-                  "Property": "Milestone"
-                }
-              },
-              "queryRef": "GanttTasks.Milestone",
-              "nativeQueryRef": "Milestone"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Programme schedule'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -207,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gantt chart of project tasks grouped by parent phase.'"
+                  "Value": "'Page title: Gantt'"
                 }
               }
             }

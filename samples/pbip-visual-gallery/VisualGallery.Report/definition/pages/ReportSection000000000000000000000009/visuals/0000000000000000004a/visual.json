@@ -2,15 +2,51 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000004a",
   "position": {
-    "x": 32,
-    "y": 598,
-    "z": 6000,
+    "x": 659,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 603,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "basicShape",
+    "visualType": "image",
+    "objects": {
+      "image": [
+        {
+          "properties": {
+            "sourceType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'imageUrl'"
+                }
+              }
+            },
+            "sourceUrl": {
+              "expr": {
+                "Literal": {
+                  "Value": "'https://picsum.photos/seed/pbi-gallery-static/480/320'"
+                }
+              }
+            },
+            "fit": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fit'"
+                }
+              }
+            },
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Static placeholder image'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -25,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic shape'"
+                  "Value": "'Static image'"
                 }
               }
             },
@@ -53,13 +89,47 @@
           }
         }
       ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "general": [
         {
           "properties": {
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic shape, the lighter sibling of the shape visual.'"
+                  "Value": "'Single image loaded directly from a URL, with no data binding.'"
                 }
               }
             }

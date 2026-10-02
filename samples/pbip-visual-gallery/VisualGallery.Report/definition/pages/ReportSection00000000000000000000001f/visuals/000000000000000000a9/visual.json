@@ -2,91 +2,93 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "000000000000000000a9",
   "position": {
-    "x": 972,
-    "y": 124,
-    "z": 4000,
-    "height": 924,
-    "width": 916,
-    "tabOrder": 4000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "TableHeatMap1443716069308",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimStore"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Roles: Category, Y.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
-                  },
-                  "Property": "Region"
-                }
-              },
-              "queryRef": "DimStore.Region",
-              "nativeQueryRef": "Region"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Gross Profit"
-                }
-              },
-              "queryRef": "FactSales.Total Gross Profit",
-              "nativeQueryRef": "Total Gross Profit"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit by region and year'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -99,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Table heatmap of gross profit across region and year.'"
+                  "Value": "'Page subtitle: Roles: Category, Y.'"
                 }
               }
             }

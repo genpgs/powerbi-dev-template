@@ -3,92 +3,108 @@
   "name": "000000000000000000bb",
   "position": {
     "x": 972,
-    "y": 598,
-    "z": 6000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 916,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Word Cloud sizes each word by its Values measure. A cloud where every word is the same size almost always means the measure is being aggregated away - check that Values is bound to a measure, not a column.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "WordCloud1447959067750",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "Term"
+                }
+              },
+              "queryRef": "WordFrequency.Term",
+              "nativeQueryRef": "Term"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Term Frequency"
+                }
+              },
+              "queryRef": "WordFrequency.Term Frequency",
+              "nativeQueryRef": "Term Frequency"
+            }
+          ]
+        },
+        "Excludes": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Excludes"
+                }
+              },
+              "queryRef": "WordFrequency.Excludes",
+              "nativeQueryRef": "Excludes"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'With exclusions'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Word Cloud sizes each word by its Values measure. A cloud where every word is the same size almost always means the measure is being aggregated away - check that Values is bound to a measure, not a column.'"
+                  "Value": "'Word cloud excluding stop words through the Excludes role.'"
                 }
               }
             }

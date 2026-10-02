@@ -3,118 +3,92 @@
   "name": "000000000000000000a4",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
-    "width": 916,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "Sunburst1445472000808",
-    "query": {
-      "queryState": {
-        "Nodes": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "HierarchyNodes"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Sunburst",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "Level1"
-                }
-              },
-              "queryRef": "HierarchyNodes.Level1",
-              "nativeQueryRef": "Level1"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "HierarchyNodes"
-                    }
-                  },
-                  "Property": "Level2"
-                }
-              },
-              "queryRef": "HierarchyNodes.Level2",
-              "nativeQueryRef": "Level2"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "HierarchyNodes"
-                    }
-                  },
-                  "Property": "Level3"
-                }
-              },
-              "queryRef": "HierarchyNodes.Level3",
-              "nativeQueryRef": "Level3"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "HierarchyNodes"
-                    }
-                  },
-                  "Property": "Node Value"
-                }
-              },
-              "queryRef": "HierarchyNodes.Node Value",
-              "nativeQueryRef": "Node Value"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Three levels'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -127,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sunburst over three hierarchy levels with a value at the leaf.'"
+                  "Value": "'Page title: Sunburst'"
                 }
               }
             }

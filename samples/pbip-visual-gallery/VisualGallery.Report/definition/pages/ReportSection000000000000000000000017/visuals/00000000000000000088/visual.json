@@ -3,92 +3,108 @@
   "name": "00000000000000000088",
   "position": {
     "x": 972,
-    "y": 598,
-    "z": 6000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 916,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Power KPI's Axis role is the category, Values is the figure shown large, and KPI is the comparison drawn behind it. KPIIndicatorValue supplies the status dot.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
+    "query": {
+      "queryState": {
+        "Axis": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "IndicatorName"
+                }
+              },
+              "queryRef": "KpiTargets.IndicatorName",
+              "nativeQueryRef": "IndicatorName"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Actual"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
+            }
+          ]
+        },
+        "KPI": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Target"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Target",
+              "nativeQueryRef": "KPI Target"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Actual with target'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Power KPI''s Axis role is the category, Values is the figure shown large, and KPI is the comparison drawn behind it. KPIIndicatorValue supplies the status dot.'"
+                  "Value": "'Power KPI comparing actual to target.'"
                 }
               }
             }

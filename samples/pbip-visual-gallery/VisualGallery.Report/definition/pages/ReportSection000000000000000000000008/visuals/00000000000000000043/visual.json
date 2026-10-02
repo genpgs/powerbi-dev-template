@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000043",
   "position": {
-    "x": 972,
+    "x": 32,
     "y": 598,
-    "z": 9000,
+    "z": 7000,
     "height": 450,
     "width": 446,
-    "tabOrder": 9000
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "advancedSlicerVisual",
+    "visualType": "listSlicer",
     "query": {
       "queryState": {
         "Values": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "DimCustomer"
                     }
                   },
-                  "Property": "ColorName"
+                  "Property": "Continent"
                 }
               },
-              "queryRef": "DimProduct.ColorName",
-              "nativeQueryRef": "ColorName"
+              "queryRef": "DimCustomer.Continent",
+              "nativeQueryRef": "Continent"
             }
           ]
         }
@@ -47,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Button slicer - colour'"
+                  "Value": "'List slicer - continent'"
                 }
               }
             },
@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tile/button slicer over product colour.'"
+                  "Value": "'Scrollable list slicer over customer continent.'"
                 }
               }
             }

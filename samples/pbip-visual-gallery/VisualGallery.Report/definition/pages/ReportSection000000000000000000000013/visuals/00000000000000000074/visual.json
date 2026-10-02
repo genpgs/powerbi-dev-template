@@ -3,92 +3,113 @@
   "name": "00000000000000000074",
   "position": {
     "x": 972,
-    "y": 598,
-    "z": 6000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 916,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Infographic Designer has no fixed layout: it picks one from the fields you give it. If it renders a plain list, the usual cause is an under-specified Values role rather than a binding error.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
+                    }
+                  },
+                  "Property": "Channel"
+                }
+              },
+              "queryRef": "DimStore.Channel",
+              "nativeQueryRef": "Channel"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactSales.SalesAmount)",
+              "nativeQueryRef": "SalesAmount"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Rows and columns'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +122,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Infographic Designer has no fixed layout: it picks one from the fields you give it. If it renders a plain list, the usual cause is an under-specified Values role rather than a binding error.'"
+                  "Value": "'Infographic using Rows and Columns to facet the layout.'"
                 }
               }
             }

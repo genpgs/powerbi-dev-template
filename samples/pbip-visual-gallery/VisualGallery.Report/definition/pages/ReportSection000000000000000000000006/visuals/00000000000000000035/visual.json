@@ -6,89 +6,123 @@
     "y": 598,
     "z": 5000,
     "height": 450,
-    "width": 1856,
+    "width": 916,
     "tabOrder": 5000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Azure Maps roles are counter-intuitive and worth memorising: the role named Y is Latitude and the role named X is Longitude. Both accept a column or a measure. Bing Maps (map, filledMap) stays deprecated - do not create it; use azureMap or shapeMap instead. See docs/POWER_BI_VISUAL_COVERAGE.md.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "shapeMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "Continent"
+                }
+              },
+              "queryRef": "DimStore.Continent",
+              "nativeQueryRef": "Continent"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "DimStore.Region",
+              "nativeQueryRef": "Region"
+            }
+          ]
+        },
+        "Value": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "FactSales.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Gross Profit"
+                }
+              },
+              "queryRef": "FactSales.Total Gross Profit",
+              "nativeQueryRef": "Total Gross Profit"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Shape map'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Azure Maps roles are counter-intuitive and worth memorising: the role named Y is Latitude and the role named X is Longitude. Both accept a column or a measure. Bing Maps (map, filledMap) stays deprecated - do not create it; use azureMap or shapeMap instead. See docs/POWER_BI_VISUAL_COVERAGE.md.'"
+                  "Value": "'Shape map. Its bundled geography is US states, and this model''s DimStore is keyed on continent and region, so no shape matches and the map stays unshaded - bind it to a geography your data actually keys on.'"
                 }
               }
             }

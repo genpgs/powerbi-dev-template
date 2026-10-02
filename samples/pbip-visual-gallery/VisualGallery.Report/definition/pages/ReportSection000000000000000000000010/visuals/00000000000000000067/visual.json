@@ -3,92 +3,159 @@
   "name": "00000000000000000067",
   "position": {
     "x": 972,
-    "y": 598,
-    "z": 6000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 916,
-    "tabOrder": 6000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Enhanced Scatter is the most configurable of the Microsoft visuals. Its optional roles are Category, Series, X, Y, Size, Gradient, ColorFill, Shape, Image, Rotation, Backdrop, X Start, X End, Y Start and Y End. Bind only the ones the question needs; unused roles render as defaults rather than errors.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "EnhancedScatterChart1443994985041",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "ScatterPoints.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "XValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.XValue)",
+              "nativeQueryRef": "XValue"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "YValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.YValue)",
+              "nativeQueryRef": "YValue"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "SizeValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.SizeValue)",
+              "nativeQueryRef": "SizeValue"
+            }
+          ]
+        },
+        "Image": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "ImageUrl"
+                }
+              },
+              "queryRef": "ScatterPoints.ImageUrl",
+              "nativeQueryRef": "ImageUrl"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Image'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +168,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Enhanced Scatter is the most configurable of the Microsoft visuals. Its optional roles are Category, Series, X, Y, Size, Gradient, ColorFill, Shape, Image, Rotation, Backdrop, X Start, X End, Y Start and Y End. Bind only the ones the question needs; unused roles render as defaults rather than errors.'"
+                  "Value": "'Category, X, Y, Size and Image. Image excludes Gradient, ColorFill and Shape.'"
                 }
               }
             }

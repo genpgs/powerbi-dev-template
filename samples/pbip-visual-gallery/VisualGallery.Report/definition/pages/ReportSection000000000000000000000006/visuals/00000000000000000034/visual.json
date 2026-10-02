@@ -10,7 +10,7 @@
     "tabOrder": 4000
   },
   "visual": {
-    "visualType": "shapeMap",
+    "visualType": "filledMap",
     "query": {
       "queryState": {
         "Category": {
@@ -49,7 +49,7 @@
             }
           ]
         },
-        "Value": {
+        "Y": {
           "projections": [
             {
               "field": {
@@ -101,7 +101,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Shape map'"
+                  "Value": "'Sales by continent'"
                 }
               }
             },
@@ -135,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales shaded across geographic regions by continent.'"
+                  "Value": "'Regions shaded by sales, as a choropleth. Bing Maps, so no account is needed.'"
                 }
               }
             }

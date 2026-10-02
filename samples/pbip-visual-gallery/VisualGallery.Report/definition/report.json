@@ -5,8 +5,8 @@
       "name": "GalleryBase",
       "reportVersionAtImport": {
         "visual": "2.13.0",
-        "report": "3.3.0",
-        "page": "2.1.0"
+        "report": "3.4.0",
+        "page": "2.3.1"
       },
       "type": "SharedResources"
     }
@@ -63,6 +63,11 @@
           "name": "GalleryBase",
           "path": "BaseThemes/GalleryBase.json",
           "type": "BaseTheme"
+        },
+        {
+          "name": "usa.states.topo",
+          "path": "Shapemaps/usa.states.topo.json",
+          "type": "ShapeMap"
         }
       ]
     }

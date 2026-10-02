@@ -14,10 +14,10 @@ annotation PBI_ProTooling = ["DevMode"]
 annotation PBI_QueryOrder = ["Calendar","DimProduct","DimCustomer","DimStore","FactSales","Flow","KpiTargets","PriceSeries","GanttTasks","HierarchyNodes","ScatterPoints","WordFrequency","BulletThresholds","fnCalendar","fnCalendarWeekBased","fnSeed"]
 
 ref table Calendar
+ref table FactSales
 ref table DimProduct
 ref table DimCustomer
 ref table DimStore
-ref table FactSales
 ref table Flow
 ref table KpiTargets
 ref table PriceSeries
@@ -26,3 +26,4 @@ ref table HierarchyNodes
 ref table ScatterPoints
 ref table WordFrequency
 ref table BulletThresholds
+

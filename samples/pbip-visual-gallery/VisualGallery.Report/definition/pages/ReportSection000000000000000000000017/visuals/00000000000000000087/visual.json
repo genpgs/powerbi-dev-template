@@ -3,11 +3,11 @@
   "name": "00000000000000000087",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
+    "y": 124,
+    "z": 3000,
     "height": 450,
     "width": 916,
-    "tabOrder": 5000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
@@ -49,24 +49,6 @@
             }
           ]
         },
-        "SecondaryValues": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Comparison"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Comparison",
-              "nativeQueryRef": "KPI Comparison"
-            }
-          ]
-        },
         "KPI": {
           "projections": [
             {
@@ -82,6 +64,24 @@
               },
               "queryRef": "KpiTargets.KPI Attainment %",
               "nativeQueryRef": "KPI Attainment %"
+            }
+          ]
+        },
+        "KPIIndicatorValue": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "StatusLabel"
+                }
+              },
+              "queryRef": "KpiTargets.StatusLabel",
+              "nativeQueryRef": "StatusLabel"
             }
           ]
         }
@@ -101,7 +101,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'With secondary values'"
+                  "Value": "'Actual with indicator'"
                 }
               }
             },
@@ -135,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Power KPI adding the prior-period comparison.'"
+                  "Value": "'Power KPI showing actual value with its status indicator.'"
                 }
               }
             }

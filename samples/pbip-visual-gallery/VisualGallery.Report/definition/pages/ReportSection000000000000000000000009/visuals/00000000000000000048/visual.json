@@ -2,87 +2,59 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000048",
   "position": {
-    "x": 659,
-    "y": 124,
-    "z": 4000,
-    "height": 450,
-    "width": 603,
-    "tabOrder": 4000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "image",
+    "visualType": "textbox",
     "objects": {
-      "image": [
+      "general": [
         {
           "properties": {
-            "sourceType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'imageUrl'"
-                }
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Data-bound images require dataCategory: ImageUrl on the column; see image.md.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#5F6368"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
               }
-            },
-            "sourceUrl": {
-              "expr": {
-                "Literal": {
-                  "Value": "'https://picsum.photos/seed/pbi-gallery-static/480/320'"
-                }
-              }
-            },
-            "fit": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Fit'"
-                }
-              }
-            },
-            "altText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Static placeholder image'"
-                }
-              }
-            }
+            ]
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "text": {
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Static image'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "false"
                 }
               }
             }
@@ -95,28 +67,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             }
@@ -129,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Single image loaded directly from a URL, with no data binding.'"
+                  "Value": "'Page subtitle: Data-bound images require dataCategory: ImageUrl on the column; see image.md.'"
                 }
               }
             }

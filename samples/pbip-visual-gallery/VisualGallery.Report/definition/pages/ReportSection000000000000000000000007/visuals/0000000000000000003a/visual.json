@@ -2,15 +2,91 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000003a",
   "position": {
-    "x": 1286,
+    "x": 659,
     "y": 124,
-    "z": 5000,
-    "height": 924,
-    "width": 602,
-    "tabOrder": 5000
+    "z": 4000,
+    "height": 450,
+    "width": 603,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "aiNarratives",
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "FactSales.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
+                    }
+                  },
+                  "Property": "Channel"
+                }
+              },
+              "queryRef": "DimStore.Channel",
+              "nativeQueryRef": "Channel"
+            }
+          ]
+        },
+        "Details": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Related": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Subcategory"
+                }
+              },
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
+            }
+          ]
+        }
+      }
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -25,7 +101,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Smart narrative'"
+                  "Value": "'Key influencers'"
                 }
               }
             },
@@ -59,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Smart narrative summarising sales performance.'"
+                  "Value": "'Key drivers of total sales, explained by sales channel, detailed by category, with product subcategory as a related factor.'"
                 }
               }
             }

@@ -2,132 +2,93 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000007c",
   "position": {
-    "x": 972,
-    "y": 124,
-    "z": 4000,
-    "height": 924,
-    "width": 916,
-    "tabOrder": 4000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "MekkoChart1449744733038",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Roles: Category, Series, Y, Width.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimStore"
-                    }
-                  },
-                  "Property": "Channel"
-                }
-              },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Gross Profit"
-                }
-              },
-              "queryRef": "FactSales.Total Gross Profit",
-              "nativeQueryRef": "Total Gross Profit"
-            }
-          ]
-        },
-        "Width": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FactSales"
-                        }
-                      },
-                      "Property": "Quantity"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(FactSales.Quantity)",
-              "nativeQueryRef": "Quantity"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit with width series'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -140,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mekko chart of gross profit with quantity as the width measure.'"
+                  "Value": "'Page subtitle: Roles: Category, Series, Y, Width.'"
                 }
               }
             }

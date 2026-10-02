@@ -2,93 +2,51 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000004b",
   "position": {
-    "x": 659,
-    "y": 598,
-    "z": 7000,
+    "x": 1286,
+    "y": 124,
+    "z": 5000,
     "height": 450,
-    "width": 1229,
-    "tabOrder": 7000
+    "width": 602,
+    "tabOrder": 5000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Shapes sit on the z-order beneath data visuals. Raise the data visual's z rather than lowering a shape: a shape drawn on top will intercept clicks and block tooltips.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
-        }
-      ]
-    },
+    "visualType": "shape",
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Shape'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +59,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Shapes sit on the z-order beneath data visuals. Raise the data visual''s z rather than lowering a shape: a shape drawn on top will intercept clicks and block tooltips.'"
+                  "Value": "'Shape visual used as a background container behind neighbouring visuals.'"
                 }
               }
             }

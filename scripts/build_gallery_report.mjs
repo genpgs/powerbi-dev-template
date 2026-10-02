@@ -452,7 +452,7 @@ PAGES.push(
       viz("cardVisual", "Orders", "Big number: distinct order count.", { Data: sales.orders }, p(3, 0)),
       viz("cardVisual", "Card with multiple values", "A single card bound to several measures at once.", { Data: [sales.total, sales.profit, sales.orders] }, p(0, 1)),
       viz("cardVisual", "Card small multiples", "One card per sales channel, using the Rows role.", { Data: sales.total, Rows: store.channel }, p(1, 1)),
-      viz("kpi", "KPI vs target", "Sales against its year-to-date trend line, with prior year as the goal.", { Indicator: sales.total, TrendLine: cal.date, Goal: sales.py }, p(2, 1)),
+        viz("kpi", "KPI vs target", "Actual against target over the indicator's own period date. All three roles come from KpiTargets so the trend axis and the measures agree; binding Indicator from one table and TrendLine from another leaves the visual with no value to show.", { Indicator: kpi.actual, TrendLine: kpi.date, Goal: kpi.target }, p(2, 1)),
       viz("gauge", "Gauge", "Gross margin as a gauge. Min, max and target are left on auto-scale.", { Y: sales.margin }, p(3, 1)),
     ],
   ),
@@ -478,37 +478,39 @@ PAGES.push(
 // ── 05 Native Map ─────────────────────────────────────────────────────────────
 PAGES.push(
   page(
-    "05 Native - Map",
-    "Native - Maps",
-    "Note the inverted roles: on azureMap, Y is Latitude and X is Longitude.",
-    2,
-    2,
-    (p) => [
-      viz("azureMap", "Customers by city", "Customer locations plotted by latitude and longitude, sized by sales.", { Category: cust.city, Y: C("DimCustomer", "Latitude"), X: C("DimCustomer", "Longitude"), Size: sales.total, Tooltips: sales.orders }, p(0, 0)),
-      viz("shapeMap", "Shape map", "Sales shaded across geographic regions by continent.", { Category: store.cont, Series: store.region, Value: sales.total, Tooltips: sales.profit }, p(1, 0)),
-      note(
-        "Azure Maps roles are counter-intuitive and worth memorising: the role named Y is Latitude and the role named X is Longitude. Both accept a column or a measure. Bing Maps (map, filledMap) stays deprecated - do not create it; use azureMap or shapeMap instead. See docs/POWER_BI_VISUAL_COVERAGE.md.",
-        p(0, 1, 2),
-      ),
-    ],
-  ),
-);
+      "05 Native - Map",
+      "Native - Maps",
+      "Bing Maps (map, filledMap) needs no account. Azure Maps (azureMap) needs one, so it is not demonstrated here.",
+      2,
+      2,
+      (p) => [
+        viz("map", "Customers by city", "Customer locations plotted by latitude and longitude, sized by sales. Latitude and Longitude must be aggregated as Average: bound as bare columns the visual treats them as text and reports 'Remove Location to display latitude and longitude pairs'.", { Category: cust.city, Y: A("DimCustomer", "Latitude", "Average"), X: A("DimCustomer", "Longitude", "Average"), Size: sales.total, Tooltips: sales.orders }, p(0, 0)),
+        viz("filledMap", "Sales by continent", "Regions shaded by sales, as a choropleth. Bing Maps, so no account is needed.", { Category: store.cont, Series: store.region, Y: sales.total, Tooltips: sales.profit }, p(1, 0)),
+        viz("shapeMap", "Shape map", "Shape map. Its bundled geography is US states, and this model's DimStore is keyed on continent and region, so no shape matches and the map stays unshaded - bind it to a geography your data actually keys on.", { Category: store.cont, Series: store.region, Value: sales.total, Tooltips: sales.profit }, p(0, 1)),
+        note(
+          "Bing Maps roles are inverted: the role named Y is Latitude and the role named X is Longitude, and both need an aggregate. filledMap uses Y for the value where shapeMap uses Value. Azure Maps (azureMap) is deliberately absent: it requires a provisioned Azure Maps account, so it renders empty in a self-contained sample.",
+          p(1, 1),
+        ),
+      ],
+    ),
+  );
 
 // ── 06 Native AI ──────────────────────────────────────────────────────────────
 PAGES.push(
   page(
-    "06 Native - AI & Insights",
-    "Native - AI and insight visuals",
-    "Desktop-hosted capabilities. These are declared in the catalog but rendering depends on the Desktop build and service entitlement.",
-    3,
-    1,
-    (p) => [
-      viz("decompositionTreeVisual", "Decomposition tree", "Decomposition of total sales, explained by product subcategory.", { Analyze: sales.total, ExplainBy: prod.sub }, p(0, 0)),
-      viz("keyDriversVisual", "Key influencers", "Key drivers of total sales, explained by sales channel and detailed by category.", { Target: sales.total, ExplainBy: store.channel, Details: prod.cat }, p(1, 0)),
-      viz("aiNarratives", "Smart narrative", "Smart narrative summarising sales performance.", null, p(2, 0)),
-    ],
-  ),
-);
+      "06 Native - AI & Insights",
+      "Native - AI and insight visuals",
+      "Desktop-hosted capabilities. Narrative summarises a page or visual you point it at; the older smartNarrative is not used here.",
+      3,
+      2,
+      (p) => [
+        viz("decompositionTreeVisual", "Decomposition tree", "Decomposition of total sales, explained by product subcategory.", { Analyze: sales.total, ExplainBy: prod.sub }, p(0, 0)),
+        viz("keyDriversVisual", "Key influencers", "Key drivers of total sales, explained by sales channel, detailed by category, with product subcategory as a related factor.", { Target: sales.total, ExplainBy: store.channel, Details: prod.cat, Related: prod.sub }, p(1, 0)),
+        viz("narrative", "Narrative", "Narrative summarising the table beside it. Narrative reads a page or visual rather than taking a role of its own.", null, p(2, 0)),
+        viz("tableEx", "Narrative source", "The table the narrative above summarises. Narrative picks up the selection or filter context of what it is placed beside.", { Values: [sales.total, sales.profit, sales.margin], Category: store.channel }, p(2, 1)),
+      ],
+    ),
+  );
 
 // ── 07 Native Slicers ─────────────────────────────────────────────────────────
 PAGES.push(
@@ -666,12 +668,12 @@ PAGES.push(page("15 Custom - Dual KPI", "Dual KPI", "Roles: axis, topvalues, bot
   viz(G.dualKpi, "Actual vs prior", "Dual KPI comparing actual against the comparison measure.", { axis: kpi.name, topvalues: kpi.actual, bottomvalues: kpi.comparison }, p(1, 0)),
 ]));
 
-PAGES.push(page("16 Custom - Enhanced Scatter", "Enhanced Scatter", "Fourteen optional roles. This page binds the six that carry meaning.", 2, 2, (p) => [
-  viz(G.scatter, "X, Y, size and series", "Enhanced scatter with series colouring and point size.", { Category: pts.cat, Series: pts.series, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Size: A("ScatterPoints", "SizeValue") }, p(0, 0)),
-  viz(G.scatter, "Shape, image and rotation", "Enhanced scatter using shape, image and rotation.", { Category: pts.cat, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Shape: A("ScatterPoints", "ShapeValue"), Image: pts.image, Rotation: A("ScatterPoints", "RotationValue") }, p(1, 0)),
-  viz(G.scatter, "Colour fill and gradient", "Enhanced scatter using ColorFill and Gradient roles.", { Category: pts.cat, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), ColorFill: pts.series, Gradient: A("ScatterPoints", "GradientValue") }, p(0, 1)),
-  note("Enhanced Scatter is the most configurable of the Microsoft visuals. Its optional roles are Category, Series, X, Y, Size, Gradient, ColorFill, Shape, Image, Rotation, Backdrop, X Start, X End, Y Start and Y End. Bind only the ones the question needs; unused roles render as defaults rather than errors.", p(1, 1)),
-]));
+  PAGES.push(page("16 Custom - Enhanced Scatter", "Enhanced Scatter", "Fifteen optional roles. Its dataViewMappings declare five mutually exclusive combinations, and binding a pair that none of them allows fails with \"There are too many columns\". Each visual below matches one combination.", 2, 2, (p) => [
+    viz(G.scatter, "Size, gradient, shape and rotation", "The fullest combination: Category, X, Y, Size, Gradient, Shape and Rotation, with no Series, ColorFill or Image.", { Category: pts.cat, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Size: A("ScatterPoints", "SizeValue"), Gradient: A("ScatterPoints", "GradientValue"), Shape: A("ScatterPoints", "ShapeValue"), Rotation: A("ScatterPoints", "RotationValue") }, p(0, 0)),
+    viz(G.scatter, "Image", "Category, X, Y, Size and Image. Image excludes Gradient, ColorFill and Shape.", { Category: pts.cat, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Size: A("ScatterPoints", "SizeValue"), Image: pts.image }, p(1, 0)),
+    viz(G.scatter, "Colour fill", "Category, X, Y, Size and ColorFill. ColorFill excludes Gradient and Image.", { Category: pts.cat, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Size: A("ScatterPoints", "SizeValue"), ColorFill: pts.series }, p(0, 1)),
+    viz(G.scatter, "Series", "Category, Series, X, Y, Size and ColorFill. Series requires ColorFill or Image, so it cannot stand alone.", { Category: pts.cat, Series: pts.series, X: A("ScatterPoints", "XValue"), Y: A("ScatterPoints", "YValue"), Size: A("ScatterPoints", "SizeValue"), ColorFill: pts.series }, p(1, 1)),
+  ]));
 
 PAGES.push(page("17 Custom - Force-Directed Graph", "Force-Directed Graph", "Roles: Source, Target, Weight, LinkType, SourceType, TargetType.", 2, 1, (p) => [
   viz(G.force, "Weighted links", "Force-directed graph of weighted links between pipeline stages.", { Source: flow.source, Target: flow.dest, Weight: A("Flow", "Value") }, p(0, 0)),
@@ -700,7 +702,7 @@ PAGES.push(page("18 Custom - Gantt", "Gantt", "Roles: Task, Parent, StartDate, D
 PAGES.push(page("19 Custom - Infographic Designer", "Infographic Designer", "Roles: Category, Values, Columns, Rows, Legend.", 2, 2, (p) => [
   viz(G.infographic, "Category and values", "Infographic with a single category and value pairing.", { Category: prod.cat, Values: A("FactSales", "SalesAmount") }, p(0, 0)),
   viz(G.infographic, "Rows and columns", "Infographic using Rows and Columns to facet the layout.", { Columns: prod.cat, Rows: store.channel, Values: A("FactSales", "SalesAmount") }, p(1, 0)),
-  viz(G.infographic, "Legend and values", "Infographic using a legend field to split the shape.", { Legend: prod.cat, Values: A("FactSales", "GrossProfit") }, p(0, 1)),
+  viz(G.infographic, "Legend and values", "Infographic using a legend field to split the shape.", { Legend: prod.cat, Values: sales.profit }, p(0, 1)),
   note("Infographic Designer has no fixed layout: it picks one from the fields you give it. If it renders a plain list, the usual cause is an under-specified Values role rather than a binding error.", p(1, 1)),
 ]));
 

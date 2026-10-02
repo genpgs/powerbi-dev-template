@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000041",
   "position": {
-    "x": 32,
-    "y": 598,
-    "z": 7000,
+    "x": 972,
+    "y": 124,
+    "z": 5000,
     "height": 450,
     "width": 446,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
-    "visualType": "listSlicer",
+    "visualType": "slicer",
     "query": {
       "queryState": {
         "Values": {
@@ -20,18 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimCustomer"
+                      "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Continent"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "DimCustomer.Continent",
-              "nativeQueryRef": "Continent"
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -47,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'List slicer - continent'"
+                  "Value": "'Basic - category'"
                 }
               }
             },
@@ -81,7 +96,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Scrollable list slicer over customer continent.'"
+                  "Value": "'Classic slicer in Basic mode over DimProduct.Category.'"
                 }
               }
             }

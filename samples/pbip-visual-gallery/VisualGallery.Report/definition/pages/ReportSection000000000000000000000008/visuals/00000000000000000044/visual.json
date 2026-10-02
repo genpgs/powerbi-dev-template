@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000044",
   "position": {
-    "x": 1442,
+    "x": 502,
     "y": 598,
-    "z": 10000,
+    "z": 8000,
     "height": 450,
     "width": 446,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visual": {
-    "visualType": "advancedSlicerVisual",
+    "visualType": "listSlicer",
     "query": {
       "queryState": {
         "Values": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimStore"
+                      "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Channel"
+                  "Property": "Subcategory"
                 }
               },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
             }
           ]
         }
@@ -47,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Button slicer - channel'"
+                  "Value": "'List slicer - subcategory'"
                 }
               }
             },
@@ -81,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tile/button slicer over sales channel.'"
+                  "Value": "'Scrollable list slicer over product subcategory.'"
                 }
               }
             }

@@ -3,95 +3,92 @@
   "name": "00000000000000000071",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Infographic Designer",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FactSales"
-                        }
-                      },
-                      "Property": "SalesAmount"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(FactSales.SalesAmount)",
-              "nativeQueryRef": "SalesAmount"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Category and values'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -104,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Infographic with a single category and value pairing.'"
+                  "Value": "'Page title: Infographic Designer'"
                 }
               }
             }

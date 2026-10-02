@@ -3,144 +3,92 @@
   "name": "00000000000000000060",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
-    "width": 916,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "PBI_CV_3C80B1F2_09AF_4123_8E99_C3CBC46B23E0",
-    "query": {
-      "queryState": {
-        "axis": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Dual KPI",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "IndicatorName"
-                }
-              },
-              "queryRef": "KpiTargets.IndicatorName",
-              "nativeQueryRef": "IndicatorName"
-            }
-          ]
-        },
-        "topvalues": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Actual"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Actual",
-              "nativeQueryRef": "KPI Actual"
-            }
-          ]
-        },
-        "bottomvalues": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Target"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Target",
-              "nativeQueryRef": "KPI Target"
-            }
-          ]
-        },
-        "toppercentdate": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "PeriodDate"
-                }
-              },
-              "queryRef": "KpiTargets.PeriodDate",
-              "nativeQueryRef": "PeriodDate"
-            }
-          ]
-        },
-        "bottompercentdate": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "PeriodDate"
-                }
-              },
-              "queryRef": "KpiTargets.PeriodDate",
-              "nativeQueryRef": "PeriodDate"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Actual vs target'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -153,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dual KPI comparing actual against target, split on period date.'"
+                  "Value": "'Page title: Dual KPI'"
                 }
               }
             }

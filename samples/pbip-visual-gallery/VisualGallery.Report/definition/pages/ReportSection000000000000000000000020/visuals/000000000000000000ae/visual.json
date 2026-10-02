@@ -3,92 +3,72 @@
   "name": "000000000000000000ae",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
+    "y": 124,
+    "z": 3000,
     "height": 450,
-    "width": 1856,
-    "tabOrder": 5000
+    "width": 916,
+    "tabOrder": 3000
   },
   "visual": {
-    "visualType": "textbox",
-    "objects": {
-      "general": [
-        {
-          "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Text Filter takes exactly one field and is the only filter control here that is a custom visual rather than a slicer. The Chiclet and Timeline visuals below are also filters, but they are custom visuals rather than slicers in the slicer sense.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+    "visualType": "textFilter25A4896A83E0487089E2B90C9AE57C8A",
+    "query": {
+      "queryState": {
+        "field": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              }
-            ]
-          }
+                  },
+                  "Property": "Term"
+                }
+              },
+              "queryRef": "WordFrequency.Term",
+              "nativeQueryRef": "Term"
+            }
+          ]
         }
-      ]
+      }
     },
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
-            "bottom": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'Filter by term'"
                 }
               }
             },
-            "left": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
-            "right": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
                 }
               }
             }
@@ -101,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Text Filter takes exactly one field and is the only filter control here that is a custom visual rather than a slicer. The Chiclet and Timeline visuals below are also filters, but they are custom visuals rather than slicers in the slicer sense.'"
+                  "Value": "'Text filter letting a reader type a term to filter on.'"
                 }
               }
             }

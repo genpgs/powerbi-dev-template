@@ -10,7 +10,7 @@
     "tabOrder": 3000
   },
   "visual": {
-    "visualType": "azureMap",
+    "visualType": "map",
     "query": {
       "queryState": {
         "Category": {
@@ -35,16 +35,21 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimCustomer"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCustomer"
+                        }
+                      },
+                      "Property": "Latitude"
                     }
                   },
-                  "Property": "Latitude"
+                  "Function": 1
                 }
               },
-              "queryRef": "DimCustomer.Latitude",
+              "queryRef": "Average(DimCustomer.Latitude)",
               "nativeQueryRef": "Latitude"
             }
           ]
@@ -53,16 +58,21 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimCustomer"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCustomer"
+                        }
+                      },
+                      "Property": "Longitude"
                     }
                   },
-                  "Property": "Longitude"
+                  "Function": 1
                 }
               },
-              "queryRef": "DimCustomer.Longitude",
+              "queryRef": "Average(DimCustomer.Longitude)",
               "nativeQueryRef": "Longitude"
             }
           ]
@@ -153,7 +163,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Customer locations plotted by latitude and longitude, sized by sales.'"
+                  "Value": "'Customer locations plotted by latitude and longitude, sized by sales. Latitude and Longitude must be aggregated as Average: bound as bare columns the visual treats them as text and reports ''Remove Location to display latitude and longitude pairs''.'"
                 }
               }
             }

@@ -3,108 +3,92 @@
   "name": "00000000000000000059",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 924,
+    "y": 32,
+    "z": 1000,
+    "height": 46,
     "width": 1856,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "ChordChart1444757060245",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Flow"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Chord",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "Source"
-                }
-              },
-              "queryRef": "Flow.Source",
-              "nativeQueryRef": "Source"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Flow"
-                    }
-                  },
-                  "Property": "Destination"
-                }
-              },
-              "queryRef": "Flow.Destination",
-              "nativeQueryRef": "Destination"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Flow"
-                    }
-                  },
-                  "Property": "Flow Value"
-                }
-              },
-              "queryRef": "Flow.Flow Value",
-              "nativeQueryRef": "Flow Value"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pipeline transitions'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -117,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Chord diagram of flow between pipeline stages.'"
+                  "Value": "'Page title: Chord'"
                 }
               }
             }

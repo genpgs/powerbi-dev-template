@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000039",
   "position": {
-    "x": 659,
+    "x": 32,
     "y": 124,
-    "z": 4000,
-    "height": 924,
+    "z": 3000,
+    "height": 450,
     "width": 603,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
-    "visualType": "keyDriversVisual",
+    "visualType": "decompositionTreeVisual",
     "query": {
       "queryState": {
-        "Target": {
+        "Analyze": {
           "projections": [
             {
               "field": {
@@ -38,32 +38,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimStore"
-                    }
-                  },
-                  "Property": "Channel"
-                }
-              },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
-            }
-          ]
-        },
-        "Details": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "Subcategory"
                 }
               },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
             }
           ]
         }
@@ -83,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Key influencers'"
+                  "Value": "'Decomposition tree'"
                 }
               }
             },
@@ -117,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Key drivers of total sales, explained by sales channel and detailed by category.'"
+                  "Value": "'Decomposition of total sales, explained by product subcategory.'"
                 }
               }
             }

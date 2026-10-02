@@ -3,86 +3,58 @@
   "name": "00000000000000000047",
   "position": {
     "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 450,
-    "width": 603,
-    "tabOrder": 3000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "image",
+    "visualType": "textbox",
     "objects": {
-      "image": [
+      "general": [
         {
           "properties": {
-            "sourceType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'imageUrl'"
-                }
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Native - Image, shapes and layout objects",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
               }
-            },
-            "sourceField": {
-              "expr": {
-                "Literal": {
-                  "Value": "'DimProduct[ProductImage]'"
-                }
-              }
-            },
-            "fit": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Fill'"
-                }
-              }
-            },
-            "altText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Product image'"
-                }
-              }
-            }
+            ]
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "text": {
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Image grid from data'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "false"
                 }
               }
             }
@@ -95,28 +67,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "0D"
                 }
               }
             }
@@ -129,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Product images loaded from the DimProduct ProductImage column, which carries dataCategory ImageUrl.'"
+                  "Value": "'Page title: Native - Image, shapes and layout objects'"
                 }
               }
             }

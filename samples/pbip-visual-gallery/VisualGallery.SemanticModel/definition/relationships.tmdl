@@ -13,3 +13,4 @@ relationship FactSales_DimCustomer
 relationship FactSales_DimStore
 	fromColumn: FactSales.StoreKey
 	toColumn: DimStore.StoreKey
+

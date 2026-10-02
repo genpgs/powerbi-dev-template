@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactSales"
+                      "Entity": "KpiTargets"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "KPI Actual"
                 }
               },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
             }
           ]
         },
@@ -38,14 +38,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "KpiTargets"
                     }
                   },
-                  "Property": "Date"
+                  "Property": "PeriodDate"
                 }
               },
-              "queryRef": "Calendar.Date",
-              "nativeQueryRef": "Date"
+              "queryRef": "KpiTargets.PeriodDate",
+              "nativeQueryRef": "PeriodDate"
             }
           ]
         },
@@ -56,14 +56,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "KpiTargets"
                     }
                   },
-                  "Property": "Sales Previous Year"
+                  "Property": "KPI Target"
                 }
               },
-              "queryRef": "Calendar.Sales Previous Year",
-              "nativeQueryRef": "Sales Previous Year"
+              "queryRef": "KpiTargets.KPI Target",
+              "nativeQueryRef": "KPI Target"
             }
           ]
         }
@@ -117,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales against its year-to-date trend line, with prior year as the goal.'"
+                  "Value": "'Actual against target over the indicator''s own period date. All three roles come from KpiTargets so the trend axis and the measures agree; binding Indicator from one table and TrendLine from another leaves the visual with no value to show.'"
                 }
               }
             }

@@ -3,11 +3,11 @@
   "name": "0000000000000000004f",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 4000,
-    "height": 450,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
     "width": 1856,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Aster Plot shows how a measure is distributed within each category. Bind Category to the grouping you want to compare and Y to the measure. Roles: Category, Y.",
+                    "value": "Roles: Category (Grouping), Y (Measure).",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Aster Plot shows how a measure is distributed within each category. Bind Category to the grouping you want to compare and Y to the measure. Roles: Category, Y.'"
+                  "Value": "'Page subtitle: Roles: Category (Grouping), Y (Measure).'"
                 }
               }
             }
