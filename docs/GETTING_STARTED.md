@@ -117,9 +117,28 @@ See the [Power BI visual coverage matrix](POWER_BI_VISUAL_COVERAGE.md) for the
 Desktop-native visual inventory, local PBIR/CLI support, known gaps, slicer
 options, and Microsoft-published custom visual verification status. Open
 [`samples/pbip-visual-gallery/VisualGallery.pbip`](../samples/pbip-visual-gallery/VisualGallery.pbip)
-for runnable examples of core chart, card, and slicer authoring patterns. The
-gallery includes its own copy of the calendar-baseline sample model and can be
-opened independently.
+for runnable examples: 36 pages covering every supported native visual type plus
+all 26 Microsoft custom visuals in the manifest.
+
+The 26 custom pages need their `.pbiviz` payloads, which are not committed:
+
+```bash
+python3 scripts/extract_custom_visuals.py   # (re)register the local packages
+python3 scripts/verify_gallery_coverage.py  # assert coverage against the allowlist
+```
+
+## Designing a report in HTML first
+
+Copy `templates/html-prototype/dashboard-template.html` to mock a canvas layout
+before writing any PBIR. It enforces an allowlist of visual and slicer types
+generated from the CLI catalog and the custom-visual manifest, so a prototype
+cannot offer a visual the report cannot actually render. See
+[`templates/html-prototype/README.md`](../templates/html-prototype/README.md).
+Regenerate the allowlist after adding a visual:
+
+```bash
+python3 scripts/generate_visual_allowlist.py
+```
 
 ---
 

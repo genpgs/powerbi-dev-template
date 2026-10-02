@@ -23,6 +23,14 @@ and [`samples/pbip-visual-gallery/`](../../../samples/pbip-visual-gallery/).
 Do not promise or create a custom/preview/legacy visual based only on a catalog
 name; confirm its Desktop availability, CLI metadata, and package requirements.
 
+When planning a page layout in HTML first, use
+[`templates/html-prototype/`](../../../templates/html-prototype/). It carries a
+generated allowlist of the visual and slicer types this project can author, and
+flags anything outside it — so a prototype cannot offer a visual the report
+cannot render. The allowlist is
+[`visual-allowlist.json`](../../../templates/html-prototype/visual-allowlist.json);
+regenerate it with `scripts/generate_visual_allowlist.py` rather than editing it.
+
 It is a **mode dispatcher** and contains NO procedures. Pick the mode that matches the request from the table below, then **read the matching `references/<mode>.md` file end to end with your file-reading tool BEFORE issuing a single command**. That file holds the endpoints, payload shapes, templates and gotchas; acting without it produces wrong PBIR JSON and wrong results.
 
 ## Mode selection
