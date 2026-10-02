@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000024",
   "position": {
-    "x": 32,
-    "y": 598,
-    "z": 7000,
+    "x": 502,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 446,
-    "tabOrder": 7000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,42 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactSales"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Sales YTD"
                 }
               },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Gross Profit"
-                }
-              },
-              "queryRef": "FactSales.Total Gross Profit",
-              "nativeQueryRef": "Total Gross Profit"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Orders"
-                }
-              },
-              "queryRef": "FactSales.Total Orders",
-              "nativeQueryRef": "Total Orders"
+              "queryRef": "Calendar.Sales YTD",
+              "nativeQueryRef": "Sales YTD"
             }
           ]
         }
@@ -75,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Card with multiple values'"
+                  "Value": "'Sales YTD'"
                 }
               }
             },
@@ -109,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'A single card bound to several measures at once.'"
+                  "Value": "'Big number: sales year to date on the calendar.'"
                 }
               }
             }

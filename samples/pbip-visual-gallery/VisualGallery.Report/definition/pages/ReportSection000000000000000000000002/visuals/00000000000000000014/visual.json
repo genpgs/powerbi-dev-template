@@ -3,14 +3,14 @@
   "name": "00000000000000000014",
   "position": {
     "x": 972,
-    "y": 756,
+    "y": 598,
     "z": 13000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 13000
   },
   "visual": {
-    "visualType": "ribbonChart",
+    "visualType": "hundredPercentStackedAreaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Subcategory"
+                  "Property": "CalendarMonth"
                 }
               },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
+              "queryRef": "Calendar.CalendarMonth",
+              "nativeQueryRef": "CalendarMonth"
             }
           ]
         },
@@ -38,14 +38,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimStore"
+                      "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Channel"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
             }
           ]
         },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ribbon'"
+                  "Value": "'100% stacked area'"
                 }
               }
             },
@@ -117,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by subcategory, with the second-lowest value drawn as the ribbon.'"
+                  "Value": "'Channel mix across the calendar year.'"
                 }
               }
             }

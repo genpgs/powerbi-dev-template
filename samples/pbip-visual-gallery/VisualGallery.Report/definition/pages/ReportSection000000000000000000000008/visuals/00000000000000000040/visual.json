@@ -3,14 +3,14 @@
   "name": "00000000000000000040",
   "position": {
     "x": 1442,
-    "y": 598,
-    "z": 10000,
+    "y": 124,
+    "z": 6000,
     "height": 450,
     "width": 446,
-    "tabOrder": 10000
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "advancedSlicerVisual",
+    "visualType": "slicer",
     "query": {
       "queryState": {
         "Values": {
@@ -20,18 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimStore"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Channel"
+                  "Property": "Date"
                 }
               },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
+              "queryRef": "Calendar.Date",
+              "nativeQueryRef": "Date"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -47,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Button slicer - channel'"
+                  "Value": "'Between - order date'"
                 }
               }
             },
@@ -81,7 +96,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tile/button slicer over sales channel.'"
+                  "Value": "'Classic slicer in Between mode over Calendar.Date.'"
                 }
               }
             }

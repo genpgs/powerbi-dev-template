@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "000000000000000000b8",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 450,
+    "width": 916,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "WordCloud1447959067750",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Term"
+                }
+              },
+              "queryRef": "WordFrequency.Term",
+              "nativeQueryRef": "Term"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Term Frequency"
+                }
+              },
+              "queryRef": "WordFrequency.Term Frequency",
+              "nativeQueryRef": "Term Frequency"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Term frequencies'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Word cloud sized by term frequency.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

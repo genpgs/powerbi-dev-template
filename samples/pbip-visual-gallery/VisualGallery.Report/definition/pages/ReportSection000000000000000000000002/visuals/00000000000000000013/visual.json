@@ -3,14 +3,14 @@
   "name": "00000000000000000013",
   "position": {
     "x": 502,
-    "y": 756,
+    "y": 598,
     "z": 12000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "lineStackedColumnComboChart",
+    "visualType": "stackedAreaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,11 @@
                       "Entity": "Calendar"
                     }
                   },
-                  "Property": "FiscalPeriodLabel"
+                  "Property": "CalendarMonth"
                 }
               },
-              "queryRef": "Calendar.FiscalPeriodLabel",
-              "nativeQueryRef": "FiscalPeriodLabel"
+              "queryRef": "Calendar.CalendarMonth",
+              "nativeQueryRef": "CalendarMonth"
             }
           ]
         },
@@ -38,36 +38,18 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "DimStore"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "Channel"
                 }
               },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "DimStore.Channel",
+              "nativeQueryRef": "Channel"
             }
           ]
         },
         "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Gross Profit"
-                }
-              },
-              "queryRef": "FactSales.Total Gross Profit",
-              "nativeQueryRef": "Total Gross Profit"
-            }
-          ]
-        },
-        "Y2": {
           "projections": [
             {
               "field": {
@@ -101,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Combo (stacked column)'"
+                  "Value": "'Stacked area'"
                 }
               }
             },
@@ -135,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stacked profit columns against a sales line.'"
+                  "Value": "'Sales volume over the calendar year, split by sales channel.'"
                 }
               }
             }

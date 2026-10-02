@@ -3,14 +3,14 @@
   "name": "00000000000000000011",
   "position": {
     "x": 1442,
-    "y": 440,
+    "y": 361,
     "z": 10000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 10000
   },
   "visual": {
-    "visualType": "hundredPercentStackedAreaChart",
+    "visualType": "ribbonChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "DimProduct"
                     }
                   },
-                  "Property": "CalendarMonth"
+                  "Property": "Subcategory"
                 }
               },
-              "queryRef": "Calendar.CalendarMonth",
-              "nativeQueryRef": "CalendarMonth"
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
             }
           ]
         },
@@ -38,14 +38,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "DimStore"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "Channel"
                 }
               },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "DimStore.Channel",
+              "nativeQueryRef": "Channel"
             }
           ]
         },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'100% stacked area'"
+                  "Value": "'Ribbon'"
                 }
               }
             },
@@ -117,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Channel mix across the calendar year.'"
+                  "Value": "'Sales by subcategory, with the second-lowest value drawn as the ribbon.'"
                 }
               }
             }

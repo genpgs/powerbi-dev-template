@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000007e",
   "position": {
-    "x": 972,
-    "y": 598,
-    "z": 6000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 6000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Multi KPI ships a cluster of small KPI tiles rather than one chart. Its roles are lowercase in the capability definition (dateColumn, valueColumn, warningStateColumn, tooltipColumn, changeStartDateColumn) and are case-sensitive.",
+                    "value": "Roles: dateColumn, valueColumn, warningStateColumn, tooltipColumn, changeStartDateColumn.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Multi KPI ships a cluster of small KPI tiles rather than one chart. Its roles are lowercase in the capability definition (dateColumn, valueColumn, warningStateColumn, tooltipColumn, changeStartDateColumn) and are case-sensitive.'"
+                  "Value": "'Page subtitle: Roles: dateColumn, valueColumn, warningStateColumn, tooltipColumn, changeStartDateColumn.'"
                 }
               }
             }

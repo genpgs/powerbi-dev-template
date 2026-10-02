@@ -3,14 +3,14 @@
   "name": "00000000000000000015",
   "position": {
     "x": 1442,
-    "y": 756,
+    "y": 598,
     "z": 14000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 14000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "lineClusteredColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,29 @@
                       "Entity": "Calendar"
                     }
                   },
-                  "Property": "FiscalYearLabel"
+                  "Property": "FiscalPeriodLabel"
                 }
               },
-              "queryRef": "Calendar.FiscalYearLabel",
-              "nativeQueryRef": "FiscalYearLabel"
+              "queryRef": "Calendar.FiscalPeriodLabel",
+              "nativeQueryRef": "FiscalPeriodLabel"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
             }
           ]
         },
@@ -56,14 +74,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "FactSales"
                     }
                   },
-                  "Property": "Sales Rolling 12M"
+                  "Property": "Total Gross Profit"
                 }
               },
-              "queryRef": "Calendar.Sales Rolling 12M",
-              "nativeQueryRef": "Sales Rolling 12M"
+              "queryRef": "FactSales.Total Gross Profit",
+              "nativeQueryRef": "Total Gross Profit"
             }
           ]
         }
@@ -83,7 +101,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Line with secondary axis'"
+                  "Value": "'Combo (clustered column)'"
                 }
               }
             },
@@ -117,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales against a rolling 12-month measure on the second axis.'"
+                  "Value": "'Profit as columns against sales as a line, by fiscal period.'"
                 }
               }
             }

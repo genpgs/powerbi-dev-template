@@ -5,12 +5,12 @@
     "x": 32,
     "y": 124,
     "z": 3000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 3000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -65,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Clustered column'"
+                  "Value": "'Column'"
                 }
               }
             },
@@ -99,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total sales by fiscal year.'"
+                  "Value": "'Total sales by fiscal year. The unclustered column chart.'"
                 }
               }
             }

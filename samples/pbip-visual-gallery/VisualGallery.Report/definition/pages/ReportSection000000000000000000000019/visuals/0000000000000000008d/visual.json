@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000008d",
   "position": {
-    "x": 972,
-    "y": 598,
-    "z": 6000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 6000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Pulse Chart is Timestamp plus Value. RunnerCounter draws the counter trace, and EventTitle/EventSize place markers on it. Without a Timestamp the visual has nothing to plot against.",
+                    "value": "Roles: Timestamp, Value, RunnerCounter, EventTitle, EventSize.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pulse Chart is Timestamp plus Value. RunnerCounter draws the counter trace, and EventTitle/EventSize place markers on it. Without a Timestamp the visual has nothing to plot against.'"
+                  "Value": "'Page subtitle: Roles: Timestamp, Value, RunnerCounter, EventTitle, EventSize.'"
                 }
               }
             }

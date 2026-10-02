@@ -3,11 +3,11 @@
   "name": "000000000000000000aa",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
-    "height": 450,
+    "y": 32,
+    "z": 1000,
+    "height": 46,
     "width": 1856,
-    "tabOrder": 5000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Text Filter takes exactly one field and is the only filter control here that is a custom visual rather than a slicer. The Chiclet and Timeline visuals below are also filters, but they are custom visuals rather than slicers in the slicer sense.",
+                    "value": "Text Filter",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Text Filter takes exactly one field and is the only filter control here that is a custom visual rather than a slicer. The Chiclet and Timeline visuals below are also filters, but they are custom visuals rather than slicers in the slicer sense.'"
+                  "Value": "'Page title: Text Filter'"
                 }
               }
             }

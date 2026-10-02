@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "000000000000000000be",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 1856,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "How a custom visual binds in PBIR",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "18px",
+                      "color": "#1B1B1F"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Two places carry the GUID: report.json -> publicCustomVisuals[] declares the visual, and visual.json -> visual.visualType names it. Desktop also needs the package payload at <Report>/CustomVisuals/<guid>/, which scripts/extract_custom_visuals.py pulls from the local staging folder. Those packages are publisher binaries and are not committed.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "14px",
+                      "color": "#444746"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The report-author CLI has no metadata for custom visual types, so it cannot check custom formatting objects or role names. The role lists below are read from each package's capabilities.dataRoles, not from the CLI. Confirm them with the package after upgrading a visual.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "14px",
+                      "color": "#444746"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Not authorable here: Input slicer (no catalog type, and textSlicer is not a verified alias), Q&A (deprecated December 2026), Python and R visuals (runtime dependency), Power Apps, Power Automate and ArcGIS (no catalog type), and the paginated report visual (needs a separate RDL). The legacy types card, multiRowCard, table, matrix, map and filledMap are deliberately absent: use cardVisual, tableEx, pivotTable and azureMap instead.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "14px",
+                      "color": "#444746"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Explanation of how custom visuals bind, and which visual types are not authorable.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

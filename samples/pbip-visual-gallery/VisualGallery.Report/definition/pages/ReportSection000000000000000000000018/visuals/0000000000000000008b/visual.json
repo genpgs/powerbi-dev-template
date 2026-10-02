@@ -1,0 +1,255 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0000000000000000008b",
+  "position": {
+    "x": 32,
+    "y": 124,
+    "z": 3000,
+    "height": 924,
+    "width": 1856,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+    "query": {
+      "queryState": {
+        "category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "IndicatorName"
+                }
+              },
+              "queryRef": "KpiTargets.IndicatorName",
+              "nativeQueryRef": "IndicatorName"
+            }
+          ]
+        },
+        "date": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "PeriodDate"
+                }
+              },
+              "queryRef": "KpiTargets.PeriodDate",
+              "nativeQueryRef": "PeriodDate"
+            }
+          ]
+        },
+        "actualValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Actual"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Actual",
+              "nativeQueryRef": "KPI Actual"
+            }
+          ]
+        },
+        "targetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Target"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Target",
+              "nativeQueryRef": "KPI Target"
+            }
+          ]
+        },
+        "kpiIndicatorIndex": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KpiIndex"
+                }
+              },
+              "queryRef": "KpiTargets.KpiIndex",
+              "nativeQueryRef": "KpiIndex"
+            }
+          ]
+        },
+        "kpiIndicatorValue": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "StatusLabel"
+                }
+              },
+              "queryRef": "KpiTargets.StatusLabel",
+              "nativeQueryRef": "StatusLabel"
+            }
+          ]
+        },
+        "secondComparisonValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "KPI Comparison"
+                }
+              },
+              "queryRef": "KpiTargets.KPI Comparison",
+              "nativeQueryRef": "KPI Comparison"
+            }
+          ]
+        },
+        "sortOrderColumn": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "SortOrder"
+                }
+              },
+              "queryRef": "KpiTargets.SortOrder",
+              "nativeQueryRef": "SortOrder"
+            }
+          ]
+        },
+        "image": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "Icon"
+                }
+              },
+              "queryRef": "KpiTargets.Icon",
+              "nativeQueryRef": "Icon"
+            }
+          ]
+        },
+        "hyperlink": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KpiTargets"
+                    }
+                  },
+                  "Property": "Hyperlink"
+                }
+              },
+              "queryRef": "KpiTargets.Hyperlink",
+              "nativeQueryRef": "Hyperlink"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicator matrix'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Matrix of indicators with actual, target and status indicator values.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

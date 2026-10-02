@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000027",
   "position": {
-    "x": 1442,
+    "x": 32,
     "y": 598,
-    "z": 10000,
+    "z": 7000,
     "height": 450,
     "width": 446,
-    "tabOrder": 10000
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "gauge",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Y": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -23,11 +23,39 @@
                       "Entity": "FactSales"
                     }
                   },
-                  "Property": "Gross Margin %"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "FactSales.Gross Margin %",
-              "nativeQueryRef": "Gross Margin %"
+              "queryRef": "FactSales.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Gross Profit"
+                }
+              },
+              "queryRef": "FactSales.Total Gross Profit",
+              "nativeQueryRef": "Total Gross Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Orders"
+                }
+              },
+              "queryRef": "FactSales.Total Orders",
+              "nativeQueryRef": "Total Orders"
             }
           ]
         }
@@ -47,7 +75,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gauge'"
+                  "Value": "'Card with multiple values'"
                 }
               }
             },
@@ -81,7 +109,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gross margin as a gauge. Min, max and target are left on auto-scale.'"
+                  "Value": "'A single card bound to several measures at once.'"
                 }
               }
             }

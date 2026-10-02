@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000063",
   "position": {
-    "x": 972,
-    "y": 598,
-    "z": 6000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 6000
+    "x": 32,
+    "y": 82,
+    "z": 2000,
+    "height": 30,
+    "width": 1856,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Enhanced Scatter is the most configurable of the Microsoft visuals. Its optional roles are Category, Series, X, Y, Size, Gradient, ColorFill, Shape, Image, Rotation, Backdrop, X Start, X End, Y Start and Y End. Bind only the ones the question needs; unused roles render as defaults rather than errors.",
+                    "value": "Fourteen optional roles. This page binds the six that carry meaning.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontSize": "13px",
+                      "color": "#5F6368"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Enhanced Scatter is the most configurable of the Microsoft visuals. Its optional roles are Category, Series, X, Y, Size, Gradient, ColorFill, Shape, Image, Rotation, Backdrop, X Start, X End, Y Start and Y End. Bind only the ones the question needs; unused roles render as defaults rather than errors.'"
+                  "Value": "'Page subtitle: Fourteen optional roles. This page binds the six that carry meaning.'"
                 }
               }
             }

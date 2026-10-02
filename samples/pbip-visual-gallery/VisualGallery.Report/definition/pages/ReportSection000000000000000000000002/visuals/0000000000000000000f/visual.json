@@ -3,16 +3,52 @@
   "name": "0000000000000000000f",
   "position": {
     "x": 502,
-    "y": 440,
+    "y": 361,
     "z": 8000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 8000
   },
   "visual": {
-    "visualType": "hundredPercentStackedBarChart",
+    "visualType": "hundredPercentStackedColumnChart",
     "query": {
       "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "FiscalPeriodLabel"
+                }
+              },
+              "queryRef": "Calendar.FiscalPeriodLabel",
+              "nativeQueryRef": "FiscalPeriodLabel"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -28,24 +64,6 @@
               },
               "queryRef": "FactSales.Total Sales",
               "nativeQueryRef": "Total Sales"
-            }
-          ]
-        },
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
             }
           ]
         }
@@ -65,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'100% stacked bar'"
+                  "Value": "'100% stacked column'"
                 }
               }
             },
@@ -99,7 +117,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Share of sales by category.'"
+                  "Value": "'Share of sales by category within each fiscal period.'"
                 }
               }
             }

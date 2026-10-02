@@ -3,126 +3,92 @@
   "name": "00000000000000000083",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 5000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 5000
+    "y": 32,
+    "z": 1000,
+    "height": 46,
+    "width": 1856,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
-    "query": {
-      "queryState": {
-        "Axis": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Power KPI",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
-                  },
-                  "Property": "IndicatorName"
-                }
-              },
-              "queryRef": "KpiTargets.IndicatorName",
-              "nativeQueryRef": "IndicatorName"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Actual"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Actual",
-              "nativeQueryRef": "KPI Actual"
-            }
-          ]
-        },
-        "SecondaryValues": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Comparison"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Comparison",
-              "nativeQueryRef": "KPI Comparison"
-            }
-          ]
-        },
-        "KPI": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "KpiTargets"
-                    }
-                  },
-                  "Property": "KPI Attainment %"
-                }
-              },
-              "queryRef": "KpiTargets.KPI Attainment %",
-              "nativeQueryRef": "KPI Attainment %"
-            }
-          ]
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
         }
-      }
+      ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             },
-            "text": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'With secondary values'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "0D"
                 }
               }
             },
-            "bold": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
                 }
               }
             }
@@ -135,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Power KPI adding the prior-period comparison.'"
+                  "Value": "'Page title: Power KPI'"
                 }
               }
             }

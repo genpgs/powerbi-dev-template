@@ -3,14 +3,14 @@
   "name": "0000000000000000000e",
   "position": {
     "x": 32,
-    "y": 440,
+    "y": 361,
     "z": 7000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 7000
   },
   "visual": {
-    "visualType": "hundredPercentStackedColumnChart",
+    "visualType": "clusteredBarChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,32 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
-                    }
-                  },
-                  "Property": "FiscalPeriodLabel"
-                }
-              },
-              "queryRef": "Calendar.FiscalPeriodLabel",
-              "nativeQueryRef": "FiscalPeriodLabel"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "Subcategory"
                 }
               },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
             }
           ]
         },
@@ -83,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'100% stacked column'"
+                  "Value": "'Clustered bar'"
                 }
               }
             },
@@ -117,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Share of sales by category within each fiscal period.'"
+                  "Value": "'Total sales by product subcategory, sorted by value.'"
                 }
               }
             }

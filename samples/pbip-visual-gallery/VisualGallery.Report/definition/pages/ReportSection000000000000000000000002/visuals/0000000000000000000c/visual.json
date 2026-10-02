@@ -5,12 +5,12 @@
     "x": 972,
     "y": 124,
     "z": 5000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 5000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "Calendar"
                     }
                   },
-                  "Property": "Subcategory"
+                  "Property": "FiscalYearLabel"
                 }
               },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
+              "queryRef": "Calendar.FiscalYearLabel",
+              "nativeQueryRef": "FiscalYearLabel"
             }
           ]
         },
@@ -65,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Clustered bar'"
+                  "Value": "'Line'"
                 }
               }
             },
@@ -99,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total sales by product subcategory, sorted by value.'"
+                  "Value": "'Total sales by fiscal year.'"
                 }
               }
             }

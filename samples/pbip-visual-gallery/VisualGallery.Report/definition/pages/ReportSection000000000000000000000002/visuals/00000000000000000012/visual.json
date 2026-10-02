@@ -3,14 +3,14 @@
   "name": "00000000000000000012",
   "position": {
     "x": 32,
-    "y": 756,
+    "y": 598,
     "z": 11000,
-    "height": 292,
+    "height": 213,
     "width": 446,
     "tabOrder": 11000
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,29 +23,11 @@
                       "Entity": "Calendar"
                     }
                   },
-                  "Property": "FiscalPeriodLabel"
+                  "Property": "CalendarMonth"
                 }
               },
-              "queryRef": "Calendar.FiscalPeriodLabel",
-              "nativeQueryRef": "FiscalPeriodLabel"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "Calendar.CalendarMonth",
+              "nativeQueryRef": "CalendarMonth"
             }
           ]
         },
@@ -66,24 +48,6 @@
               "nativeQueryRef": "Total Sales"
             }
           ]
-        },
-        "Y2": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactSales"
-                    }
-                  },
-                  "Property": "Total Gross Profit"
-                }
-              },
-              "queryRef": "FactSales.Total Gross Profit",
-              "nativeQueryRef": "Total Gross Profit"
-            }
-          ]
         }
       }
     },
@@ -101,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Combo (clustered column)'"
+                  "Value": "'Area'"
                 }
               }
             },
@@ -135,7 +99,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit as columns against sales as a line, by fiscal period.'"
+                  "Value": "'Total sales across the calendar year. The unclustered area chart.'"
                 }
               }
             }

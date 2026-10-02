@@ -3,31 +3,31 @@
   "name": "0000000000000000001b",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 6000,
+    "y": 124,
+    "z": 3000,
     "height": 450,
     "width": 603,
-    "tabOrder": 6000
+    "tabOrder": 3000
   },
   "visual": {
-    "visualType": "funnel",
+    "visualType": "scatterChart",
     "query": {
       "queryState": {
-        "Category": {
+        "X": {
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Flow"
+                      "Entity": "FactSales"
                     }
                   },
-                  "Property": "Source"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Flow.Source",
-              "nativeQueryRef": "Source"
+              "queryRef": "FactSales.Total Sales",
+              "nativeQueryRef": "Total Sales"
             }
           ]
         },
@@ -35,22 +35,53 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Flow"
-                        }
-                      },
-                      "Property": "Value"
+                    "SourceRef": {
+                      "Entity": "FactSales"
                     }
                   },
-                  "Function": 0
+                  "Property": "Total Gross Profit"
                 }
               },
-              "queryRef": "Sum(Flow.Value)",
-              "nativeQueryRef": "Value"
+              "queryRef": "FactSales.Total Gross Profit",
+              "nativeQueryRef": "Total Gross Profit"
+            }
+          ]
+        },
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "DimStore.Region",
+              "nativeQueryRef": "Region"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactSales"
+                    }
+                  },
+                  "Property": "Total Quantity"
+                }
+              },
+              "queryRef": "FactSales.Total Quantity",
+              "nativeQueryRef": "Total Quantity"
             }
           ]
         }
@@ -70,7 +101,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Funnel'"
+                  "Value": "'Scatter'"
                 }
               }
             },
@@ -104,7 +135,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pipeline volume falling from leads to renewal.'"
+                  "Value": "'Sales against gross profit by store region, sized by order quantity.'"
                 }
               }
             }

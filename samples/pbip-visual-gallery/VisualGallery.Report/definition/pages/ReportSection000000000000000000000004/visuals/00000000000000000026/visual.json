@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000026",
   "position": {
-    "x": 972,
-    "y": 598,
-    "z": 9000,
+    "x": 1442,
+    "y": 124,
+    "z": 6000,
     "height": 450,
     "width": 446,
-    "tabOrder": 9000
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Indicator": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -23,47 +23,11 @@
                       "Entity": "FactSales"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
-            }
-          ]
-        },
-        "TrendLine": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Calendar"
-                    }
-                  },
-                  "Property": "Date"
-                }
-              },
-              "queryRef": "Calendar.Date",
-              "nativeQueryRef": "Date"
-            }
-          ]
-        },
-        "Goal": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Calendar"
-                    }
-                  },
-                  "Property": "Sales Previous Year"
-                }
-              },
-              "queryRef": "Calendar.Sales Previous Year",
-              "nativeQueryRef": "Sales Previous Year"
+              "queryRef": "FactSales.Total Orders",
+              "nativeQueryRef": "Total Orders"
             }
           ]
         }
@@ -83,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'KPI vs target'"
+                  "Value": "'Orders'"
                 }
               }
             },
@@ -117,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales against its year-to-date trend line, with prior year as the goal.'"
+                  "Value": "'Big number: distinct order count.'"
                 }
               }
             }

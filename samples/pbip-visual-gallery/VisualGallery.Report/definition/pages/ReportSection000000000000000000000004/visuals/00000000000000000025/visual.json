@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "00000000000000000025",
   "position": {
-    "x": 502,
-    "y": 598,
-    "z": 8000,
+    "x": 972,
+    "y": 124,
+    "z": 5000,
     "height": 450,
     "width": 446,
-    "tabOrder": 8000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,29 +23,11 @@
                       "Entity": "FactSales"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Gross Margin %"
                 }
               },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
-            }
-          ]
-        },
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimStore"
-                    }
-                  },
-                  "Property": "Channel"
-                }
-              },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
+              "queryRef": "FactSales.Gross Margin %",
+              "nativeQueryRef": "Gross Margin %"
             }
           ]
         }
@@ -65,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Card small multiples'"
+                  "Value": "'Gross margin'"
                 }
               }
             },
@@ -99,7 +81,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'One card per sales channel, using the Rows role.'"
+                  "Value": "'Big number formatted as a percentage.'"
                 }
               }
             }

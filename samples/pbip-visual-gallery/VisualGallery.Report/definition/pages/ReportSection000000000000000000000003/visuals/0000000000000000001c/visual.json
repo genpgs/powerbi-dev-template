@@ -3,17 +3,40 @@
   "name": "0000000000000000001c",
   "position": {
     "x": 659,
-    "y": 598,
-    "z": 7000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 603,
-    "tabOrder": 7000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "pieChart",
+    "visualType": "treemap",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "SalesAmount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactSales.SalesAmount)",
+              "nativeQueryRef": "SalesAmount"
+            }
+          ]
+        },
+        "Group": {
           "projections": [
             {
               "field": {
@@ -31,21 +54,21 @@
             }
           ]
         },
-        "Y": {
+        "Details": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactSales"
+                      "Entity": "DimProduct"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Subcategory"
                 }
               },
-              "queryRef": "FactSales.Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
             }
           ]
         }
@@ -65,7 +88,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pie'"
+                  "Value": "'Treemap'"
                 }
               }
             },
@@ -99,7 +122,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Share of sales by product category.'"
+                  "Value": "'Sales by category, drilled into subcategory.'"
                 }
               }
             }

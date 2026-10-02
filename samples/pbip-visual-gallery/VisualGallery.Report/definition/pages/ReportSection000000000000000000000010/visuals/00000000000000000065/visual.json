@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "00000000000000000065",
+  "position": {
+    "x": 972,
+    "y": 124,
+    "z": 4000,
+    "height": 450,
+    "width": 916,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "EnhancedScatterChart1443994985041",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "ScatterPoints.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "XValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.XValue)",
+              "nativeQueryRef": "XValue"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "YValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.YValue)",
+              "nativeQueryRef": "YValue"
+            }
+          ]
+        },
+        "Shape": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "ShapeValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.ShapeValue)",
+              "nativeQueryRef": "ShapeValue"
+            }
+          ]
+        },
+        "Image": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ScatterPoints"
+                    }
+                  },
+                  "Property": "ImageUrl"
+                }
+              },
+              "queryRef": "ScatterPoints.ImageUrl",
+              "nativeQueryRef": "ImageUrl"
+            }
+          ]
+        },
+        "Rotation": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ScatterPoints"
+                        }
+                      },
+                      "Property": "RotationValue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ScatterPoints.RotationValue)",
+              "nativeQueryRef": "RotationValue"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shape, image and rotation'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Enhanced scatter using shape, image and rotation.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

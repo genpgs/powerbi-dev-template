@@ -3,14 +3,14 @@
   "name": "0000000000000000003e",
   "position": {
     "x": 502,
-    "y": 598,
-    "z": 8000,
+    "y": 124,
+    "z": 4000,
     "height": 450,
     "width": 446,
-    "tabOrder": 8000
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "listSlicer",
+    "visualType": "slicer",
     "query": {
       "queryState": {
         "Values": {
@@ -20,18 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "DimStore"
                     }
                   },
-                  "Property": "Subcategory"
+                  "Property": "Region"
                 }
               },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
+              "queryRef": "DimStore.Region",
+              "nativeQueryRef": "Region"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -47,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'List slicer - subcategory'"
+                  "Value": "'Dropdown - region'"
                 }
               }
             },
@@ -81,7 +96,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Scrollable list slicer over product subcategory.'"
+                  "Value": "'Classic slicer in Dropdown mode over DimStore.Region.'"
                 }
               }
             }

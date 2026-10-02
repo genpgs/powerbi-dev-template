@@ -3,11 +3,11 @@
   "name": "00000000000000000031",
   "position": {
     "x": 32,
-    "y": 598,
-    "z": 4000,
-    "height": 450,
+    "y": 32,
+    "z": 1000,
+    "height": 46,
     "width": 1856,
-    "tabOrder": 4000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Azure Maps roles are counter-intuitive and worth memorising: the role named Y is Latitude and the role named X is Longitude. Both accept a column or a measure. Bing Maps (map, filledMap) stays deprecated - do not create it; see docs/POWER_BI_VISUAL_COVERAGE.md.",
+                    "value": "Native - Maps",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#444746"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "24px",
+                      "color": "#1B1B1F"
                     }
                   }
                 ],
@@ -101,7 +101,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Azure Maps roles are counter-intuitive and worth memorising: the role named Y is Latitude and the role named X is Longitude. Both accept a column or a measure. Bing Maps (map, filledMap) stays deprecated - do not create it; see docs/POWER_BI_VISUAL_COVERAGE.md.'"
+                  "Value": "'Page title: Native - Maps'"
                 }
               }
             }
