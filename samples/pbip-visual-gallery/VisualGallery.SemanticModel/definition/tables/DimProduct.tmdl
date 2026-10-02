@@ -41,27 +41,27 @@ table DimProduct
 
 	column ProductImage
 		dataType: string
-		dataCategory: ImageUrl
 		lineageTag: ProductImage
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: ProductImage
 
 	column StandardCost
 		dataType: double
-		lineageTag: StandardCost
 		formatString: \$#,0.00
+		lineageTag: StandardCost
 		sourceColumn: StandardCost
 
 	column ListPrice
 		dataType: double
-		lineageTag: ListPrice
 		formatString: \$#,0.00
+		lineageTag: ListPrice
 		sourceColumn: ListPrice
 
 	column LaunchDate
 		dataType: dateTime
-		lineageTag: LaunchDate
 		formatString: Short Date
+		lineageTag: LaunchDate
 		summarizeBy: none
 		sourceColumn: LaunchDate
 
@@ -80,7 +80,7 @@ table DimProduct
 				    },
 				    Colors = {"Black", "Red", "Blue", "Green", "Silver", "Yellow"},
 				    ProductCount = 60,
-				    Rows = List.Transform(List.Numbers({1..ProductCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, ProductCount), (i) =>
 				        let
 				            blockIndex = Number.IntegerDivide(i - 1, 4),
 				            groupIndex = Number.Mod(blockIndex, List.Count(Categories)),
@@ -116,3 +116,4 @@ table DimProduct
 				        ])
 				in
 				    Source
+

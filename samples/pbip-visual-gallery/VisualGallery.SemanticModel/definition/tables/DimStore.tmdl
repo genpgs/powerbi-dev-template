@@ -55,8 +55,8 @@ table DimStore
 
 	column StoreSizeSqm
 		dataType: int64
-		lineageTag: StoreSizeSqm
 		formatString: #,0
+		lineageTag: StoreSizeSqm
 		summarizeBy: none
 		sourceColumn: StoreSizeSqm
 
@@ -79,7 +79,7 @@ table DimStore
 				        {"Flagship Sydney", "Sydney", "Australia", "Oceania", "Oceania", "Retail", "Flagship", 980}
 				    },
 				    Source = Table.FromRecords(
-				        List.Transform(List.Numbers({1..List.Count(Rows)}), (i) =>
+				        List.Transform(List.Numbers(1, List.Count(Rows)), (i) =>
 				            let
 				                r = Rows{i - 1}
 				            in
@@ -107,3 +107,4 @@ table DimStore
 				        ])
 				in
 				    Source
+

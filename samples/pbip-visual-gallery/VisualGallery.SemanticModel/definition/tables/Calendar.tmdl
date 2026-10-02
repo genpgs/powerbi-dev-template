@@ -27,8 +27,8 @@ table Calendar
 		lineageTag: calendar_ytd
 
 	measure 'Sales FYTD' =
-			-- Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
-			-- correctly. TOTALYTD/DATESYTD follow calendar months and would disagree.
+			// Fiscal YTD: FiscalYear plus FiscalWeekNumber bounds the week-based year
+			// correctly. TOTALYTD/DATESYTD follow calendar months and would disagree.
 			VAR CurrentFY = MAX(Calendar[FiscalYear])
 			VAR CurrentWk = MAX(Calendar[FiscalWeekNumber])
 			RETURN
@@ -177,24 +177,27 @@ table Calendar
 				    // Calendar[FiscalYear] and Calendar[FiscalYearLabel].
 				    FiscalYearLabelMode = "endingYear",
 				    Culture             = "en-US",
-
-				    // Derive the date range from the fact table.
-				    // If you have no live model, replace with literal dates:
-				    //   Calendar = fnCalendarWeekBased(FiscalYearStartDate, NumberOfYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
-				    DateValues  = List.RemoveNulls(List.Transform(FactSales[OrderDate], each try Date.From(_) otherwise null)),
-				    _StartDate  = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Min(DateValues),
-				    _EndDate    = if List.IsEmpty(DateValues) then error "No valid dates in FactSales[OrderDate]" else List.Max(DateValues),
-
+				
+				    // Date range. A partition must not read another table's data:
+				    // Power BI does not track that dependency, so refreshing one
+				    // table can deadlock waiting on the other. These literals span
+				    // what FactSales generates (StartDate #date(2023,1,1) plus
+				    // DayCount 1096). In a real model take them from the source
+				    // query or a Power Query parameter instead.
+				    _StartDate  = #date(2023, 1, 1),
+				    _EndDate    = #date(2024, 12, 31),
+				
 				    // Anchor the calendar to the fiscal year that contains the FIRST
 				    // fact date, then run forward far enough to cover the last one.
 				    // Do not clamp the offset at zero: clamping can only ever move the
 				    // calendar forward, which silently drops fact rows dated before
 				    // FiscalYearStartDate.
-				    CandidateStarts = List.Transform(List.Numbers({0..NumberOfYears}), (n) => Date.AddYears(FiscalYearStartDate, -n)),
+				    CandidateStarts = List.Transform(List.Numbers(0, NumberOfYears + 1), (n) => Date.AddYears(FiscalYearStartDate, -n)),
 				    CalendarStart   = List.Last(List.Select(CandidateStarts, (fy) => fy <= _StartDate)),
 				    YearCovers      = (fy as date) as logical => Date.AddYears(fy, 1) <= _EndDate,
-				    CalendarYears   = List.Count(List.Select(List.Transform(List.Numbers({1..NumberOfYears}), (n) => Date.AddYears(CalendarStart, n - 1)), YearCovers)),
-
+				    CalendarYears   = List.Count(List.Select(List.Transform(List.Numbers(1, NumberOfYears), (n) => Date.AddYears(CalendarStart, n - 1)), YearCovers)),
+				
 				    Calendar = fnCalendarWeekBased(CalendarStart, CalendarYears, WeekPattern, WeekStartDay, Culture, FiscalYearLabelMode)
 				in
 				    Calendar
+

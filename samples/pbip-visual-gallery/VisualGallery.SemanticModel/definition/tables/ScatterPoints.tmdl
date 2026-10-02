@@ -53,85 +53,85 @@ table ScatterPoints
 
 	column XValue
 		dataType: double
-		lineageTag: XValue
 		formatString: #,0.00
+		lineageTag: XValue
 		summarizeBy: none
 		sourceColumn: XValue
 
 	column YValue
 		dataType: double
-		lineageTag: YValue
 		formatString: #,0.00
+		lineageTag: YValue
 		summarizeBy: none
 		sourceColumn: YValue
 
 	column SizeValue
 		dataType: double
-		lineageTag: SizeValue
 		formatString: #,0
+		lineageTag: SizeValue
 		summarizeBy: none
 		sourceColumn: SizeValue
 
 	column ShapeValue
 		dataType: double
-		lineageTag: ShapeValue
 		formatString: 0
+		lineageTag: ShapeValue
 		summarizeBy: none
 		sourceColumn: ShapeValue
 
 	column GradientValue
 		dataType: double
-		lineageTag: GradientValue
 		formatString: #,0.00
+		lineageTag: GradientValue
 		summarizeBy: none
 		sourceColumn: GradientValue
 
 	column RotationValue
 		dataType: double
-		lineageTag: RotationValue
 		formatString: #,0.0
+		lineageTag: RotationValue
 		summarizeBy: none
 		sourceColumn: RotationValue
 
 	column DotValue
 		dataType: double
-		lineageTag: DotValue
 		formatString: #,0.00
+		lineageTag: DotValue
 		summarizeBy: none
 		sourceColumn: DotValue
 
 	column RadarValue1
 		dataType: double
-		lineageTag: RadarValue1
 		formatString: #,0.0
+		lineageTag: RadarValue1
 		summarizeBy: none
 		sourceColumn: RadarValue1
 
 	column RadarValue2
 		dataType: double
-		lineageTag: RadarValue2
 		formatString: #,0.0
+		lineageTag: RadarValue2
 		summarizeBy: none
 		sourceColumn: RadarValue2
 
 	column RadarValue3
 		dataType: double
-		lineageTag: RadarValue3
 		formatString: #,0.0
+		lineageTag: RadarValue3
 		summarizeBy: none
 		sourceColumn: RadarValue3
 
 	column RadarValue4
 		dataType: double
-		lineageTag: RadarValue4
 		formatString: #,0.0
+		lineageTag: RadarValue4
 		summarizeBy: none
 		sourceColumn: RadarValue4
 
 	column ImageUrl
 		dataType: string
-		dataCategory: ImageUrl
 		lineageTag: scatterpoints_imageurl
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: ImageUrl
 
@@ -143,7 +143,7 @@ table ScatterPoints
 				    Series = {"Online", "Retail", "Partner"},
 				    Shapes = {0, 1, 2, 3, 4},
 				    PointCount = 120,
-				    Rows = List.Transform(List.Numbers({1..PointCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, PointCount), (i) =>
 				        let
 				            xValue = Number.Round(10 + fnSeed(i, 51) * 90, 2),
 				            yValue = Number.Round(20 + fnSeed(i, 53) * 75 + (xValue - 55) * 0.35, 2)
@@ -186,3 +186,4 @@ table ScatterPoints
 				        ])
 				in
 				    Source
+

@@ -43,8 +43,8 @@ table KpiTargets
 
 	column PeriodDate
 		dataType: dateTime
-		lineageTag: PeriodDate
 		formatString: Short Date
+		lineageTag: PeriodDate
 		summarizeBy: none
 		sourceColumn: PeriodDate
 
@@ -52,36 +52,36 @@ table KpiTargets
 
 	column ActualValue
 		dataType: double
-		lineageTag: ActualValue
 		formatString: #,0.0
+		lineageTag: ActualValue
 		summarizeBy: none
 		sourceColumn: ActualValue
 
 	column TargetValue
 		dataType: double
-		lineageTag: TargetValue
 		formatString: #,0.0
+		lineageTag: TargetValue
 		summarizeBy: none
 		sourceColumn: TargetValue
 
 	column ComparisonValue
 		dataType: double
-		lineageTag: ComparisonValue
 		formatString: #,0.0
+		lineageTag: ComparisonValue
 		summarizeBy: none
 		sourceColumn: ComparisonValue
 
 	column KpiIndex
 		dataType: int64
-		lineageTag: KpiIndex
 		formatString: 0
+		lineageTag: KpiIndex
 		summarizeBy: none
 		sourceColumn: KpiIndex
 
 	column SortOrder
 		dataType: int64
-		lineageTag: SortOrder
 		formatString: 0
+		lineageTag: SortOrder
 		summarizeBy: none
 		sourceColumn: SortOrder
 
@@ -120,7 +120,7 @@ table KpiTargets
 				    MonthCount = 24,
 				    StartDate = #date(2024, 1, 1),
 				    StatusLabels = {"On Track", "At Risk", "Off Track"},
-				    Rows = List.Transform(List.Numbers({1..MonthCount * List.Count(Indicators)}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, MonthCount * List.Count(Indicators)), (i) =>
 				        let
 				            indicator = Indicators{Number.Mod(i - 1, List.Count(Indicators))},
 				            monthIndex = Number.IntegerDivide(i - 1, List.Count(Indicators)),
@@ -161,3 +161,4 @@ table KpiTargets
 				        ])
 				in
 				    Source
+

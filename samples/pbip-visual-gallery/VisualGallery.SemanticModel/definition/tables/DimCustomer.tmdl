@@ -47,15 +47,15 @@ table DimCustomer
 
 	column Latitude
 		dataType: double
-		lineageTag: Latitude
 		formatString: 0.0000
+		lineageTag: Latitude
 		summarizeBy: none
 		sourceColumn: Latitude
 
 	column Longitude
 		dataType: double
-		lineageTag: Longitude
 		formatString: 0.0000
+		lineageTag: Longitude
 		summarizeBy: none
 		sourceColumn: Longitude
 
@@ -110,7 +110,7 @@ table DimCustomer
 				    Occupations = {"Engineer", "Teacher", "Clinician", "Analyst", "Tradesperson", "Retired"},
 				    IncomeBands = {"Under 40K", "40K-80K", "80K-120K", "Over 120K"},
 				    CustomerCount = 300,
-				    Rows = List.Transform(List.Numbers({1..CustomerCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, CustomerCount), (i) =>
 				        let
 				            place = Places{Number.Mod(i * 7 + 3, List.Count(Places))},
 				            firstName = FirstNames{Number.Mod(i, List.Count(FirstNames))},
@@ -148,3 +148,4 @@ table DimCustomer
 				        ])
 				in
 				    Source
+

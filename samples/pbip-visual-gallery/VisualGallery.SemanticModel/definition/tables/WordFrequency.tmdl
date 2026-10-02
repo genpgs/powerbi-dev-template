@@ -17,8 +17,8 @@ table WordFrequency
 
 	column Frequency
 		dataType: double
-		lineageTag: Frequency
 		formatString: #,0
+		lineageTag: Frequency
 		summarizeBy: none
 		sourceColumn: Frequency
 
@@ -30,8 +30,8 @@ table WordFrequency
 
 	column ImageUrl
 		dataType: string
-		dataCategory: ImageUrl
 		lineageTag: wordfrequency_imageurl
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: ImageUrl
 
@@ -59,7 +59,7 @@ table WordFrequency
 				    },
 				    ExcludeWords = {"the", "and", "for", "with"},
 				    TermCount = 90,
-				    Rows = List.Transform(List.Numbers({1..TermCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, TermCount), (i) =>
 				        let
 				            pick = Terms{Number.Mod(i * 7, List.Count(Terms))},
 				            term = if Number.Mod(i, 9) = 0 then pick{0} & "-" & Text.From(i) else pick{0}
@@ -82,3 +82,4 @@ table WordFrequency
 				        ])
 				in
 				    Source
+

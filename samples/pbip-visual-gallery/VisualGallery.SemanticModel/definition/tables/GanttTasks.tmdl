@@ -31,8 +31,8 @@ table GanttTasks
 
 	column StartDate
 		dataType: dateTime
-		lineageTag: StartDate
 		formatString: Short Date
+		lineageTag: StartDate
 		summarizeBy: none
 		sourceColumn: StartDate
 
@@ -40,8 +40,8 @@ table GanttTasks
 
 	column EndDate
 		dataType: dateTime
-		lineageTag: EndDate
 		formatString: Short Date
+		lineageTag: EndDate
 		summarizeBy: none
 		sourceColumn: EndDate
 
@@ -49,15 +49,15 @@ table GanttTasks
 
 	column DurationDays
 		dataType: int64
-		lineageTag: DurationDays
 		formatString: #,0
+		lineageTag: DurationDays
 		summarizeBy: none
 		sourceColumn: DurationDays
 
 	column CompletionPct
 		dataType: double
-		lineageTag: CompletionPct
 		formatString: 0%
+		lineageTag: CompletionPct
 		summarizeBy: none
 		sourceColumn: CompletionPct
 
@@ -97,7 +97,7 @@ table GanttTasks
 				    // the Parent and Legend roles have a real hierarchy to draw.
 				    RowCount = 30,
 				    ProjectStart = #date(2025, 1, 06),
-				    Rows = List.Transform(List.Numbers({1..RowCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, RowCount), (i) =>
 				        let
 				            projectIndex = Number.IntegerDivide(i - 1, List.Count(Phases) * 3),
 				            phaseIndex = Number.IntegerDivide(Number.Mod(i - 1, List.Count(Phases) * 3), 3),
@@ -137,3 +137,4 @@ table GanttTasks
 				        ])
 				in
 				    Source
+

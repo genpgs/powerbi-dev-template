@@ -31,8 +31,8 @@ table HierarchyNodes
 
 	column NodeValue
 		dataType: double
-		lineageTag: NodeValue
 		formatString: #,0
+		lineageTag: NodeValue
 		summarizeBy: none
 		sourceColumn: NodeValue
 
@@ -59,8 +59,8 @@ table HierarchyNodes
 				    // stride would skip leaves in branches shorter than the stride.
 				    Pairs = List.Combine(
 				        List.Transform(
-				            List.Numbers({0..List.Count(Tree) - 1}),
-				            (b) => List.Transform(List.Numbers({0..List.Count(Tree{b}{2}) - 1}), (l) => {b, l})
+				            List.Numbers(0, List.Count(Tree)),
+				            (b) => List.Transform(List.Numbers(0, List.Count(Tree{b}{2})), (l) => {b, l})
 				        )
 				    ),
 				    Rows = List.Transform(Pairs, (p) =>
@@ -86,3 +86,4 @@ table HierarchyNodes
 				        ])
 				in
 				    Source
+

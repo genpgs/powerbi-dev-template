@@ -33,57 +33,57 @@ table BulletThresholds
 
 	column Value
 		dataType: double
-		lineageTag: bulletthresholds_value
 		formatString: #,0
+		lineageTag: bulletthresholds_value
 		summarizeBy: none
 		sourceColumn: Value
 
 	column Target
 		dataType: double
-		lineageTag: Target
 		formatString: #,0
+		lineageTag: Target
 		summarizeBy: none
 		sourceColumn: Target
 
 	column Minimum
 		dataType: double
-		lineageTag: Minimum
 		formatString: #,0
+		lineageTag: Minimum
 		summarizeBy: none
 		sourceColumn: Minimum
 
 	column NeedsImprovement
 		dataType: double
-		lineageTag: NeedsImprovement
 		formatString: #,0
+		lineageTag: NeedsImprovement
 		summarizeBy: none
 		sourceColumn: NeedsImprovement
 
 	column Satisfactory
 		dataType: double
-		lineageTag: Satisfactory
 		formatString: #,0
+		lineageTag: Satisfactory
 		summarizeBy: none
 		sourceColumn: Satisfactory
 
 	column Good
 		dataType: double
-		lineageTag: Good
 		formatString: #,0
+		lineageTag: Good
 		summarizeBy: none
 		sourceColumn: Good
 
 	column VeryGood
 		dataType: double
-		lineageTag: VeryGood
 		formatString: #,0
+		lineageTag: VeryGood
 		summarizeBy: none
 		sourceColumn: VeryGood
 
 	column Maximum
 		dataType: double
-		lineageTag: Maximum
 		formatString: #,0
+		lineageTag: Maximum
 		summarizeBy: none
 		sourceColumn: Maximum
 
@@ -111,7 +111,7 @@ table BulletThresholds
 				    // Value and Target are scaled per category so thresholds always
 				    // land in a sensible range regardless of the metric's magnitude.
 				    Scale = (v as number) as number => if v > 1000 then 1000 else if v > 100 then 100 else 10,
-				    Rows = List.Transform(List.Numbers({1..RowCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, RowCount), (i) =>
 				        let
 				            pick = Categories{Number.Mod(i - 1, List.Count(Categories))},
 				            scale = Scale(pick{1}),
@@ -157,3 +157,4 @@ table BulletThresholds
 				        ])
 				in
 				    Source
+

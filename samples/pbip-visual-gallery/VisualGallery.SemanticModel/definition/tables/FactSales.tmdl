@@ -33,20 +33,20 @@ table FactSales
 		formatString: 0.0%
 		lineageTag: factsales_avgdiscount
 
+	column OrderDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: OrderDate
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	column OrderNumber
 		dataType: int64
 		lineageTag: OrderNumber
 		summarizeBy: none
 		sourceColumn: OrderNumber
-
-	column OrderDate
-		dataType: dateTime
-		lineageTag: OrderDate
-		formatString: Short Date
-		summarizeBy: none
-		sourceColumn: OrderDate
-
-		annotation UnderlyingDateTimeDataType = Date
 
 	column ProductKey
 		dataType: int64
@@ -68,36 +68,36 @@ table FactSales
 
 	column Quantity
 		dataType: int64
-		lineageTag: Quantity
 		formatString: #,0
+		lineageTag: Quantity
 		summarizeBy: none
 		sourceColumn: Quantity
 
 	column UnitPrice
 		dataType: double
-		lineageTag: UnitPrice
 		formatString: \$#,0.00
+		lineageTag: UnitPrice
 		summarizeBy: none
 		sourceColumn: UnitPrice
 
 	column StandardCostAmount
 		dataType: double
-		lineageTag: StandardCostAmount
 		formatString: \$#,0.00
+		lineageTag: StandardCostAmount
 		summarizeBy: none
 		sourceColumn: StandardCostAmount
 
 	column DiscountPct
 		dataType: double
-		lineageTag: DiscountPct
 		formatString: 0.0%
+		lineageTag: DiscountPct
 		summarizeBy: none
 		sourceColumn: DiscountPct
 
 	column SalesAmount
 		dataType: double
-		lineageTag: SalesAmount
 		formatString: \$#,0.00
+		lineageTag: SalesAmount
 		summarizeBy: none
 		sourceColumn: SalesAmount
 
@@ -109,13 +109,20 @@ table FactSales
 				    DayCount = 1096,
 				    LineCount = 24000,
 				    LinesPerOrder = 2,
-				    ListPrices = List.Transform(List.Numbers({1..Table.RowCount(#"DimProduct")}), (k) =>
-				        #"DimProduct"{[ProductKey = k]}[ListPrice]),
-				    UnitCosts = List.Transform(List.Numbers({1..Table.RowCount(#"DimProduct")}), (k) =>
-				        #"DimProduct"{[ProductKey = k]}[StandardCost]),
+				    // A partition must not read another table's data. Power BI does
+				    // not track that dependency, so refreshing one table can
+				    // deadlock waiting on the other. Regenerate the same prices
+				    // from the same formula DimProduct uses; ProductKey remains
+				    // the join key and the relationship does the linking.
+				    ProductCount = 60,
+				    ListPrices = List.Transform(List.Numbers(1, ProductCount), (k) =>
+				        25 + Number.Round(fnSeed(k, 11) * 975, 2)),
+				    UnitCosts = List.Transform(List.Numbers(1, ProductCount), (k) =>
+				        let lp = 25 + Number.Round(fnSeed(k, 11) * 975, 2)
+				        in Number.Round(lp * (0.42 + fnSeed(k, 23) * 0.26), 2)),
 				    CustomerCount = 300,
 				    StoreCount = 12,
-				    Rows = List.Transform(List.Numbers({1..LineCount}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, LineCount), (i) =>
 				        let
 				            dayOffset = Number.Mod(i * 7 + 3, DayCount),
 				            orderDate = Date.AddDays(StartDate, dayOffset),
@@ -126,8 +133,8 @@ table FactSales
 				            unitPrice = ListPrices{productKey - 1},
 				            unitCost = UnitCosts{productKey - 1},
 				            discountPct = Number.Round(fnSeed(i, 31) * 18) / 100,
-				            -- A gentle upward trend plus monthly seasonality, so time-series
-				            -- visuals have a shape worth reading instead of flat noise.
+				            // A gentle upward trend plus monthly seasonality, so time-series
+				            // visuals have a shape worth reading instead of flat noise.
 				            trendFactor = 1 + 0.45 * (dayOffset / DayCount),
 				            seasonalFactor = 1 + 0.22 * Number.Sin(2 * Number.Pi * (Date.Month(orderDate) - 1) / 12),
 				            salesAmount = Number.Round(quantity * unitPrice * (1 - discountPct) * trendFactor * seasonalFactor, 2)
@@ -160,3 +167,4 @@ table FactSales
 				        ])
 				in
 				    Source
+

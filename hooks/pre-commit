@@ -12,6 +12,10 @@ if echo "$STAGED" | grep -qE '\.(tmdl|pbip|pbism|pbir|json|m)$'; then
     # names neither a file nor a line. Nothing else in this hook catches it.
     python3 scripts/fix_lineage_tags.py --check samples \
         || { echo "[pre-commit] FAIL: invalid or duplicate TMDL lineageTag (scripts/fix_lineage_tags.py)"; exit 1; }
+    # M has no `a..b` range operator, so List.Numbers({1..n}) fails at refresh with
+    # an overload error that names no function or table.
+    python3 scripts/fix_list_numbers.py --check samples \
+        || { echo "[pre-commit] FAIL: invalid List.Numbers range call (scripts/fix_list_numbers.py)"; exit 1; }
     python3 scripts/validate_repo.py       || { echo "[pre-commit] FAIL: validate_repo.py"; exit 1; }
     python3 scripts/validate_date_table.py || { echo "[pre-commit] FAIL: validate_date_table.py"; exit 1; }
     bash scripts/validate_pbir.sh          || { echo "[pre-commit] FAIL: validate_pbir.sh"; exit 1; }

@@ -58,14 +58,9 @@ def filter_relationships(text: str, keep: set[str]) -> str:
     return "\n\n".join(kept) + ("\n" if kept else "")
 
 
-def main(argv: list[str]) -> int:
-    if len(argv) < 3:
-        print(__doc__)
-        return 2
-    src = Path(argv[0])
-    dst = Path(argv[1])
-    keep = {t.strip() for t in argv[2].split(",") if t.strip()}
-
+def reduce(src: Path, dst: Path, keep) -> set[str]:
+    """Write a reduced copy of a model definition folder. Returns the kept names."""
+    keep = {t.strip() for t in keep if t.strip()}
     if dst.exists():
         shutil.rmtree(dst)
     tables_dir = dst / "tables"
@@ -86,15 +81,24 @@ def main(argv: list[str]) -> int:
             encoding="utf-8", newline="\n",
         )
 
-    copied = []
+    copied = set()
     for tmdl in sorted((src / "tables").glob("*.tmdl")):
-        name = tmdl.stem
-        if name not in keep:
+        if tmdl.stem not in keep:
             continue
         shutil.copy2(tmdl, tables_dir / tmdl.name)
-        copied.append(name)
+        copied.add(tmdl.stem)
+    return copied
 
-    missing = keep - set(copied)
+
+def main(argv: list[str]) -> int:
+    if len(argv) < 3:
+        print(__doc__)
+        return 2
+    src = Path(argv[0])
+    dst = Path(argv[1])
+    keep = {t.strip() for t in argv[2].split(",") if t.strip()}
+    copied = reduce(src, dst, keep)
+    missing = keep - copied
     print(f"[INFO] kept: {', '.join(sorted(copied))}")
     if missing:
         print(f"[WARN] requested but absent: {', '.join(sorted(missing))}")

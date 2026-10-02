@@ -19,8 +19,8 @@ table PriceSeries
 
 	column Timestamp
 		dataType: dateTime
-		lineageTag: Timestamp
 		formatString: Short Date
+		lineageTag: Timestamp
 		summarizeBy: none
 		sourceColumn: Timestamp
 
@@ -34,15 +34,15 @@ table PriceSeries
 
 	column Value
 		dataType: double
-		lineageTag: priceseries_value_36
 		formatString: #,0.00
+		lineageTag: priceseries_value_36
 		summarizeBy: none
 		sourceColumn: Value
 
 	column BaselineValue
 		dataType: double
-		lineageTag: BaselineValue
 		formatString: #,0.00
+		lineageTag: BaselineValue
 		summarizeBy: none
 		sourceColumn: BaselineValue
 
@@ -54,8 +54,8 @@ table PriceSeries
 
 	column EventSize
 		dataType: double
-		lineageTag: EventSize
 		formatString: #,0
+		lineageTag: EventSize
 		summarizeBy: none
 		sourceColumn: EventSize
 
@@ -76,7 +76,7 @@ table PriceSeries
 				        {150, "Regulatory review", 1},
 				        {205, "Regional expansion", 4}
 				    },
-				    Rows = List.Transform(List.Numbers({1..PointCount * List.Count(Series)}), (i) =>
+				    Rows = List.Transform(List.Numbers(1, PointCount * List.Count(Series)), (i) =>
 				        let
 				            seriesIndex = Number.Mod(i - 1, List.Count(Series)),
 				            pointIndex = Number.IntegerDivide(i - 1, List.Count(Series)),
@@ -112,3 +112,4 @@ table PriceSeries
 				        ])
 				in
 				    Source
+

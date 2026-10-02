@@ -27,8 +27,8 @@ table Flow
 
 	column Value
 		dataType: double
-		lineageTag: flow_value_29
 		formatString: #,0
+		lineageTag: flow_value_29
 		summarizeBy: none
 		sourceColumn: Value
 
@@ -66,7 +66,7 @@ table Flow
 				    Stages = {"Leads", "Enquiries", "Quotes", "Orders", "Production", "Dispatch", "Retail Sale", "Renewal"},
 				    StageBase = {12000, 8400, 5600, 4100, 3700, 3450, 3180, 1620},
 				    EdgeCount = List.Count(Stages) - 1,
-				    AdjacentEdges = List.Transform(List.Numbers({1..EdgeCount}), (i) =>
+				    AdjacentEdges = List.Transform(List.Numbers(1, EdgeCount), (i) =>
 				        [
 				            Source = Stages{i - 1},
 				            Destination = Stages{i},
@@ -122,3 +122,4 @@ table Flow
 				        ])
 				in
 				    Source
+
