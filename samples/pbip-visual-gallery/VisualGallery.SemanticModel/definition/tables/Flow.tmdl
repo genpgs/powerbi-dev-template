@@ -87,8 +87,12 @@ table Flow
 				        {"Dispatch", "Returned", 270, "Secondary"},
 				        {"Retail Sale", "Churned", 1560, "Secondary"}
 				    },
+				    // Brackets, not braces: after `=>` on its own line M reads a bare
+				    // `{` as the start of a let block rather than a record, so
+				    // `Source = e{0}` becomes a variable reference and the step fails
+				    // with "The name 'Source' wasn't recognized".
 				    SecondaryEdges = List.Transform(LeakageEdges, (e) =>
-				        {
+				        [
 				            Source = e{0},
 				            Destination = e{1},
 				            Value = e{2},
@@ -96,7 +100,7 @@ table Flow
 				            SourceType = e{0},
 				            TargetType = e{1},
 				            SourceLabels = "-"
-				        }),
+				        ]),
 				    Rows = List.Transform(
 				        List.Combine({AdjacentEdges, SecondaryEdges}),
 				        (e) =>

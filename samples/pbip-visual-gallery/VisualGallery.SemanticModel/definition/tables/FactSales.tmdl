@@ -136,7 +136,10 @@ table FactSales
 				            // A gentle upward trend plus monthly seasonality, so time-series
 				            // visuals have a shape worth reading instead of flat noise.
 				            trendFactor = 1 + 0.45 * (dayOffset / DayCount),
-				            seasonalFactor = 1 + 0.22 * Number.Sin(2 * Number.Pi * (Date.Month(orderDate) - 1) / 12),
+				            // M has no Pi constant: the name does not resolve and this step
+				            // fails with "The name 'Number.Pi' wasn't recognized". Two
+				            // radians per month, spelled out.
+				            seasonalFactor = 1 + 0.22 * Number.Sin(6.28318530717959 * (Date.Month(orderDate) - 1) / 12),
 				            salesAmount = Number.Round(quantity * unitPrice * (1 - discountPct) * trendFactor * seasonalFactor, 2)
 				        in
 				            [

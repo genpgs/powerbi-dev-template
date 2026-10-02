@@ -32,6 +32,17 @@ from pathlib import Path
 
 CALL = "List.Numbers("
 RANGE = re.compile(r"^\{(0|1)\.\.(.+)\}$", re.S)
+# Two more M mistakes that surface only at refresh, with no file or line:
+#   - a lambda whose body starts with a bare `{` on the next line: M reads that
+#     as a let block, so `Source = e{0}` becomes a variable reference and fails
+#     with "The name 'Source' wasn't recognized".
+#   - `Number.Pi`, which does not exist in M; it fails with "The name
+#     'Number.Pi' wasn't recognized".
+# `[ \t]*$` not `\s*$`: \s matches newlines, so \s*$ can swallow the line break
+# and the pattern silently stops matching the shape it is meant to catch.
+LAMBDA_BRACE = re.compile(r"=>[ \t]*\r?\n[ \t]*\{[ \t]*\r?$", re.M)
+PI = re.compile(r"Number\.Pi\b")
+TWO_PI = 6.28318530717959
 
 
 def match_args(text: str, start: int) -> tuple[str, int]:
@@ -79,6 +90,30 @@ def fix(text: str, path: Path) -> tuple[str, int]:
     return text.replace("\x00", CALL), count
 
 
+def strip_comments(text: str) -> str:
+    """Blank out comment lines, preserving line numbering.
+
+    The checks below look for code constructs, and a line documenting the very
+    construct being banned would otherwise trip them.
+    """
+    return "\n".join("" if line.lstrip().startswith("//") else line
+                     for line in text.split("\n"))
+
+
+def audit(path: Path, text: str) -> list[str]:
+    """Report M constructs that parse or resolve wrongly. Never auto-rewrites."""
+    code = strip_comments(text)
+    out = []
+    for m in LAMBDA_BRACE.finditer(code):
+        line = code[:m.start()].count("\n") + 1
+        out.append(f"{path.name}:{line}: bare '{{' after '=>' is read as a let block, "
+                   f"not a record - use '[' ']'")
+    for m in PI.finditer(code):
+        line = code[:m.start()].count("\n") + 1
+        out.append(f"{path.name}:{line}: M has no Number.Pi - use a literal (2*Pi = {TWO_PI})")
+    return out
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("roots", nargs="*", type=Path, default=[Path("samples")])
@@ -94,10 +129,14 @@ def main(argv: list[str]) -> int:
                 total += n
                 if not args.check:
                     path.write_text(updated, encoding="utf-8", newline="\n")
+            for problem in audit(path, original if not n else updated):
+                print(f"  [ERROR] {problem}")
+                total += 1
 
     status = "FAIL" if (args.check and total) else "PASS"
     verb = "would fix" if args.check else "fixed"
-    print(f"[{status}] {total} invalid List.Numbers range call(s) {verb}")
+    print(f"[{status}] {total} List.Numbers range call(s) {verb}; "
+          f"plus any [ERROR] lines above")
     return 1 if (args.check and total) else 0
 
 
