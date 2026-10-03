@@ -53,7 +53,34 @@ data/*.csv
 data/*.parquet
 
 # Local source assets for extending the visual gallery; check in PBIR examples, not packages.
-samples/visual-gallery-assets/
+#
+# The folder itself is ignored, but four things inside it are contracts rather than
+# payload, so they are negated back in below. Keeping them tracked is what lets a
+# clone describe and verify the gallery without a single binary present:
+#
+#   manifest.csv        the fetch contract: URL, version, GUID, SHA-256 per asset
+#   content.json        the authored prose the catalog is generated from
+#   visual-catalog.json the derived description the gallery and allowlist both read
+#   Images/             thumbnail art for the 26 custom visuals
+#   icons/              vendored chart-type SVGs (MIT) for the native visuals
+#
+# Still ignored, deliberately: PBIVIZ/ and PBIX/ (publisher binaries and sample
+# workbooks, fetched by scripts/fetch_gallery_assets.py), and PBIR/ until the
+# third PR that adds the trimmed example definitions.
+#
+# The pattern excludes the folder's *contents* rather than the folder itself. Git
+# does not descend into an excluded directory, so `!file` rules underneath one are
+# silently inert - re-inclusion only works if the parent directory stays visible.
+samples/visual-gallery-assets/*
+!samples/visual-gallery-assets/manifest.csv
+!samples/visual-gallery-assets/content.json
+!samples/visual-gallery-assets/visual-catalog.json
+!samples/visual-gallery-assets/EXCEPTIONS.md
+!samples/visual-gallery-assets/Images/
+!samples/visual-gallery-assets/icons/
+samples/visual-gallery-assets/PBIVIZ/
+samples/visual-gallery-assets/PBIX/
+samples/visual-gallery-assets/PBIR/
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
 # Personal local agent config (personal skills, tooling)
@@ -61,7 +88,8 @@ samples/visual-gallery-assets/
 
 # Custom visual packages (publisher binaries, e.g. Microsoft AppSource .pbiviz).
 # VisualGallery reports reference custom visuals by GUID in
-# report.json -> publicCustomVisuals; the packages themselves are pulled locally by
-# scripts/extract_custom_visuals.ps1 and never committed.
+# report.json -> publicCustomVisuals; the packages themselves are downloaded by
+# scripts/fetch_gallery_assets.py and installed by scripts/extract_custom_visuals.py.
+# Never committed.
 *.pbiviz
 **/CustomVisuals/
