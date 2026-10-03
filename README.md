@@ -82,6 +82,10 @@ powerbi-dev-template/
 │   ├── fnCalendarWeekBased.m# 4-4-5 / 454 / 544 / 13-period
 │   └── fnFiscalCalendarConfig.m
 ├── samples/pbip-calendar-baseline/  # Working PBIP sample
+├── samples/pbip-visual-gallery/      # 36-page, 190-visual PBIP reference report
+├── samples/visual-gallery-assets/    # Asset manifest, visual catalog, images, icons
+├── templates/html-prototype/         # Canvas mockup harness with an enforced allowlist
+├── templates/visuals-gallery/        # Browsable visual reference (open index.html)
 ├── dax/queries/validate-calendar.dax
 ├── scripts/                 # Validation scripts
 ├── hooks/pre-commit         # Git pre-commit hook
