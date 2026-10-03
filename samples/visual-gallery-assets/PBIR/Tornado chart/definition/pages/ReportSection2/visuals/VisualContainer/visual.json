@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 9.955555555555556,
+    "y": 19.91111111111111,
+    "z": 0,
+    "height": 694.0444444444445,
+    "width": 769.4222222222222
+  },
+  "visual": {
+    "visualType": "TornadoChart1452517688218",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Unemployment"
+                    }
+                  },
+                  "Property": "Group"
+                }
+              },
+              "queryRef": "Unemployment.Group"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Unemployment"
+                    }
+                  },
+                  "Property": "Legend"
+                }
+              },
+              "queryRef": "Unemployment.Legend"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Unemployment"
+                        }
+                      },
+                      "Property": "Percentage"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Unemployment.Percentage)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Unemployment"
+                      }
+                    },
+                    "Property": "Percentage"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "chartArea": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2a474df4778ef794c83f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Unemployment"
+              }
+            },
+            "Property": "Group"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d238118b9e0170c08b9b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Unemployment"
+              }
+            },
+            "Property": "Legend"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "78f3e2d6bf4469208911",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Unemployment"
+                  }
+                },
+                "Property": "Percentage"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

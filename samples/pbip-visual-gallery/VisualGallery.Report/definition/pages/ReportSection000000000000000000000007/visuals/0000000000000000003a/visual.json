@@ -2,17 +2,105 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0000000000000000003a",
   "position": {
-    "x": 659,
-    "y": 124,
+    "x": 982.1645021645021,
+    "y": 139.91341991341992,
     "z": 4000,
-    "height": 450,
-    "width": 603,
+    "height": 530.56277056277054,
+    "width": 857.48917748917745,
     "tabOrder": 4000
   },
   "visual": {
     "visualType": "keyDriversVisual",
     "query": {
       "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStore"
+                    }
+                  },
+                  "Property": "Channel"
+                }
+              },
+              "queryRef": "DimStore.Channel",
+              "nativeQueryRef": "Channel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ListPrice"
+                }
+              },
+              "queryRef": "DimProduct.ListPrice",
+              "nativeQueryRef": "ListPrice"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "StandardCost"
+                }
+              },
+              "queryRef": "DimProduct.StandardCost",
+              "nativeQueryRef": "StandardCost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Subcategory"
+                }
+              },
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ColorName"
+                }
+              },
+              "queryRef": "DimProduct.ColorName",
+              "nativeQueryRef": "ColorName"
+            }
+          ]
+        },
         "Target": {
           "projections": [
             {
@@ -30,62 +118,48 @@
               "nativeQueryRef": "Total Sales"
             }
           ]
-        },
-        "ExplainBy": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimStore"
-                    }
-                  },
-                  "Property": "Channel"
-                }
-              },
-              "queryRef": "DimStore.Channel",
-              "nativeQueryRef": "Channel"
-            }
-          ]
-        },
-        "Details": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category"
-            }
-          ]
-        },
-        "Related": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Subcategory"
-                }
-              },
-              "queryRef": "DimProduct.Subcategory",
-              "nativeQueryRef": "Subcategory"
-            }
-          ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactSales"
+                  }
+                },
+                "Property": "Total Sales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'keyInfluencers'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

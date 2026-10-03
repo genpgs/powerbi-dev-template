@@ -1,0 +1,478 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 9.709228824273072,
+    "y": 0.8091024020227561,
+    "z": 0,
+    "height": 717.6738305941847,
+    "width": 629.4816687737042
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "The Power KPI Matrix visual does not currently support automatic creation of thresholds for KPI indicators, such as “show as a green circle if Variance is within -2% and higher”.  Instead, there are two ways you can define your own KPI indicators:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Method 1:  Include a Column with the desired KPI index in your data model. ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "An ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "advantage with this approach is you are not bound to a threshold rule that"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     may need to be constantly tweaked.  Assuming you use either a"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     live/direct connection or scheduled refresh, you may update the KPIs that"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "     show with the latest data without needing to open, modify and republish your pbix.  "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "  "
+                  },
+                  {
+                    "value": "Column type",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": whole number (integer)",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "  "
+                  },
+                  {
+                    "value": "Values:  ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "1, 2, 3, 4, or 5",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In the Field pane, drop your column (called \"",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "KPI Index",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "\" in the row-based sample data) on to the ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "KPI Indicator Index ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "field well. The values will then correspond to the shape and color of the KPI symbol you define in the ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "KPI Indicator ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "section of the Format Pane in PBI Desktop (shown at right)",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Method 2: Add a Calculated Column(s)",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": " to your model and set your own automatic",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": " thresholds.  Example: I have a table with two columns of metric values:  1) Actuals and 2) Target"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "  * "
+                  },
+                  {
+                    "value": "Add a new Calculated Column called “Variance” that looks at the % difference between my two metrics  (called \"",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Calc Variance",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "\" in the row-based sample data)",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " * Add a second Calculated Column called “KPI Index” that results in the KPI index values of 1|2|3 based on the range of Variance.  (called \"",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Calc KPI Index",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "\" in the row-based sample data). Here is some sample DAX:",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "KPI Index = if(value([Variance])>= .05, ",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "1",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt",
+                      "color": "#00b050"
+                    }
+                  },
+                  {
+                    "value": ",",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": " if(value([Variance])<-.05,"
+                  },
+                  {
+                    "value": "3",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt",
+                      "color": "red"
+                    }
+                  },
+                  {
+                    "value": ",",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "2",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt",
+                      "color": "#c55a11"
+                    }
+                  },
+                  {
+                    "value": "))",
+                    "textStyle": {
+                      "fontFamily": "Courier New",
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In the Field pane, drop your calc column on to the ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "KPI Indicator Index ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "field well. Combined with the same KPI Symbol formatting as shown in Method 1, this example formula says, “if the variance is greater or equal to 5 percent, show a ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "green ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#00b050"
+                    }
+                  },
+                  {
+                    "value": "circle; if the variance is less than n",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "egative 5%, show as a "
+                  },
+                  {
+                    "value": "red ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "red"
+                    }
+                  },
+                  {
+                    "value": "diamond. ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Otherwise, show a "
+                  },
+                  {
+                    "value": "yellow ",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#bf9000"
+                    }
+                  },
+                  {
+                    "value": "triangle”",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How To Set Up Your KPIs:'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

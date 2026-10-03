@@ -1,0 +1,333 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer2",
+  "position": {
+    "x": 0.8091024020227561,
+    "y": 1.3485081186788876,
+    "z": 0,
+    "height": 717.1344248775285,
+    "width": 429.6333754740835
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Custom Hyperlinks may be set up so that when a user clicks on the Metric name (KPI name), a browser is launched to the predefined url.  For example, you might want to link to a shared Power BI dashboard or report with deeper details and insights on the selected KPI. ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Setup Steps:",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1. Add a Table of Hyperlinks ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "(\"links\")",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2. Perform Final Configuration",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Add a Table of Hyperlinks:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "To accomplish this, you must include a table with a column that includes the ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "exact",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " [metric name] [type=text] you wish to link and another column with the [target url].  In this sample file, there are two identical tables, Col_Links and Row_Links.  Both tables are provided because one is used for the default column-based data model approach while the other is used to illustrate joining to a table with row-based metric names.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "For Column-based data only",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ": ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Add an ID column (whole number type) to both your data (fact) table and your [links] lookup table. Populate the rows of the ID column in the [links] table with unique numbers, starting with number 1.  In the fact table, you need to add the same numbers for the first ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "n",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " rows, where ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "n",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " is the max number of rows in your links table. Optionally, repeat the number series for the rest of your rows in your fact table (this is necessary if you are going to filter the visual based on date). See the sample tables in this file.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Perform Final Configuration",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ":",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "After you import your table of url links, you ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "must ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "perform a few additional configuration steps, detailed in adjacent table shown. Choose the options that correspond to your data model (Live Connection vs Imported and Column vs Row based).  Perform the all of the listed steps for your scenario.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Note: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Hyperlinks are dependent on the Category field well so you should also read the related info here on Categories",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How To Set Up Hyperlinks'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

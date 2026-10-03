@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "16f5702839c2aae7c562",
+  "position": {
+    "x": 23,
+    "y": 179,
+    "z": 7000,
+    "height": 530.3496503496503,
+    "width": 812.3076923076923
+  },
+  "visual": {
+    "visualType": "multiKpiEA8DA325489E436991F0E411F2D85FF3",
+    "query": {
+      "queryState": {
+        "dateColumn": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Column_Based_Metrics"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Column_Based_Metrics.Date"
+            }
+          ]
+        },
+        "valueColumn": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Column_Based_Metrics"
+                        }
+                      },
+                      "Property": "Active Customers"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Column_Based_Metrics.Active Customers)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Column_Based_Metrics"
+                        }
+                      },
+                      "Property": "Avg Price"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Column_Based_Metrics.Avg Price)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Column_Based_Metrics"
+                        }
+                      },
+                      "Property": "Gross Revenue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Column_Based_Metrics.Gross Revenue)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Column_Based_Metrics"
+                        }
+                      },
+                      "Property": "Satisfaction"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Column_Based_Metrics.Satisfaction)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "sparklineLabel": [
+        {
+          "properties": {
+            "autoAdjustFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "printMode": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

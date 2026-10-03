@@ -1,0 +1,162 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer3",
+  "position": {
+    "x": 799.090909090909,
+    "y": 11.818181818181817,
+    "z": 1000,
+    "height": 610,
+    "width": 452.7272727272727
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "A typical use case for a data model is to have one data series (column) for Actual KPI values and a second series that shows on the line chart for comparison and to establish the KPI Indicator and the KPI Indicator Value label (e.g., \"+5.2%\") that can show alongside the indicator symbol.  The Power KPI custom visual will automatically calculate the first variance for you (See prior report tab for details).",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In addition, the Power KPI visual includes the ability to include additional data series in the chart visual and for a second automatic variance calculation.  ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "If a third data series is present in your line chart, a ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Second Variance ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "is automatically calculated. The variance calculation is based on the difference between the second column and third column that is dropped into the Values section of the Field pane.  The Second Variance is automatically shown in the custom visual report tile and can be turned on/off in Format pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "You may choose to drop your own field or calculated column into the Second KPI Indicator Value field, rather than using the auto-calc second variance.  One reason you might do this is to limit your line chart to two series while still showing a third value in the Second Variance value and label area as well as in Tooltips."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#333333'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "89L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Additional Data Series and Second Variance'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

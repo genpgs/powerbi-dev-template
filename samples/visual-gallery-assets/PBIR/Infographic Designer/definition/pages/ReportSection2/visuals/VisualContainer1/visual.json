@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 0,
+    "y": 318.92255892255895,
+    "z": 1000,
+    "height": 398.22222222222223,
+    "width": 430.1144781144781,
+    "angle": 0
+  },
+  "visual": {
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Wine"
+                        }
+                      },
+                      "Property": "Consumption"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Wine.Consumption)"
+            }
+          ]
+        },
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Wine"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Wine.Region"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "Chart": [
+        {
+          "properties": {
+            "markDict": {
+              "expr": {
+                "Literal": {
+                  "Value": "[trimmed by scripts/stage_pbir_examples.py] base64-embedded asset removed. The original is in the publisher's PBIP export; this field is not the binding you came here to read."
+                }
+              }
+            },
+            "Type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bar'"
+                }
+              }
+            },
+            "Grid Line": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "X-Axis": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "Y-Axis": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meta": [
+        {
+          "properties": {
+            "schemaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -63,10 +63,11 @@ data/*.parquet
 #   visual-catalog.json the derived description the gallery and allowlist both read
 #   Images/             thumbnail art for the 26 custom visuals
 #   icons/              vendored chart-type SVGs (MIT) for the native visuals
+#   PBIR/               reference report definitions, staged by
+#                       scripts/stage_pbir_examples.py from the third-party PBIPs
 #
 # Still ignored, deliberately: PBIVIZ/ and PBIX/ (publisher binaries and sample
-# workbooks, fetched by scripts/fetch_gallery_assets.py), and PBIR/ until the
-# third PR that adds the trimmed example definitions.
+# workbooks, fetched by scripts/fetch_gallery_assets.py).
 #
 # The pattern excludes the folder's *contents* rather than the folder itself. Git
 # does not descend into an excluded directory, so `!file` rules underneath one are
@@ -78,9 +79,7 @@ samples/visual-gallery-assets/*
 !samples/visual-gallery-assets/EXCEPTIONS.md
 !samples/visual-gallery-assets/Images/
 !samples/visual-gallery-assets/icons/
-samples/visual-gallery-assets/PBIVIZ/
-samples/visual-gallery-assets/PBIX/
-samples/visual-gallery-assets/PBIR/
+!samples/visual-gallery-assets/PBIR/
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
 # Personal local agent config (personal skills, tooling)

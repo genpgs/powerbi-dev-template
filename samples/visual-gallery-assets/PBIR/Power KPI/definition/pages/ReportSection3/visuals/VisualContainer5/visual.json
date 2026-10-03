@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer5",
+  "position": {
+    "x": 854.0015661707126,
+    "y": 561.3155833985904,
+    "z": 4000,
+    "height": 151.35473766640564,
+    "width": 197.46280344557556
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "AutoScale057919631151260864.JPG"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b19343d30c5573544658",
+  "position": {
+    "x": 883.8095238095237,
+    "y": 615.2895752895753,
+    "z": 1000,
+    "height": 68.36550836550836,
+    "width": 300.64350064350066
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Row_Based_Metrics"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "Row_Based_Metrics.Country"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "r",
+                    "Entity": "Row_Based_Metrics",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "r"
+                                }
+                              },
+                              "Property": "Country"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Germany'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "selection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[\"{\\\"selector\\\":\\\"{\\\\\\\"data\\\\\\\":[\\\\\\\"{\\\\\\\\\\\\\\\"comp\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"k\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"l\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"col\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"s\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"e\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Row_Based_Metrics\\\\\\\\\\\\\\\"},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Country\\\\\\\\\\\\\\\"}},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"const\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"t\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"v\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Germany\\\\\\\\\\\\\\\"}}}}\\\\\\\"]}\\\",\\\"highlight\\\":false}\"]'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

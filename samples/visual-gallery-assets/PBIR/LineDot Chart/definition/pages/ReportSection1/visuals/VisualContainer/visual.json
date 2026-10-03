@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 9.682151589242054,
+    "y": 20.244498777506113,
+    "z": 1,
+    "height": 609.9755501222494,
+    "width": 1267.674205378973
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) A LineDot chart is a line chart that shows an animated distribution of values over a time range. Each data point is shown as a scalable bubble as the chart plays from left to right. A running counter of data rows is also displayed as the animation runs. Format options are provided for Lines, Dots, and Animation.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Line, dots, counter and playback can be customized in the Format tab of the visual.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Clicking on the dot will filter other visuals with selected statement.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

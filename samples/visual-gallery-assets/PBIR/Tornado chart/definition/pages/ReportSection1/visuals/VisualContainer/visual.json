@@ -1,0 +1,73 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 514.6081504702195,
+    "width": 981.8181818181819
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Tornado is a bar chart with category values listed vertically. Use for comparing the relative importance of a variable between two distinct groups."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Group and Values fields are required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Each distinct Group value is a separate bar containing left and right parts."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) If provided, Legend field should contain only 2 distinct values. First of them will be used for left bars, second - for the right bars."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Another approach is to provide two fields into Values fuld bucket."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) X axis option allows to specify max value for each Legend - so bars can be scaled differently for the left and right parts"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7) Data and Group labels, Legend can be customized using formatting pane."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 967.1473354231975,
+    "y": 0,
+    "z": 1000,
+    "height": 173.79310344827587,
+    "width": 310.3448275862069
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Garden Center Sales"
+                    }
+                  },
+                  "Property": "Quarter"
+                }
+              },
+              "queryRef": "Garden Center Sales.Quarter"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Garden Center Sales"
+                        }
+                      },
+                      "Property": "Seeds"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Garden Center Sales.Seeds)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Garden Center Sales"
+                        }
+                      },
+                      "Property": "Flowers"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Garden Center Sales.Flowers)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Garden Center Sales"
+                        }
+                      },
+                      "Property": "Trees"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Garden Center Sales.Trees)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Number of items by Quarter'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

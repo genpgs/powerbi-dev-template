@@ -1,0 +1,272 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 715,
+    "width": 1277
+  },
+  "visual": {
+    "visualType": "ForceGraph1449359463895",
+    "query": {
+      "queryState": {
+        "Source": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Company communications"
+                    }
+                  },
+                  "Property": "Source"
+                }
+              },
+              "queryRef": "Company communicates.Source"
+            }
+          ]
+        },
+        "Weight": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Company communications"
+                        }
+                      },
+                      "Property": "Call count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Company communicates.Call count)"
+            }
+          ]
+        },
+        "LinkType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Company communications"
+                    }
+                  },
+                  "Property": "Relationship"
+                }
+              },
+              "queryRef": "Company communicates.Relationship"
+            }
+          ]
+        },
+        "SourceType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Company communications"
+                    }
+                  },
+                  "Property": "Source type"
+                }
+              },
+              "queryRef": "Company communicates.Source type"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Company communications"
+                    }
+                  },
+                  "Property": "Target"
+                }
+              },
+              "queryRef": "Company communicates.Target"
+            }
+          ]
+        },
+        "TargetType": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Company communications"
+                    }
+                  },
+                  "Property": "Target type"
+                }
+              },
+              "queryRef": "Company communicates.Target type"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "size": [
+        {
+          "properties": {
+            "charge": {
+              "expr": {
+                "Literal": {
+                  "Value": "-20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "properties": {
+            "nameMaxLength": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "imageUrl": {
+              "expr": {
+                "Literal": {
+                  "Value": "'https://raw.githubusercontent.com/Microsoft/PowerBI-visuals-core/resources/images/reports/ForceGraph/'"
+                }
+              }
+            },
+            "displayImage": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "highlightReachableLinks": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "properties": {
+            "showLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "colorLink": {
+              "expr": {
+                "Literal": {
+                  "Value": "'By Link Type'"
+                }
+              }
+            },
+            "thickenLink": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showArrow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'12'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3600ff'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0040ff'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "97L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

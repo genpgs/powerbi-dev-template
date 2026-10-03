@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Artboard_252151617324089.png",
+          "path": "Artboard_252151617324089.png",
+          "type": "Image"
+        },
+        {
+          "name": "FieldPanel8471918411849217.PNG",
+          "path": "FieldPanel8471918411849217.PNG",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "multiKpiEA8DA325489E436991F0E411F2D85FF3",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "multiKpiEA8DA325489E436991F0E411F2D85FF3.pbiviz.json",
+          "path": "multiKpiEA8DA325489E436991F0E411F2D85FF3.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": false
+  }
+}

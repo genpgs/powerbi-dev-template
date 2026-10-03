@@ -1,0 +1,390 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "73036c7c09033075cc3c",
+  "position": {
+    "x": 531.5645277577506,
+    "y": 0,
+    "z": 0,
+    "height": 718.9041095890411,
+    "width": 453.12184571016587
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Number Formats and Display Units",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Current Value ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "and ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Comparison Value ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "columns in the Power KPI Matrix provide data labels for the values that correspond to the latest available date, known as the \"As Of Date.\"",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In the Format Pane, you may customize both the "
+                  },
+                  {
+                    "value": "Display Units ",
+                    "textStyle": {
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "as well as the "
+                  },
+                  {
+                    "value": "Number Formats ",
+                    "textStyle": {
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "for each of your metrics, or for all of your metrics at the same time if you so wish."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Display Units",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Set the units for your values by choosing between None, Thousands (\"K\"), Millions (\"M\"), Billions (\"B\"), as appropriate, or Auto, for your value. The default value of \"Auto\" will dynamically pick the most appropriate unit."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Number Formats",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": ",
+                    "textStyle": {
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "Besides the basic display units, above, You may want to add symbols for percentages, currency symbols (\"$\"), etc.  This can be done by entering a custom format, according to the DAX function reference for the Format() function.  Here are some of the more common examples (do not enter the quotes):"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Percentages",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": \"",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "P",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#a66999"
+                    }
+                  },
+                  {
+                    "value": "\" or \"",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "#%",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#a66999"
+                    }
+                  },
+                  {
+                    "value": "\" (example: 15%)",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Dollars",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": \"",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "C",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#a66999"
+                    }
+                  },
+                  {
+                    "value": "\" or \"",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "$#",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#a66999"
+                    }
+                  },
+                  {
+                    "value": "\" (example: $15,234.12)",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "For more variations, see both the predefined and user-defined sections of the Format text function. Documentation is here: ",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "https://social.technet.microsoft.com/wiki/contents/articles/685.power-bi-dax-text-functions.aspx#format",
+                    "textStyle": {
+                      "color": "#3599b8"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Decimals",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ": The number of decimal places can be set in the Decimal Places box, next to the Display Units and Number Formats properties.  Enter the desired number of decimals (default value is 2)."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Using with Slicers: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "see the technical note on Slicers and Number formats if you are using slicers or filters with the Power KPI Matrix custom visual"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'More Custom Formatting'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

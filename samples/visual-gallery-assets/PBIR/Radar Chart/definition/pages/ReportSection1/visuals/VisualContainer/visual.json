@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 646.6457680250784,
+    "width": 996.4890282131662
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) This is a simple radar chart supporting multiple measures plotted over a categorical axis. Also known as a web chart, spider chart, or star chart. Use to display performance metrics for quality improvement."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Both field buckets of Radar chart are required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Each new Radar is added when you add new field into \"Y axis\" field bucket."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Color of each radar can be customized in format settings pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Legend and data labels also have additional settings for formatting."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

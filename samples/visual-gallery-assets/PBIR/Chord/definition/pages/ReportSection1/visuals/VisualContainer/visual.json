@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 9.682151589242054,
+    "y": 20.244498777506113,
+    "z": 1,
+    "height": 279.90220048899755,
+    "width": 910.1222493887531
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) A chord diagram is a graphical method of displaying the inter-relationships between data in a matrix.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_light"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Interconnection width depends on the corresponding value.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_light"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Color of nodes can be changed in Format settings of the visual.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_light"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Clicking on a source or destination node will filter other visuals by selected statement."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

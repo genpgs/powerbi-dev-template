@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 1.1285266457680252,
+    "y": 1.1285266457680252,
+    "z": 1,
+    "height": 713.2288401253919,
+    "width": 1275.2351097178685
+  },
+  "visual": {
+    "visualType": "RadarChart1446119667547",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "New Employees"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "New Employees.Category"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "New Employees"
+                        }
+                      },
+                      "Property": "Actual"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(New Employees.Actual)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "New Employees"
+                        }
+                      },
+                      "Property": "Planned"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(New Employees.Planned)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Number of new employees'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "084d651ec0a649650c92",
+  "position": {
+    "x": 996.990291262136,
+    "y": 284.8543689320388,
+    "z": 3000,
+    "height": 431.65048543689323,
+    "width": 279.6116504854369
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Example: ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "author has a matrix with a Category, a second category (sub-category) and a metric name column.  The author wants an image to appear ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "only ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "at the primary Category level:",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1.) Drop in the [metric name] column (\"KPI Name\"). A blank placeholder image is added to the left of the metric name",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2.) Drop in the secondary category (\"Subcategory\").  A blank placeholder image is added to the left of the second category",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3.) Drop in the image column (\"Logo\").  The images appear in the primary Category, as desired.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "If the columns are dropped in the incorrect order, the images will not render as expected. Remove all the columns and try again.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#e6e6e6'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 644.926522043387,
+    "width": 1277.3128061581524
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Task field is required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Legend field defines the legend and the color of task progress rectangles."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Start date filed defines the position of task progress."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Duration defines the width of task progress."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) % Completion field defines the relevant bar inside task progress."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Resource field defines the label next to the task progress."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) There are options to show or hide the legend and to determine its position, title visibility, title text, title text color and font size."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7) There are options to show or hide the category labels and to determine its font size, font color and width."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "8) Color of task completion bars and font color and font size of data labels can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "9) Granularity of start date can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "10) For milestones feature usage Task Name and Milestone (defines milestone type), Start Date, Duration = 0  fields must be completed"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "11) For each milestone type you can change color and shape (type specified in Milestone field)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "12) If any parent task's children has been collapsed, parent task bar will be rendered as common bar (starts on min children's Start Date and ends on max children's End Date)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "13) If any parent task's children has been collapsed and there are some children's milestones, parent task bar will be rendered with common milestones (all the milestones will be shown on common bar, milestones with the same date will be shown once, but with tooltip for each same-dated milestones)"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

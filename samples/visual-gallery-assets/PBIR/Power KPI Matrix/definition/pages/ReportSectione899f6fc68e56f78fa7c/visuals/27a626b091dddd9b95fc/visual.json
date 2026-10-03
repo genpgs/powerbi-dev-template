@@ -1,0 +1,313 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "27a626b091dddd9b95fc",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 719.1262135922331,
+    "width": 621.2621359223301
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Image fields ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "are supported within the Category and Metric Name columns.  This includes the following approaches:",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1. Base 64 Strings  "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2. Image URLs"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Base 64 strings ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "is the approach taken in this sample file.  To include images in your data model, create a new column to store the text.  Next, use an app or a web service to convert your image files (typically .jpgs or .pngs) to  Base 64 strings.  Search for conversion apps in the store for your device or try a web service, such as ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "https://www.base64-image.de",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    },
+                    "url": "https://www.base64-image.de"
+                  },
+                  {
+                    "value": ".  Store the resulting output string in your table. ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Image urls ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "depend on a public internet location for the image to reside.  For instance, in the Edge browser, if you right-click on an image and choose to \"Save Target\" you will see the url of the image to reference in your data table.  If you store these paths in your data table, make sure in the Modeling ribbon that you set the Data Category property type as \"Image URL\"",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Binding Images to the Power KPI Matrix visual: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "Once you have images in your data model, you can add to your Power KPI Matrix visual by dropping your [Image] column on to the \"Images\" field well.  By default, the images will be added to the \"Metric Name\" display column in the visual (see screenshot and samples in this file).  If you are using Categories and want to instead use the image at a Category level, you can bump the images up a level by ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "first ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "dropping your [Metric Name] column into the Images field well; ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "followed ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "by your [Images] column.  See screenshot and samples in this file.  ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  },
+                  {
+                    "value": "Note: ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "If you haven't dropped in the columns in exactly the right sequence, remove all from the field well and try again.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Formatting Images in Power KPI Matrix:  ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "The custom visual offers the following image-handling features:",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- toggle on/off in combination with text label",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- use auto font size of associated text label (default); or specify height and width in pixels",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Once the images have been linked to the Power KPI Matrix and are displaying, you may access the associated image options.  Use the Format Pane and scroll down to the associated section that is displaying the image (Metric Name or Category) and expand the section.  The image settings are near the bottom.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How to Include Images'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

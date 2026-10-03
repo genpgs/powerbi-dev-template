@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 248.38661710037175,
+    "width": 1277.1449814126395
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1.       “Category” and “Y Axis” fields are required.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2.       “Category” field defines columns of grid.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3.       “Y Axis” bucket can contain several elements. Each element of “Y Axis” defines single row of grid.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4.       The legend defines distribution of values by color. Count of boxes on the legend can be changed from 3 to 9 using property “Buckets” of the formatting panel.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5.       Color palette of distribution can be changed using property “Colorbrewer” of the formatting panel (available values: YlGn, YlGnBu, GnBu, BuGn, PuBuGn, PuBu, BuPu, RdPu, PuRd, OrRd, YlOrRd, YlOrBr, Purples, Blues, Greens, Oranges, Reds, Greys, PuOr, BrBG, PRGn, PiYG, RdBu, RdGy, RdYlBu, Spectral, RdYlGn, Paired, Pastel1, Set1, Set3).",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6.       Color of boxes defines value.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7.       You can see values of cells, if property “Data Labels” of the formatting panel is enabled.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

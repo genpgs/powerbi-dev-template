@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 1.1285266457680252,
+    "y": 0,
+    "z": 1,
+    "height": 705.3291536050157,
+    "width": 1275.2351097178685
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Both Category and Y axis are required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Y axis can contain 1 or 2 fields."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) First field of Y axis bucket defines height of the slice."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Second field defines sweep angle of the slice, if provided."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Clicking on slice will filter other visuals by selected category."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) Outer line options and color of the label in the circle are additional options of Aster Plot."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

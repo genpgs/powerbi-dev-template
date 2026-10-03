@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "ace0e1e5b1b07b5ebb7d",
+  "position": {
+    "x": 599.1858887381276,
+    "y": 11.289009497964722,
+    "z": 2000,
+    "height": 671.2618724559023,
+    "width": 341.2754409769335
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "2. Perform Final Configuration",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ":",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "After you import your table of url links, you ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "must ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "perform a few additional configuration steps. Please refer to the \"Hyperlinks and Categories\" page for these configuration steps. Choose the options that correspond to your data model (Live Connection vs Imported and Column vs Row based).  Perform all of the listed steps for your scenario, with the exception of the steps that direct you to drop fields into the Hyperlink buckets.  Instead, you will be using the Sort Order bucket (see screenshot on this page), as well as the Category bucket, since Sort Order is dependent on the Category feature, even if you don't otherwise use Categories.  ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Using the Sort Order bucket in the Field Pane",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ".  Once the setup steps have been completed, in the Field Pane, drop the [Metric Name] field into the Category bucket; and drop the [Order] field into the Sort Order bucket (see the screenshot at right and also the \"Hyperlinks and Categories\" instruction tab)",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Custom Sort Order works the same way for both row-based and with column-based data.  ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Categories",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ".  If you are using the Category feature, see the report tab for \"Hyperlinks and Categories.\" "
+                  },
+                  {
+                    "value": " In your dimension table (\"links\"), you will want to include an additional numeric column, populated with the desired order of your specific categories listed in the table.  See the sample tables and screenshot at bottom right, which sorts by three keys: 1) category; 2) subcategory; 3) metric name",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

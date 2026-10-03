@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 548.4639498432603,
+    "width": 961.5047021943574
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Sankey is a type of flow diagram in which the width of the series is in proportion to the quantity of the flow. Use it to find major contributions to an overall flow."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Value of link is set in dataset, value of node is calculated based on values of links of this node."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Every node can be source node, target node or can be both."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) If node is source and target in this visual, it means that it is source of one row and is target of another row of the dataset."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Labels of nodes can be hidden using formatting pane."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

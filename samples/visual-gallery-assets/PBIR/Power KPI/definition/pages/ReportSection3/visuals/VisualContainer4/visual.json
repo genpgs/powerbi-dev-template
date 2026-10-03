@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer4",
+  "position": {
+    "x": 468.04451510333865,
+    "y": 514.8489666136725,
+    "z": 2000,
+    "height": 205.53259141494436,
+    "width": 376.47058823529414
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "As I shrink my tile, the fonts keep getting smaller, my legend disappears, etc.  How Can I Fine-Tune My Small Tiles? ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "While "
+                  },
+                  {
+                    "value": "Auto-Scale (",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  },
+                  {
+                    "value": "the ability of the visual to dynamically shrink and hide elements as the tile is reduced) is a great feature, it doesn't cover every combination you might prefer when designing very small tiles.  In this situation, you may want to turn off Auto-Scale in the Format Pane, under the Layout Group.  See image to the right."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Precision (Decimals)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

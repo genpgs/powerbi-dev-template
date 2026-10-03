@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 646.6457680250784,
+    "width": 1186.0815047021945
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Timeline slicer is a graphical date range selector used as a filtering component in the report canvas."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) It has different types of date granularity: year, quarter, month, week, day."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Start date of the week and quarter can be specified for Timeline visual. Also it has different options of coloring."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

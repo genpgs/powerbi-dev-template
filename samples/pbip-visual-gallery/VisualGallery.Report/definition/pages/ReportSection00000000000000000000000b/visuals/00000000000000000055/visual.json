@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "BulletThresholds.Category",
-              "nativeQueryRef": "Category"
+              "nativeQueryRef": "Category",
+              "active": true
             }
           ]
         },

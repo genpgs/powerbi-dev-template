@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 2000,
+    "height": 162.50783699059562,
+    "width": 694.0438871473355
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Simple"
+                    }
+                  },
+                  "Property": "Attempt"
+                }
+              },
+              "queryRef": "Simple_New.Attempt",
+              "nativeQueryRef": "Attempt",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Simple"
+                        }
+                      },
+                      "Property": "Size"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Simple_New.Size)",
+              "nativeQueryRef": "Size"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Simple"
+                      }
+                    },
+                    "Property": "Size"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    }
+  }
+}

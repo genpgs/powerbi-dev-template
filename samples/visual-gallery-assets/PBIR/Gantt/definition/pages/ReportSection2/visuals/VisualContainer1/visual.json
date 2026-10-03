@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 870.6508047585723,
+    "y": 29.559132260321903,
+    "z": 1000,
+    "height": 363.666899930021,
+    "width": 395.01749475157453
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Building construction"
+                    }
+                  },
+                  "Property": "Task Name"
+                }
+              },
+              "queryRef": "Building construction.Task Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Building construction"
+                    }
+                  },
+                  "Property": "Start Date"
+                }
+              },
+              "queryRef": "Building construction.Start Date"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Building construction"
+                        }
+                      },
+                      "Property": "Duration"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Building construction.Duration)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
