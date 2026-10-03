@@ -187,6 +187,51 @@ appears in the gallery, that no excluded type does, that every manifest GUID
 appears, that nothing is declared outside the allowlist, and that
 `report.json -> publicCustomVisuals` matches the GUIDs actually in use.
 
+### Browsable reference
+
+For choosing a visual rather than reading its PBIR, open
+[`templates/visuals-gallery/index.html`](../templates/visuals-gallery/index.html).
+It lists all 84 native, excluded and custom visuals with the data roles each
+takes and the substitution rule that should stop you reaching for it. It is a
+single self-contained file, so it opens straight off disk.
+
+Its content is generated — prose is authored in
+`samples/visual-gallery-assets/content.json` and merged with derived facts into
+`samples/visual-gallery-assets/visual-catalog.json`, so the prose survives
+regeneration and can be reviewed as a diff:
+
+```bash
+python3 scripts/vendor_native_icons.py         # only when re-pinning the icon set
+python3 scripts/build_visual_catalog.py        # merge manifest + capabilities + allowlist
+python3 scripts/build_html_gallery.py          # emit the page
+python3 scripts/verify_html_gallery.py         # 17 assertions over the result
+```
+
+`verify_html_gallery.py` asserts allowlist parity in both directions, GUID
+agreement with `report.json`, that every custom visual's roles came from a real
+package, that every thumbnail resolves, that every shared glyph and every
+schematic records its reason, and that the page is self-contained and
+well-formed. It fails on a stale build, so the generated page cannot drift from
+its sources.
+
+### Thumbnails are labels, not screenshots
+
+The gallery contains no screenshot of Power BI. Native visuals carry a generic
+chart-type glyph from [Tabler Icons](https://github.com/tabler/tabler-icons)
+(MIT), vendored verbatim from a pinned commit under
+`samples/visual-gallery-assets/icons/` with a per-file SHA-256 lock. Custom
+visuals carry the reference image exported from AppSource. Ten native types have
+no honest glyph and get a drawn schematic instead, from `scripts/schematics.py`.
+
+The distinction is stated on the page because a thumbnail a reader cannot
+interpret as evidence is worse than no thumbnail. Desktop screenshots were ruled
+out because they need a Windows machine with the Desktop Bridge and their DPI and
+theme depend on whichever machine last generated them; Learn documentation
+images were ruled out because they are Microsoft's content, licensed for internal
+use rather than redistribution — the same reasoning that keeps the `.pbiviz`
+packages below out of the repository. The 28 stand-ins are listed in
+`samples/visual-gallery-assets/EXCEPTIONS.md` as a review list.
+
 The allowed set itself is generated into
 [`templates/html-prototype/visual-allowlist.json`](../templates/html-prototype/visual-allowlist.json)
 by `scripts/generate_visual_allowlist.py`, from `catalog list` and the manifest,
@@ -213,16 +258,35 @@ python3 scripts/verify_gallery_coverage.py
 
 ### Local asset staging folder
 
-The ignored `samples/visual-gallery-assets/` folder is a local-only staging
-area for source material used when extending the gallery:
+The `samples/visual-gallery-assets/` folder holds source material used when
+extending the gallery. Four things in it are **tracked**, because they are
+contracts and derived descriptions rather than payload:
 
 ```text
 samples/visual-gallery-assets/
-├── manifest.csv
-├── PBIX/
-├── PBIVIZ/
-└── Images/
+├── manifest.csv          tracked - the fetch contract (URL, version, GUID, SHA-256)
+├── content.json          tracked - authored use-when / not-for prose
+├── visual-catalog.json   tracked - derived; identity, roles, thumbnail, demo page
+├── EXCEPTIONS.md         tracked - generated list of stand-in thumbnails
+├── Images/               tracked - 26 reference images for the custom visuals (169 KB)
+├── icons/                tracked - 58 vendored SVG glyphs, MIT (31 KB)
+├── PBIVIZ/               ignored - publisher binaries
+├── PBIX/                 ignored - 12 MB of sample workbooks
+└── PBIR/                 ignored - third-party sample reports, reference material
 ```
+
+A clone therefore ships a full description of the gallery without a single
+publisher binary in it. The binaries are fetched and verified on demand:
+
+```bash
+python3 scripts/fetch_gallery_assets.py             # PBIVIZ + Images, SHA-256 verified
+python3 scripts/fetch_gallery_assets.py --with-pbix # add the 12 MB of PBIX workbooks
+python3 scripts/fetch_gallery_assets.py --check     # verify what is on disk, download nothing
+python3 scripts/extract_custom_visuals.py           # install the payloads into the report
+```
+
+PBIX is opt-in because the PBIP examples cover the same content; it is 12 MB of
+workbooks that nothing in the pipeline needs.
 
 It is populated from the matching folders in
 [DataChant/PowerBI-Visuals-AppSource](https://github.com/DataChant/PowerBI-Visuals-AppSource),
@@ -235,6 +299,20 @@ The PBIVIZ files retain the source's versioned filenames so each package can be
 matched to its catalog version. These files remain local and ignored; do not
 copy packages into tracked report projects unless their publisher terms permit
 it.
+
+Two consequences of pinning worth noting. The manifest's URLs are GitHub `blob/`
+HTML pages, so `scripts/fetch_gallery_assets.py` rewrites them to
+`raw.githubusercontent.com`; and they are branch-anchored, so it also replaces the
+ref with the manifest's own `SourceCommit` pin. That is what makes the SHA-256
+columns mean something — a clone at a given manifest SHA gets byte-identical
+packages, and taking a new upstream version is an explicit edit to the manifest
+rather than silent drift.
+
+One provenance caveat, recorded rather than resolved: the reference images in
+`Images/` were packaged by DataChant, a third party, but they depict Microsoft
+AppSource listings, so DataChant is not the copyright holder. `manifest.csv`
+records a source URL and SHA-256 per image, which establishes where each came
+from, not who owns it.
 
 PBIX-to-PBIP conversion is not automated here. Power BI Desktop must open each
 PBIX and save it as a Power BI Project (PBIP); the Desktop Bridge CLI exposes

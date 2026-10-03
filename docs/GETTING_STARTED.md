@@ -113,19 +113,34 @@ All checks should show `[PASS]`.
 
 ## Visual options and sample gallery
 
-See the [Power BI visual coverage matrix](POWER_BI_VISUAL_COVERAGE.md) for the
-Desktop-native visual inventory, local PBIR/CLI support, known gaps, slicer
-options, and Microsoft-published custom visual verification status. Open
+Start with the browsable reference:
+[`templates/visuals-gallery/index.html`](../templates/visuals-gallery/index.html).
+It lists all 84 native, excluded and custom visuals with the data roles each
+takes and the substitution rule that should stop you reaching for it. Single
+self-contained file — open it, no server or build needed.
+
+For the full inventory of Desktop-native visuals, local PBIR/CLI support, known
+gaps and slicer options, see the
+[Power BI visual coverage matrix](POWER_BI_VISUAL_COVERAGE.md). Open
 [`samples/pbip-visual-gallery/VisualGallery.pbip`](../samples/pbip-visual-gallery/VisualGallery.pbip)
 for runnable examples: 36 pages covering every supported native visual type plus
-all 26 Microsoft custom visuals in the manifest.
+all 26 Microsoft custom visuals.
 
-The 26 custom pages need their `.pbiviz` payloads, which are not committed:
+The gallery reference works on a fresh clone with nothing installed. The sample
+**report** needs the `.pbiviz` payloads, which are publisher binaries and are not
+committed — download and verify them, then register them:
 
 ```bash
-python3 scripts/extract_custom_visuals.py   # (re)register the local packages
-python3 scripts/verify_gallery_coverage.py  # assert coverage against the allowlist
+python3 scripts/fetch_gallery_assets.py    # download + SHA-256 verify, no binaries in git
+python3 scripts/extract_custom_visuals.py  # install into VisualGallery.Report/CustomVisuals/
+python3 scripts/verify_gallery_coverage.py # assert coverage against the allowlist
+python3 scripts/verify_html_gallery.py     # assert the reference page matches its sources
 ```
+
+`fetch_gallery_assets.py` rewrites the manifest's GitHub URLs to raw, commit-pinned
+downloads and checks every file against the SHA-256 recorded in the manifest, so a
+clone at a given manifest revision always gets the same bytes. Add `--check` to
+verify what is already on disk without downloading.
 
 ## Designing a report in HTML first
 

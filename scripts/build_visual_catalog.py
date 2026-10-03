@@ -121,6 +121,24 @@ def build() -> dict:
     pages = gallery_pages()
     no_role = set(allow["native"]["noRoleTypes"])
 
+    # Roles already captured from a package, so the build is idempotent whether or not
+    # the .pbiviz files are on disk. Without this, running on a machine that has not run
+    # the fetcher - CI, a fresh clone - would emit roles: [] for all 26 custom visuals and
+    # report the committed catalog as stale. Which would be a false alarm caused by a
+    # missing input, not by a real change. Packages remain the source of truth; this only
+    # keeps their findings from being forgotten.
+    known_roles: dict[str, list[dict]] = {}
+    if OUT.is_file():
+        try:
+            prior = json.loads(OUT.read_text(encoding="utf-8"))
+            known_roles = {
+                v["visualType"]: v.get("roles") or []
+                for v in prior.get("visuals", [])
+                if v.get("kind") == "custom" and v.get("rolesAreCanonical")
+            }
+        except (json.JSONDecodeError, KeyError, AttributeError):
+            pass
+
     n_content, c_content = content.get("native", {}), content.get("custom", {})
     missing_prose: list[str] = []
     icons: list[dict] = []
@@ -166,6 +184,13 @@ def build() -> dict:
 
         pkg = PBIVIZ / (row.get("PBIVIZ") or "").strip()
         roles = roles_from_package(pkg)
+        if not roles and guid in known_roles:
+            roles = known_roles[guid]
+        # True whenever the roles came out of a package, whether that happened on this
+        # run or an earlier one. Flipping it per-run would make the output differ between
+        # a machine that has fetched the packages and one that has not, which is exactly
+        # the false staleness this carry-forward exists to prevent.
+        canonical = bool(roles)
         img_name = (row.get("Image") or "").strip()
         img_path = IMAGES / img_name
 
@@ -180,7 +205,7 @@ def build() -> dict:
             "version": row.get("Version", "").strip(),
             "package": row.get("PBIVIZ", "").strip(),
             "roles": roles,
-            "rolesAreCanonical": bool(roles),
+            "rolesAreCanonical": canonical,
             "family": (c or {}).get("family", ""),
             "useWhen": (c or {}).get("useWhen", ""),
             "notFor": (c or {}).get("notFor", ""),
@@ -206,7 +231,6 @@ def build() -> dict:
         "excluded": sum(1 for i in icons if i["kind"] == "excluded"),
         "custom": sum(1 for i in icons if i["kind"] == "custom"),
         "rolesFromPackages": sum(1 for i in icons if i.get("rolesAreCanonical")),
-        "rolesFromAllowlist": sum(1 for i in icons if i["kind"] == "custom" and not i.get("rolesAreCanonical")),
         "thumbPhoto": sum(1 for i in icons if i["thumbnail"]["tier"] == "photo"),
         "thumbSchematic": sum(1 for i in icons if i["thumbnail"]["tier"] == "schematic"),
         "thumbMissing": sum(1 for i in icons if i["thumbnail"]["tier"] == "missing"),
@@ -257,7 +281,7 @@ def main(argv: list[str]) -> int:
     print(f"[PASS] {OUT.relative_to(REPO)}  ({OUT.stat().st_size:,} B)")
     print(f"       native={c['native']} excluded={c['excluded']} custom={c['custom']}")
     print(f"       thumbnails: photo={c['thumbPhoto']} schematic={c['thumbSchematic']} missing={c['thumbMissing']}")
-    print(f"       roles: from packages={c['rolesFromPackages']} from allowlist={c['rolesFromAllowlist']}")
+    print(f"       roles: {c['rolesFromPackages']} custom visual(s) carry package-derived roles")
 
     if doc["_missingProse"]:
         print(f"\n[WARN] {len(doc['_missingProse'])} visual(s) have no authored useWhen in content.json:")
