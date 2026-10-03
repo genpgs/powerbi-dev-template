@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035"
+  ],
+  "resourcePackages": [
+    {
+      "name": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035.pbiviz.json",
+          "path": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useEnhancedTooltips": false
+  }
+}

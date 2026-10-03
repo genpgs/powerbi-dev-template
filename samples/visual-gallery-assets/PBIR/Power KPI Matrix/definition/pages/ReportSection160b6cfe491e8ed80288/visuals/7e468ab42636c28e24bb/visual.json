@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7e468ab42636c28e24bb",
+  "position": {
+    "x": 449.86093552465235,
+    "y": 0,
+    "z": 3000,
+    "height": 59.873577749683946,
+    "width": 352.76864728192163
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StepByStep"
+                    }
+                  },
+                  "Property": "Data Model Style"
+                }
+              },
+              "queryRef": "StepByStep.Data Model Style"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "header": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "title": {
+              "expr": {
+                "Literal": {
+                  "Value": "'a. Choose Your Data Model Style:'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[\"{\\\"selector\\\":\\\"{\\\\\\\"data\\\\\\\":[\\\\\\\"{\\\\\\\\\\\\\\\"comp\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"k\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"l\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"col\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"s\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"e\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"StepByStep\\\\\\\\\\\\\\\"},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Data Model Style\\\\\\\\\\\\\\\"}},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"const\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"t\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"v\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Column-Based Data\\\\\\\\\\\\\\\"}}}}\\\\\\\"]}\\\",\\\"highlight\\\":false}\"]'"
+                }
+              }
+            },
+            "multiselect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "s",
+                    "Entity": "StepByStep",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "s"
+                                }
+                              },
+                              "Property": "Data Model Style"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Column-Based Data'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

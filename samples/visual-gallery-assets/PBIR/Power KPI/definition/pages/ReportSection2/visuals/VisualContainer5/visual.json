@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer5",
+  "position": {
+    "x": 612.3921568627451,
+    "y": 289.4640522875817,
+    "z": 3000,
+    "height": 256,
+    "width": 184.05228758169935
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "Format_KPI_Indicator10661374736279705.JPG"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

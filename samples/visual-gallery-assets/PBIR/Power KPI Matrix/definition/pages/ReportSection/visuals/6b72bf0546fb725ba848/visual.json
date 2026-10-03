@@ -1,0 +1,170 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "6b72bf0546fb725ba848",
+  "position": {
+    "x": 899.7218710493047,
+    "y": 267.0037926675095,
+    "z": 4000,
+    "height": 431.251580278129,
+    "width": 380.27812895069536
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "This example visual uses the default layout style, where each metric, or KPI, lives in its own row.   See the separate report page called \"Vertical tables\" to see an output with each metric in a vertical column. Some notable features:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Customizable Sparklines. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Show the actual values with or without target baselines, or use the same coloring of your KPI status indicators to show your past progress toward goals relative to target for each point on your sparkline."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Expandable Categories.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Show or hide groups of metrics by using the Category features."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Individual Hyperlinks ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "tied to specific metric names and/or categories so users can navigate to drilldown reports or other related web content."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Popout Trend Charts.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Click on any (non-hyperlinked) cell provides a full-size popout of the Power KPI visual, including multiple trend lines, formats, and tooltips."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'POWER KPI MATRIX SAMPLE:'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

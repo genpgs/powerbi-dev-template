@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer9",
+  "position": {
+    "x": 274.7023086269745,
+    "y": 0,
+    "z": 5000,
+    "height": 39.368165249088705,
+    "width": 436.5492102065614
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Sample Report for Power KPI Custom Visual",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "15pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 542.3578363384189,
+    "width": 918.7239944521499
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product sales by state"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "Product sales by state.State"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "showDisabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hide'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

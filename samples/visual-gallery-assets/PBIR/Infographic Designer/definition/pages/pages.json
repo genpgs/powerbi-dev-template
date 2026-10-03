@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "ReportSection4",
+    "ReportSection5",
+    "ReportSection6",
+    "ReportSection1",
+    "ReportSection7",
+    "ReportSection2",
+    "ReportSection3",
+    "ReportSection"
+  ],
+  "activePageName": "ReportSection4"
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 616.1755485893417,
+    "width": 1170.282131661442
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) There is an option to turn on or turn off word breaking, so it defines if sentences will be split by words or not."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Each word/sentence has its own size. If Value field is provided, then it defines size of the word/sentence. If Value field is not provided, then size of the word/sentence is calculated based on quantity of this word/sentence in dataset. So, if word/sentence occurs more frequently in dataset, it become larger."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) There is an option to limit number of words/sentences for this visual. It is 200 by default."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) You can set min and max size of the font, and this range will be used to calculate size of each word or sentence."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) You can set specific color for every word or sentence."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) You can exclude some words from dataset if you set these words as “stop words” in settings. Also you can turn on filtering stop words by default list of English stop words."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7) Also you can manage how rotation of words/sentences will be performed."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 622.9467084639499,
+    "width": 1258.307210031348
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Stream Graph is a stacked area chart with smooth interpolation. Often used to display values change over time. "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Category and Value field buckets are required. "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Category is used as legend values. Each category is a separate stream."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Series is used as X-axis values."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Visual provides different formatting options for X, Y axes and for Legend."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) Wiggle flag is used to set how general stream is placed inside of visual."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

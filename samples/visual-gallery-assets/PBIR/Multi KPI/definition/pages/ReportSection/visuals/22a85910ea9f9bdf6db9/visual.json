@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "22a85910ea9f9bdf6db9",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 2000,
+    "height": 146,
+    "width": 177
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "Artboard_252151617324089.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

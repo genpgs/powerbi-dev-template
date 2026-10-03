@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Categories8260565958492512.JPG",
+          "path": "Categories8260565958492512.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "ColumnMapping8737612543480076.JPG",
+          "path": "ColumnMapping8737612543480076.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Edit7082850059051797.JPG",
+          "path": "Edit7082850059051797.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "HyperlinkBucket021497695072778544.JPG",
+          "path": "HyperlinkBucket021497695072778544.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "icon_large4750215795702617.png",
+          "path": "icon_large4750215795702617.png",
+          "type": "Image"
+        },
+        {
+          "name": "Images_15538978284416425.JPG",
+          "path": "Images_15538978284416425.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Images_347628561721810314.JPG",
+          "path": "Images_347628561721810314.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "KPI_Indicators19034947224385035.JPG",
+          "path": "KPI_Indicators19034947224385035.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "ShowItems8784525660806293.JPG",
+          "path": "ShowItems8784525660806293.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Sort_Order26861000807887252.JPG",
+          "path": "Sort_Order26861000807887252.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "SortOrder7405249663278177.JPG",
+          "path": "SortOrder7405249663278177.JPG",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "ChicletSlicer1448559807354",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "ChicletSlicer1448559807354.pbiviz.json",
+          "path": "ChicletSlicer1448559807354.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6.pbiviz.json",
+          "path": "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ]
+}

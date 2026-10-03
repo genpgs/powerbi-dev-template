@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 7.82608695652174,
+    "z": 1,
+    "height": 667.8260869565217,
+    "width": 1277.3913043478262
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) First field is required and it defines chiclets."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Image field defines image that will be displayed inside a chiclet. It should contain URLs of images."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) URLs that do not require authentication are supported only. URLs to local files are not supported."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Orientation of chiclets, columns and rows count, selection mode, visibility mode of disabled chiclets can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Text size, text color, height and width of chiclets can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) Selected, unselected, disabled colors of chiclets and also background color, outline weight, outline style and outline color of chiclets can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7) There are options to show or hide header and to determine its title text, text size, font color, background color and transparency and also outline weight and outline color."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "8) There are options to set image height, enable or disable image stretching and option to show image at bottom of a chiclet."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

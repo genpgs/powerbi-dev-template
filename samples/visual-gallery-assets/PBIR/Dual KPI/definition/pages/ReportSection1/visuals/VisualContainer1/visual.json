@@ -1,0 +1,265 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 16.141989724427837,
+    "y": 11.359177954226997,
+    "z": 0,
+    "height": 615.1891639420832,
+    "width": 1249.5095749649697
+  },
+  "visual": {
+    "visualType": "PBI_CV_3C80B1F2_09AF_4123_8E99_C3CBC46B23E0",
+    "query": {
+      "queryState": {
+        "axis": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table1"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "Table1.date"
+            }
+          ]
+        },
+        "topvalues": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Table1"
+                        }
+                      },
+                      "Property": "Value Set 1"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table1.Value Set 1)"
+            }
+          ]
+        },
+        "warningstate": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Table1"
+                        }
+                      },
+                      "Property": "warning state"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table1.warning state)"
+            }
+          ]
+        },
+        "bottomvalues": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Table1"
+                        }
+                      },
+                      "Property": "Value Set Percentage"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table1.Value Set Percentage)"
+            }
+          ]
+        },
+        "toppercentdate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Table1"
+                    }
+                  },
+                  "Property": "sample percent calc start date"
+                }
+              },
+              "queryRef": "Table1.sample percent calc start date"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dualKpiProperties": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Chart title'"
+                }
+              }
+            },
+            "abbreviateValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "topChartToolTipText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top metric name'"
+                }
+              }
+            },
+            "bottomChartToolTipText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom metric name'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dualKpiColors": [
+        {
+          "properties": {
+            "dataColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ff7100'"
+                    }
+                  }
+                }
+              }
+            },
+            "textColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "opacity": {
+              "expr": {
+                "Literal": {
+                  "Value": "35D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dualKpiAxis": [
+        {
+          "properties": {
+            "bottomChartAxisMin": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottomChartAxisMax": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "topChartAxisMin": {
+              "expr": {
+                "Literal": {
+                  "Value": "-30000D"
+                }
+              }
+            },
+            "topChartAxisMax": {
+              "expr": {
+                "Literal": {
+                  "Value": "70000D"
+                }
+              }
+            },
+            "topChartZeroLine": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dualKpiChart": [
+        {
+          "properties": {
+            "bottomChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'area'"
+                }
+              }
+            },
+            "topChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'line'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "38b3830e662f28014fcb",
+  "position": {
+    "x": 560,
+    "y": 16,
+    "z": 1000,
+    "height": 256,
+    "width": 720
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Using the Text Filter",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Text Filter is a search box that can be placed anywhere in your dashboard. It adds a text filtering capability for quick searching across your data. ",
+                    "textStyle": {
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Fields",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Text Filter requires a categorical field to perform a search on. ",
+                    "textStyle": {
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Add your search term to the input field and click a search icon or hit Enter. An eraser",
+                    "textStyle": {
+                      "fontSize": "13.5pt"
+                    }
+                  },
+                  {
+                    "value": " button clears the current search input and filtering.",
+                    "textStyle": {
+                      "fontFamily": "inherit",
+                      "fontSize": "13.5pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

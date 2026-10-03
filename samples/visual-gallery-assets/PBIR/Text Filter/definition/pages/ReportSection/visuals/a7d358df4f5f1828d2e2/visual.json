@@ -1,0 +1,58 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a7d358df4f5f1828d2e2",
+  "position": {
+    "x": 560,
+    "y": 288,
+    "z": 2000,
+    "height": 400,
+    "width": 704
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SSA_name_top100_final"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "SSA_name_top100_final.Name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "SSA_name_top100_final"
+                        }
+                      },
+                      "Property": "Count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(SSA_name_top100_final.Count)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

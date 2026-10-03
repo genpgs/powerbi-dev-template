@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a04ddcc300b16d86bf83",
+  "position": {
+    "x": 16,
+    "y": 128,
+    "z": 0,
+    "height": 544,
+    "width": 528
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SSA_name_top100_final"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "queryRef": "SSA_name_top100_final.Gender"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SSA_name_top100_final"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "SSA_name_top100_final.Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SSA_name_top100_final"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "SSA_name_top100_final.Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SSA_name_top100_final"
+                    }
+                  },
+                  "Property": "Rank"
+                }
+              },
+              "queryRef": "SSA_name_top100_final.Rank"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SSA_name_top100_final"
+                  }
+                },
+                "Property": "Name"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "215.54477621024188D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "SSA_name_top100_final.Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "52.6499945224155D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "SSA_name_top100_final.Rank"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.38965101700486D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "SSA_name_top100_final.Year"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'11'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

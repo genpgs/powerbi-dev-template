@@ -1,0 +1,63 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "AutoScale057919631151260864.JPG",
+          "path": "AutoScale057919631151260864.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Format_KPI_Indicator10661374736279705.JPG",
+          "path": "Format_KPI_Indicator10661374736279705.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "KPI_Fields8549889750084747.JPG",
+          "path": "KPI_Fields8549889750084747.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "KPI_Index06149576260690304.JPG",
+          "path": "KPI_Index06149576260690304.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "KPI_Indicators3618047937624045.JPG",
+          "path": "KPI_Indicators3618047937624045.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "powerKPI_store_image9736992527763104.png",
+          "path": "powerKPI_store_image9736992527763104.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3.pbiviz.json",
+          "path": "powerKPI462CE5C2666F4EC8A8BDD7E5587320A3.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useEnhancedTooltips": false,
+    "enableDeveloperMode": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  }
+}

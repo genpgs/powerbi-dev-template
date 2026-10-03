@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 720,
+    "width": 856.4303178484108
+  },
+  "visual": {
+    "visualType": "LineDotChart1460463831201",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Ideas"
+                        }
+                      },
+                      "Property": "Vote Count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Ideas.Vote Count)"
+            }
+          ]
+        },
+        "Date": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Ideas"
+                    }
+                  },
+                  "Property": "Updated Date"
+                }
+              },
+              "queryRef": "Ideas.Updated Date"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "misc": [
+        {
+          "properties": {
+            "isStopped": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
