@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7bd5e842a257a65adbf2",
+  "position": {
+    "x": 972.46753246753235,
+    "y": 259.04761904761904,
+    "z": 5001,
+    "height": 302,
+    "width": 916,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimProduct.Category",
+              "nativeQueryRef": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ColorName"
+                }
+              },
+              "queryRef": "DimProduct.ColorName",
+              "nativeQueryRef": "ColorName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "LaunchDate"
+                }
+              },
+              "queryRef": "DimProduct.LaunchDate",
+              "nativeQueryRef": "LaunchDate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "Subcategory"
+                }
+              },
+              "queryRef": "DimProduct.Subcategory",
+              "nativeQueryRef": "Subcategory"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "StandardCost"
+                }
+              },
+              "queryRef": "DimProduct.StandardCost",
+              "nativeQueryRef": "StandardCost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ListPrice"
+                }
+              },
+              "queryRef": "DimProduct.ListPrice",
+              "nativeQueryRef": "ListPrice"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimProduct"
+                  }
+                },
+                "Property": "Category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

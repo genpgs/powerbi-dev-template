@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "000000000000000000ae",
   "position": {
-    "x": 32,
-    "y": 124,
-    "z": 3000,
-    "height": 450,
-    "width": 916,
-    "tabOrder": 3000
+    "x": 31.861471861471859,
+    "y": 124.67532467532467,
+    "z": 2000,
+    "height": 95.584415584415581,
+    "width": 915.67099567099558,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textFilter25A4896A83E0487089E2B90C9AE57C8A",
@@ -32,6 +32,49 @@
           ]
         }
       }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "w",
+                    "Entity": "WordFrequency",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Contains": {
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "w"
+                              }
+                            },
+                            "Property": "Term"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "'sustain'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

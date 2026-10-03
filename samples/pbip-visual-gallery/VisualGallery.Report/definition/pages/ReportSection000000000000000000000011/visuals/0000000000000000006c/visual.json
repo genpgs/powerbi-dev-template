@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Flow.Source",
-              "nativeQueryRef": "Source"
+              "nativeQueryRef": "Source",
+              "active": true
             }
           ]
         },
@@ -45,7 +46,8 @@
                 }
               },
               "queryRef": "Flow.Destination",
-              "nativeQueryRef": "Destination"
+              "nativeQueryRef": "Destination",
+              "active": true
             }
           ]
         },
