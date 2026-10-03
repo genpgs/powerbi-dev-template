@@ -13,7 +13,9 @@ So the list is generated from the two real sources of truth:
 
   * native types  -> `powerbi-report-author catalog list`
   * custom types  -> samples/visual-gallery-assets/manifest.csv, with roles read
-                     from each .pbiviz package's capabilities.dataRoles
+                     from each .pbiviz package's capabilities.dataRoles, falling
+                     back to samples/visual-gallery-assets/visual-catalog.json
+                     when the packages are not on disk (see custom_visuals())
 
 Excluded native types are listed explicitly with a reason, so the omission is a
 decision on record rather than an oversight. Legacy types are never offered: use
@@ -39,6 +41,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 MANIFEST = REPO / "samples" / "visual-gallery-assets" / "manifest.csv"
 PBIVIZ = REPO / "samples" / "visual-gallery-assets" / "PBIVIZ"
+CATALOG = REPO / "samples" / "visual-gallery-assets" / "visual-catalog.json"
 OUT = REPO / "templates" / "html-prototype" / "visual-allowlist.json"
 
 # Native types deliberately withheld from the mockup, with the reason. Every entry
@@ -112,6 +115,18 @@ def _cli_command() -> list[str]:
     )
 
 
+def _catalog_roles() -> dict[str, list[dict]]:
+    """guid -> dataRoles, from the committed catalog. Used when no .pbiviz is present."""
+    if not CATALOG.is_file():
+        return {}
+    doc = json.loads(CATALOG.read_text(encoding="utf-8"))
+    return {
+        v["visualType"]: v.get("roles") or []
+        for v in doc.get("visuals", [])
+        if v.get("kind") == "custom"
+    }
+
+
 def _catalog_list() -> dict:
     proc = subprocess.run(
         _cli_command() + ["catalog", "list"],
@@ -134,12 +149,13 @@ def deprecated_map() -> list[dict]:
 def custom_visuals() -> list[dict]:
     if not MANIFEST.is_file():
         raise SystemExit(f"[FAIL] manifest not found: {MANIFEST}")
+    catalog = _catalog_roles()
     out = []
     with MANIFEST.open(newline="", encoding="utf-8-sig") as fh:
         for row in csv.DictReader(fh):
             guid = (row.get("VisualGuid") or "").strip()
             pkg = PBIVIZ / (row.get("PBIVIZ") or "").strip()
-            roles: list[str] = []
+            roles: list[dict] = []
             if pkg.is_file():
                 try:
                     with zipfile.ZipFile(pkg) as zf:
@@ -151,6 +167,16 @@ def custom_visuals() -> list[dict]:
                     ]
                 except (zipfile.BadZipFile, StopIteration, json.JSONDecodeError, KeyError) as exc:
                     print(f"[WARN] {row['Visual']}: could not read roles ({exc})", file=sys.stderr)
+            # A clone that has not run scripts/fetch_gallery_assets.py has no packages, so
+            # the loop above yields nothing and every custom visual silently loses its
+            # roles - the mockup drawer then lists them with no role names and no error.
+            # The catalog carries the same roles, captured once from the packages, so fall
+            # back to it and say so rather than shipping an empty contract.
+            if not roles and guid in catalog:
+                roles = catalog[guid]
+                print(f"[INFO] {row['Visual']}: no .pbiviz locally, using catalog roles "
+                      f"({len(roles)} role(s)) - run scripts/fetch_gallery_assets.py to read them "
+                      f"from the package instead", file=sys.stderr)
             out.append({
                 "name": row["Visual"].strip(),
                 "guid": guid,
@@ -196,7 +222,7 @@ def main(argv: list[str]) -> int:
         ),
         "generatedFrom": {
             "nativeTypes": "powerbi-report-author catalog list",
-            "customVisuals": "samples/visual-gallery-assets/manifest.csv + each .pbiviz capabilities.dataRoles",
+            "customVisuals": "samples/visual-gallery-assets/manifest.csv + each .pbiviz capabilities.dataRoles, falling back to visual-catalog.json when packages are absent",
         },
         "canvas": {"width": 1920, "height": 1080, "margin": 32, "gutter": 24},
         "native": {

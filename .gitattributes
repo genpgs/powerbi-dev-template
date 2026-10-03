@@ -31,3 +31,13 @@ samples/** text eol=lf
 *.svg        binary
 *.ttf        binary
 *.zip        binary
+
+# The gallery asset manifest is the one CSV that is source, not data. It is reviewed,
+# diffed and merged like code, so it must not be stored as an opaque blob. This has to
+# come after the `*.csv binary` rule above, because later rules win.
+samples/visual-gallery-assets/manifest.csv    text eol=lf
+
+# Publisher binaries. Listed here as well as in .gitignore so that a deliberate
+# `git add -f` stores them as binary rather than falling through to `* text=auto`,
+# which would corrupt them.
+*.pbiviz     binary

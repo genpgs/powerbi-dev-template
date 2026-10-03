@@ -21,15 +21,31 @@ from pbir_discovery import is_ignored, load_patterns  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 
-# Paths chosen to exercise anchoring, dir-only, **/.pbi/, negation-free rules,
-# bare patterns, and things that must NOT be ignored.
+# Paths chosen to exercise anchoring, dir-only, **/.pbi/, negation, bare patterns,
+# and things that must NOT be ignored.
+#
+# The visual-gallery-assets entries are the load-bearing ones. That folder is ignored
+# wholesale and then selectively re-included, which is the case most likely to drift:
+# git refuses to re-include anything under an excluded *directory*, so the ignore rule
+# has to exclude the folder's contents rather than the folder itself. The matcher in
+# pbir_discovery does not model that parent-directory rule - it evaluates each pattern
+# independently and lets the last match win. It currently agrees with git, but only
+# because the rules happen to be ordered so it does. These entries are what would
+# catch that silently breaking.
 CORPUS = [
     "README.md",
     "scripts/pbir_discovery.py",
     "samples/pbip-visual-gallery/VisualGallery.Report",
     "samples/pbip-calendar-baseline/CalendarBaseline.Report",
     "samples/visual-gallery-assets/manifest.csv",
+    "samples/visual-gallery-assets/content.json",
+    "samples/visual-gallery-assets/visual-catalog.json",
+    "samples/visual-gallery-assets/EXCEPTIONS.md",
+    "samples/visual-gallery-assets/Images/Dual KPI.png",
+    "samples/visual-gallery-assets/icons/chart-bar.svg",
+    "samples/visual-gallery-assets/unlisted-note.txt",
     "samples/visual-gallery-assets/PBIVIZ/WordCloud1447959067750.2.3.4.0.pbiviz",
+    "samples/visual-gallery-assets/PBIX/Dual KPI.pbix",
     "samples/visual-gallery-assets/PBIP/Sankey Chart.Report",
     "samples/visual-gallery-assets/PBIP/Chiclet Slicer.Report/definition/report.json",
     "artifacts/screenshots/Overview.png",

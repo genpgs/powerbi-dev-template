@@ -1,0 +1,476 @@
+{
+  "accessibleTable": {
+    "icon": "table",
+    "tier": "collision",
+    "reason": "Excluded type. Desktop availability unverified.",
+    "file": "accessibleTable.svg",
+    "sha256": "e60f7b59ea11f99bc5f2a14be14eed7b54dc64b75ce3ad19012c9218d5241442",
+    "bytes": 502
+  },
+  "actionButton": {
+    "icon": "navigation",
+    "tier": "icon",
+    "reason": "",
+    "file": "actionButton.svg",
+    "sha256": "a63d4a57b5e1e74b1ff12c82aa8ecea53d9af66246ce5ea331f8f2d3cd8bb139",
+    "bytes": 536
+  },
+  "advancedSlicerVisual": {
+    "icon": "filter-2",
+    "tier": "icon",
+    "reason": "",
+    "file": "advancedSlicerVisual.svg",
+    "sha256": "16a2c6fbaf421df76bca18da5cfabe63d3f6e90d293c40154a33d62106dbbc7e",
+    "bytes": 411
+  },
+  "aiNarratives": {
+    "icon": "typography",
+    "tier": "schematic",
+    "reason": "Excluded type, but the same shape as narrative. Drawn identically.",
+    "file": "aiNarratives.svg",
+    "sha256": "77d1000f8ce07f43430055765193643dcba3d8c12d95afad964f29f23f0cdc8f",
+    "bytes": 527
+  },
+  "animatedNumber": {
+    "icon": "percentage",
+    "tier": "collision",
+    "reason": "Excluded type. Desktop availability unverified.",
+    "file": "animatedNumber.svg",
+    "sha256": "f14f110278bb96f3f4c02da05728bdc6901cc878928d0de4694d39c589dd6b27",
+    "bytes": 488
+  },
+  "areaChart": {
+    "icon": "chart-area",
+    "tier": "icon",
+    "reason": "",
+    "file": "areaChart.svg",
+    "sha256": "f24e3fb992c734593c43d99c6695d506d8b1accede6649ec79a9b044907eaf09",
+    "bytes": 438
+  },
+  "azureMap": {
+    "icon": "map",
+    "tier": "collision",
+    "reason": "Excluded type. Shares the map glyph; the reason it cannot be authored here is a missing Azure Maps account, not its appearance.",
+    "file": "azureMap.svg",
+    "sha256": "89c0a64e5986c7a152e3074ecaa1caef9f74986e81c6488b0e1f0848c44241a9",
+    "bytes": 436
+  },
+  "barChart": {
+    "icon": "chart-bar",
+    "tier": "icon",
+    "reason": "",
+    "file": "barChart.svg",
+    "sha256": "5fbe60a66fbebaf0a06d4b5bede3af05301d9f580c4f8f7bd65a39077389e4ae",
+    "bytes": 668
+  },
+  "basicShape": {
+    "icon": "circle",
+    "tier": "icon",
+    "reason": "",
+    "file": "basicShape.svg",
+    "sha256": "a32f1907d60b1b36bcb4b16d76356f31d0e28ad05293b57b9a7558b2cb5633ac",
+    "bytes": 402
+  },
+  "bookmarkNavigator": {
+    "icon": "book",
+    "tier": "icon",
+    "reason": "",
+    "file": "bookmarkNavigator.svg",
+    "sha256": "cbfd5cbdc16bbab2bf4123dfe815538e343f4f4ddcd15d56841944a4c3535a47",
+    "bytes": 526
+  },
+  "card": {
+    "icon": "square",
+    "tier": "collision",
+    "reason": "Legacy. Shares the cardVisual glyph; use cardVisual instead.",
+    "file": "card.svg",
+    "sha256": "1ed807a9e51e10f97569bc6abaa4dc72c0d014ff00582cbc949d369228091cb2",
+    "bytes": 451
+  },
+  "cardVisual": {
+    "icon": "square",
+    "tier": "icon",
+    "reason": "",
+    "file": "cardVisual.svg",
+    "sha256": "1ed807a9e51e10f97569bc6abaa4dc72c0d014ff00582cbc949d369228091cb2",
+    "bytes": 451
+  },
+  "clusteredBarChart": {
+    "icon": "chart-bar",
+    "tier": "collision",
+    "reason": "No distinct glyph exists for the clustered variant; the bar form is the same chart with a second field split into series. Use the combo schematic to see that difference.",
+    "file": "clusteredBarChart.svg",
+    "sha256": "5fbe60a66fbebaf0a06d4b5bede3af05301d9f580c4f8f7bd65a39077389e4ae",
+    "bytes": 668
+  },
+  "clusteredColumnChart": {
+    "icon": "chart-dots",
+    "tier": "icon",
+    "reason": "",
+    "file": "clusteredColumnChart.svg",
+    "sha256": "7927f23a6218e25fa4075be7e3133f0f803a0328a20eb058b7fba04f0cb6573b",
+    "bytes": 624
+  },
+  "columnChart": {
+    "icon": "chart-column",
+    "tier": "icon",
+    "reason": "",
+    "file": "columnChart.svg",
+    "sha256": "93f5a5308e38693858e1f0d3d51911bb26ace25a311ffb56e42d3bfacde7a9d6",
+    "bytes": 660
+  },
+  "dataQueryVisual": {
+    "icon": "report",
+    "tier": "collision",
+    "reason": "Excluded type. Desktop availability unverified.",
+    "file": "dataQueryVisual.svg",
+    "sha256": "976160f8413a141558b9cad5988c3766ab96e3903769375e14b50d6a0bfa4eb0",
+    "bytes": 673
+  },
+  "decompositionTreeVisual": {
+    "icon": "hierarchy-2",
+    "tier": "icon",
+    "reason": "",
+    "file": "decompositionTreeVisual.svg",
+    "sha256": "726ca4eff818363a5679cdb0571af7988040162b123761b2443a66dce2c3fde6",
+    "bytes": 519
+  },
+  "donutChart": {
+    "icon": "chart-donut",
+    "tier": "icon",
+    "reason": "",
+    "file": "donutChart.svg",
+    "sha256": "59724e6221486522880aa41901b5c921589344607dd747f3b6f502251f261cbb",
+    "bytes": 537
+  },
+  "filledMap": {
+    "icon": "map-2",
+    "tier": "icon",
+    "reason": "",
+    "file": "filledMap.svg",
+    "sha256": "426f5b1d34d8cb2638bc9091fce5e265a486c100135bec3cdeec386549b6faa0",
+    "bytes": 601
+  },
+  "filterSlicer": {
+    "icon": "filter-2",
+    "tier": "collision",
+    "reason": "Excluded type. Shares the button-slicer glyph; its Desktop availability is unverified rather than its appearance.",
+    "file": "filterSlicer.svg",
+    "sha256": "16a2c6fbaf421df76bca18da5cfabe63d3f6e90d293c40154a33d62106dbbc7e",
+    "bytes": 411
+  },
+  "funnel": {
+    "icon": "chart-funnel",
+    "tier": "icon",
+    "reason": "",
+    "file": "funnel.svg",
+    "sha256": "5ae2ecbb987e276547cd76126bdd66e70fa0cada52729fc31fb77a35cb145a85",
+    "bytes": 575
+  },
+  "gauge": {
+    "icon": "gauge",
+    "tier": "icon",
+    "reason": "",
+    "file": "gauge.svg",
+    "sha256": "b226d26b9b8f030d9ce66d58cdd25f5a287ebf9fffbd7f24c9da7c0e4fa7ca87",
+    "bytes": 526
+  },
+  "heatMap": {
+    "icon": "chart-grid-dots",
+    "tier": "collision",
+    "reason": "Excluded type. Desktop availability unverified; Power BI's heatMap catalog entry is distinct from conditional formatting on any other visual.",
+    "file": "heatMap.svg",
+    "sha256": "3babae2aed71df92d3b6a93eb0c373cb84a9207830cb660aee281a1d95a81b4a",
+    "bytes": 892
+  },
+  "hundredPercentStackedAreaChart": {
+    "icon": "chart-area",
+    "tier": "schematic",
+    "reason": "100% stacking normalises every column to the same height, which is the one thing the chart-area outline cannot convey. Drawn as a normalised stack.",
+    "file": "hundredPercentStackedAreaChart.svg",
+    "sha256": "f24e3fb992c734593c43d99c6695d506d8b1accede6649ec79a9b044907eaf09",
+    "bytes": 438
+  },
+  "hundredPercentStackedBarChart": {
+    "icon": "chart-bar",
+    "tier": "schematic",
+    "reason": "Same reason as the column variant. Drawn as a normalised stack.",
+    "file": "hundredPercentStackedBarChart.svg",
+    "sha256": "5fbe60a66fbebaf0a06d4b5bede3af05301d9f580c4f8f7bd65a39077389e4ae",
+    "bytes": 668
+  },
+  "hundredPercentStackedColumnChart": {
+    "icon": "chart-column",
+    "tier": "schematic",
+    "reason": "Same reason as the area variant: normalisation removes the height cue the column glyph relies on. Drawn as a normalised stack.",
+    "file": "hundredPercentStackedColumnChart.svg",
+    "sha256": "93f5a5308e38693858e1f0d3d51911bb26ace25a311ffb56e42d3bfacde7a9d6",
+    "bytes": 660
+  },
+  "image": {
+    "icon": "photo",
+    "tier": "icon",
+    "reason": "",
+    "file": "image.svg",
+    "sha256": "2f0a835916079838ea1e8d1934562f3def335ec55540d8fef058f877f34ebc25",
+    "bytes": 594
+  },
+  "keyDriversVisual": {
+    "icon": "trending-up",
+    "tier": "schematic",
+    "reason": "Key influencers is a list of drivers each labelled increasing or decreasing, which no glyph encodes. Drawn as signed driver rows.",
+    "file": "keyDriversVisual.svg",
+    "sha256": "9895747ef9c2c05b2a9fc67ae9e5366252769ee7b3951e97eb20c5253b9f29ce",
+    "bytes": 416
+  },
+  "kpi": {
+    "icon": "target-arrow",
+    "tier": "schematic",
+    "reason": "A KPI is a value plus a status indicator plus a target, which reads as a single arrow. Drawn as a value tile with a state and a goal.",
+    "file": "kpi.svg",
+    "sha256": "a4849dde7384523b8f68f26ed69d38b49d9af51be3ccb0f833ceb7591ad5e689",
+    "bytes": 555
+  },
+  "lineChart": {
+    "icon": "chart-line",
+    "tier": "icon",
+    "reason": "",
+    "file": "lineChart.svg",
+    "sha256": "0a2ec43a92e585dfc29e515cedaf1fc656c466bab5a6b9e0aa0a56f0c384f88a",
+    "bytes": 428
+  },
+  "lineClusteredColumnComboChart": {
+    "icon": "chart-line",
+    "tier": "schematic",
+    "reason": "A combo is two marks on two axes at once, which no single glyph represents. Drawn as columns with an overlaid line.",
+    "file": "lineClusteredColumnComboChart.svg",
+    "sha256": "0a2ec43a92e585dfc29e515cedaf1fc656c466bab5a6b9e0aa0a56f0c384f88a",
+    "bytes": 428
+  },
+  "lineStackedColumnComboChart": {
+    "icon": "chart-line",
+    "tier": "schematic",
+    "reason": "As above, with a stacked column mark instead of a clustered one.",
+    "file": "lineStackedColumnComboChart.svg",
+    "sha256": "0a2ec43a92e585dfc29e515cedaf1fc656c466bab5a6b9e0aa0a56f0c384f88a",
+    "bytes": 428
+  },
+  "listSlicer": {
+    "icon": "list",
+    "tier": "icon",
+    "reason": "",
+    "file": "listSlicer.svg",
+    "sha256": "73171ba9d67fa605159c6b094f22d26509c9335278b4dad3ab0777bd098911dd",
+    "bytes": 515
+  },
+  "map": {
+    "icon": "map",
+    "tier": "icon",
+    "reason": "",
+    "file": "map.svg",
+    "sha256": "89c0a64e5986c7a152e3074ecaa1caef9f74986e81c6488b0e1f0848c44241a9",
+    "bytes": 436
+  },
+  "matrix": {
+    "icon": "layout-grid",
+    "tier": "collision",
+    "reason": "Legacy. Use pivotTable.",
+    "file": "matrix.svg",
+    "sha256": "234f17d3e6212587c7a97a4fb1a68f824adf13365a9ac330dbae42e624488794",
+    "bytes": 729
+  },
+  "multiRowCard": {
+    "icon": "list",
+    "tier": "collision",
+    "reason": "Legacy. Use cardVisual with several values in Data.",
+    "file": "multiRowCard.svg",
+    "sha256": "73171ba9d67fa605159c6b094f22d26509c9335278b4dad3ab0777bd098911dd",
+    "bytes": 515
+  },
+  "narrative": {
+    "icon": "typography",
+    "tier": "schematic",
+    "reason": "Narrative output is prose with a headline and insight lines. Drawn as a narrative card.",
+    "file": "narrative.svg",
+    "sha256": "77d1000f8ce07f43430055765193643dcba3d8c12d95afad964f29f23f0cdc8f",
+    "bytes": 527
+  },
+  "pageNavigator": {
+    "icon": "chevron-right",
+    "tier": "icon",
+    "reason": "",
+    "file": "pageNavigator.svg",
+    "sha256": "26b321e42c7c7ed5d5161d9af061033df1d49ef33b5d2fc2309e2f6ee3d4c81a",
+    "bytes": 381
+  },
+  "pieChart": {
+    "icon": "chart-pie",
+    "tier": "icon",
+    "reason": "",
+    "file": "pieChart.svg",
+    "sha256": "d92006fee8c7b33a807afba8825d4645efefd17a3b8604494c0a7642a7379e33",
+    "bytes": 531
+  },
+  "pivotTable": {
+    "icon": "layout-grid",
+    "tier": "icon",
+    "reason": "",
+    "file": "pivotTable.svg",
+    "sha256": "234f17d3e6212587c7a97a4fb1a68f824adf13365a9ac330dbae42e624488794",
+    "bytes": 729
+  },
+  "pythonVisual": {
+    "icon": "code",
+    "tier": "collision",
+    "reason": "Excluded type. Needs a Python runtime, not an appearance question.",
+    "file": "pythonVisual.svg",
+    "sha256": "dcebc6b4a9ff0a4367624487b17bea6ac08468ae0a1b7eaf300243e780b5d119",
+    "bytes": 453
+  },
+  "qnaVisual": {
+    "icon": "message",
+    "tier": "icon",
+    "reason": "",
+    "file": "qnaVisual.svg",
+    "sha256": "5e6051240cefb2a1ef76952636aada86f7a32b1594be38fea71289a9d4643f7e",
+    "bytes": 525
+  },
+  "rdlVisual": {
+    "icon": "file-text",
+    "tier": "collision",
+    "reason": "Excluded type. Needs a separate paginated report definition.",
+    "file": "rdlVisual.svg",
+    "sha256": "b76d018034764160f7661768f56a38003ed208a20843781a0a04aaae01dcbf66",
+    "bytes": 547
+  },
+  "realTimeLineChart": {
+    "icon": "chart-line",
+    "tier": "collision",
+    "reason": "Excluded type. Desktop availability unverified.",
+    "file": "realTimeLineChart.svg",
+    "sha256": "0a2ec43a92e585dfc29e515cedaf1fc656c466bab5a6b9e0aa0a56f0c384f88a",
+    "bytes": 428
+  },
+  "ribbonChart": {
+    "icon": "chart-arrows",
+    "tier": "schematic",
+    "reason": "A ribbon ranks categories and carries the second-highest value as a trailing band, which is neither a bar chart nor a stacked one. Drawn as ranked ribbons.",
+    "file": "ribbonChart.svg",
+    "sha256": "4eadd5c023ae9c8540f9979bb2098e9d8260377c3229bf44f10723e46f1b7b6e",
+    "bytes": 553
+  },
+  "scatterChart": {
+    "icon": "chart-scatter",
+    "tier": "icon",
+    "reason": "",
+    "file": "scatterChart.svg",
+    "sha256": "ba397932da7ad50d65233871d80f12c5084825bdf4b8db39eccd6b70bca5e8ae",
+    "bytes": 554
+  },
+  "scorecard": {
+    "icon": "target",
+    "tier": "collision",
+    "reason": "Excluded type. Shares the target glyph with the KPI family; see the not-authorable reason in the catalog.",
+    "file": "scorecard.svg",
+    "sha256": "86aeb93cca8fdd443836de446a3fc565c45f5af5e7312171c1d054f14da1388e",
+    "bytes": 504
+  },
+  "scriptVisual": {
+    "icon": "math",
+    "tier": "collision",
+    "reason": "Excluded type. Needs an R runtime, not an appearance question.",
+    "file": "scriptVisual.svg",
+    "sha256": "6f8e8af8b78b991810465fdf271eea7ccd10a5244a5ddd12a6bb4e75fbe4a46e",
+    "bytes": 449
+  },
+  "shape": {
+    "icon": "square",
+    "tier": "icon",
+    "reason": "",
+    "file": "shape.svg",
+    "sha256": "1ed807a9e51e10f97569bc6abaa4dc72c0d014ff00582cbc949d369228091cb2",
+    "bytes": 451
+  },
+  "shapeMap": {
+    "icon": "world",
+    "tier": "icon",
+    "reason": "",
+    "file": "shapeMap.svg",
+    "sha256": "ab71e6f58782ae4b2aa099ca869627c6051840f95e727d261f0d994c9fac7619",
+    "bytes": 542
+  },
+  "slicer": {
+    "icon": "filter",
+    "tier": "icon",
+    "reason": "",
+    "file": "slicer.svg",
+    "sha256": "0fdfd8d8d0789191c5e7bcc46efa2ace3f02244c5d9dd3ab195181e3d5869b06",
+    "bytes": 479
+  },
+  "stackedAreaChart": {
+    "icon": "chart-area",
+    "tier": "collision",
+    "reason": "No distinct glyph exists for the stacked variant; the outline is identical and only the fill segmentation differs.",
+    "file": "stackedAreaChart.svg",
+    "sha256": "f24e3fb992c734593c43d99c6695d506d8b1accede6649ec79a9b044907eaf09",
+    "bytes": 438
+  },
+  "table": {
+    "icon": "table",
+    "tier": "collision",
+    "reason": "Legacy. Use tableEx.",
+    "file": "table.svg",
+    "sha256": "e60f7b59ea11f99bc5f2a14be14eed7b54dc64b75ce3ad19012c9218d5241442",
+    "bytes": 502
+  },
+  "tableEx": {
+    "icon": "table",
+    "tier": "icon",
+    "reason": "",
+    "file": "tableEx.svg",
+    "sha256": "e60f7b59ea11f99bc5f2a14be14eed7b54dc64b75ce3ad19012c9218d5241442",
+    "bytes": 502
+  },
+  "textSlicer": {
+    "icon": "filter",
+    "tier": "collision",
+    "reason": "Excluded type. Shares the slicer glyph. It is withheld because it is not a verified alias for the Input slicer, which is a binding question.",
+    "file": "textSlicer.svg",
+    "sha256": "0fdfd8d8d0789191c5e7bcc46efa2ace3f02244c5d9dd3ab195181e3d5869b06",
+    "bytes": 479
+  },
+  "textbox": {
+    "icon": "typography",
+    "tier": "icon",
+    "reason": "",
+    "file": "textbox.svg",
+    "sha256": "77d1000f8ce07f43430055765193643dcba3d8c12d95afad964f29f23f0cdc8f",
+    "bytes": 527
+  },
+  "treemap": {
+    "icon": "chart-treemap",
+    "tier": "icon",
+    "reason": "",
+    "file": "treemap.svg",
+    "sha256": "4e6ad024216dfcd6f656f4afd29133c5ef6d832901618e8fc6b32e5d29d54718",
+    "bytes": 584
+  },
+  "waterfallChart": {
+    "icon": "chart-arrows",
+    "tier": "icon",
+    "reason": "",
+    "file": "waterfallChart.svg",
+    "sha256": "4eadd5c023ae9c8540f9979bb2098e9d8260377c3229bf44f10723e46f1b7b6e",
+    "bytes": 553
+  },
+  "_source": {
+    "iconSet": "Tabler Icons",
+    "repo": "https://github.com/tabler/tabler-icons",
+    "commit": "74929e50416e2b7c0abb8368cdc74bdcb2560ab6",
+    "path": "icons/outline/{name}.svg",
+    "license": "MIT",
+    "attribution": "Tabler Icons (c) 2020-2026 Pawel Kuna - MIT License - https://github.com/tabler/tabler-icons",
+    "licenseFile": "LICENSE-tabler-icons.txt",
+    "vendoredVerbatim": true
+  }
+}
