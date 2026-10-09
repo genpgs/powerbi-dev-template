@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "TornadoChart1452517688218"
+  ],
+  "resourcePackages": [
+    {
+      "name": "TornadoChart1452517688218",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "TornadoChart1452517688218.pbiviz.json",
+          "path": "TornadoChart1452517688218.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useEnhancedTooltips": false,
+    "enableDeveloperMode": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  }
+}

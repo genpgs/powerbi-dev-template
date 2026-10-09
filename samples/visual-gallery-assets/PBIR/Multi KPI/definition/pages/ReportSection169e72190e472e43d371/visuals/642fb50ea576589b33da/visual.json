@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "642fb50ea576589b33da",
+  "position": {
+    "x": 707.0348139255701,
+    "y": 1,
+    "z": 1000,
+    "height": 255.84633853541413,
+    "width": 570.46818727491
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Multi KPI Custom Visual",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " has a few limitations:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    1. The "
+                  },
+                  {
+                    "value": "Values",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " field accepts up 16 columns at the same time."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    2. The visual supports up to 30,000 data row (greater number of rows is not supported due to performance limitations)."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    3. Hover animation might be slow if CPU is overloaded."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Limitations'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

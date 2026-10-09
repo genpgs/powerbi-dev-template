@@ -57,14 +57,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "FactSales"
                     }
                   },
-                  "Property": "Sales Rolling 12M"
+                  "Property": "Gross Margin %"
                 }
               },
-              "queryRef": "Calendar.Sales Rolling 12M",
-              "nativeQueryRef": "Sales Rolling 12M"
+              "queryRef": "FactSales.Gross Margin %",
+              "nativeQueryRef": "Gross Margin %"
             }
           ]
         }

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "8a34ec8d921fe6d580ff",
+  "position": {
+    "x": 31.861471861471859,
+    "y": 259.04761904761904,
+    "z": 5000,
+    "height": 301.991341991342,
+    "width": 915.67099567099558,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Excludes"
+                }
+              },
+              "queryRef": "WordFrequency.Excludes",
+              "nativeQueryRef": "Excludes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Frequency"
+                }
+              },
+              "queryRef": "WordFrequency.Frequency",
+              "nativeQueryRef": "Frequency"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Term"
+                }
+              },
+              "queryRef": "WordFrequency.Term",
+              "nativeQueryRef": "Term"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "WordFrequency"
+                    }
+                  },
+                  "Property": "Topic"
+                }
+              },
+              "queryRef": "WordFrequency.Topic",
+              "nativeQueryRef": "Topic"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "WordFrequency"
+                  }
+                },
+                "Property": "Excludes"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

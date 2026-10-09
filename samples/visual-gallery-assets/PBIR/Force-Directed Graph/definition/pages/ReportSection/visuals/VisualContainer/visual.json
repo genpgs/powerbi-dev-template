@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 720,
+    "width": 1277.3913043478262
+  },
+  "visual": {
+    "visualType": "ForceGraph1449359463895",
+    "query": {
+      "queryState": {
+        "Source": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "School friends"
+                    }
+                  },
+                  "Property": "Source"
+                }
+              },
+              "queryRef": "School friends.Source"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "School friends"
+                    }
+                  },
+                  "Property": "Target"
+                }
+              },
+              "queryRef": "School friends.Target"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "nodes": [
+        {
+          "properties": {
+            "nameMaxLength": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "highlightReachableLinks": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

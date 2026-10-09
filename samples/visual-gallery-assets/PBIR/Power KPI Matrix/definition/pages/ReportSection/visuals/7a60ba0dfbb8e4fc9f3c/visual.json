@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7a60ba0dfbb8e4fc9f3c",
+  "position": {
+    "x": 296.13147914032874,
+    "y": 0,
+    "z": 1000,
+    "height": 61.49178255372946,
+    "width": 278.33122629582806
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Col_Links"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Col_Links.Category"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "selection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

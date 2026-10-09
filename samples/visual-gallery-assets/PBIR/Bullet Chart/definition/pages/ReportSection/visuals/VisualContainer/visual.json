@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 944.576802507837,
+    "y": 33.538401253918494,
+    "z": 0,
+    "height": 279.87460815047024,
+    "width": 279.87460815047024
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Task"
+                    }
+                  },
+                  "Property": "Completed"
+                }
+              },
+              "queryRef": "Task.Completed"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

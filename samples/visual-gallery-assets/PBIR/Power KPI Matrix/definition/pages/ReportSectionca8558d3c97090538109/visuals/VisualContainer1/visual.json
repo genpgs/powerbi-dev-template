@@ -1,0 +1,406 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 10.4774897680764,
+    "y": 0.8731241473396999,
+    "z": 1000,
+    "height": 718.581173260573,
+    "width": 556.1800818553888
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "The Power KPI Matrix custom visual allows flexibility for whether your metrics are stored exclusively in separate columns, or bunched together as various rows in a shared column.  Here is the terminology used by the custom visual:",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* Column-Based",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ". Columnar data, with each metric stored in a separate column (similar to Power KPI custom visual).  The name of the metric is established by the name of the column.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "*  Row-Based",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ". Row-based source data, where multiple metrics are stored together in the same column.  The metrics are differentiated via a separate column that lists the metric name. (see the Row-Based Sample report tab)",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "\"Which Approach Should I Use?\"  ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Column-based data is simpler to manage for limited sets of KPIs while row-based data offers greater scale and also the ability to pre-define the sort order used by the custom visual.  This sample file includes tables for both approaches.  Follow the example most appropriate for your data and scale needs.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Required Columns: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "A ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Date",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " type of column is required for either approach. The Date bucket in the custom visual supports dates, numbers and text, with dates as the typical use case.  Your model must also have at least one column, or calculated column, with values that are bound to the \"Actual Value\" Field well.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Column-based data:  ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "for step-by-step info, see the detailed instructions in the other text box on this page",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Row-based data",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ":  While row-based metrics are more complicated on the modeling side, it requires fewer steps to visualize:",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  },
+                  {
+                    "value": "1. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Add your \"Date\" column to the "
+                  },
+                  {
+                    "value": "Date ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "bucket",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  },
+                  {
+                    "value": "2.",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Add your \"Metric Name\" column from your data to the "
+                  },
+                  {
+                    "value": "Row-based Metric Name",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " bucket. The visual will automatically provide a row for every unique metric in your data.  ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  },
+                  {
+                    "value": "3.",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Add your \"Actual Values\" to the "
+                  },
+                  {
+                    "value": "Actual Value ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "bucket.  At this point the basic visual should render for you",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " "
+                  },
+                  {
+                    "value": "4.",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Add your \"Comparison\" value column to the "
+                  },
+                  {
+                    "value": "Target Value ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "bucket and your KPI indicator symbol column to the ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "KPI Indicator Index ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "bucket. ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#333333'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How to Create a Power KPI Matrix'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 469.02065289806796,
+    "y": 60.54630246502332,
+    "z": 0,
+    "height": 601.199200532978,
+    "width": 796.4823451032645
+  },
+  "visual": {
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TabletSales"
+                    }
+                  },
+                  "Property": "OS"
+                }
+              },
+              "queryRef": "TabletSales.OS"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TabletSales"
+                        }
+                      },
+                      "Property": "Units"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(TabletSales.Units)"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TabletSales"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "TabletSales.Year"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TabletSales"
+                    }
+                  },
+                  "Property": "Connectivity"
+                }
+              },
+              "queryRef": "TabletSales.Connectivity"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "Chart": [
+        {
+          "properties": {
+            "Type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bar'"
+                }
+              }
+            },
+            "markDict": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"Fact\":{\"elements\":[{\"name\":\"text1\",\"primative\":{\"text\":\"Text\",\"foreground\":\"#000\",\"type\":6,\"sizingMode\":0,\"fontSize\":36,\"fontStyle\":\"Normal\",\"fontFamily\":\"Segoe UI\",\"fontWeight\":\"Normal\",\"horizontalAlign\":2,\"verticalAlign\":2},\"displayMode\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"positionBound\":0,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"strokeWidth\":0,\"breadthItemCount\":1}],\"bindings\":[{\"dataPropertyName\":\"[%AUTO%]\",\"targetName\":\"text1.primitive\",\"targetPropertyName\":\"text\",\"converterSettings\":{\"dataPropertyName\":\"[%AUTO%]\"}}]},\"Column\":{\"elements\":[{\"name\":\"shape01\",\"positionBound\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"displayMode\":0,\"dataValue\":0.68,\"ignoreEmptyFill\":true,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"stroke\":\"undefined\",\"strokeWidth\":0,\"breadthItemCount\":1,\"direction\":3,\"keepRatio\":false,\"showPartialItem\":true,\"hasDirection\":true,\"enableValueTint\":true,\"enableEmptyTint\":false,\"enableItemBackground\":false,\"itemBackground\":\"gray\",\"enableItemBackgroundRoundCorner\":false,\"primative\":{\"type\":4,\"data\":{\"mediaType\":1,\"data\":\"M10,10H0V0h10V10z\",\"contentBound\":{\"x\":0,\"y\":0,\"width\":10,\"height\":10}}},\"enableTextClip\":false}],\"bindings\":[{\"targetName\":\"shape01\",\"targetPropertyName\":\"valueFill\",\"converter\":\"colorMapping\",\"dataPropertyName\":\"TabletSales.OS\",\"converterSettings\":{\"defaultColor\":\"#01B8AA\",\"converterType\":2,\"dataPropertyName\":\"TabletSales.OS\",\"mappingItems\":[{\"value\":\"Android\",\"color\":\"#01B8AA\",\"mappedValue\":\"#01B8AA\"},{\"value\":\"iOS\",\"color\":\"#374649\",\"mappedValue\":\"#374649\"},{\"value\":\"Linux\",\"color\":\"#FD625E\",\"mappedValue\":\"#FD625E\"},{\"value\":\"Other\",\"color\":\"#F2C80F\",\"mappedValue\":\"#F2C80F\"}],\"defaultMappedValue\":\"#01B8AA\"}}]},\"Bar\":{\"elements\":[{\"name\":\"shape01\",\"positionBound\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"displayMode\":0,\"dataValue\":0.68,\"ignoreEmptyFill\":true,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"stroke\":\"undefined\",\"strokeWidth\":0,\"breadthItemCount\":1,\"direction\":0,\"keepRatio\":false,\"showPartialItem\":true,\"hasDirection\":true,\"enableValueTint\":true,\"enableEmptyTint\":false,\"enableItemBackground\":false,\"itemBackground\":\"gray\",\"enableItemBackgroundRoundCorner\":false,\"primative\":{\"type\":4,\"data\":{\"mediaType\":1,\"data\":\"M10,10H0V0h10V10z\",\"contentBound\":{\"x\":0,\"y\":0,\"width\":10,\"height\":10}}},\"enableTextClip\":false}],\"bindings\":[{\"targetName\":\"shape01\",\"targetPropertyName\":\"valueFill\",\"converter\":\"colorMapping\",\"dataPropertyName\":\"TabletSales.OS\",\"converterSettings\":{\"defaultColor\":\"#01B8AA\",\"converterType\":2,\"dataPropertyName\":\"TabletSales.OS\",\"mappingItems\":[{\"value\":\"Android\",\"color\":\"#01B8AA\",\"mappedValue\":\"#01B8AA\"},{\"value\":\"iOS\",\"color\":\"#374649\",\"mappedValue\":\"#374649\"},{\"value\":\"Linux\",\"color\":\"#FD625E\",\"mappedValue\":\"#FD625E\"},{\"value\":\"Other\",\"color\":\"#F2C80F\",\"mappedValue\":\"#F2C80F\"}],\"defaultMappedValue\":\"#01B8AA\"}}]}}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Small-Multiple": [
+        {
+          "properties": {
+            "Show Header": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meta": [
+        {
+          "properties": {
+            "schemaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "af7386bbb6033d0c02b0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TabletSales"
+              }
+            },
+            "Property": "Connectivity"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "TabletSales",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Connectivity"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'WiFi'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'WiFi/3G'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

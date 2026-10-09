@@ -33,6 +33,21 @@
         }
       }
     },
+    "objects": {
+      "granularity": [
+        {
+          "properties": {
+            "granularity": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {

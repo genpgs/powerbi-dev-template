@@ -1,0 +1,245 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 1.1285266457680252,
+    "y": 1.1285266457680252,
+    "z": 0,
+    "height": 344.20062695924764,
+    "width": 1275.2351097178685
+  },
+  "visual": {
+    "visualType": "EnhancedScatterChart1443994985041",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Images"
+                    }
+                  },
+                  "Property": "Product"
+                }
+              },
+              "queryRef": "Images_New.Product",
+              "nativeQueryRef": "Product"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Images"
+                        }
+                      },
+                      "Property": "X"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "CountNonNull(Images_New.X)",
+              "nativeQueryRef": "Sum of X"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Images"
+                        }
+                      },
+                      "Property": "Y"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Images_New.Y)",
+              "nativeQueryRef": "Y"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Images"
+                        }
+                      },
+                      "Property": "Size"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Images_New.Size)",
+              "nativeQueryRef": "Size"
+            }
+          ]
+        },
+        "Image": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Images"
+                    }
+                  },
+                  "Property": "Image"
+                }
+              },
+              "queryRef": "Images_New.Image",
+              "nativeQueryRef": "Image"
+            }
+          ]
+        },
+        "Rotation": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Images"
+                        }
+                      },
+                      "Property": "Rotation"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Images_New.Rotation)",
+              "nativeQueryRef": "Rotation"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Images"
+                      }
+                    },
+                    "Property": "X"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "backdrop": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "url": {
+              "expr": {
+                "Literal": {
+                  "Value": "[trimmed by scripts/stage_pbir_examples.py] base64-embedded asset removed. The original is in the publisher's PBIP export; this field is not the binding you came here to read."
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b44248e37eb683b00d66",
+  "position": {
+    "x": 451.4051841746248,
+    "y": 0.8731241473396999,
+    "z": 2000,
+    "height": 707.230559345157,
+    "width": 447.03956343792635
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Listing of key features."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Pivot Output Metrics as Columns or Rows. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Pivot the table to display each metric as a row or as a vertical column (see the sample visuals)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Custom Sparklines. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Show the available trend of actual values, with or without target baselines, or use the same coloring of your KPI status indicators to show your past progress toward goals relative to target for each point on your sparkline."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Pop-Out Power KPI Chart.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Clicking any non-hyperlinked  cell launches a Power KPI chart to show full trend details"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Expandable Categories.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Show or hide groups of metrics by using the Category features. Subtotal values may also be shown, useful for items in a category that are additive in nature."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Individual Hyperlinks ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "may be tied to metric names and/or categories, enabling end users to navigate to drilldown reports or other related web content."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- KPI Indicators. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Choose from various KPI symbols to represent performance relative to a targets in the data model. Define thresholds for colors and symbols and, optionally, use the same colors for the KPI indicator value and sparklines."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Columns as Rows.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Starting with columnar data table, built with different metrics in various columns, map the individual metrics to the desired Actual, Target, and Variance cells within a given row of the output table. This is done by using the \"Edit\" option available in the ellipses (\"...\") menu from the upper right corner of the visual."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Row and Column Sizing.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Easily change row heights and column widths by clicking and dragging the row/column borders, similar to Excel."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- "
+                  },
+                  {
+                    "value": "Colors, Fonts, and Formats. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Granular control of background colors and font colors, sizes, styles, vertical and horizontal grid lines, and more"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Auto Table Formats. ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Choose from a selection of preset table themes, including alternate row shading"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- ",
+                    "textStyle": {
+                      "fontSize": "inherit"
+                    }
+                  },
+                  {
+                    "value": "Current Values and Status of KPIs.  ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "inherit"
+                    }
+                  },
+                  {
+                    "value": "The visual always shows the current most current status of the data based on the \"As of Date\" field.  Users may also interact with past dates, such as by including a separate date slicer (see samples).",
+                    "textStyle": {
+                      "fontSize": "inherit"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Key Features'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

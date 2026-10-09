@@ -1,0 +1,221 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 12.100840336134453,
+    "y": 10.372148859543817,
+    "z": 1,
+    "height": 700.1200480192076,
+    "width": 1251.5726290516204,
+    "angle": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1.\tThis visual extends functionality of the Scatter chart and adds some new capabilities."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2.\tStart and End (min and max) values for X and Y axes can be set from data-set or from the formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3.\tColor saturation uses range between min and max value of this field among all data points."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4.\tCustomized Color may be in the following formats:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\trgb decimal - \"rgb(255,255,255)\""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\thsl decimal - \"hsl(120,50%,20%)\""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\trgb hexadecimal - \"#ffeeaa\""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\trgb shorthand hexadecimal - \"#fea\""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tnamed - \"red\", \"white\", \"blue\""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5.\tBackdrop image also can be set in formatting settings."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6.\tColors of the items also can be set using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7.\tCrosshair is used for more accurate positioning of the items."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "8.\tIf you want to set specific shape for items, there are 11 predefined ones. You should set number of this shape in \"Shape\" field bucket. Shapes are the following:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tcircle - 0 "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tcross - 1 "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tdiamond - 2"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tsquare - 3"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\ttriangle-up - 4"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\ttriangle-down - 5"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tstar - 6 "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\thexagon - 7"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tx - 8 "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tup arrow - 9 "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "    •\tdown arrow - 10"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "9.\tRotation field allow to change angle of item's image rotation."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "10.\tThere is an option to show or hide outline for the items."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

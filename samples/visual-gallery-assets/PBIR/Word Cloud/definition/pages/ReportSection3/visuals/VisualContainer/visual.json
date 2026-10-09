@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 1.1285266457680252,
+    "y": 1.1285266457680252,
+    "z": 1,
+    "height": 712.1003134796239,
+    "width": 1275.2351097178685
+  },
+  "visual": {
+    "visualType": "WordCloud1447959067750",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Article"
+                    }
+                  },
+                  "Property": "Sentences"
+                }
+              },
+              "queryRef": "Article.Sentences"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "stopWords": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "isDefaultStopWords": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rotateText": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "minAngle": {
+              "expr": {
+                "Literal": {
+                  "Value": "-90D"
+                }
+              }
+            },
+            "maxNumberOfOrientations": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default stop words are on'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

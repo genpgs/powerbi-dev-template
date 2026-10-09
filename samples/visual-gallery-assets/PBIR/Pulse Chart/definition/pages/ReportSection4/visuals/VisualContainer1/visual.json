@@ -1,0 +1,118 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 300.5297065139585,
+    "y": 601.6463851109521,
+    "z": 1000,
+    "height": 118.19613457408734,
+    "width": 688.103078024338
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Stock7April.Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "Open"
+                }
+              },
+              "queryRef": "Stock7April.Open"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Stock7April"
+                        }
+                      },
+                      "Property": "Close"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Stock7April.Close)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "Low"
+                }
+              },
+              "queryRef": "Stock7April.Low"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "High"
+                }
+              },
+              "queryRef": "Stock7April.High"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "Volume"
+                }
+              },
+              "queryRef": "Stock7April.Volume"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Stock7April"
+                    }
+                  },
+                  "Property": "Event"
+                }
+              },
+              "queryRef": "Stock7April.Event"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

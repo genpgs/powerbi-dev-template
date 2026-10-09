@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 828.3385579937304,
+    "y": 11.285266457680251,
+    "z": 1000,
+    "height": 507.8369905956113,
+    "width": 449.153605015674
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Unemployment"
+                    }
+                  },
+                  "Property": "Group"
+                }
+              },
+              "queryRef": "Unemployment.Group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Unemployment"
+                    }
+                  },
+                  "Property": "Legend"
+                }
+              },
+              "queryRef": "Unemployment.Legend"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Unemployment"
+                        }
+                      },
+                      "Property": "Percentage"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Unemployment.Percentage)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "7e660dc7d576db5b5f01",
+  "position": {
+    "x": 9.613733905579398,
+    "y": 20.600858369098713,
+    "z": 0,
+    "height": 563.0901287553648,
+    "width": 854.2489270386266
+  },
+  "visual": {
+    "visualType": "sankey02300D1BE6F5427989F3DE31CCA9E0F32020",
+    "query": {
+      "queryState": {
+        "Source": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Countries"
+                    }
+                  },
+                  "Property": "Source"
+                }
+              },
+              "queryRef": "Countries.Source"
+            }
+          ]
+        },
+        "Destination": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Countries"
+                    }
+                  },
+                  "Property": "Destination"
+                }
+              },
+              "queryRef": "Countries.Destination"
+            }
+          ]
+        },
+        "Weight": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Countries"
+                        }
+                      },
+                      "Property": "Value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Countries.Value)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

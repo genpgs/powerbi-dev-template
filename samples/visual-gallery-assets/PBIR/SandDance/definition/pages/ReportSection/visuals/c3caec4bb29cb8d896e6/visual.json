@@ -1,0 +1,200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "c3caec4bb29cb8d896e6",
+  "position": {
+    "x": 10,
+    "y": 0,
+    "z": 1000,
+    "height": 720,
+    "width": 990.0000000000001
+  },
+  "visual": {
+    "visualType": "SandDance201929976D117A654D0BAB8E96507442D80B",
+    "query": {
+      "queryState": {
+        "values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "titanicmaster.Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Age"
+                }
+              },
+              "queryRef": "titanicmaster.Age"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Class"
+                }
+              },
+              "queryRef": "titanicmaster.Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "queryRef": "titanicmaster.Gender"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Joined"
+                }
+              },
+              "queryRef": "titanicmaster.Joined"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "Survived"
+                }
+              },
+              "queryRef": "titanicmaster.Survived"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "titanicmaster"
+                    }
+                  },
+                  "Property": "TicketCost"
+                }
+              },
+              "queryRef": "titanicmaster.TicketCost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "titanicmaster"
+                  }
+                },
+                "Property": "Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "sandDanceConfig": [
+        {
+          "properties": {
+            "setupJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"camera\":{\"position\":[0.03622822108839542,-0.007047905840164128,0.341402558161692],\"rotation\":[0,0,0,1],\"captureSize\":{\"height\":673,\"width\":680}},\"renderer\":{\"advanced\":false,\"advancedOptions\":{\"bloomIntensity\":2,\"isBloomEnabled\":false,\"isDofEnabled\":false,\"dofFocusRange\":0.25,\"isFxaaEnabled\":false,\"isShadowEnabled\":true,\"isSsaoEnabled\":true},\"basicOptions\":{\"antialias\":true}},\"transition\":{\"type\":\"ordinal\"},\"transitionDurations\":{\"position\":600,\"stagger\":600,\"view\":600}}'"
+                }
+              }
+            },
+            "insightJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"columns\":{\"x\":\"Age\",\"color\":\"Survived\",\"sort\":\"Survived\",\"z\":\"TicketCost\"},\"directColor\":false,\"facetStyle\":\"wrap\",\"hideAxes\":false,\"hideLegend\":false,\"scheme\":\"dual_redgreen\",\"signalValues\":{\"RoleZ_ProportionSignal\":0.6,\"Text_ScaleSignal\":1.2,\"RoleColor_BinCountSignal\":7,\"RoleColor_ReverseSignal\":false,\"RoleX_BinsSignal\":10},\"chart\":\"barchartV\",\"view\":\"2d\"}'"
+                }
+              }
+            },
+            "snapshotsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "tooltipExclusionsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "imageHolderJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"img\":null,\"backgroundImageColumnBounds\":[{\"columnName\":\"Age\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":74,\"stringValue\":\"74\"},{\"columnName\":\"Age\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":0,\"stringValue\":\"0\"},{\"columnName\":\"Age\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":74,\"stringValue\":\"74\"},{\"columnName\":\"Age\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":0,\"stringValue\":\"0\"},{\"columnName\":\"TicketCost\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":512.3291667,\"stringValue\":\"512.3291667\"},{\"columnName\":\"TicketCost\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":0,\"stringValue\":\"0\"},{\"columnName\":\"TicketCost\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":512.3291667,\"stringValue\":\"512.3291667\"},{\"columnName\":\"TicketCost\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":0,\"stringValue\":\"0\"}],\"showBackgroundImage\":false}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "sandDanceMainSettings": [
+        {
+          "properties": {
+            "darktheme": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showchrome": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "resourcePackages": [
+    {
+      "name": "ForceGraph1449359463895",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "ForceGraph1449359463895.pbiviz.json",
+          "path": "ForceGraph1449359463895.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ]
+}

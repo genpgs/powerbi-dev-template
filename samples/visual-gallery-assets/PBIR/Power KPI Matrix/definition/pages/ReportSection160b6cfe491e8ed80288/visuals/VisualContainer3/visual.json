@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer3",
+  "position": {
+    "x": 433.6788874841973,
+    "y": 390.79646017699116,
+    "z": 1000,
+    "height": 328.49557522123894,
+    "width": 627.8634639696587
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Categories follow the same basic structure as hyperlinks (see above and left).  In your Links table (feel free to call it \"Categories\" if you don't have links), you may also have columns for your categories, as shown in the sample tables.  The actual names of your various categories should be ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "unique. ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "In other words, if you have a metric called \"Net Revenue\" you cannot also have a category called \"Net Revenue\"). ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Steps To Perform in Field View:  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "After your category table is configured, here are the steps to add the category columns to the custom visual. The sequence is important (see screen snippet to the right):"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1. Drop ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "your ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "[Metric Name] ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "column in to the \"Category\" field well",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2. Drop ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "your [",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Category] ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "column to the Category field well, ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "immediately below",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " the [",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "Metric Name]",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3. (optional) Drop Another [Category] ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "column to the Category field well, ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "immediately below ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "the first ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "[Category]",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ".  ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "If you have multiple levels of categories, you must add the leaf-level metric/node first, followed by the immediate branch the metric is associated with, and then the broadest, parent-level category last.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'How To Set Up Categories'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

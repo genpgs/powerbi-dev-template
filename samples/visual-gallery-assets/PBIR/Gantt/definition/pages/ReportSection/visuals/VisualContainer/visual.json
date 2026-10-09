@@ -1,0 +1,255 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 719.3981805458362,
+    "width": 1277.3128061581524
+  },
+  "visual": {
+    "visualType": "Gantt1448688115699",
+    "query": {
+      "queryState": {
+        "Task": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project schedule"
+                    }
+                  },
+                  "Property": "Task Name"
+                }
+              },
+              "queryRef": "Project schedule.Task Name"
+            }
+          ]
+        },
+        "StartDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project schedule"
+                    }
+                  },
+                  "Property": "Start Date"
+                }
+              },
+              "queryRef": "Project schedule.Start Date"
+            }
+          ]
+        },
+        "Duration": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Project schedule"
+                        }
+                      },
+                      "Property": "Duration"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Project schedule.Duration)"
+            }
+          ]
+        },
+        "Completion": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Project schedule"
+                        }
+                      },
+                      "Property": "Complete Percentage"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Project schedule.Complete Percentage)"
+            }
+          ]
+        },
+        "Resource": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project schedule"
+                    }
+                  },
+                  "Property": "Resource"
+                }
+              },
+              "queryRef": "Project schedule.Resource"
+            }
+          ]
+        },
+        "Legend": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Project schedule"
+                    }
+                  },
+                  "Property": "Type"
+                }
+              },
+              "queryRef": "Project schedule.Type"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Project schedule"
+                  }
+                },
+                "Property": "Start Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'8'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'8'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskResource": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'8'"
+                }
+              }
+            },
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00B8AA'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskCompletion": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

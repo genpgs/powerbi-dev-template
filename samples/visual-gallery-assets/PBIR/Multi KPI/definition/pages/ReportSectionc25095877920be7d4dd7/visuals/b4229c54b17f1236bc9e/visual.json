@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b4229c54b17f1236bc9e",
+  "position": {
+    "x": 471.182953710507,
+    "y": 0.9404849375459221,
+    "z": 1000,
+    "height": 563.3504775900074,
+    "width": 245.4665686994857
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "FieldPanel8471918411849217.PNG"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

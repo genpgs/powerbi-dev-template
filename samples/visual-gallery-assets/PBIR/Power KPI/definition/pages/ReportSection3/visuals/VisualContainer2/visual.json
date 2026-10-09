@@ -1,0 +1,227 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer2",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 718.9349112426036,
+    "width": 450.5325443786982
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Can I Change the Label Text?",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Yes, you can change any of the labels in the custom visual, regardless of the names in your data model.  This is important, for example, if your data source is a live connection to a source that is owned by another team. "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* For titles, subtitles, text labels, chart axes, and tooltips, you may enter or change the text within the Format pane of the desired element."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* For values and calculations in your data model, you have a few options: 1) change in your data model, if possible; 2) change in Power BI Desktop July, 2017 version or later by using the \"Rename\" feature. In the Field pane, simply double-click or right-click the name of the Field and you will see the Rename option. 3) create a new calculated column or calculated column in your model and provide the desired new name, setting it equal to the source column"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In addition to the text itself, you can customize the font family, style, size, and color"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "I Don't See the Current KPI Value. How Come?",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Generally, this can happen if your value is large and there is insufficient space to display all of the KPI elements (Date, Value, Indicator, Indicator Value) at the same time.  By default, Power KPI changes the layout style of the visual as well as whether certain elements are visible based on the container size of the visual and how skinny or wide it is. If your KPI Actual Value is not showing, try one or more of the following:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* reduce font size of the KPI Actual Value and KPI Indicator Value; reduce the decimal points; or change the number Type"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* reduce font size of nearby elements, such as Date"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* increase width or height of the visual container or remove unnecessary labels, legend, etc."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "If you want to manually specify your own Layout, you can turn off \"Auto\" under Layout in the Format pane (not the same as Auto Scale)."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Common Questions:'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

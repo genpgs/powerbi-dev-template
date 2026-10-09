@@ -1,0 +1,147 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "cce93ad0b2e5169e0350",
+  "position": {
+    "x": 995.7606344628696,
+    "y": 1.8457101658255228,
+    "z": 2000,
+    "height": 713.3669790915645,
+    "width": 279.6250901225667
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Custom number formats defined in the custom visual are stored in the first few rows from the main data (fact) table of metrics values.  If you are using other slicers or filters in combination with Power KPI Matrix that results in the initial rows being filtered or hidden, the custom formats will "
+                  },
+                  {
+                    "value": "not",
+                    "textStyle": {
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": " be applied to the table and will seem to \"disappear\", with all number formats defaulting to the formats as defined in the source tables."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- For column-based data sources,",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " this can be mitigated by specifying the desired number format in the data source, since each metric can have its own number format."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- For row-based data sources,",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " the recommendation is simply to avoid such situations by only including the relevant rows in the data source that are required by the Power KPI Matrix visual.  For example, if you only want the sparklines to show the last 30 days of data, do not include more than the rows for the last 30 days in the Power BI dataset.  A second alternative is to simply avoid using slicers and filters that restrict the initial rows of your main data table."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Slicers and Number Formats'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

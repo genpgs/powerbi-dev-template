@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 552.9251700680272,
+    "width": 1066.6666666666667
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Each value in source or target field defines the relevant node."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Each unique pair of source and target values defines the links between nodes."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Weight field defines thickness of relevant nodes."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) LinkType field can define color of the link and text of the link label."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Image source directory url and image extension can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6) Source type and target type fields can define image names of relevant nodes."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7) Both source and target field are required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "8) Color, text size and maximum length of data labels can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "9) There are options to show or hide arrows that represents the direction of the link."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "10) Type of the node color definition can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "11) There are options to show or hide labels of the link type and to enable or disable thikness of nodes."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "12) There are options to show or hide the image of the node and to set the default image name."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "13) There are options to enable or disable highlighting of all reachable links."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "14) The charge of nodes that defines distance therebetween can be changed using formatting pane. It must be negative but greater than -100."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "15) If inveractive mode is enabled then hovering on a node point highlights reachable links."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "16) Clicking on a node and dragging it can change a layout of nodes."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

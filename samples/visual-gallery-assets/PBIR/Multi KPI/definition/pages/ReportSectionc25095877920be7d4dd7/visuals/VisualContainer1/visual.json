@@ -1,0 +1,245 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 8.64345738295318,
+    "y": 0.864345738295318,
+    "z": 0,
+    "height": 548.859543817527,
+    "width": 408.83553421368543
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "A typical use case for a data model is to have one data series (column) for main values and other series that will be shown on the sparkline charts.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The logic used by the Multi KPI custom visual is based on the order the columns are dropped into the Values section (accepts up to 16 columns) of the Field view.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* The "
+                  },
+                  {
+                    "value": "Date ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "(required) is a Date/Time column and is treated as X-axis for main chart and sparklines.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* The "
+                  },
+                  {
+                    "value": "first column",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " (",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "required) ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "dropped into Values is treated as the ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "main ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "series and it will be shown on top chart.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "* The "
+                  },
+                  {
+                    "value": "second and other columns",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " (",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "optional",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ") dropped into Values becomes the primary series and they will be shown on bottom sparklines.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "By default, a variance % is automatically calculated between first (start) and last (end) value of the first series. You may choose another start date to calculted a variance acoring to your requirements.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F7DE6F'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "77L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Fields'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

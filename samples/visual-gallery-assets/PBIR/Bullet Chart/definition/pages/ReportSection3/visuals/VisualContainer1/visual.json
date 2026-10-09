@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 1045.0156739811912,
+    "y": 19.184952978056426,
+    "z": 1000,
+    "height": 282.1316614420063,
+    "width": 217.80564263322884
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hammer throw"
+                    }
+                  },
+                  "Property": "Athlete"
+                }
+              },
+              "queryRef": "Hammer throw.Athlete"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hammer throw"
+                    }
+                  },
+                  "Property": "Performance"
+                }
+              },
+              "queryRef": "Hammer throw.Performance"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a12388d1a0e0c4beecbe",
+  "position": {
+    "x": 448.24273072060686,
+    "y": 82.52844500632112,
+    "z": 5000,
+    "height": 59.873577749683946,
+    "width": 537.24399494311
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StepByStep"
+                    }
+                  },
+                  "Property": "Get Data Method"
+                }
+              },
+              "queryRef": "StepByStep.Get Data Method"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "header": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "title": {
+              "expr": {
+                "Literal": {
+                  "Value": "'b. Choose Your Get Data Method:'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "s",
+                    "Entity": "StepByStep",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "s"
+                                }
+                              },
+                              "Property": "Get Data Method"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Live Connection to Analysis Services'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "selection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[\"{\\\"selector\\\":\\\"{\\\\\\\"data\\\\\\\":[\\\\\\\"{\\\\\\\\\\\\\\\"comp\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"k\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"l\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"col\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"s\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"e\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"StepByStep\\\\\\\\\\\\\\\"},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Get Data Method\\\\\\\\\\\\\\\"}},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"const\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"t\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"v\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Live Connection to Analysis Services\\\\\\\\\\\\\\\"}}}}\\\\\\\"]}\\\",\\\"highlight\\\":false}\"]'"
+                }
+              }
+            },
+            "multiselect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

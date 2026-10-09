@@ -1,0 +1,70 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 995.9500693481277,
+    "y": 0,
+    "z": 1000,
+    "height": 719.5839112343967,
+    "width": 282.27461858529824
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product sales by state"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "Product sales by state.State"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Product sales by state"
+                        }
+                      },
+                      "Property": "Sales"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Product sales by state.Sales"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Product sales by state"
+                  }
+                },
+                "Property": "State"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    }
+  }
+}

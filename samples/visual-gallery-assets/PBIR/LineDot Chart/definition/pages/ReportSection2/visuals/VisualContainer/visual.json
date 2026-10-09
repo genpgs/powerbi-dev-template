@@ -1,0 +1,179 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 719.7524449877751,
+    "width": 1277.356356968215
+  },
+  "visual": {
+    "visualType": "LineDotChart1460463831201",
+    "query": {
+      "queryState": {
+        "Date": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Movies"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "Table1.Year"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Movies"
+                        }
+                      },
+                      "Property": "Worldwide gross"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Table1.Worldwide gross)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "misc": [
+        {
+          "properties": {
+            "duration": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "counteroptions": [
+        {
+          "properties": {
+            "counterTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Grossing years'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dotoptions": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8AD4EB'"
+                    }
+                  }
+                }
+              }
+            },
+            "dotSizeMin": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineoptions": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2C811'"
+                    }
+                  }
+                }
+              }
+            },
+            "lineThickness": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "50L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

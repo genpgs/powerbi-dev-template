@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer2",
+  "position": {
+    "x": 0,
+    "y": 220.0626959247649,
+    "z": 0,
+    "height": 493.166144200627,
+    "width": 703.0721003134796
+  },
+  "visual": {
+    "visualType": "EnhancedScatterChart1443994985041",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Simple"
+                    }
+                  },
+                  "Property": "Attempt"
+                }
+              },
+              "queryRef": "Simple_New.Attempt",
+              "nativeQueryRef": "Attempt"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Simple"
+                    }
+                  },
+                  "Property": "Bacteria"
+                }
+              },
+              "queryRef": "Simple_New.Bacteria",
+              "nativeQueryRef": "Bacteria"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Simple"
+                        }
+                      },
+                      "Property": "X"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Simple_New.X)",
+              "nativeQueryRef": "X"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Simple"
+                        }
+                      },
+                      "Property": "Y"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Simple_New.Y)",
+              "nativeQueryRef": "Y"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Simple"
+                        }
+                      },
+                      "Property": "Size"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Simple_New.Size)",
+              "nativeQueryRef": "Size"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Simple"
+                      }
+                    },
+                    "Property": "X"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

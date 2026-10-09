@@ -1,0 +1,61 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.343434343434344,
+    "y": 19.824915824915823,
+    "z": 1,
+    "height": 700.3501683501684,
+    "width": 1267.0707070707072
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) A Mekko chart is a mix of a 100% stacked column chart and a 100% stacked bar chart combined into one view. Similar to a treemap, the dimensional values are represented by length and width of each rectangle. The width of a column is proportional to the total value of the column.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_normal"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Borders, data labels, legend, axis, data color can be customized in the Format tab of the visual.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_normal"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Clicking on the rectangle with data (or a category inside the legend) will filter other visuals with selected statement.",
+                    "textStyle": {
+                      "fontFamily": "wf_segoe-ui_normal"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

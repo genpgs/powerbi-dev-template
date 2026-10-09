@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "RadarChart1446119667547"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RadarChart1446119667547",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "RadarChart1446119667547.pbiviz.json",
+          "path": "RadarChart1446119667547.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ]
+}

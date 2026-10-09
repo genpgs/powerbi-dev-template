@@ -1,0 +1,31 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "sankey02300D1BE6F5427989F3DE31CCA9E0F32020"
+  ],
+  "resourcePackages": [
+    {
+      "name": "sankey02300D1BE6F5427989F3DE31CCA9E0F32020",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "sankey02300D1BE6F5427989F3DE31CCA9E0F32020.pbiviz.json",
+          "path": "sankey02300D1BE6F5427989F3DE31CCA9E0F32020.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useEnhancedTooltips": false,
+    "enableDeveloperMode": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

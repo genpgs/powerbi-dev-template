@@ -43,6 +43,8 @@ CORPUS = [
     "samples/visual-gallery-assets/EXCEPTIONS.md",
     "samples/visual-gallery-assets/Images/Dual KPI.png",
     "samples/visual-gallery-assets/icons/chart-bar.svg",
+    "samples/visual-gallery-assets/PBIR/Word Cloud/definition/report.json",
+    "samples/visual-gallery-assets/PBIR/Word Cloud/definition.pbir",
     "samples/visual-gallery-assets/unlisted-note.txt",
     "samples/visual-gallery-assets/PBIVIZ/WordCloud1447959067750.2.3.4.0.pbiviz",
     "samples/visual-gallery-assets/PBIX/Dual KPI.pbix",

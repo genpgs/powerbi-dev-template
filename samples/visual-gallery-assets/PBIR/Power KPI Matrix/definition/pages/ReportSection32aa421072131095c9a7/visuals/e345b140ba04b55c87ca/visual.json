@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "e345b140ba04b55c87ca",
+  "position": {
+    "x": 0,
+    "y": 75.68123393316196,
+    "z": 6000,
+    "height": 62.51928020565553,
+    "width": 331.51670951156814
+  },
+  "visual": {
+    "visualType": "ChicletSlicer1448559807354",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Row_Based_Metrics"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "Row_Based_Metrics.Country"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "r",
+                    "Entity": "Row_Based_Metrics",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "r"
+                                }
+                              },
+                              "Property": "Country"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Germany'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "selection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[\"{\\\"selector\\\":\\\"{\\\\\\\"data\\\\\\\":[\\\\\\\"{\\\\\\\\\\\\\\\"comp\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"k\\\\\\\\\\\\\\\":0,\\\\\\\\\\\\\\\"l\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"col\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"s\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"e\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Row_Based_Metrics\\\\\\\\\\\\\\\"},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Country\\\\\\\\\\\\\\\"}},\\\\\\\\\\\\\\\"r\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"const\\\\\\\\\\\\\\\":{\\\\\\\\\\\\\\\"t\\\\\\\\\\\\\\\":1,\\\\\\\\\\\\\\\"v\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Germany\\\\\\\\\\\\\\\"}}}}\\\\\\\"]}\\\",\\\"highlight\\\":false}\"]'"
+                }
+              }
+            },
+            "multiselect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

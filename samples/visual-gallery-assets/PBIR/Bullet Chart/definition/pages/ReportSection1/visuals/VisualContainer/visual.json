@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.156739811912226,
+    "y": 20.313479623824453,
+    "z": 1,
+    "height": 657.9310344827586,
+    "width": 1225.5799373040752
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) All zones are set in percents (from 0% to 100%) on the formatting pane or as absolute values using field buckets of the visual."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Each bullet can have 2 targets. First of them has | symbol, second - X."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Color of zones and bullet can be changed on formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Visual has 4 different orientations: Horizontal Left, Horizontal Right, Vertical Top, Verical bottom."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Axis labels color, unit measure text and it's color also can be changed using formatting pane."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

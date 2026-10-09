@@ -1,0 +1,123 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer2",
+  "position": {
+    "x": 450.8013468013468,
+    "y": 0,
+    "z": 2000,
+    "height": 663.7037037037037,
+    "width": 826.6127946127946,
+    "angle": 0
+  },
+  "visual": {
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Wine"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Wine.Region"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Wine"
+                        }
+                      },
+                      "Property": "Consumption"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Wine.Consumption)"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Wine"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "Wine.Year"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "Chart": [
+        {
+          "properties": {
+            "Type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Column'"
+                }
+              }
+            },
+            "markDict": {
+              "expr": {
+                "Literal": {
+                  "Value": "[trimmed by scripts/stage_pbir_examples.py] base64-embedded asset removed. The original is in the publisher's PBIP export; this field is not the binding you came here to read."
+                }
+              }
+            }
+          }
+        }
+      ],
+      "Small-Multiple": [
+        {
+          "properties": {
+            "Max Row Width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meta": [
+        {
+          "properties": {
+            "schemaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

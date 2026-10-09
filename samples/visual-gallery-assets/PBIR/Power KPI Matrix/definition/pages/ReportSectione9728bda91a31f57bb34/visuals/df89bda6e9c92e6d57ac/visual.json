@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "df89bda6e9c92e6d57ac",
+  "position": {
+    "x": 959.5658073270013,
+    "y": 0,
+    "z": 4000,
+    "height": 295.2510176390773,
+    "width": 320.4341926729986
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Most of this page is focused on relative ordering of metrics and categories.  This is a note on the ordering of overall categories, as compared to the other items available in the matrix, including As On Date, Current Value, etc."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Overall Column/Row Ordering.  ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "When using the \"Column Order\" option within the various Power KPI Matrix items of the Format Pane, Categories (if used) will always show as the first column/row in the custom visual.  In other words, column number \"1\" refers to the first column shown "
+                  },
+                  {
+                    "value": "after ",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  },
+                  {
+                    "value": "the categories."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "All other columns in the visual may be re-ordered, except for Categories"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#e6e6e6'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ORDERING OF CATEGORIES'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

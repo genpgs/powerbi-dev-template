@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 292.2020202020202,
+    "width": 431.83838383838383,
+    "angle": 0
+  },
+  "visual": {
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Wine"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Wine.Region"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Wine"
+                        }
+                      },
+                      "Property": "Consumption"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Wine.Consumption)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "Chart": [
+        {
+          "properties": {
+            "Type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Column'"
+                }
+              }
+            },
+            "markDict": {
+              "expr": {
+                "Literal": {
+                  "Value": "[trimmed by scripts/stage_pbir_examples.py] base64-embedded asset removed. The original is in the publisher's PBIP export; this field is not the binding you came here to read."
+                }
+              }
+            },
+            "Right Padding": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "Grid Line": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meta": [
+        {
+          "properties": {
+            "schemaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

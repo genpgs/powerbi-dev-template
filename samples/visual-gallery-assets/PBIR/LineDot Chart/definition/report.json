@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "resourcePackages": [
+    {
+      "name": "LongTextViewer1453740445633",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "icon.svg",
+          "path": "icon.svg",
+          "type": "CustomVisualIcon"
+        },
+        {
+          "name": "LongTextViewer.css",
+          "path": "LongTextViewer.css",
+          "type": "CustomVisualsCss"
+        },
+        {
+          "name": "LongTextViewer.js",
+          "path": "LongTextViewer.js",
+          "type": "CustomVisualJavascript"
+        }
+      ]
+    },
+    {
+      "name": "LineDotChart1460463831201",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "LineDotChart1460463831201.pbiviz.json",
+          "path": "LineDotChart1460463831201.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ]
+}

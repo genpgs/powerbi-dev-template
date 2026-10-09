@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {},
+  "publicCustomVisuals": [
+    "MekkoChart1449744733038"
+  ],
+  "resourcePackages": [
+    {
+      "name": "MekkoChart1449744733038",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "MekkoChart1449744733038.pbiviz.json",
+          "path": "MekkoChart1449744733038.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ]
+}

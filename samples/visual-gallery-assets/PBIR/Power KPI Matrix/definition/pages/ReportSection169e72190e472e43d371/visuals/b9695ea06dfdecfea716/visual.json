@@ -1,0 +1,324 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b9695ea06dfdecfea716",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 718.9041095890411,
+    "width": 520.4902667627974
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Hyperlinks ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "in this sample file are specified in a table called Links.  There are two identical Links tables in this sample file:  one, called \"Row_Links\", is used with the Row-based metric example; the other, called \"Col_Links,\" is  for column-based data.  See the separate instructional tab for details on how to enable hyperlinks."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Custom Sort Order of Metrics",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The custom ",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": "Sort Order",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": " bucket requires that you have a table that lists the unique metric names and a column (numeric, date, or text) that specifies the desired sequence number (the \"Links\" tables in this sample serves this purpose).  This method will work for both row-based data and column-based data.  See the separate instructional tab for details on how to set up custom Sorting",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Variance Calculation",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "inherit",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": ":",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "inherit"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "By default, a variance % is automatically calculated between the two series and this variance is shown on the visual as as the ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "KPI Indicator Value",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": ".  You may choose to hide the KPI Indicator Value or you may also provide your own custom column or calculation to use as the KPI Indicator Value, such as the example at lower right that only displays a single series. Simply drop your desired column/calc on to the Field well called \"KPI Indicator Value.\" ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Row-based models: ",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "If you have a Row-based metric model and decide to use your own variance column (KPI Indicator Value), you must do so and provide for all of your metrics.  The custom visual will not know which rows to auto-calculate.",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Columnar models:",
+                    "textStyle": {
+                      "textDecoration": "underline",
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": " If you have a Column-based model, you may pick and choose which metrics are auto-calculated versus which you provide your own variance",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Custom Date Formats:  ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "textDecoration": "underline"
+                    }
+                  },
+                  {
+                    "value": "You may specify custom date formats for the various Date Value fields in the Format Pane.  See the \""
+                  },
+                  {
+                    "value": "User-Defined Date/Time Formats",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  },
+                  {
+                    "value": "\" section of the following document: "
+                  },
+                  {
+                    "value": "https://social.technet.microsoft.com/wiki/contents/articles/685.power-bi-dax-text-functions.aspx#format",
+                    "textStyle": {
+                      "color": "#3599b8"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Typical US Example:  ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "%M/%d/yyyy",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#a66999"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Typical European Example: ",
+                    "textStyle": {
+                      "color": "#000000"
+                    }
+                  },
+                  {
+                    "value": "%d-%M-yyyy",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#a66999"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#fae99f'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "17L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Advanced Customization Options:'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

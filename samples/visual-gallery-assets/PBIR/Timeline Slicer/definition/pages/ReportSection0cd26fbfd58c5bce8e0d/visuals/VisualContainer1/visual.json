@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer1",
+  "position": {
+    "x": 23.34763948497854,
+    "y": 86.52360515021459,
+    "z": 1000,
+    "height": 633.1330472103004,
+    "width": 1256.6523605150214
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MSFT"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "MSFT.Date"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  }
+}

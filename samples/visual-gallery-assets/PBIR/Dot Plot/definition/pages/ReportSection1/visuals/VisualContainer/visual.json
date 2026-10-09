@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "VisualContainer",
+  "position": {
+    "x": 10.188133140376268,
+    "y": 20.376266280752535,
+    "z": 1,
+    "height": 493.6613603473228,
+    "width": 1039.1895803183793
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1) Category and values fields are required."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2) Values field defines height of the dots line for each category."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3) Color of dots can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4) Text size, display units and decimal places of data labels can be changed using formatting pane."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5) Clicking on dot group will filter other visuals by selected category."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

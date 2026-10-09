@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY21SU04",
+      "reportVersionAtImport": {
+        "visual": "1.8.59",
+        "report": "2.0.59",
+        "page": "1.3.59"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "SandDance201929976D117A654D0BAB8E96507442D80B"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY21SU04",
+          "path": "BaseThemes/CY21SU04.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "SandDance2019",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "SandDance2019.pbiviz.json",
+          "path": "SandDance2019.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "SandDance201929976D117A654D0BAB8E96507442D80B",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "SandDance201929976D117A654D0BAB8E96507442D80B.pbiviz.json",
+          "path": "SandDance201929976D117A654D0BAB8E96507442D80B.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": false,
+    "enableDeveloperMode": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}
