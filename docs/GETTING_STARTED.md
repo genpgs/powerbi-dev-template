@@ -11,10 +11,12 @@ Install these tools before starting:
 | Tool | Min version | Install |
 |------|------------|---------|
 | **Python** | 3.10 | <https://python.org> or OS package manager |
-| **Node.js** | 18 | <https://nodejs.org> |
+| **Node.js** | 22 | <https://nodejs.org> |
 | **uv** | latest | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 | **git** | 2.30 | OS package manager |
 | **Power BI Desktop** | latest | Windows only — for local data refresh and desktop visual rendering |
+
+> **Node.js 22**: the devcontainer pins Node 22. Node 20 also runs `powerbi-modeling-mcp`; 22 is the floor required by the [Skills CLI](https://github.com/vercel-labs/skills) used for the optional upstream DuckDB skill in §8c.
 
 > **Linux users**: All authoring (TMDL model definition, PBIR report JSON, M functions, DAX measures, automated schema validation, and HTML dashboard prototyping) runs natively on Linux. You only need Windows + Power BI Desktop or Microsoft Fabric when executing local Power Query M data refreshes into VertiPaq memory or previewing the desktop GUI. See [`docs/LINUX_WORKFLOW_GAPS.md`](LINUX_WORKFLOW_GAPS.md) for full Linux findings.
 
@@ -322,8 +324,91 @@ Copy `mcp/mcp.json.example` to the correct location for your harness:
 | Antigravity (per repo) | `.antigravity/mcp.json` in repo root |
 | VS Code / GitHub Copilot | `.vscode/mcp.json` in repo root |
 | Claude Code | `~/.claude/mcp.json` |
+| Claude Code (project only) | `.mcp.json` in repo root — preferred, keeps config in the repo |
+| OpenCode | `opencode.json` in repo root |
 
 Then remove the `_comment` and `_locations` keys from the copied file.
+
+---
+
+## 8a. Optional: DuckDB for local data analysis
+
+DuckDB gives an agent a fast SQL engine over local files — no database server, no cloud account, no sign-in. It is **entirely optional** and nothing else in this template depends on it. Skip this section if you do not need it.
+
+[`setup.sh`](../setup.sh) section 7a offers the CLI and prints the registration snippet; this section is the reference version.
+
+### What it can read
+
+| Tier | Sources | Cost |
+|------|---------|------|
+| Built in | CSV, TSV, Parquet | Nothing to install |
+| Official extension | JSON / NDJSON, `.xlsx` / `.xlsm`, local SQLite files | Downloaded on first use (see below) |
+
+Not supported, so you are not left guessing:
+
+- **`.xls`** (the legacy format). Only `.xlsx` and newer.
+- **XML.** Deferred, and it needs a community extension — third-party code, so it is not promised here.
+- **Remote or cloud sources** of any kind — no PostgreSQL, MySQL, BigQuery, S3, or Fabric warehouse. Local files only.
+
+### Two things that will bite you
+
+**Extensions download on first use.** `excel`, `sqlite`, and `json` are fetched the first time you touch them, so the first query is noticeably slower than later ones — measured at ~10x on a cold cache. In an offline environment, preload them while connected. Note that JSON behaves differently by version: on the pinned LTS line it is linked into the binary and needs no download at all, on other versions it is a loadable extension. Don't promise offline JSON support without checking your version.
+
+**Trailing whitespace breaks CSV detection.** A CSV ending in a stray `\r\n` fails with *"It was not possible to automatically detect the CSV parsing dialect"* — and the error blames delimiters and quoting, neither of which is the problem. It fails even when you pass the correct delimiter explicitly. This reproduces on Linux and Windows alike. If you generate files from PowerShell, `Set-Content` appends exactly such a newline; write fixtures with `printf` or Python instead.
+
+### Registering the MCP server
+
+The CLI is for you, in a shell. For an **agent** to call DuckDB, your harness also has to load an MCP server. Those are three separate steps — installing the binary, registering the server, then enabling it — and completing the first does nothing for the other two.
+
+Add this as a sibling of `powerbi-modeling-mcp` in your harness MCP config:
+
+```json
+"duckdb-local": {
+  "type": "stdio",
+  "command": "uvx",
+  "args": [
+    "mcp-server-motherduck",
+    "--db-path", ":memory:",
+    "--read-write",
+    "--query-timeout", "30"
+  ]
+}
+```
+
+**Read this before you paste it:**
+
+- **`--read-write` is required, not optional.** An in-memory DuckDB database cannot be read-only — upstream refuses to start without the flag. Remove it and the server will not start.
+- **The database is throwaway.** It is created when the server starts, holds nothing that predates the session, and is discarded when the server exits. That is the point: for exploratory profiling there is no state worth keeping, so throwing it away avoids any cleanup burden.
+- **The filesystem is not throwaway.** That same flag permits `COPY … TO` and `EXPORT DATABASE`, which write real files that persist after the server exits. Point this at data you are happy to have written. **If you need a read-only *database*, use a DuckDB file path instead** — DDL and DML are rejected, so the `.duckdb` file cannot be modified, at the cost of a file you have to clean up yourself:
+  ```json
+  "args": ["mcp-server-motherduck", "--db-path", "/absolute/path/to/analysis.duckdb", "--query-timeout", "30"]
+  ```
+  **This is not a filesystem sandbox.** Read-only protects the *database*, not the disk: `COPY … TO` still writes files in that mode (verified 2026-10-08). Both options can write files; the file path only removes the ability to change the database itself.
+- **Keep your source files read-only-in-practice.** Both configs can write files. To stop that, add `--init-sql` with an **allow-list**, in this exact order — verified 2026-10-08:
+  ```json
+  "args": ["mcp-server-motherduck", "--db-path", ":memory:", "--read-write", "--query-timeout", "30",
+           "--init-sql", "SET allowed_paths=['/abs/path/to/source.csv']; SET allowed_directories=['/abs/path/to/scratch']; SET enable_external_access=false;"]
+  ```
+  Your listed sources stay readable, `COPY … TO` against a source is **blocked**, and writes are confined to the scratch directory. **Order matters:** the allow-list must come *before* `enable_external_access=false`, or startup fails. Set `enable_external_access=false` on its own and you also lose every file *read*, including extension auto-install.
+  Verified on **both** Linux and Windows (2026-10-08): allowed read succeeds, overwrite is refused with a permission error, out-of-list reads are refused, the source file is byte-identical afterwards, and the reverse order fails as described. Windows paths need forward slashes (`C:/data/source.csv`), not backslashes.
+- **No MotherDuck account, token, or sign-in is involved.**
+- **Results are bounded** to 1024 rows / 50,000 characters, and `--query-timeout` stops a runaway query. Upstream leaves the timeout disabled by default, which is why the value above is explicit.
+
+Then restart your harness and enable the server. Nothing here is registered automatically, and `setup.sh` never writes to your harness configuration.
+
+### What this does not do
+
+DuckDB is a source-side SQL engine. It does **not** execute DAX, does not reproduce VertiPaq behaviour, and does not establish semantic parity with your model. A SQL result over a source file diverges from a model result whenever Power Query transforms the data, a measure applies filter context, a relationship changes grain, or RLS filters rows — and **matching numbers prove consistency, not equivalent definitions.** Comparing DuckDB against Power BI needs the grain, filters, source snapshot, and calendar context to be aligned explicitly first.
+
+### If you would rather not install anything
+
+[`scripts/inspect_data_source.py`](../scripts/inspect_data_source.py) profiles Excel, CSV, and TSV using only the standard library plus `openpyxl`. It samples the first 1,000 rows, so its statistics are sample-based, and its key/role suggestions are heuristics — but it needs no database engine and no network:
+
+```bash
+python3 scripts/inspect_data_source.py path/to/source.xlsx --markdown
+```
+
+It does not read Parquet or JSON, and CSV type inference is effectively untyped, since every value arrives as a string. DuckDB is the step up when you need those, or need full-file statistics rather than a sample.
 
 ---
 
@@ -352,6 +437,8 @@ The [`data-goblin/power-bi-agentic-development`](https://github.com/data-goblin/
 | `fabric-cli` / `fabric-admin` | Remote Fabric ops; tenant settings audits |
 | `etl` | Spark, Livy, and DuckDB against lakehouse data |
 
+> **A note on `etl`**: it also uses DuckDB, but against **lakehouse** data — a different job from the local, offline analysis in §8a. The two are unrelated and neither replaces the other; there is no need to install `etl` for §8a.
+
 ```bash
 # Claude Code
 claude plugin marketplace add data-goblin/power-bi-agentic-development
@@ -363,6 +450,49 @@ copilot plugin install tabular-editor@power-bi-agentic-development
 ```
 
 Then browse with `claude plugin list` / `copilot plugin list`, or `/plugin` inside a session.
+
+---
+
+## 8c. Optional: upstream DuckDB SQL skill
+
+`motherduckdb/agent-skills` (MIT) publishes a DuckDB SQL reference skill. It is **not** installed by this template and it is **not** needed for §8a — that section documents the query surface directly. Install it only if you want agent-side SQL syntax guidance across your other projects.
+
+> **Only one of its 22 skills is usable locally.** Every other skill in the collection assumes a MotherDuck account, connection, or cloud workspace, which is out of scope here. We name the exception explicitly so you do not install the catalog and expect the rest to work:
+>
+> | Skill | Local? |
+> |---|---|
+> | `motherduck-duckdb-sql` | **Yes** — DuckDB SQL syntax. The only one. |
+> | `motherduck-query`, `motherduck-explore` | No — both declare *"Prerequisites: An established MotherDuck connection"* |
+> | `motherduck-cli` | No — this is the MotherDuck CLI, a different product from DuckDB's own CLI, and its workflows assume authentication |
+> | The other 18 | No — MotherDuck product features (Dives, Flights, shares, Guides, DuckLake, REST API, pricing, migrations) or they depend on the skills above |
+
+One caveat on the one that qualifies: it is DuckDB-generic in substance but MotherDuck-framed in instruction, and some of its guidance points at MotherDuck docs that do not apply here. Read it as a DuckDB syntax reference, not as MotherDuck documentation.
+
+```bash
+# OpenCode — note --global, see the note below
+npx -y skills add motherduckdb/agent-skills \
+  --agent opencode --skill motherduck-duckdb-sql --yes --global
+
+# Claude Code
+npx -y skills add motherduckdb/agent-skills \
+  --agent claude-code --skill motherduck-duckdb-sql --yes --global
+
+# GitHub Copilot
+npx -y skills add motherduckdb/agent-skills \
+  --agent github-copilot --skill motherduck-duckdb-sql --yes --global
+
+# On Windows, add --copy if symlinks are unavailable
+```
+
+**Use `--global`, deliberately.** For OpenCode and GitHub Copilot, the Skills CLI installs *project-scoped* skills into `.agents/skills/` — which in this repo is the **canonical first-party skill directory** holding the three skills from §8b. A project-scoped install would write third-party content into that tree, where every harness reading `.agents/skills/` would pick it up. The upstream skill is a general DuckDB reference rather than a property of this template, so global is both safer here and more useful.
+
+Other notes:
+
+- **Requires Node.js 22+.** The devcontainer already pins 22; see §1.
+- **Update and verify:** `npx -y skills update -g`, then `npx -y skills list -g`.
+- **Telemetry:** the Skills CLI collects anonymous install data. Set `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` to opt out.
+- **Manual install:** copy the whole skill directory, not only `SKILL.md`, from a checkout of the repo — `cp -R skills/motherduck-duckdb-sql ~/.agents/skills/`.
+- **Hooks are not supported in OpenCode.** `motherduck-duckdb-sql` uses none, so this does not affect it.
 
 > **A word of caution**: the marketplace's own README warns against installing everything — *"Each skill competes for the agent's attention and context window."* Add a plugin when you need it. Note also that these are released on a weekly cadence and versions 26.26–26.38 were a deliberate breaking transition, so pin **26.25 or earlier** if you depend on the older skill structure.
 
@@ -376,7 +506,7 @@ Then browse with `claude plugin list` / `copilot plugin list`, or `/plugin` insi
   ```bash
   python3 scripts/inspect_data_source.py path/to/source.xlsx --markdown
   ```
-  Profiles sheets, column types, null %, and automatically recommends Dimension vs Fact table roles and candidate primary/foreign keys.
+  Profiles sheets, column types, null %, and automatically recommends Dimension vs Fact table roles and candidate primary/foreign keys. Handles Excel (`.xlsx`), CSV and TSV with no database engine and no network — statistics are over a 1,000-row sample and the key/role suggestions are heuristics. For Parquet, JSON, or full-file statistics, see the optional DuckDB section §8a.
 - **Scaffold PBIR Reports & PBIP Projects**:
   ```bash
   python3 scripts/scaffold_pbir.py SalesReport --pages "Executive Overview" "Product Breakdown" --template executive

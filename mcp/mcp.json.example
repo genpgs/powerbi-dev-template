@@ -4,7 +4,9 @@
     "antigravity-global":   "~/.config/antigravity/mcp.json",
     "antigravity-per-repo": ".antigravity/mcp.json  (repo root)",
     "vscode-copilot":       ".vscode/mcp.json  (repo root)",
-    "claude-code":          "~/.claude/mcp.json  (global)"
+    "claude-code":          "~/.claude/mcp.json  (global)",
+    "claude-code-project":  ".mcp.json  (repo root, preferred - keeps config in the repo)",
+    "opencode":             "opencode.json  (repo root)"
   },
   "powerbi-modeling-mcp": {
     "type": "stdio",
@@ -14,11 +16,40 @@
       "PBI_MODELING_MCP_ACCEPT_EULA": "true"
     },
     "_notes": [
-      "Requires Node.js 18+ and npx on PATH.",
+      "Requires Node.js 18+ and npx on PATH. The devcontainer pins Node 22.",
       "PBI_MODELING_MCP_ACCEPT_EULA: set to 'true' to pre-accept the Microsoft EULA for headless/agent workflows (https://go.microsoft.com/fwlink/?LinkId=2381247).",
       "On Windows: connects to a running Power BI Desktop instance automatically.",
       "On Linux: operates on local TMDL project folders offline, or connects to a Fabric workspace.",
       "See https://github.com/microsoft/powerbi-modeling-mcp for full docs."
+    ]
+  },
+  "duckdb-local": {
+    "type": "local",
+    "command": ["uvx", "mcp-server-motherduck", "--db-path", ":memory:", "--read-write", "--query-timeout", "30"],
+    "enabled": false,
+    "_notes": [
+      "OPTIONAL. Local-only DuckDB over local files. No MotherDuck account, token or sign-in is needed for this entry, and none of the other modes exist here.",
+      "Removes DuckDB access? Delete this entry, or set \"enabled\": false (already the default in this file).",
+      "'enabled': false ships so the server is registered but inert. Flip it to true once you have read the notes below.",
+      "",
+      "THREE SEPARATE STEPS. Running setup.sh section 7a installs the DuckDB CLI, which is a shell tool and gives your agent nothing. This entry registers the MCP server. A third step remains: enabling it in your harness. Completing the first does not do the other two.",
+      "",
+      "--read-write is REQUIRED. An in-memory DuckDB database cannot be read-only; the server refuses to start without this flag. Removing it breaks the entry.",
+      "--db-path :memory: is deliberately throwaway: created at server start, holds nothing that predates the session, discarded on exit. For exploratory profiling there is no state worth keeping, so no cleanup burden.",
+      "THE FILESYSTEM IS NOT THROWAWAY. That same flag permits COPY ... TO and EXPORT DATABASE, which write real files that persist after the server exits. Point this at data you are happy to have written.",
+      "NEEDING A READ-ONLY DATABASE? Replace the two --db-path args with a file path: [\"--db-path\", \"/absolute/path/to/analysis.duckdb\"]. Verified: CREATE TABLE and other DDL/DML are rejected, so the .duckdb file cannot be mutated, and no MotherDuck credentials are involved. It does create a file you must clean up yourself.",
+      "IMPORTANT: THAT FILE PATH IS NOT A FILESYSTEM SANDBOX. Read-only protects the DATABASE, not the disk. COPY ... TO still writes files in that mode (verified 2026-10-08: the export succeeded). Both options on this page can write files; the file path only removes the ability to modify the database itself.",
+      "HARDENING - makes your source files read-only-in-practice. Bare enable_external_access=false also blocks every READ, so use an ALLOW-LIST instead, in this exact order (verified 2026-10-08): add the arg [\"--init-sql\", \"SET allowed_paths=['/abs/path/to/source.csv']; SET allowed_directories=['/abs/path/to/scratch']; SET enable_external_access=false;\"]. With that: your listed sources are readable, COPY ... TO against a source is BLOCKED, and writes are confined to the scratch dir. Set allowed_paths/allowed_directories BEFORE enable_external_access=false - the other order fails at startup. Replace the example paths with your own, and put the scratch dir somewhere disposable.",
+      "",
+      "--query-timeout 30 is explicit because the upstream default is -1 (disabled). Without it a runaway query is unbounded.",
+      "Results are capped at 1024 rows / 50,000 characters. Truncated, not blocked.",
+      "",
+      "VERSION SKEW. mcp-server-motherduck pins its own DuckDB inside its own uvx environment, independently of any CLI you installed. The two versions are EXPECTED to differ. Record which you used before comparing results across the two surfaces.",
+      "The execute_query tool takes SQL in an 'sql' argument, NOT 'query'. Passing 'query' fails validation - this is the inverse of older upstream examples.",
+      "",
+      "Local files only. No remote databases, no cloud analytics services, no MotherDuck.",
+      "Verified on Linux against mcp-server-motherduck 1.1.0. See docs/specs/SPEC-02-source-matrix.md and SPEC-05-safety-model.md.",
+      "Full docs: docs/GETTING_STARTED.md section 8a."
     ]
   }
 }

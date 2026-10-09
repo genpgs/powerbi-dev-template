@@ -11,6 +11,7 @@ Ships with:
 - ✅ **Validation** — Python scripts + pre-commit hook + GitHub Actions CI
 - 📦 **Sample PBIP** — `CalendarBaseline` with 4-4-5 calendar, time-intelligence measures, FactSales stub
 - 🐳 **Dev Container** — ready for GitHub Codespaces
+- 🦆 **Optional local DuckDB** — opt-in CLI + MCP server for SQL over local CSV/Parquet/JSON/XLSX/SQLite. No cloud account; nothing else depends on it ([docs §8a](docs/GETTING_STARTED.md#8a-optional-duckdb-for-local-data-analysis))
 
 ---
 
@@ -87,6 +88,7 @@ powerbi-dev-template/
 ├── templates/html-prototype/         # Canvas mockup harness with an enforced allowlist
 ├── templates/visuals-gallery/        # Browsable visual reference (open index.html)
 ├── dax/queries/validate-calendar.dax
+├── docs/specs/              # Specifications, incl. the optional DuckDB capability
 ├── scripts/                 # Validation scripts
 ├── hooks/pre-commit         # Git pre-commit hook
 ├── mcp/mcp.json.example     # powerbi-modeling-mcp config stub
@@ -102,7 +104,7 @@ powerbi-dev-template/
 | Tool | Version | Install |
 |------|---------|---------|
 | Python | 3.10+ | <https://python.org> |
-| Node.js | 18+ | <https://nodejs.org> |
+| Node.js | 22+ | <https://nodejs.org> |
 | uv | latest | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 | git | 2.30+ | package manager |
 | Power BI Desktop | latest | Windows only — for rendering & publish |

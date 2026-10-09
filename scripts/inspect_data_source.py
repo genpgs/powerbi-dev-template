@@ -91,10 +91,10 @@ def inspect_excel(filepath: Path, max_sample_rows: int = 1000):
     return profiles
 
 
-def inspect_csv(filepath: Path, max_sample_rows: int = 1000):
+def inspect_csv(filepath: Path, max_sample_rows: int = 1000, delimiter: str = ","):
     profiles = []
     with open(filepath, "r", encoding="utf-8-sig", errors="replace") as f:
-        reader = csv.reader(f)
+        reader = csv.reader(f, delimiter=delimiter)
         headers = next(reader, None)
         if not headers:
             return profiles
@@ -205,7 +205,8 @@ def main():
     if ext in [".xlsx", ".xlsm", ".xltx"]:
         profiles = inspect_excel(filepath, args.samples)
     elif ext in [".csv", ".tsv", ".txt"]:
-        profiles = inspect_csv(filepath, args.samples)
+        delimiter = "\t" if ext == ".tsv" else ","
+        profiles = inspect_csv(filepath, args.samples, delimiter)
     else:
         print(f"[ERROR] Unsupported file format: {ext}. Supported: .xlsx, .csv, .tsv")
         sys.exit(1)
