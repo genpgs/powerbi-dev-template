@@ -2,7 +2,7 @@
   "name": "Power BI Dev",
   "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
     "ghcr.io/devcontainers/features/git:1": {}
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
