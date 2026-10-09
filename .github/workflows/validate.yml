@@ -44,6 +44,22 @@ jobs:
       - name: Validate repo structure and JSON
         run: python3 scripts/validate_repo.py
 
+      # Guards against CRLF shell scripts, which `bash -n` rejects with a
+      # misleading "unexpected end of file" and which .gitattributes `eol=lf`
+      # hides from `git status`. validate_repo.py checks this too; the explicit
+      # step here keeps the failure obvious in CI output.
+      - name: Verify shell scripts are LF and parse
+        run: |
+          for f in setup.sh .devcontainer/setup.sh scripts/validate_pbir.sh; do
+            [ -f "$f" ] || continue
+            bash -n "$f" || { echo "[FAIL] $f does not parse"; exit 1; }
+            if grep -qU $'\r' "$f"; then
+              echo "[FAIL] $f has CRLF line endings; shell scripts must be LF"
+              exit 1
+            fi
+            echo "[PASS] $f"
+          done
+
       - name: Validate Calendar TMDL
         run: python3 scripts/validate_date_table.py
 
@@ -64,6 +80,9 @@ jobs:
       # output. scripts/build_visual_catalog.py --check is what proves that.
       - name: Verify gitignore matcher against git
         run: python3 scripts/test_pbir_discovery.py
+
+      - name: Verify CSV/TSV delimiter routing
+        run: python3 scripts/test_inspect_delimiter.py
 
       - name: Verify vendored native icons
         run: python3 scripts/vendor_native_icons.py --check

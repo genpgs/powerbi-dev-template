@@ -34,7 +34,9 @@ REQUIRED_FILES = [
     "scripts/validate_pbir_schema.py",
     "scripts/validate_m_expressions.py",
     "scripts/validate_report.py",
+    "scripts/inspect_data_source.py",
     "scripts/scaffold_pbir.py",
+    "scripts/test_inspect_delimiter.py",
     "hooks/pre-commit",
     "mcp/mcp.json.example",
     "dax/queries/validate-calendar.dax",
@@ -182,6 +184,94 @@ if cfg_path.exists():
         pattern in valid_patterns,
         f"[PASS] fiscal-calendar.json pattern '{pattern}' is valid",
         f"[FAIL] fiscal-calendar.json pattern '{pattern}' invalid. Must be one of: {valid_patterns}",
+    )
+
+# ── 7. Shell scripts are LF-terminated and parse ─────────────────────────────
+# Added 2026-10-08 after a real incident: .devcontainer/setup.sh had CRLF line
+# endings in the working tree, which `bash -n` rejects with a misleading
+# "unexpected end of file". Two things let it hide: (1) this validator only
+# checked structure and JSON, and (2) `.gitattributes` `*.sh text eol=lf`
+# normalises CRLF away, so `git status` reported the file clean. A contributor
+# whose editor writes CRLF can reproduce this at any time.
+#
+# Both halves matter: the parse check catches the breakage, the line-ending
+# check catches the cause and names it. See SPEC-08 §10 finding L1.
+SHELL_SCRIPTS = [
+    "setup.sh",
+    ".devcontainer/setup.sh",
+    "scripts/validate_pbir.sh",
+]
+
+for rel in SHELL_SCRIPTS:
+    p = Path(rel)
+    if not p.exists():
+        continue
+
+    raw = p.read_bytes()
+    crlf_count = raw.count(b"\r\n")
+    check(
+        crlf_count == 0,
+        f"[PASS] {rel} uses LF line endings",
+        f"[FAIL] {rel} has {crlf_count} CRLF line ending(s). Shell scripts must be LF: "
+        f"CRLF breaks `bash -n` and can mask as a syntax error. Fix with "
+        f"`git checkout -- {rel}` (safe: the committed blob is LF), and check your "
+        f"editor is not writing CRLF.",
+    )
+
+    # Only attempt a parse if a shell is actually available. Run via the caller's
+    # shell so this works on Linux and in CI without extra deps.
+    #
+    # Windows note: `bash` on PATH may be the WSL shim (C:\Windows\system32\bash.exe),
+    # which cannot reach a repo on another drive and exits non-zero with a
+    # "Failed to translate" message. That is an ENVIRONMENT failure, not a script
+    # defect, so it must not be reported as one — a validator that cries wolf on a
+    # host limitation trains people to ignore it. The LF check above is the
+    # load-bearing half and needs no shell at all.
+    import shutil
+    import subprocess
+
+    if shutil.which("bash") is None:
+        print(f"[SKIP] {rel} not parsed: no bash on PATH (LF check above still applies)")
+        continue
+
+    try:
+        proc = subprocess.run(
+            ["bash", "-n", rel],
+            capture_output=True,
+            text=True,
+        )
+    except OSError as exc:
+        print(f"[SKIP] {rel} not parsed: could not invoke bash ({exc})")
+        continue
+
+    stderr = (proc.stderr or "").strip()
+    stdout = (proc.stdout or "").strip()
+
+    if proc.returncode == 0:
+        check(True, f"[PASS] {rel} parses (bash -n)", "")
+        continue
+
+    # Distinguish "this script is broken" from "this shell cannot run here".
+    # A genuine parse failure names the script and a line: "<path>: line N: ...".
+    combined = "\n".join(x for x in (stderr, stdout) if x)
+    environment_failure = any(
+        marker in combined
+        for marker in (
+            "Failed to translate",   # WSL shim, cross-drive path
+            "not recognized as an internal",  # cmd.exe fallback
+            "command not found",
+        )
+    )
+    if environment_failure:
+        print(f"[SKIP] {rel} not parsed: bash on PATH cannot run here — {combined.splitlines()[0]}")
+        continue
+
+    detail = (combined or f"exit {proc.returncode}").splitlines()
+    detail = detail[0] if detail else f"exit {proc.returncode}"
+    check(
+        False,
+        "",
+        f"[FAIL] {rel} does not parse: {detail}",
     )
 
 # ── Summary ───────────────────────────────────────────────────────────────────

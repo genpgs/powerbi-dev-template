@@ -18,6 +18,8 @@ semanticModelDiagramLayout.json
 bpa-results.json
 *-audit-report.md
 *-audit-report.json
+duckdb-Feature-Addition-plan.md
+duckdb-pending-linux-verification.md
 
 # Rendered-output verification (scripts/capture_report_screenshot.py, Windows-only).
 # Regenerate locally; PNGs are throwaway evidence, not source.
